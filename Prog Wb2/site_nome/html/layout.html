@@ -12,7 +12,7 @@
 			integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 			crossorigin="anonymous"
 		/>
-
+		
 		<link rel="stylesheet" href="css/style.css" />
 
 		<!-- JavaScript -->
@@ -39,14 +39,14 @@
 		<script src="https://kit.fontawesome.com/0bc28c3585.js" crossorigin="anonymous"></script>
 
 		<!-- Titutlo do site-->
-		<title>Site</title>
+		<title>Manual do Calouro</title>
 	</head>
 
 	<body>
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
 				<div class="container">
-					<a class="navbar-brand" href="#"> Marca </a>
+					<a class="navbar-brand" href="index.html"> Marca </a>
 
 					<button
 						class="navbar-toggler"
@@ -62,10 +62,8 @@
 
 					<div class="collapse navbar-collapse" id="barra_nav">
 						<ul class="navbar-nav ml-auto mr-md-4">
-							<li class="nav-item active">
-								<a class="nav-link" href="index.html"
-									>Home <span class="sr-only">(página atual)</span></a
-								>
+							<li class="nav-item">
+								<a class="nav-link" href="index.html">Home <span class="sr-only">(página atual)</span></a>
 							</li>
 
 							<li class="nav-item">
@@ -94,9 +92,9 @@
 								</a>
 
 								<div class="dropdown-menu" aria-labelledby="menu_dropdown_principal">
-									<a class="dropdown-item" href="#">Informática</a>
-									<a class="dropdown-item" href="#">Mecatrônica</a>
-									<a class="dropdown-item" href="#">IoT</a>
+									<a class="dropdown-item" href="info.html">Informática</a>
+									<a class="dropdown-item" href="meca.html">Mecatrônica</a>
+									<a class="dropdown-item" href="iot.html">IoT</a>
 								</div>
 							</li>
 
@@ -114,8 +112,8 @@
 								</a>
 
 								<div class="dropdown-menu" aria-labelledby="menu_dropdown_principal">
-									<a class="dropdown-item" href="#">Simplificado</a>
-									<a class="dropdown-item" href="#">Completo</a>
+									<a class="dropdown-item" href="rod_simp.html">Simplificado</a>
+									<a class="dropdown-item" href="rod_comp.html">Completo</a>
 								</div>
 							</li>
 
@@ -126,12 +124,7 @@
 
 						<form class="form-inline my-2 my-lg-0">
 							<div class="input-group">
-								<input
-									class="form-control"
-									type="search"
-									placeholder="Pesquisar"
-									aria-label="Pesquisar"
-								/>
+								<input class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar" />
 
 								<div class="input-group-append">
 									<button class="btn btn-dark" type="submit">
@@ -146,50 +139,13 @@
 		</header>
 
 		<div class="mb-4">
-			<section>
-				<!-- Carrossel de Fotos -->
-				<div class="container">
-					<div id="carousel" class="carousel slide" data-ride="carousel">
-						<div class="carousel-inner">
-							<div class="carousel-item active">
-								<img
-									class="d-block w-100"
-									src="https://randompicturegenerator.com/img/cat-generator/gca334d297295ef878bd225ec1b36d0ca6cc237271d93833e0ece9c1b1e1df09b5aae3bd8eedc69514b97131d96d830c8_640.jpg"
-									alt="Primeiro Slide"
-								/>
-							</div>
-							<div class="carousel-item">
-								<img
-									class="d-block w-100"
-									src="https://randompicturegenerator.com/img/cat-generator/gca334d297295ef878bd225ec1b36d0ca6cc237271d93833e0ece9c1b1e1df09b5aae3bd8eedc69514b97131d96d830c8_640.jpg"
-									alt="Segundo Slide"
-								/>
-							</div>
-							<div class="carousel-item">
-								<img
-									class="d-block w-100"
-									src="https://randompicturegenerator.com/img/cat-generator/gca334d297295ef878bd225ec1b36d0ca6cc237271d93833e0ece9c1b1e1df09b5aae3bd8eedc69514b97131d96d830c8_640.jpg"
-									alt="Terceiro Slide"
-								/>
-							</div>
-						</div>
-						<a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
-							<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span class="sr-only">Anterior</span>
-						</a>
-						<a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
-							<span class="carousel-control-next-icon" aria-hidden="true"></span>
-							<span class="sr-only">Próximo</span>
-						</a>
-					</div>
-				</div>
-			</section>
+			<section>Conteudo</section>
 		</div>
 
 		<!-- Rodapé da pagina -->
 		<footer class="fixed-bottom bg-success text-light">
 			<div class="container">
-				<a class="navbar-brand text-capitalize" href="#">Marca</a>
+				<a class="navbar-brand text-capitalize" href="index.html">Portal do Calouro</a>
 				&copy; Todos os direitos reservados
 			</div>
 		</footer>
