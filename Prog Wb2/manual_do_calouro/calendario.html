@@ -38,7 +38,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
       <div class="container">
-        <a class="navbar-brand" href="index.html"> Marca </a>
+        <a class="navbar-brand text-uppercase" href="index.html"> Manual do Calouro </a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra_nav"
           aria-controls="barra_nav" aria-expanded="false" aria-label="Alterna navegação">
@@ -61,7 +61,7 @@
             </li>
 
             <li class="nav-item">
-              <a class="nav-link" href="calendario.html">Calendário</a>
+              <a class="nav-link active" href="calendario.html">Calendário</a>
             </li>
 
             <li class="nav-item dropdown">
@@ -100,25 +100,28 @@
               <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar" />
 
               <div class="input-group-append">
-                <button class="btn btn-dark" type="submit">
+                <button class="btn btn-dark mr-3" type="submit">
                   <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
               </div>
             </div>
           </form>
+          <button onclick="window.location.href = 'login.html'" class="btn btn-info" type="button">
+            Cadastre-se
+          </button>
         </div>
       </div>
     </nav>
   </header>
 
   <div class="mb-4">
-    <section>Contatos</section>
+    <section>Calendario</section>
   </div>
 
   <!-- Rodapé da pagina -->
   <footer class="fixed-bottom bg-success text-light">
     <div class="container">
-      <a class="navbar-brand text-capitalize" href="index.html">Portal do Calouro</a>
+      <a class="navbar-brand text-uppercase" href="index.html">Manual do Calouro</a>
       &copy; Todos os direitos reservados
     </div>
   </footer>
