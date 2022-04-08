@@ -36,7 +36,7 @@
 <body>
   <!-- Cabeçalho-->
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-success mb-4">
+    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
       <div class="container">
         <a class="navbar-brand text-uppercase" href="index.html"> Manual do Calouro </a>
 
@@ -107,7 +107,7 @@
             </div>
           </form>
           <button onclick="window.location.href = 'login.html'" class="btn btn-info" type="button">
-            Cadastre-se
+            Entrar
           </button>
         </div>
       </div>
@@ -115,14 +115,40 @@
   </header>
 
   <div class="mb-4">
-    <section>Login</section>
+    <section>
+      <div class="container">
+        <div class="d-flex justify-content-center">
+          <div class="shadow-sm p-4 bg-light">
+            <div class="h1">Login</div>
+            <form>
+              <div class="form-group">
+                <label class="font-weight-bold" for="email">Email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="ajudaEmail"
+                  placeholder="Seu email">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold" for="senha">Senha</label>
+                <input type="password" class="form-control" id="senha" placeholder="Senha">
+              </div>
+              <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe">
+                <label class="form-check-label" for="rememberMe">Lembre de mim</label>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+
+            <div class="mt-3">
+              <small>Ainda não tem uma conta? | <a href="">Cadastre-se</a></small>
+            </div>
+          </div>
+        </div>
+    </section>
   </div>
 
   <!-- Rodapé da pagina -->
-  <footer class="fixed-bottom bg-success text-light">
+  <footer class="fixed-bottom text-light p-2">
     <div class="container">
-      <a class="navbar-brand text-uppercase" href="index.html">Manual do Calouro</a>
-      &copy; Todos os direitos reservados
+      <small>&copy; Todos os direitos reservados 2022</small>
     </div>
   </footer>
 </body>

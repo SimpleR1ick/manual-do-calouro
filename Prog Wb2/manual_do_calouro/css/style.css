@@ -1,15 +1,4 @@
-.caixa1 {
-    border: 1px solid red;
-    height: 100%;
-    background-image: url(../img/campus.jpg);
-    background-position: center;
-    padding: 50px 80px;
-}
-
-.conteudo {
-    border: 1px solid blue;
-    color: #777;
-    background-color: white;
-    text-align: justify;
-    padding: 50px 80px;
+nav,
+footer {
+    background-color: rgb(9, 104, 27);
 }
