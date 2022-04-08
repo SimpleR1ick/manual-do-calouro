@@ -119,8 +119,12 @@
       <div class="container">
         <div class="d-flex justify-content-center">
           <div class="shadow-sm p-4">
-            <div class="h1">Login</div>
+            <div class="h1">Cadastro</div>
             <form>
+              <div class="form-group">
+                <label class="font-weight-bold" for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Seu nome">
+              </div>
               <div class="form-group">
                 <label class="font-weight-bold" for="email">Email</label>
                 <input type="email" class="form-control" id="email" aria-describedby="ajudaEmail"
@@ -128,17 +132,21 @@
               </div>
               <div class="form-group">
                 <label class="font-weight-bold" for="senha">Senha</label>
-                <input type="password" class="form-control" id="senha" placeholder="Senha">
+                <input type="password" class="form-control" id="senha" placeholder="Sua senha">
+              </div>
+              <div class="form-group">
+                <label class="font-weight-bold" for="senha2">Confirme sua senha</label>
+                <input type="password" class="form-control" id="senha2" placeholder="Confirme sua senha">
               </div>
               <div class="form-group form-check">
-                <input type="checkbox" class="form-check-input" id="rememberMe">
-                <label class="form-check-label" for="rememberMe">Lembre de mim</label>
+                <input type="checkbox" class="form-check-input" id="updates">
+                <label class="form-check-label" for="updates">Deseja receber novidades por e-mail? Nunca venderemos seu e-mail a terceiros.</label>
               </div>
-              <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" class="btn btn-primary">Cadastrar-se</button>
             </form>
 
             <div class="mt-3">
-              <small>Ainda não tem uma conta? | <a href="cadastro.html">Cadastre-se</a></small>
+              <small>Já possui uma conta? | <a href="login.html">Fazer login</a></small>
             </div>
           </div>
         </div>
