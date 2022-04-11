@@ -38,7 +38,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark mb-4">
       <div class="container">
-        <a class="navbar-brand text-uppercase" href="index.html"> Manual do Calouro </a>
+        <a class="navbar-brand text-uppercase" href="index.html"><img src="img/logo.png"></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra_nav"
           aria-controls="barra_nav" aria-expanded="false" aria-label="Alterna navegação">
@@ -125,23 +125,33 @@
                 <label class="font-weight-bold" for="nome">Nome</label>
                 <input type="text" class="form-control" id="nome" placeholder="Seu nome">
               </div>
+
               <div class="form-group">
-                <label class="font-weight-bold" for="email">Email</label>
+                <label class="font-weight-bold" for="email">E-mail</label>
                 <input type="email" class="form-control" id="email" aria-describedby="ajudaEmail"
                   placeholder="Seu email">
               </div>
+
               <div class="form-group">
                 <label class="font-weight-bold" for="senha">Senha</label>
                 <input type="password" class="form-control" id="senha" placeholder="Sua senha">
               </div>
+
               <div class="form-group">
                 <label class="font-weight-bold" for="senha2">Confirme sua senha</label>
                 <input type="password" class="form-control" id="senha2" placeholder="Confirme sua senha">
               </div>
+
+              <div class="form-group">
+                <label class="font-weight-bold" for="fotoPerfil">Escolha sua imagem de perfil:</label>
+                <input class="border border-black p-2 m-2 rounded" type="file" class="form-control-file" id="fotoPerfil">
+              </div>
+
               <div class="form-group form-check">
                 <input type="checkbox" class="form-check-input" id="updates">
                 <label class="form-check-label" for="updates">Deseja receber novidades por e-mail? Nunca venderemos seu e-mail a terceiros.</label>
               </div>
+
               <button type="submit" class="btn btn-primary">Cadastrar-se</button>
             </form>
 
