@@ -3,6 +3,10 @@
     font-size: 15.5px;
 }
 
+html {
+    overflow-x: hidden;
+}
+
 nav,
 footer {
     background-color: #09681b;
