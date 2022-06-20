@@ -4,4 +4,3 @@
         <small>&copy; Todos os direitos reservados 2022</small>
     </div>
 </footer>
-       
