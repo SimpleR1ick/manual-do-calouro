@@ -1,7 +1,9 @@
+<?php include_once 'includes/session.php' ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <?php include_once 'includes/head.php';?>
+    <?php include_once 'includes/head.php'; ?>
 </head>
 
 <body>
@@ -10,6 +12,10 @@
     
     <!-- Conteudo da pagina -->
     <section>
+        <?php
+        $name = $dados['nome'];
+        echo "<h1> $name, foi logado carai </h1>";
+        ?>
         <div class="mb-4 container d-flex justify-content-center">
             <iframe src="https://www.youtube.com/embed/aANuDntBtOU"
                 title="YouTube video player"

@@ -10,7 +10,7 @@
 
             <div class="collapse navbar-collapse" id="barra_nav">
                 <ul class="navbar-nav ml-auto mr-md-4">
-                    <!-- Redireciona para as paginas, Home, Sobre, Mapa e Calendario -->
+                    <!-- Redireciona para as paginas, Home, Sobre, Mapa, Calendario, Horarios -->
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
@@ -61,8 +61,9 @@
                     </div>
                 </form>
 
-                <!-- Area de login -->
-                <button onclick="window.location.href = 'login.php'" class="btn btn-info" type="button">
+                <!-- Área de login -->
+                
+                <button onclick="window.location.href = 'login.php'" class='btn btn-info' type='button'>
                     Entrar
                 </button>
             </div>

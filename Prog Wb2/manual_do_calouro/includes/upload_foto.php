@@ -1,6 +1,6 @@
 <?php
 // Verificar envio dos dados por submit
-if (isset($_POST['btn-cadastrar'])):
+if (isset($_POST['btn-cadastrar'])) {
 
     // Array de extensões permitidas
     $extensoesPermitidas = array('png', 'jpeg', 'jpg');
@@ -10,7 +10,7 @@ if (isset($_POST['btn-cadastrar'])):
 
 
     // Verificação da extensão
-    if (in_array($extensao, $extensoesPermitidas)):
+    if (in_array($extensao, $extensoesPermitidas)) {
         
         $pasta = 'img/usuarios/';
 
@@ -19,18 +19,15 @@ if (isset($_POST['btn-cadastrar'])):
 
         $caminho = $pasta. uniqid().".$extensao";
 
-        if(move_uploaded_file($temp, $caminho)):
+        if(move_uploaded_file($temp, $caminho)) {
             $mensagem = 'Upload realizado com sucesso!';
-        else:
+        } else {
             $mensagem = 'Não foi possível realizar o upload.';
-        endif;
+        }
+    }    
 
     // Verificação da extensão
-    else:
-        $mensagem = "Formato inválido! Escolha um arquivo .png, .jpeg ou .jpg";
-    endif;
-
-
-endif;
-
+} else {
+    $mensagem = "Formato inválido! Escolha um arquivo .png, .jpeg ou .jpg";
+}
 ?>
