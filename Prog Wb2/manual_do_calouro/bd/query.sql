@@ -1,13 +1,26 @@
 /* PW2_manual_do_calouro */
 
 /* DEVE SER EXECUTADO ANTES DE CRIAR A TABELA */
-CREATE DATABASE PW2_manual_do_calouro;
+-- CREATE DATABASE PW2_manual_do_calouro;
 
-/* SELECIONE O BANCO DE DADOS ANTES DE RODAR ESSE BLOCO */
+/* LEGENDA
+
+=== ativo ===
+1 = ativo
+0 = inativo
+
+=== acesso ===
+1 = usuário básico
+2 = servidor
+3 = administrador
+
+*/
 CREATE TABLE Usuarios (
-    id_usuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    id_user INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ativo BIT NOT NULL DEFAULT 1,
+    acesso TINYINT(1) NOT NULL DEFAULT 1,
     nome VARCHAR(50) NOT NULL,
-    login VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
     senha VARCHAR(250) NOT NULL,
-    foto_perfil VARCHAR(300) DEFAULT NULL
+    img_perfil VARCHAR(300) DEFAULT NULL
 );

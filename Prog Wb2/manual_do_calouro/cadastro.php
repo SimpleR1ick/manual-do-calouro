@@ -23,40 +23,26 @@
                             <!-- Nome -->
                             <div class="form-group">
                                 <label class="font-weight-bold" for="nome">Nome</label>
-                                <input id="nome" name="nome" type="text" class="form-control" placeholder="Seu nome" required>
+                                <input id="nome" name="nome" class="form-control" type="text" placeholder="Seu nome" required>
                             </div>
 
                             <!-- Email -->
                             <div class="form-group">
                                 <label class="font-weight-bold" for="email">E-mail</label>
-                                <input id="email" name="login" type="email" class="form-control" aria-describedby="ajudaEmail" placeholder="Seu email" required>
+                                <input id="email" name="email" class="form-control" type="email" aria-describedby="ajudaEmail" placeholder="Seu email" required>
                             </div>
 
                             <!-- Senhas -->
                             <div>
                                 <div class="form-group">
                                     <label class="font-weight-bold" for="senha">Senha</label>
-                                    <input id="senha" name="senha" autocomplete="off" type="password" class="form-control" placeholder="Sua senha" required>
+                                    <input id="senha" name="senha" class="form-control" type="password" placeholder="Sua senha" autocomplete="off" required>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="font-weight-bold" for="senha2">Confirme sua senha</label>
-                                    <input id="senhaConfirma" name="senhaConfirma" autocomplete="off" type="password" class="form-control" placeholder="Confirme sua senha" required>
+                                    <label class="font-weight-bold" for="senha2">Confirmar senha</label>
+                                    <input id="senhaConfirma" name="senhaConfirma" class="form-control" type="password" placeholder="Confirme sua senha" autocomplete="off" required>
                                 </div>
-                                <?php
-                                /*
-                                
-                                    if ($senha == "") {
-                                        $mensagem = "<span class='aviso'><b>Aviso</b>: Senha não foi alterada!</span>";
-                                    } else if ($senha == $senhaConfirma) {
-                                        $mensagem = "<span class='sucesso'><b>Sucesso</b>: As senhas são iguais: ".$senha."</span>";
-                                    } else {
-                                        $mensagem = "<span class='erro'><b>Erro</b>: As senhas não conferem!</span>";
-                                    }
-                                    echo "<p id='mensagem'>".$mensagem."</p>";
-                                */
-                                ?>
-
                             </div>
 
                             <!-- Foto de perfil
@@ -74,7 +60,7 @@
                                     venderemos seu e-mail a terceiros.</label>
                             </div>
                             -->
-                            <button type="submit" name="btn-cadastrar" class="btn btn-primary">Cadastrar-se</button>
+                            <button class="btn btn-primary" type="submit" name="btnCadastrar" >Cadastrar-se</button>
 
                         </form>
 

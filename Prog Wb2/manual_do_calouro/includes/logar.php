@@ -1,34 +1,45 @@
 <?php
-// Iniciar Sessão
-session_start();
+    // Iniciando Sessão
+    session_start();
 
-// Conexão
-require_once 'connect.php';
+    // Conexão com o banco de dados
+    require_once 'connect.php';
 
-// Verificando se 
-if (isset($_POST['login']) && isset($_POST['senha'])) {
-    $login = mysqli_real_escape_string($connect, $_POST['login']);
-    $senha = mysqli_escape_string($connect, $_POST['senha']);
+    // Verificando se o login e a senha são nulos
+    if (isset($_POST['email']) && isset($_POST['senha'])) {
+        // Atribui o login e a senha do usuário a variáveis
+        $email = mysqli_escape_string($connect, $_POST['email']);
+        $senha = mysqli_escape_string($connect, md5($_POST['senha']));
 
-    $senha = md5($senha);
-    $sql = "SELECT id_usuario, login FROM usuarios WHERE login = '$login' AND senha = '$senha'";
+        // Faz uma requisição para o banco de dados
+        $sql = "SELECT id_user FROM usuarios WHERE email = '$email' AND senha = '$senha'";
 
-    $resultado = mysqli_query($connect, $sql);
-    
+        // Coleta o resultado da requisição feita acima
+        $query = mysqli_query($connect, $sql);
 
-    if (isset($resultado)) {
-        $dados = mysqli_fetch_array($resultado);
-        $_SESSION['logado'] = true;
-        $_SESSION['id_usuario'] = $dados['id_usuario'];
+        // Verifica se a requisição ocorreu com sucesso
+        if (isset($query)) {
+            // Atribui, como um array, o resultado da requisição
+            $dados = mysqli_fetch_array($query);
 
-        echo "<h1> $dados </h1>";
-        // header('Location: ../index.php');
+            // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
+            // que receberão true e o id do usuário na tabela, respectivamente
+            $_SESSION['logado'] = true;
+            $_SESSION['id_usuario'] = $dados['id_user'];
 
+            $_SESSION['mensagem'] = "Logado com sucesso";
+            // Envia o usuário à página index.php
+            header('Location: ../home.php');
+
+        // Caso a verificação falhe
+        } else {
+            // Adiciona à minha sessão uma mensagem de erro
+            $_SESSION['mensagem'] = "Usuário ou senha inválidos!";
+        }
+
+    // Caso a verificação falhe
     } else {
+        // Adiciona à minha sessão uma mensagem de erro
         $_SESSION['mensagem'] = "Usuário ou senha inválidos!";
     }
-
-} else {
-    $_SESSION['mensagem'] = "Usuário ou senha inválidos!";
-}
 ?>

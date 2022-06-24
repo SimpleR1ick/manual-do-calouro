@@ -20,22 +20,25 @@
 
                         <form method="POST" action="includes/logar.php">
 
+                            <!-- Email -->
                             <div class="form-group">
                                 <label class="font-weight-bold" for="email">Email</label>
-                                <input class="form-control" id="email" name="login" type="email" aria-describedby="ajudaEmail" placeholder="Seu email" autocomplete="on">
+                                <input id="email" name="email" class="form-control" type="email" aria-describedby="ajudaEmail" placeholder="Seu email" autocomplete="on">
                             </div>
 
+                            <!-- Senha -->
                             <div class="form-group">
-                                <label class="font-weight-bold" for="senha" id="label_senha2">Senha</label>
-                                <input class="form-control" id="senha" name="senha" type="password"  placeholder="Senha">
+                                <label class="font-weight-bold" for="senha">Senha</label>
+                                <input id="senha" name="senha" class="form-control" type="password" placeholder="Senha">
                             </div>
 
+                            <!--
                             <div class="form-group form-check">
                                 <input class="form-check-input" id="rememberMe" type="checkbox" >
                                 <label class="form-check-label" for="rememberMe">Lembre de mim</label>
-                            </div>
+                            </div> -->
 
-                            <button class="btn btn-primary" type="submit" name="btn-logar">Login</button>
+                            <button id="btnLogar" name="btnLogar" class="btn btn-primary" type="submit">Login</button>
 
                         </form>
 
