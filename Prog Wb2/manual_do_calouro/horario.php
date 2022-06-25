@@ -1,22 +1,13 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <?php include_once 'includes/head.php';?>
-</head>
+<!-- Header-->
+<?php include_once 'includes/header.php';?>
 
-<body>
-    <!-- Header-->
-    <?php include_once 'includes/header.php';?>
-    
-    <!-- Conteudo da pagina -->
-    
-    <section>
-        <div class="container">
-            Horários
-        </div>
-    </section>
-  
-    <!-- Footer -->
-    <?php include_once 'includes/footer.php';?>
-</body>
-</html>
+<!-- Conteudo da pagina -->
+
+<section>
+    <div class="container">
+        Horários
+    </div>
+</section>
+
+<!-- Footer -->
+<?php include_once 'includes/footer.php';?>
