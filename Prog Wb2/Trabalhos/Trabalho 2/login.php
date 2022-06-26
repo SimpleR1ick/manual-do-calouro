@@ -44,11 +44,10 @@
                     </form>
 
                     <!-- Redirecionamento para cadastro -->
-                    <nav class="mt-5" aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Ainda não tem uma conta?</li>
-                            <li class="breadcrumb-item"><a href="cadastro.php">Cadastre-se</a></li>
-                        </ol>
+                    <nav class="mt-5">
+                        <span>
+                            Ainda não tem uma conta? | <a href="cadastro.php">Cadastre-se</a>
+                        </span>
                     </nav>
                 </div>
             </div>

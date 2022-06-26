@@ -58,11 +58,10 @@
                     </form>
 
                     <!-- Redireciona para login -->
-                    <nav class="mt-5" aria-label="breadcrumb">
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item">Já possui uma conta?</li>
-                            <li class="breadcrumb-item"><a href="login.php">Entrar</a></li>
-                        </ol>
+                    <nav class="mt-5">
+                        <span>
+                            Já possui uma conta? | <a href="login.html">Fazer login</a>
+                        </span>
                     </nav>
                 </div>
             </div>
