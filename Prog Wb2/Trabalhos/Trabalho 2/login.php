@@ -44,11 +44,11 @@
                     </form>
 
                     <!-- Redirecionamento para cadastro -->
-                    <nav class="mt-5">
+                    <div class="mt-5">
                         <span>
                             Ainda não tem uma conta? | <a href="cadastro.php">Cadastre-se</a>
                         </span>
-                    </nav>
+                    </div>
                 </div>
             </div>
         </div>

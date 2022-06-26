@@ -58,11 +58,11 @@
                     </form>
 
                     <!-- Redireciona para login -->
-                    <nav class="mt-5">
+                    <div class="mt-5">
                         <span>
-                            Já possui uma conta? | <a href="login.html">Fazer login</a>
+                            Já possui uma conta? | <a href="login.php">Fazer login</a>
                         </span>
-                    </nav>
+                    </div>
                 </div>
             </div>
         </div>
