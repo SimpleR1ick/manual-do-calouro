@@ -22,7 +22,7 @@
     <!-- Titutlo do site-->
     <?php
     // Verifica se existe um id de usuário na sessão
-    if (isset($_SESSION['id_usuario'])) {
+    if (isset($_SESSION['id_usuario']) && isset($dados['nome'])) {
         // Coloca o título da página como o nome de quem logou
         echo "<title> {$dados['nome']} </title>";
 

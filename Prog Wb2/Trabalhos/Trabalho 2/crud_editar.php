@@ -1,20 +1,17 @@
 <!-- Header-->
 <?php include_once 'includes/header.php'; ?>
 
-<!-- Conexão -->
-<?php include_once 'includes/connect.php' ?>
-
 <!-- Pegando os dados -->
 <?php 
-// Verifica se o ID não esta vazio 
+// Verifica se o ID não está vazio 
 if (isset($_GET['id'])) {
     $id = mysqli_real_escape_string($connect, $_GET['id']);
 
-    // Seleciona na tabela usuarios um usuario com mesmo ID
+    // Seleciona na tabela usuarios um usuário com mesmo ID
     $sql = "SELECT * FROM usuarios WHERE id_user = '$id'";
     $query = mysqli_query($connect, $sql);
 
-    // Converte o resultado para um array
+    // Converte o resultado da query para um array
     $dados = mysqli_fetch_array($query);
 }
 ?>

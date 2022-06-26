@@ -1,9 +1,6 @@
 <!-- Header-->
 <?php include_once 'includes/header.php'; ?>
 
-<!-- Conexão -->
-<?php include_once 'includes/connect.php' ?>
-
 <!-- Conteúdo da pagina -->
 <section>
     <div class="mb-4">
@@ -11,7 +8,7 @@
             <div class="col-8 align-self-center">
                 <div class="col-9">
                     <?php
-                        // Verifica se existe alguma menssagem de erro de login e imprime
+                        // Verifica se existe alguma menssagem de erro e imprime
                         if (isset($_SESSION['mensagem'])) {
                             echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensagem']} </p>";
                             
@@ -45,12 +42,13 @@
                                     <td><?php echo $dados['nome']; ?></td>
                                     <td><?php echo $dados['email']; ?></td>
 
-                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_user']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
-                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_user']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_user']; ?>" class="btn btn-outline-dark btn-sm" role="button"><i class="fa-solid fa-pen"></i></a></td>
+                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_user']; ?>" class="btn btn-outline-dark btn-sm" role="button"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
-                        <?php
+
+                            <?php
                             }
-                        // Caso não existe usuarios cadastrados    
+                        // Caso não existam usuarios cadastrados    
                         } else { ?>
                             <tr>
                                 <th scope="row">-</th>

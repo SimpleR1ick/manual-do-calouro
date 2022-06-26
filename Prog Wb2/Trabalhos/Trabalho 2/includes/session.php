@@ -19,8 +19,5 @@ if (isset($_SESSION['id_usuario'])) {
     // Transforma as colunas em arrays, para mais fácil manipulação
     $dados = mysqli_fetch_array($query);
 
-    // Fechando a conexão após armazenar os dados
-    mysqli_close($connect);
-
 }
 ?>
