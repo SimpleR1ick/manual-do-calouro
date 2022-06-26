@@ -19,3 +19,7 @@ footer {
 nav img {
     height: 35px;
 }
+
+#mapa {
+    border: 0;
+}
