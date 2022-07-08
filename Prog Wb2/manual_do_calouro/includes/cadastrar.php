@@ -7,10 +7,10 @@ require_once 'connect.php';
 
 // Enviando os dados do formulario
 // if (!empty($_POST) AND (empty($_POST['usuario']) OR empty($_POST['senha']))) {
-$nome = mysqli_real_escape_string($connect, $_POST['nome']);
-$email = mysqli_real_escape_string($connect, $_POST['email']);
-$senha = mysqli_real_escape_string($connect, $_POST['senha']);
-$senha2 = mysqli_real_escape_string($connect, $_POST['senhaConfirma']);
+$nome = pg_escape_string($connect, $_POST['nome']);
+$email = pg_escape_string($connect, $_POST['email']);
+$senha = pg_escape_string($connect, $_POST['senha']);
+$senha2 = pg_escape_string($connect, $_POST['senhaConfirma']);
 
 // Sanitizando o nome, para tirar qualquer tag HTML
 $f_nome = filter_var($nome, FILTER_SANITIZE_STRING);
@@ -27,17 +27,17 @@ if ($senha == $senha2) {
     $emailRep = "SELECT email FROM usuarios WHERE email = '$v_email'";
 
     // Coleta o resultado da requisição feita acima
-    $emailR = mysqli_query($connect, $emailRep);
+    $emailR = pg_query($connect, $emailRep);
     
     // Atribui, como um array, o resultado da requisição
-    $dados = mysqli_fetch_array($emailR);
+    $dados = pg_query($emailR);
 
     // Verifica se o email registrado já foi cadastrado
     if (!isset($dados)) {
         // Faz uma requisição do banco de dados
         $sql = "INSERT INTO usuarios(nome, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
 
-        if (mysqli_query($connect, $sql)) {
+        if (pg_query($connect, $sql)) {
             // Adiciona à minha sessão uma mensagem de erro
             $_SESSION['toast'] = "Cadastrado com sucesso!";
             

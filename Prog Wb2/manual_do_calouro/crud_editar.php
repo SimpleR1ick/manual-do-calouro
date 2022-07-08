@@ -8,14 +8,14 @@
 <?php 
 // Verifica se o ID não esta vazio 
 if (isset($_GET['id'])) {
-    $id = mysqli_real_escape_string($connect, $_GET['id']);
+    $id = pg_escape_string($connect, $_GET['id']);
 
     // Seleciona na tabela usuarios um usuario com mesmo ID
     $sql = "SELECT * FROM usuarios WHERE id_user = '$id'";
-    $query = mysqli_query($connect, $sql);
+    $query = pg_query($connect, $sql);
 
     // Converte o resultado para um array
-    $dados = mysqli_fetch_array($query);
+    $dados = pg_fetch_array($query);
 }
 ?>
 

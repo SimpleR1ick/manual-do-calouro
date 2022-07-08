@@ -14,13 +14,13 @@ if (isset($_SESSION['id_usuario'])) {
     $sql = "SELECT nome FROM usuarios WHERE id_user = '$id'";
 
     // Cotém as colunas que atendem a requisição acima
-    $query = mysqli_query($connect, $sql);
+    $query = pg_query($connect, $sql);
 
     // Transforma as colunas em arrays, para mais fácil manipulação
-    $dados = mysqli_fetch_array($query);
+    $dados = pg_query($query);
 
     // Fechando a conexão após armazenar os dados
-    mysqli_close($connect);
+    pg_close($connect);
 
 }
 ?>

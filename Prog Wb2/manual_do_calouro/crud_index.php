@@ -35,11 +35,11 @@
                         <?php
                         // Seleciona a tabela usuarios por inteira
                         $sql = "SELECT * FROM usuarios";
-                        $query = mysqli_query($connect, $sql);
+                        $query = pg_query($connect, $sql);
 
                         // Enquanto houver linhas no query, imprime os dados dos usuarios
-                        if (mysqli_num_rows($query) > 0) {
-                            while ($dados = mysqli_fetch_array($query)) { ?>
+                        if (pg_num_rows($query) > 0) {
+                            while ($dados = pg_fetch_array($query)) { ?>
                                 <tr>
                                     <th scope="row"><?php echo $dados['id_user']; ?></th>
                                     <td><?php echo $dados['nome']; ?></td>

@@ -6,17 +6,17 @@ session_start();
 require_once 'connect.php';
 
 // Atribui o login e a senha do usuário a variáveis
-$email = mysqli_escape_string($connect, $_POST['email']);
-$senha = mysqli_escape_string($connect, md5($_POST['senha']));
+$email = pg_escape_string($connect, $_POST['email']);
+$senha = pg_escape_string($connect, md5($_POST['senha']));
 
 // Faz uma requisição para o banco de dados
 $sql = "SELECT id_user FROM usuarios WHERE email = '$email' AND senha = '$senha'";
 
 // Coleta o resultado da requisição feita acima
-$query = mysqli_query($connect, $sql);
+$query = pg_query($connect, $sql);
 
 // Atribui, como um array, o resultado da requisição
-$dados = mysqli_fetch_array($query);
+$dados = pg_fetch_array($query);
 
 // Verifica se a requisição ocorreu com sucesso
 if (isset($dados)) {
