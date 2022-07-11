@@ -33,11 +33,12 @@
 
                     <tbody>
                         <?php
-                        // Seleciona a tabela usuarios por inteira
-                        $sql = "SELECT * FROM usuarios";
+                        // Seleciona a tabela Usuarios por inteira
+                        $sql = "SELECT * FROM Usuarios WHERE acesso IN (1, 2)";
                         $query = mysqli_query($connect, $sql);
+                        $dados = mysqli_fetch_array($query);
 
-                        // Enquanto houver linhas no query, imprime os dados dos usuarios
+                        // Enquanto houver linhas no query, imprime os dados dos usuarios, não administradores, menos o usuario logado
                         if (mysqli_num_rows($query) > 0) {
                             while ($dados = mysqli_fetch_array($query)) { ?>
                                 <tr>
