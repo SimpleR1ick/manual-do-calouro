@@ -10,9 +10,9 @@
 0 = inativo
 
 === acesso ===
+0 = administrador
 1 = usuário básico
 2 = servidor
-3 = administrador
 
 */
 CREATE TABLE Usuarios (

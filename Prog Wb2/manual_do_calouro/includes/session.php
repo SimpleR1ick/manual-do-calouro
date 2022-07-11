@@ -11,7 +11,7 @@ if (isset($_SESSION['id_usuario'])) {
     $id = $_SESSION['id_usuario'];
 
     // Faz uma requisição do banco de dados
-    $sql = "SELECT nome FROM usuarios WHERE id_user = '$id'";
+    $sql = "SELECT * FROM usuarios WHERE id_user = '$id'";
 
     // Cotém as colunas que atendem a requisição acima
     $query = mysqli_query($connect, $sql);
@@ -21,6 +21,5 @@ if (isset($_SESSION['id_usuario'])) {
 
     // Fechando a conexão após armazenar os dados
     mysqli_close($connect);
-
 }
 ?>
