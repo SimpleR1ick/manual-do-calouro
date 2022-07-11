@@ -2,7 +2,7 @@
 <?php include_once 'includes/header.php'; ?>
 
 <!-- Conexão -->
-<?php include_once 'includes/connect.php' ?>
+<?php include_once 'includes/connect.php'; ?>
 
 <!-- Pegando os dados -->
 <?php 
@@ -27,7 +27,7 @@ if (isset($_GET['id'])) {
             
                 <form action="crud_update.php" method="POST">
 
-                    <input type="hidden" name="id_user" value="<?php echo $dados['id_usuario']; ?>">
+                    <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                     <div class="form-group">
                         <label class="font-weight-bold" for="nome">Nome</label>

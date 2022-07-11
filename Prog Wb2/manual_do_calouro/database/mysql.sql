@@ -4,7 +4,6 @@
 -- CREATE DATABASE PW2_manual_do_calouro;
 
 /* LEGENDA
-
 === ativo ===
 1 = ativo
 0 = inativo

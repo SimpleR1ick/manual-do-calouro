@@ -21,11 +21,8 @@ $dados = pg_fetch_array($query);
 // Verifica se a requisição ocorreu com sucesso
 if (isset($dados)) {
     // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
-    // que receberão true e o id do usuário na tabela, respectivamente
-    $_SESSION['logado'] = true;
     $_SESSION['id_usuario'] = $dados['id_usuario'];
-
-    $_SESSION['toast'] = "Logado com sucesso";
+    $_SESSION['mensagem'] = "Logado com sucesso";
     
     // Envia o usuário à página index.php
     header('Location: ../home.php');

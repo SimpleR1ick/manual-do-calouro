@@ -35,11 +35,11 @@ if ($senha == $senha2) {
     // Verifica se o email registrado já foi cadastrado
     if (!isset($dados) or $dados == false) {
         // Faz uma requisição do banco de dados
-        $sql = "INSERT INTO usuario(nom_usuario, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
+        $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
 
         if (pg_query($connect, $sql)) {
             // Adiciona à minha sessão uma mensagem de erro
-            $_SESSION['toast'] = "Cadastrado com sucesso!";
+            $_SESSION['mensagem'] = "Cadastrado com sucesso!";
             
             // Envia o usuário de à página de login
             header('Location: ../login.php');

@@ -6,7 +6,7 @@ INSERT INTO Horario (hora_inicio, hora_fim) VALUES ('07:30:00', '08:20:00'), ('0
 
 INSERT INTO Sala (dsc_sala) VALUES ('901T'), ('103'), ('104'), ('105'), ('pedagogia'), ('722');
 
-INSERT INTO Usuario (nom_usuario, login, senha) VALUES ('Maria', 'maria@gmail.com', 'fuckingpassword'), ('Henrique', 'rick@outlook.com', '1234'), ('Jonathan', 'jona@hotmail.com', 'password'), ('Moisés', '20matar@gmail.com', 'fucking'), ('Raphael', 'rbranco@yahoo.com', 'bonoro');
+INSERT INTO Usuario (nom_usuario, email, senha) VALUES ('Maria', 'maria@gmail.com', 'fuckingpassword'), ('Henrique', 'rick@outlook.com', '1234'), ('Jonathan', 'jona@hotmail.com', 'password'), ('Moisés', '20matar@gmail.com', 'fucking'), ('Raphael', 'rbranco@yahoo.com', 'bonoro');
 
 INSERT INTO Eventos (data_evento, dsc_evento, fk_Usuario_id_usuario) VALUES ('2022-05-08 11:10:00', 'Prova de biologia', 3), ('2022-04-10 08:20:00', 'OBMEP', 2), ('2022-06-08 13:00:00', 'Prova recuperação matemática', 5), ('2022-11-27 07:30:00', 'Expedição IFES', 4), ('2022-10-11 10:20:00', 'Laboratório de química', 1);
 

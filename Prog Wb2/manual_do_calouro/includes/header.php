@@ -1,6 +1,6 @@
 <!-- Verifica se o usuário está logado e separa
      pega as informações do banco de dados -->
-<?php include_once 'session.php' ?>
+<?php include_once 'session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -62,7 +62,7 @@
                             <a class="nav-link" href="contatos.php">Contatos</a>
                         </li>
 
-                        <?php include_once 'header_crud.php' ?>
+                        <?php include_once 'header_crud.php'; ?>
                     </ul>
 
                     <!-- Barra de pesquisa -->
