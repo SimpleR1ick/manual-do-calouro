@@ -57,10 +57,10 @@ CREATE TABLE Tipo_contato (
 CREATE TABLE Usuario (
     id_usuario SERIAL PRIMARY KEY,
     nom_usuario VARCHAR(50),
-    ativo BOOLEAN DEFAULT 't',
-    acesso INT DEFAULT '1',
-    login VARCHAR(50),
-    senha VARCHAR(200)
+    email VARCHAR(50),
+    senha VARCHAR(200),
+    ativo BOOLEAN NOT NULL DEFAULT 't',
+    acesso INT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE Professor (

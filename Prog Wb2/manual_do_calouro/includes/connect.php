@@ -1,14 +1,19 @@
 <?php
-// Dados para conexão com o banco de dados local
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$db_name = "pw2_manual_do_calouro";
+// Dados para conexão com o banco de dados
+/*
+$host = "kesavan.db.elephantsql.com";
+$port = "5432";
+$user = "jqvnqgvm";
+$db = "jqvnqgvm";
+$pass = "IKXmlWoguZUV-Rav8eB14MghUUXaZAk8";
+*/
+
+$host = "localhost";
+$port = "5432";
+$db = "Manual_do_Calouro";
+$user = "postgres";
+$pass = "252804277353";
 
 // Conexão com banco de dados
-$connect = mysqli_connect($servername, $username, $password, $db_name);
-
-if(mysqli_connect_error()) {
-	echo "Falha na conexão: ". mysqli_connect_error();
-}
-?> 
+$connect = pg_connect("host=$host port=$port dbname=$db user=$user password=$pass");
+?>

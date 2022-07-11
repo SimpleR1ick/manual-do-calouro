@@ -33,21 +33,20 @@
 
                     <tbody>
                         <?php
-                        // Seleciona a tabela Usuarios por inteira
-                        $sql = "SELECT * FROM Usuarios WHERE acesso IN (1, 2)";
-                        $query = mysqli_query($connect, $sql);
-                        $dados = mysqli_fetch_array($query);
+                        // Seleciona a tabela usuarios por inteira
+                        $sql = "SELECT * FROM usuario";
+                        $query = pg_query($connect, $sql);
 
-                        // Enquanto houver linhas no query, imprime os dados dos usuarios, não administradores, menos o usuario logado
-                        if (mysqli_num_rows($query) > 0) {
-                            while ($dados = mysqli_fetch_array($query)) { ?>
+                        // Enquanto houver linhas no query, imprime os dados dos usuarios
+                        if (pg_num_rows($query) > 0) {
+                            while ($dados = pg_fetch_array($query)) { ?>
                                 <tr>
-                                    <th scope="row"><?php echo $dados['id_user']; ?></th>
-                                    <td><?php echo $dados['nome']; ?></td>
+                                    <th scope="row"><?php echo $dados['id_usuario']; ?></th>
+                                    <td><?php echo $dados['nom_usuario']; ?></td>
                                     <td><?php echo $dados['email']; ?></td>
 
-                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_user']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
-                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_user']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
+                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                         <?php
                             }
