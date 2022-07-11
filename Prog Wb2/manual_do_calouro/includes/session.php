@@ -11,13 +11,13 @@ if (isset($_SESSION['id_usuario'])) {
     $id = $_SESSION['id_usuario'];
 
     // Faz uma requisição do banco de dados
-    $sql = "SELECT nome FROM usuarios WHERE id_user = '$id'";
+    $sql = "SELECT nom_usuario FROM usuario WHERE id_usuario = '$id'";
 
     // Cotém as colunas que atendem a requisição acima
     $query = pg_query($connect, $sql);
 
     // Transforma as colunas em arrays, para mais fácil manipulação
-    $dados = pg_query($query);
+    $dados = pg_fetch_array($query);
 
     // Fechando a conexão após armazenar os dados
     pg_close($connect);

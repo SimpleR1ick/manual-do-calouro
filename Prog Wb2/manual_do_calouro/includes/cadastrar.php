@@ -24,18 +24,18 @@ if ($senha == $senha2) {
     $senhaSegura = md5($senha);
 
     // Verificação para ver se o email do usuário já está no banco de dados
-    $emailRep = "SELECT email FROM usuarios WHERE email = '$v_email'";
+    $emailRep = "SELECT email FROM usuario WHERE email = '$v_email'";
 
     // Coleta o resultado da requisição feita acima
     $emailR = pg_query($connect, $emailRep);
     
     // Atribui, como um array, o resultado da requisição
-    $dados = pg_query($emailR);
+    $dados = pg_fetch_array($emailR);
 
     // Verifica se o email registrado já foi cadastrado
-    if (!isset($dados)) {
+    if (!isset($dados) or $dados == false) {
         // Faz uma requisição do banco de dados
-        $sql = "INSERT INTO usuarios(nome, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
+        $sql = "INSERT INTO usuario(nom_usuario, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
 
         if (pg_query($connect, $sql)) {
             // Adiciona à minha sessão uma mensagem de erro

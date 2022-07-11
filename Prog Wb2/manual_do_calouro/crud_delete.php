@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $id = pg_escape_string($connect, $_GET['id']);
     
     // Query para deletar o usuário no banco de dados
-    $sql = "DELETE FROM usuarios WHERE id_user = '$id'";
+    $sql = "DELETE FROM usuario WHERE id_usuario = '$id'";
 
     // Verifica se o usuário foi excluído e envia o user de volta para o crud_index
     if (pg_query($connect, $sql)) {

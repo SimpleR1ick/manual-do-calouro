@@ -11,7 +11,7 @@ if (isset($_GET['id'])) {
     $id = pg_escape_string($connect, $_GET['id']);
 
     // Seleciona na tabela usuarios um usuario com mesmo ID
-    $sql = "SELECT * FROM usuarios WHERE id_user = '$id'";
+    $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
     $query = pg_query($connect, $sql);
 
     // Converte o resultado para um array
@@ -27,11 +27,11 @@ if (isset($_GET['id'])) {
             
                 <form action="crud_update.php" method="POST">
 
-                    <input type="hidden" name="id_user" value="<?php echo $dados['id_user']; ?>">
+                    <input type="hidden" name="id_user" value="<?php echo $dados['id_usuario']; ?>">
 
                     <div class="form-group">
                         <label class="font-weight-bold" for="nome">Nome</label>
-                        <input id="nome" name="nome" class="form-control" type="text" value="<?php echo $dados['nome']; ?>">
+                        <input id="nome" name="nome" class="form-control" type="text" value="<?php echo $dados['nom_usuario']; ?>">
                     </div>
 
                     <div class="form-group">
