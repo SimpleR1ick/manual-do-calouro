@@ -62,9 +62,7 @@
                             <a class="nav-link" href="contatos.php">Contatos</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="crud_index.php">CRUD</a>
-                        </li>
+                        <?php include_once 'header_crud.php' ?>
                     </ul>
 
                     <!-- Barra de pesquisa -->
@@ -80,6 +78,7 @@
                         </div>
                     </form>
 
+                    
                     <!-- Área de login -->
                     <?php
                     // Verifica se existe um id de usuário na sessão
