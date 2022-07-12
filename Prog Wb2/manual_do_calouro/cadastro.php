@@ -6,14 +6,10 @@
     <div class="mb-4">
         <div class="container">
             <div class="d-flex justify-content-center">
-
                 <div class="border rounded shadow-sm p-4 bg-light">
-
                     <h1 class="h1">Cadastro</h1>
 
                     <form id="cadastro" action="includes/cadastrar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
-                        
-
                         <!-- Nome -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="nome">Nome</label>
@@ -45,12 +41,12 @@
                             </div>
                             <div class="col-9">
                                 <?php
-                                    // Verifica se existe alguma menssagem de erro de login e imprime
-                                    if (isset($_SESSION['mensagem'])) {
-                                        echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensagem']} </p>";
-                                        
-                                        $_SESSION['mensagem'] = null;
-                                    }
+                                // Verifica se existe alguma menssagem de erro de cadastri e imprime
+                                if (isset($_SESSION['mensagem'])) {
+                                    echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensagem']} </p>";
+                                    
+                                    $_SESSION['mensagem'] = null;
+                                }
                                 ?>
                             </div>
                         </div>

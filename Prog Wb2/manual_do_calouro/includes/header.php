@@ -12,12 +12,10 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- JavaScript -->
     <script src="js/script.js"></script>
-
 
     <!-- Titutlo do site-->
     <?php
@@ -42,26 +40,31 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra_nav" aria-controls="barra_nav" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                <!-- Redirecionamento das respectivas paginas -->
                 <div class="collapse navbar-collapse" id="barra_nav">
                     <ul class="navbar-nav ml-auto mr-md-4">
-                        <!-- Redireciona para as paginas, Home, Sobre, Mapa, Calendario, Horarios -->
+                        <!-- Home -->
                         <li class="nav-item">
                             <a class="nav-link" href="home.php">Home</a>
                         </li>
-
+                        <!-- Sobre -->
                         <li class="nav-item">
                             <a class="nav-link" href="sobre.php">Sobre</a>
                         </li>
-
+                        <!-- Mapa -->
                         <li class="nav-item">
                             <a class="nav-link" href="mapa.php">Mapa</a>
                         </li>
-
+                        <!-- Horarios -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="horarios.php">Horarios</a>
+                        </li>
+                        <!-- Contatos -->
                         <li class="nav-item">
                             <a class="nav-link" href="contatos.php">Contatos</a>
                         </li>
 
+                        <!-- CRUD usuarios -->
                         <?php include_once 'header_crud.php'; ?>
                     </ul>
 
@@ -78,7 +81,6 @@
                         </div>
                     </form>
 
-                    
                     <!-- Área de login -->
                     <?php
                     // Verifica se existe um id de usuário na sessão
@@ -97,7 +99,6 @@
                         </button>";
                     }
                     ?>
-
                 </div>
             </div>
         </nav>

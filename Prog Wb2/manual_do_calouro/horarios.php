@@ -1,3 +1,7 @@
+<!-- Header-->
+<?php include_once 'includes/header.php';?>
+
+<!-- Conteudo da pagina -->
 <section>
     <div class="container">
         <div class="row justify-content-center">
@@ -8,7 +12,6 @@
 
         <div class="row justify-content-center">
             <div class="col-auto">
-                
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-success active">
                       <input type="radio" name="curso" id="info" autocomplete="off" checked> INFO
@@ -22,13 +25,11 @@
                         <input type="radio" name="curso" id="iot" autocomplete="off"> IOT
                     </label>
                 </div>
-
             </div>
         </div>
 
         <div class="row m-3 justify-content-center">
             <div class="col-auto">
-
                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                     <label class="btn btn-success active">
                       <input type="radio" name="modulo" id="mod1" autocomplete="off" checked> 1
@@ -54,7 +55,6 @@
                         <input type="radio" name="modulo" id="mod6" autocomplete="off"> 6
                     </label>
                 </div>
-
             </div>
         </div>
 
@@ -114,6 +114,7 @@
                                 </td>
                                 <td></td>
                             </tr>
+                            <!--
                             <tr>
                                 <td class="align-middle">8:20<br>9:10</td>
                                 <td>
@@ -159,11 +160,14 @@
                                     </span>
                                 </td>
                             </tr>
+                            -->
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
 </section>
+
+<!-- Footer -->
+<?php include_once 'includes/footer.php';?>

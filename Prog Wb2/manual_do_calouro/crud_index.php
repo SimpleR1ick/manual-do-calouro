@@ -4,8 +4,6 @@
 <!-- Conexão -->
 <?php include_once 'includes/connect.php'; ?>
 
-<?php print_r($_SESSION['mensagem']); ?>
-
 <!-- Conteúdo da pagina -->
 <section>
     <div class="mb-4">

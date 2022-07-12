@@ -6,13 +6,9 @@
     <div class="mb-4">
         <div class="container">
             <div class="d-flex justify-content-center">
-
                 <div class="border rounded shadow-sm p-4 bg-light">
-
                     <div class="h1">Login</div>
-
                     <form method="POST" action="includes/logar.php">
-
                         <!-- Email -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="email">Email</label>
@@ -31,16 +27,15 @@
                             </div>
                             <div class="col-9">
                                 <?php
-                                    // Verifica se existe alguma menssagem de erro de login e imprime
-                                    if (isset($_SESSION['mensagem'])) {
-                                        echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensagem']} </p>";
-                                        
-                                        $_SESSION['mensagem'] = null;
-                                    }
+                                // Verifica se existe alguma menssagem de erro de login e imprime
+                                if (isset($_SESSION['mensagem'])) {
+                                    echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensagem']} </p>";
+                                    
+                                    $_SESSION['mensagem'] = null;
+                                }
                                 ?>
                             </div>
                         </div>
-                    
                     </form>
 
                     <!-- Redirecionamento para cadastro -->

@@ -24,9 +24,7 @@ if (isset($_GET['id'])) {
     <div class="mb-4">
         <div class="row">
             <div class="col-8 align-self-center">
-            
                 <form action="crud_update.php" method="POST">
-
                     <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                     <div class="form-group">
