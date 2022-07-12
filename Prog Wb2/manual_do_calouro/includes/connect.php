@@ -13,7 +13,7 @@ $host = "localhost";
 $port = "5432";
 $db = "Manual_do_Calouro";
 $user = "postgres";
-$pass = "psql"; // Senha variavel 
+$pass = "252804277353"; // Senha variavel 
 
 // Conexão com banco de dados
 $connect = pg_connect("host=$host port=$port dbname=$db user=$user password=$pass");
