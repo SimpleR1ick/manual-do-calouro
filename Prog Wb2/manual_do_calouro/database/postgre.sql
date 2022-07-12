@@ -34,7 +34,8 @@ CREATE TABLE Horario (
 
 CREATE TABLE Sala (
     id_sala SERIAL PRIMARY KEY,
-    dsc_sala VARCHAR(50)
+    dsc_sala VARCHAR(10) NOT NULL,
+    dsc_complemento VARCHAR(50) 
 );
 
 CREATE TABLE Eventos (

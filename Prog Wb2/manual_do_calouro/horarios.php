@@ -1,5 +1,8 @@
 <!-- Header-->
-<?php include_once 'includes/header.php';?>
+<?php include_once 'includes/header.php'; ?>
+
+<!-- Conexão -->
+<?php include_once 'includes/connect.php'; ?>
 
 <!-- Conteudo da pagina -->
 <section>
@@ -114,53 +117,6 @@
                                 </td>
                                 <td></td>
                             </tr>
-                            <!--
-                            <tr>
-                                <td class="align-middle">8:20<br>9:10</td>
-                                <td>
-                                    <span class="d-flex flex-column">
-                                        <small >Sala N°</small>
-                                        <strong>DISCIPLINA</strong>
-                                        <small>Professor</small>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="d-flex flex-column">
-                                        <small >Sala N°</small>
-                                        <strong>DISCIPLINA</strong>
-                                        <small>Professor</small>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="d-flex flex-column">
-                                        <small >Sala N°</small>
-                                        <strong>DISCIPLINA</strong>
-                                        <small>Professor</small>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="d-flex flex-column">
-                                        <small >Sala N°</small>
-                                        <strong>DISCIPLINA</strong>
-                                        <small>Professor</small>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="d-flex flex-column">
-                                        <small >Sala N°</small>
-                                        <strong>DISCIPLINA</strong>
-                                        <small>Professor</small>
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="d-flex flex-column">
-                                        <small >Sala N°</small>
-                                        <strong>DISCIPLINA</strong>
-                                        <small>Professor</small>
-                                    </span>
-                                </td>
-                            </tr>
-                            -->
                         </tbody>
                     </table>
                 </div>

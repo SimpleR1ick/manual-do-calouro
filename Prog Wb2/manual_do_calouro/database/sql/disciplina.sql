@@ -1,0 +1,17 @@
+INSERT INTO Disciplina (dsc_disc) VALUES
+    ('DES SIST'),
+    ('ELET BAS'),
+    ('FILOS'),
+    ('PORTUG'),
+    ('QUI'),
+    ('BIO'),
+    ('MAT'),
+    ('SOCIOL'),
+    ('DISP MOV'),
+    ('Empreendedorismo'),
+    ('Projeto Integrador'),
+    ('PROG WEB II'),
+    ('Dep. BIO'),
+    ('Dep. QUI'),
+    ('Dep. SOCIOL'),
+    ('Dep. PROG OO');
