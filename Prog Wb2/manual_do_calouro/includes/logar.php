@@ -5,34 +5,42 @@ session_start();
 // Conexão com o banco de dados
 require_once 'connect.php';
 
-// Atribui o login e a senha do usuário a variáveis
+// Definindo a conexão como uma constante global
+define('_CONEXAO_', $connect);
+
+// Atribui o conteudo dos campos do formulario a variáveis
 $email = pg_escape_string($connect, $_POST['email']);
 $senha = pg_escape_string($connect, md5($_POST['senha']));
 
-// Faz uma requisição para o banco de dados
-$sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senha'";
+// Loga o usuario no site
+logarUsuario($email, $senha);
 
-// Coleta o resultado da requisição feita acima
-$query = pg_query($connect, $sql);
+/**
+ * Função para logar no website
+ * 
+ * @param $email - 
+ * 
+ * @author Henrique Dalmagro
+ */
+function logarUsuario($email, $senha): void {
+    // Preparando uma requisição ao banco de dados
+    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senha'";
+    $query = pg_query(_CONEXAO_, $sql);
 
-// Atribui, como um array, o resultado da requisição
-$dados = pg_fetch_array($query);
+    // Verifica se a requisição teve resultado
+    if (pg_num_rows($query) == 1) {
+        // Atribui, como um array, o resultado da requisição
+        $result = pg_fetch_array($query);
 
-// Verifica se a requisição ocorreu com sucesso
-if (isset($dados)) {
-    // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
-    $_SESSION['id_usuario'] = $dados['id_usuario'];
-    $_SESSION['mensagem'] = "Logado com sucesso";
-    
-    // Envia o usuário à página index.php
-    header('Location: ../home.php');
+        // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
+        $_SESSION['id_usuario'] = $result['id_usuario'];
+        $_SESSION['mensagem'] = "Logado com sucesso";
+        header('Location: ../home.php'); // retorna para página home.php
 
-// Caso a verificação falhe
-} else {
-    // Adiciona à minha sessão uma mensagem de erro
-    $_SESSION['mensagem'] = "Usuário ou senha inválidos!";
-    
-    // Envia o usuário de volta à página de login
-    header('Location: ../login.php');
+    } else {
+        // Adiciona à sessão uma mensagem de erro
+        $_SESSION['mensagem'] = "Usuário ou senha inválidos!";
+        header('Location: ../login.php'); // retorna para página de login
+    }
 }
 ?>

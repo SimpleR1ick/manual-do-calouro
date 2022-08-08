@@ -22,13 +22,13 @@
                             <input id="email" name="email" class="form-control" type="email" aria-describedby="ajudaEmail" placeholder="Seu email" required>
                         </div>
 
-                        <!-- Senhas -->
+                        <!-- Senha -->
                         <div>
                             <div class="form-group">
                                 <label class="font-weight-bold" for="senha">Senha</label>
                                 <input id="senha" name="senha" class="form-control" type="password" placeholder="Sua senha" autocomplete="off" required>
                             </div>
-
+                            
                             <div class="form-group">
                                 <label class="font-weight-bold" for="senha2">Confirmar senha</label>
                                 <input id="senhaConfirma" name="senhaConfirma" class="form-control" type="password" placeholder="Confirme sua senha" autocomplete="off" required>
@@ -50,7 +50,6 @@
                                 ?>
                             </div>
                         </div>
-
                     </form>
 
                     <!-- Redireciona para login -->

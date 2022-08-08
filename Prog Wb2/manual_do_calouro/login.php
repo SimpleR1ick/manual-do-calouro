@@ -7,8 +7,9 @@
         <div class="container">
             <div class="d-flex justify-content-center">
                 <div class="border rounded shadow-sm p-4 bg-light">
-                    <div class="h1">Login</div>
-                    <form method="POST" action="includes/logar.php">
+                    <h1 class="h1">Login</h1>
+
+                    <form id="login" action="includes/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
                         <!-- Email -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="email">Email</label>

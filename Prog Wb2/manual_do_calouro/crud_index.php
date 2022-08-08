@@ -20,7 +20,7 @@
                         </tr>
                     </thead>
 
-                    <tbody>
+                    <tbody> 
                         <?php
                         // Seleciona a tabela usuarios por inteira, menos os usuarios administrador
                         $sql = "SELECT * FROM usuario WHERE acesso != 0";
@@ -31,17 +31,16 @@
                             while ($dados = pg_fetch_array($query)) { 
                             ?>
                                 <tr>
-                                    <th scope="row"><?php echo $dados['id_usuario']; ?></th>
-                                    <td><?php echo $dados['nom_usuario']; ?></td>
-                                    <td><?php echo $dados['email']; ?></td>
+                                    <th scope="row"><?php echo $dados['id_usuario'];?></th>
+                                    <td><?php echo $dados['nom_usuario'];?></td>
+                                    <td><?php echo $dados['email'];?></td>
 
-                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
-                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
+                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_usuario'];?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
+                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_usuario'];?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                             <?php
                             } 
-                        // Caso não existe usuarios cadastrados    
-                        } else { 
+                        } else { // Caso não existe usuarios cadastrados  
                             ?>
                             <tr>
                                 <th scope="row">-</th>
@@ -51,7 +50,7 @@
                                 <td>-</td>
                             </tr>
                         <?php
-                        } 
+                        }
                         ?>
                     </tbody>
                 </table>

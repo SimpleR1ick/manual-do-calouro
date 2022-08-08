@@ -3,6 +3,7 @@ INSERT INTO Aula (fk_Horario_id_horario,
                   fk_Turma_id_turma, 
                   fk_Disciplina_id_disc, 
                   fk_Sala_id_sala) VALUES
+                  
     -- Segunda-feira 
     (1, 2, 5, 1, 3),
     (2, 2, 5, 1, 2),
@@ -37,13 +38,6 @@ INSERT INTO Aula (fk_Horario_id_horario,
     (1, 6, 5, 11, 1),
     (2, 6, 5, 11, 1),
     (3, 6, 5, 11, 1),
-    (1, 6, 5, 12, 2),
-    (2, 6, 5, 12, 2),
-    (3, 6, 5, 12, 2),
-
-    (4, 6, 5, 11, 1),
-    (5, 6, 5, 11, 1),
-    (6, 6, 5, 11, 1),
     (4, 6, 5, 12, 2),
     (5, 6, 5, 12, 2),
     (6, 6, 5, 12, 2),

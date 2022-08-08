@@ -1,6 +1,9 @@
-<!-- Verifica se o usuário está logado e separa
-     pega as informações do banco de dados -->
-<?php include_once 'session.php'; ?>
+<?php 
+include_once 'session.php';
+
+// Verifica se existe uma sessão armazena os dados do usuario logado
+coletaDadosUsuario();
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,18 +20,11 @@
     <!-- JavaScript -->
     <script src="js/script.js"></script>
 
-    <!-- Titutlo do site-->
-    <?php
-    // Verifica se existe um id de usuário na sessão
-    if (isset($_SESSION['id_usuario'])) {
-        // Coloca o título da página como o nome de quem logou
-        echo "<title> {$dados['nom_usuario']} </title>";
+    <!-- JQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 
-    // Caso não exista, deixa o título padrão da página
-    } else {
-        echo "<title> Manual do Calouro </title>";
-    }
-    ?>
+    <!-- Titutlo do site-->
+    <?php tituloSite(); ?>
 </head>
 
 <body>
@@ -65,7 +61,12 @@
                         </li>
 
                         <!-- CRUD usuarios -->
-                        <?php include_once 'header_crud.php'; ?>
+                        <?php
+                        include_once 'acesso.php'; 
+                        
+                        // Verifica se o usuario tem o nivel de acesso administrativo
+                        verificaAcessoCrud(); 
+                        ?>
                     </ul>
 
                     <!-- Barra de pesquisa -->
@@ -82,23 +83,8 @@
                     </form>
 
                     <!-- Área de login -->
-                    <?php
-                    // Verifica se existe um id de usuário na sessão
-                    if (isset($_SESSION['id_usuario'])) {
-                        // Se existir um usuário, cria um botão para dar logout
-                        echo
-                        "<button onclick='window.location.href = \"includes/logout.php\"' class='btn btn-info' type='button'>
-                            Sair
-                        </button>";
-
-                    // Se não existir um usuário, cria um botão para dar login
-                    } else {
-                        echo
-                        "<button onclick='window.location.href = \"login.php\"' class='btn btn-info' type='button'>
-                            Entrar
-                        </button>";
-                    }
-                    ?>
+                    <?php verificaLogin(); ?>
+                    
                 </div>
             </div>
         </nav>

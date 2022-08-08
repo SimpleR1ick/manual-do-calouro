@@ -4,70 +4,95 @@ session_start();
 
 // Conexão com o banco de dados
 require_once 'connect.php';
+require_once '../packages/processos.php';
 
-// Enviando os dados do formulario
-// if (!empty($_POST) AND (empty($_POST['usuario']) OR empty($_POST['senha']))) {
+// Definindo a conexão como uma constante global
+define('_CONEXAO_', $connect);
+
+// Atribui o conteudo dos campos do formulario a variáveis
 $nome = pg_escape_string($connect, $_POST['nome']);
 $email = pg_escape_string($connect, $_POST['email']);
 $senha = pg_escape_string($connect, $_POST['senha']);
 $senha2 = pg_escape_string($connect, $_POST['senhaConfirma']);
 
-// Sanitizando o nome, para tirar qualquer tag HTML
-$f_nome = filter_var($nome, FILTER_SANITIZE_STRING);
+// Sanitizando o nome e email (remover qualquer tag HTML)
+$f_nome = htmlspecialchars($nome);
+$f_email = htmlspecialchars($email);
 
-// Sanitizando e validando email
-$f_email = filter_var($email, FILTER_SANITIZE_EMAIL);
+// Validando o email
+$email = filter_var($f_email, FILTER_SANITIZE_EMAIL);
 $v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
 
-if ($senha == $senha2) {
-    // Criptografando a senha usando md5
-    $senhaSegura = md5($senha);
+// Verifica se as senhas são identicas
+validaSenha($senha, $senha2);
 
-    // Verificação para ver se o email do usuário já está no banco de dados
-    $emailRep = "SELECT email FROM usuario WHERE email = '$v_email'";
+// Verifica se o email recebido ja consta no banco de dados
+validaEmailExistente($v_email);
 
-    // Coleta o resultado da requisição feita acima
-    $emailR = pg_query($connect, $emailRep);
-    
-    // Atribui, como um array, o resultado da requisição
-    $dados = pg_fetch_array($emailR);
+// Criptografa a senha recebida utilizando hash md5
+$senhaSegura = cripgrafaSenha($senha);
 
-    // Verifica se o email registrado já foi cadastrado
-    if (!isset($dados) or $dados == false) {
-        // Faz uma requisição do banco de dados
-        $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
+// Insere o usuario no banco de dados
+cadastraUsuario($nome, $v_email, $senhaSegura);
 
-        if (pg_query($connect, $sql)) {
-            // Adiciona à minha sessão uma mensagem de erro
-            $_SESSION['mensagem'] = "Cadastrado com sucesso!";
-            
-            // Envia o usuário de à página de login
-            header('Location: ../login.php');
+/**
+ * Função para verificar se as senhas coincidem
+ * 
+ * @param $senha - Primeira senha digitada
+ * @param $senha2 - Confirmação de senha
+ * 
+ * @author Henriqueq Dalmagro
+ */
+function validaSenha($senha, $senha2): void{    
+    if ($senha !== $senha2) {
+        // Adiciona à minha sessão uma mensagem de erro
+        $_SESSION['mensagem'] = "Senhas não idênticas!";
+        header('Location: ../cadastro.php'); // Retorna para o cadastro
+    }
+}
 
-        } else {
-            $_SESSION['mensagem'] = "Erro ao cadastrar!";
-            
-            // Envia o usuário de volta à página de cadastro
-            header('Location: ../cadastro.php');
-        }
+/**
+ * Função para verificar se o email de entrada ja esta cadastrado
+ * 
+ * 
+ * @author Henrique Dalmagro
+ */
+function validaEmailExistente($v_email): void {
+    // Preparando uma requisição ao banco de dados
+    $sql = "SELECT email FROM usuario WHERE email = '$v_email'";
+    $query = pg_query(_CONEXAO_, $sql);
+
+    // Verifica se a requisição teve resultado
+    if (pg_num_rows($query) > 0) {
+        // Adiciona à minha sessão uma mensagem de erro
+        $_SESSION['mensagem'] = "Email já cadastrado!";
+        header('Location: ../cadastro.php'); // Retorna para o cadastro
+    }
+}
+
+/**
+ * Função para cadastrar o usuario 
+ * 
+ * @param $nome - Nome do usuario
+ * @param $v_email - Email valido
+ * @param $senhaSegura - Senha criptografada em MD5
+ * 
+ * @author Henrique Dalmagro
+ */
+function cadastraUsuario($nome, $v_email, $senhaSegura): void {
+    // Preparando a requisição de inserção de dados
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$v_email', '$senhaSegura')";
+    $query = pg_query(_CONEXAO_, $sql);
+
+    if ($query) {
+        // Adiciona a minha sessão uma mensagem de sucesso
+        $_SESSION['mensagem'] = "Cadastrado com sucesso!";
+        header('Location: ../login.php');// Envia o usuário de à página de login
 
     } else {
         // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['mensagem'] = "Email já cadastrado!";
-        
-        // Envia o usuário de volta à página de cadastro
-        header('Location: ../cadastro.php');
+        $_SESSION['mensagem'] = "Erro ao cadastrar!";
+        header('Location: ../cadastro.php'); // Retorna para o cadastro
     }
-
-} else {
-    // Adiciona à minha sessão uma mensagem de erro
-    $_SESSION['mensagem'] = "Senhas não idênticas!";
-    
-    // Envia o usuário de volta à página de cadastro
-    header('Location: ../cadastro.php');
 }
-
 ?>
-
-
-
