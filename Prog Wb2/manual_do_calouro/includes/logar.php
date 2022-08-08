@@ -8,12 +8,22 @@ require_once 'connect.php';
 // Definindo a conexão como uma constante global
 define('_CONEXAO_', $connect);
 
-// Atribui o conteudo dos campos do formulario a variáveis
-$email = pg_escape_string($connect, $_POST['email']);
-$senha = pg_escape_string($connect, md5($_POST['senha']));
+// Cria um array para armazenar as mensagens de erros
+$erros = array();
 
-// Loga o usuario no site
-logarUsuario($email, $senha);
+/**
+ * Função para executar o processo de login
+ * 
+ * @author Henrique Dalmagro
+ */
+function formularioLogin(): void {
+    // Atribui o conteudo dos campos do formulario a variáveis
+    $email = pg_escape_string(_CONEXAO_, $_POST['email']);
+    $senha = pg_escape_string(_CONEXAO_, md5($_POST['senha']));
+
+    // Loga o usuario no site
+    logarUsuario($email, $senha);
+}
 
 /**
  * Função para logar no website
@@ -39,7 +49,7 @@ function logarUsuario($email, $senha): void {
 
     } else {
         // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensagem'] = "Usuário ou senha inválidos!";
+        $erros[] = "<p class='align-middle text-center text-danger'> Usuário ou senha inválidos! </p>";
         header('Location: ../login.php'); // retorna para página de login
     }
 }

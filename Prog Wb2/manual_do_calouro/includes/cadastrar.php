@@ -9,31 +9,41 @@ require_once '../packages/processos.php';
 // Definindo a conexão como uma constante global
 define('_CONEXAO_', $connect);
 
-// Atribui o conteudo dos campos do formulario a variáveis
-$nome = pg_escape_string($connect, $_POST['nome']);
-$email = pg_escape_string($connect, $_POST['email']);
-$senha = pg_escape_string($connect, $_POST['senha']);
-$senha2 = pg_escape_string($connect, $_POST['senhaConfirma']);
+// Cria um array para armazenar as mensagens de erros
+$erros = array();
 
-// Sanitizando o nome e email (remover qualquer tag HTML)
-$f_nome = htmlspecialchars($nome);
-$f_email = htmlspecialchars($email);
+/**
+ * Função parar executar todas as etapas do processo de cadastrar um usuario
+ * 
+ * @author Henrique Dalmagro - Rafael Barros
+ */
+function formularioCadastro(): void {
+    // Atribui o conteudo dos campos do formulario a variáveis
+    $nome = pg_escape_string(_CONEXAO_, $_POST['nome']);
+    $email = pg_escape_string(_CONEXAO_, $_POST['email']);
+    $senha = pg_escape_string(_CONEXAO_, $_POST['senha']);
+    $senha2 = pg_escape_string(_CONEXAO_, $_POST['senhaConfirma']);
 
-// Validando o email
-$email = filter_var($f_email, FILTER_SANITIZE_EMAIL);
-$v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
+    // Sanitizando o nome e email (remover qualquer tag HTML)
+    $f_nome = htmlspecialchars($nome);
+    $f_email = htmlspecialchars($email);
 
-// Verifica se as senhas são identicas
-validaSenha($senha, $senha2);
+    // Validando o email
+    $email = filter_var($f_email, FILTER_SANITIZE_EMAIL);
+    $v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
 
-// Verifica se o email recebido ja consta no banco de dados
-validaEmailExistente($v_email);
+    // Verifica se as senhas são identicas
+    validaSenha($senha, $senha2);
 
-// Criptografa a senha recebida utilizando hash md5
-$senhaSegura = cripgrafaSenha($senha);
+    // Verifica se o email recebido ja consta no banco de dados
+    validaEmailExistente($v_email);
 
-// Insere o usuario no banco de dados
-cadastraUsuario($nome, $v_email, $senhaSegura);
+    // Criptografa a senha recebida utilizando hash md5
+    $senhaSegura = cripgrafaSenha($senha);
+
+    // Insere o usuario no banco de dados
+    cadastraUsuario($f_nome, $v_email, $senhaSegura);
+}
 
 /**
  * Função para verificar se as senhas coincidem
@@ -46,7 +56,7 @@ cadastraUsuario($nome, $v_email, $senhaSegura);
 function validaSenha($senha, $senha2): void{    
     if ($senha !== $senha2) {
         // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['mensagem'] = "Senhas não idênticas!";
+        $erros[] = "<p class='align-middle text-center text-danger'> Senhas não idênticas! </p>";
         header('Location: ../cadastro.php'); // Retorna para o cadastro
     }
 }
@@ -65,7 +75,7 @@ function validaEmailExistente($v_email): void {
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
         // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['mensagem'] = "Email já cadastrado!";
+        $erros[] = "<p class='align-middle text-center text-danger'> Email já cadastrado! </p>";
         header('Location: ../cadastro.php'); // Retorna para o cadastro
     }
 }

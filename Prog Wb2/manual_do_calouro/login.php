@@ -2,6 +2,8 @@
 <?php include_once 'includes/header.php'; ?>
 
 <!-- Conteúdo da pagina -->
+<?php include_once 'includes/logar.php'; ?>
+
 <section>
     <div class="mb-4">
         <div class="container">
@@ -9,7 +11,7 @@
                 <div class="border rounded shadow-sm p-4 bg-light">
                     <h1 class="h1">Login</h1>
 
-                    <form id="login" action="includes/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <form id="login" action="<?php formularioLogin(); ?>" method="POST" autocomplete="on" enctype="multipart/form-data">
                         <!-- Email -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="email">Email</label>
@@ -29,10 +31,10 @@
                             <div class="col-9">
                                 <?php
                                 // Verifica se existe alguma menssagem de erro de login e imprime
-                                if (isset($_SESSION['mensagem'])) {
-                                    echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensagem']} </p>";
-                                    
-                                    $_SESSION['mensagem'] = null;
+                                if (!empty($erros)) {
+                                    foreach ($erros as $erro){
+                                        echo $erro;
+                                    }
                                 }
                                 ?>
                             </div>

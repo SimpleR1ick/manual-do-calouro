@@ -1,30 +1,14 @@
 <!-- Header-->
 <?php include_once 'includes/header.php'; ?>
 
-<!-- Conexão -->
-<?php include_once 'includes/connect.php'; ?>
-
-<!-- Pegando os dados -->
-<?php 
-// Verifica se o ID não esta vazio 
-if (isset($_GET['id'])) {
-    $id = pg_escape_string($connect, $_GET['id']);
-
-    // Seleciona na tabela usuarios um usuario com mesmo ID
-    $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
-    $query = pg_query($connect, $sql);
-
-    // Converte o resultado para um array
-    $dados = pg_fetch_array($query);
-}
-?>
-
 <!-- Conteudo da pagina -->
+<?php include_once 'packages/crud.php'; ?>
+
 <section>
     <div class="mb-4">
         <div class="row">
             <div class="col-8 align-self-center">
-                <form action="crud_update.php" method="POST">
+                <form action="<?php crudObterDados(); ?>" method="POST">
                     <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                     <div class="form-group">

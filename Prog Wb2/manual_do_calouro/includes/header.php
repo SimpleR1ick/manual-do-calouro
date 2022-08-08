@@ -1,9 +1,4 @@
-<?php 
-include_once 'session.php';
-
-// Verifica se existe uma sessão armazena os dados do usuario logado
-coletaDadosUsuario();
-?>
+<?php include_once 'session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -16,9 +11,6 @@ coletaDadosUsuario();
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/style.css" />
-
-    <!-- JavaScript -->
-    <script src="js/script.js"></script>
 
     <!-- JQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>

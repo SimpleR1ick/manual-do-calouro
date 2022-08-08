@@ -1,16 +1,26 @@
 <?php
-// Iniciando a sessão
-session_start();
+// Encerra a sessão do usuário
+executarLogout();
 
-// Limpa os dados da sessão
-session_unset();
+/**
+ * Função parar executar o logout do usuario no site
+ * 
+ * @author Henrique Dalmagro
+ */
+function executarLogout(): void {
+    // Iniciando a sessão
+    session_start();
 
-// Destrói a sessão
-session_destroy();
+    // Limpa os dados da sessão
+    session_unset();
 
-// Atribui uma mensagem na minha sessão
-$_SESSION['toast'] = "Logout concluído com sucesso.";
+    // Destrói a sessão
+    session_destroy();
 
-// Manda o usuário de volta para a página home.php
-header('Location: ../home.php');
+    // Atribui uma mensagem na minha sessão
+    $_SESSION['toast'] = "Logout concluído com sucesso.";
+
+    // Manda o usuário de volta para a página home.php
+    header('Location: ../home.php');
+}
 ?>

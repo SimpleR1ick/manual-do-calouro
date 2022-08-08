@@ -13,40 +13,44 @@ define('_CONEXAO_', $connect);
  * 
  * @param $connect - dados da conexão com banco de dados
  * 
- * @author Henrique Dalmagro
+ * @author Henrique Dalmagro - Rafael Barros
  */
-function coletaDadosUsuario(): void {
+function armazenaDadosUsuario(): array {
     if (isset($_SESSION['id_usuario'])) {
-        // Atribuindo à variável id ao id da sessão
+        // Atribuindo à variável id o id da sessão
         $id = $_SESSION['id_usuario'];
 
-        // Busca os dados do usario atravez do id
+        // Busca os dados do usuário atravéz do id
         $sql = "SELECT nom_usuario, acesso, ativo FROM usuario WHERE id_usuario = '$id'";
         $query = pg_query(_CONEXAO_, $sql);
         
         // Transforma as colunas da query em um array
-        $result = pg_fetch_array($query);
+        $userData = pg_fetch_array($query);
 
-        // Adiciona os dados do usuario na sessão
-        $_SESSION = array_merge($_SESSION, $result);
+        return $userData;
     }
 }
+
 /**
  * Função para alterar o titulo do site com o nome do usuario
- *  * 
- * @author Henrique Dalmagro
+ * 
+ * @author Henrique Dalmagro - Rafael Barros
  */
-function tituloSite(): void {
+function tituloSite(): void {    
     // Verifica se existe um id de usuário na sessão
     if (isset($_SESSION['id_usuario'])) {
+        // Chama função que coleta os dados do usuário do banco
+        $userData = armazenaDadosUsuario();
+
         // Coloca o título da página como o nome de quem logou
-        echo "<title>{$_SESSION['nom_usuario']}</title>";
+        echo "<title>{$userData['nom_usuario']}</title>";
 
     // Caso não exista, deixa o título padrão da página
     } else {
         echo "<title>Manual do Calouro</title>";
     }
 }
+
 /**
  * Função para verificar se existe um usuario logado
  *  
@@ -55,7 +59,6 @@ function tituloSite(): void {
 function verificaLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
-        
         echo
         "<button onclick='window.location.href = \"includes/logout.php\"' class='btn btn-info' type='button'>
             Sair
