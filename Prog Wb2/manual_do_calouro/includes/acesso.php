@@ -1,3 +1,10 @@
+<!-- CRUD usuarios -->
+<?php
+include_once 'acesso.php'; 
+
+// Verifica se o usuario tem o nivel de acesso administrativo
+verificaAcessoCrud(); 
+?>
 <?php
 /**
  * Função para verificar o acesso ao crud de usuarios

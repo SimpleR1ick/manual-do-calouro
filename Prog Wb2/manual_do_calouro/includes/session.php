@@ -3,7 +3,7 @@
 session_start();
 
 // Conectando com o banco de dados
-include_once 'connect.php';
+require_once 'connect.php';
 
 // Definindo a conexão como uma constante global
 define('_CONEXAO_', $connect);
@@ -19,7 +19,7 @@ function armazenaDadosUsuario(): array {
     if (isset($_SESSION['id_usuario'])) {
         // Atribuindo à variável id o id da sessão
         $id = $_SESSION['id_usuario'];
-
+        
         // Busca os dados do usuário atravéz do id
         $sql = "SELECT nom_usuario, acesso, ativo FROM usuario WHERE id_usuario = '$id'";
         $query = pg_query(_CONEXAO_, $sql);

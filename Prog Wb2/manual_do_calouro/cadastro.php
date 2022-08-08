@@ -42,14 +42,7 @@
                                 <button name="btnCadastrar" class="btn btn-primary" type="submit">Cadastrar</button>
                             </div>
                             <div class="col-9">
-                                <?php
-                                // Verifica se existe alguma menssagem de erro de cadastro e imprime
-                                if (!empty($erros)) {
-                                    foreach ($erros as $erro){
-                                        echo $erro;
-                                    }
-                                }
-                                ?>
+                                <?php exibirErros(); ?>
                             </div>
                         </div>
                     </form>

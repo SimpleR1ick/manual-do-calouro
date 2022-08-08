@@ -17,10 +17,7 @@ function executarLogout(): void {
     // Destrói a sessão
     session_destroy();
 
-    // Atribui uma mensagem na minha sessão
-    $_SESSION['toast'] = "Logout concluído com sucesso.";
-
-    // Manda o usuário de volta para a página home.php
-    header('Location: ../home.php');
+    // Manda o usuário de volta para a página index.php
+    header('Location: ../index.php');
 }
 ?>

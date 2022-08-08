@@ -2,7 +2,6 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8" />
@@ -23,17 +22,18 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark mb-4 p-3">
             <div class="container">
-                <a class="navbar-brand text-uppercase" href="home.php"><img height="35px" src="img/logo.png"></a>
+                <a class="navbar-brand text-uppercase" href="index.php"><img height="35px" src="img/logo.png"></a>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra_nav" aria-controls="barra_nav" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <!-- Redirecionamento das respectivas paginas -->
                 <div class="collapse navbar-collapse" id="barra_nav">
                     <ul class="navbar-nav ml-auto mr-md-4">
                         <!-- Home -->
                         <li class="nav-item">
-                            <a class="nav-link" href="home.php">Home</a>
+                            <a class="nav-link" href="index.php">Home</a>
                         </li>
                         <!-- Sobre -->
                         <li class="nav-item">
@@ -52,13 +52,10 @@
                             <a class="nav-link" href="contatos.php">Contatos</a>
                         </li>
 
-                        <!-- CRUD usuarios -->
-                        <?php
-                        include_once 'acesso.php'; 
-                        
-                        // Verifica se o usuario tem o nivel de acesso administrativo
-                        verificaAcessoCrud(); 
-                        ?>
+                        <!-- ROD -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="rod.php">ROD</a>
+                        </li>
                     </ul>
 
                     <!-- Barra de pesquisa -->

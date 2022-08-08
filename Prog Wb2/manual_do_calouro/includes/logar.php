@@ -1,15 +1,6 @@
 <?php
-// Iniciando Sessão
-session_start();
-
-// Conexão com o banco de dados
-require_once 'connect.php';
-
-// Definindo a conexão como uma constante global
-define('_CONEXAO_', $connect);
-
-// Cria um array para armazenar as mensagens de erros
-$erros = array();
+// Import de bibliotecas de funções
+include_once '../packages/erros.php';
 
 /**
  * Função para executar o processo de login
@@ -45,7 +36,7 @@ function logarUsuario($email, $senha): void {
         // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
         $_SESSION['id_usuario'] = $result['id_usuario'];
         $_SESSION['mensagem'] = "Logado com sucesso";
-        header('Location: ../home.php'); // retorna para página home.php
+        header('Location: ../index.php'); // retorna para página home.php
 
     } else {
         // Adiciona à sessão uma mensagem de erro

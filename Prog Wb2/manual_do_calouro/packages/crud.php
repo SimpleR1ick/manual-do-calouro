@@ -1,13 +1,4 @@
 <?php
-// Iniciando Sessão
-session_start();
-
-// Conexão com o banco de dados
-require_once 'includes/connect.php';
-
-// Definindo a conexão como uma constante global
-define('_CONEXAO_', $connect);
-
 /**
  * Função para obter todos os dados de um usuario
  * 

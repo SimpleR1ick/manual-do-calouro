@@ -29,14 +29,7 @@
                                 <button id="btnLogar" name="btnLogar" class="btn btn-primary" type="submit">Login</button>
                             </div>
                             <div class="col-9">
-                                <?php
-                                // Verifica se existe alguma menssagem de erro de login e imprime
-                                if (!empty($erros)) {
-                                    foreach ($erros as $erro){
-                                        echo $erro;
-                                    }
-                                }
-                                ?>
+                                <?php exibirErros(); ?>
                             </div>
                         </div>
                     </form>

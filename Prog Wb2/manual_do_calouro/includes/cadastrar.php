@@ -1,16 +1,7 @@
 <?php
-// Iniciando Sessão
-session_start();
-
-// Conexão com o banco de dados
-require_once 'connect.php';
+// Import de bibliotecas de funções
+include_once '../packages/erros.php';
 require_once '../packages/processos.php';
-
-// Definindo a conexão como uma constante global
-define('_CONEXAO_', $connect);
-
-// Cria um array para armazenar as mensagens de erros
-$erros = array();
 
 /**
  * Função parar executar todas as etapas do processo de cadastrar um usuario
@@ -33,13 +24,10 @@ function formularioCadastro(): void {
     $v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
 
     // Verifica se as senhas são identicas
-    validaSenha($senha, $senha2);
+    $senhaSegura = validaSenha($senha, $senha2);
 
     // Verifica se o email recebido ja consta no banco de dados
     validaEmailExistente($v_email);
-
-    // Criptografa a senha recebida utilizando hash md5
-    $senhaSegura = cripgrafaSenha($senha);
 
     // Insere o usuario no banco de dados
     cadastraUsuario($f_nome, $v_email, $senhaSegura);
@@ -53,11 +41,15 @@ function formularioCadastro(): void {
  * 
  * @author Henriqueq Dalmagro
  */
-function validaSenha($senha, $senha2): void{    
+function validaSenha($senha, $senha2): string{    
     if ($senha !== $senha2) {
         // Adiciona à minha sessão uma mensagem de erro
         $erros[] = "<p class='align-middle text-center text-danger'> Senhas não idênticas! </p>";
         header('Location: ../cadastro.php'); // Retorna para o cadastro
+    } else {
+        // Criptografa a senha recebida utilizando hash md5
+        return cripgrafaSenha($senha);
+
     }
 }
 

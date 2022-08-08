@@ -1,0 +1,9 @@
+.foto-editar-perfil{
+    height: 22vw;
+    max-height: 210px;  
+    min-height: 120px;  
+}
+
+form{
+    max-width: 800px;
+}
