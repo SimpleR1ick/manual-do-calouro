@@ -1,6 +1,5 @@
-
 <!-- Header-->
-<?php include_once 'includes/header.php';?>
+<?php include_once 'php/includes/header.php';?>
 
 <!-- Conteúdo da pagina -->
 <section>
@@ -20,4 +19,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'includes/footer.php';?>
+<?php include_once 'php/includes/footer.php';?>

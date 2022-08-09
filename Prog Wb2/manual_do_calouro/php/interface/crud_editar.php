@@ -1,14 +1,25 @@
 <!-- Header-->
-<?php include_once 'includes/header.php'; ?>
+<?php include_once '../includes/header.php'; ?>
 
 <!-- Conteudo da pagina -->
-<?php include_once 'packages/crud.php'; ?>
+<?php
+if (isset($_GET['id'])) {
+    $id = pg_escape_string(_CONEXAO_, $_GET['id']);
 
+    // Seleciona na tabela usuarios um usuario com mesmo ID
+    $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
+    $query = pg_query(_CONEXAO_, $sql);
+
+    // Converte o resultado para um array
+    $dados = pg_fetch_array($query);
+
+}
+?>
 <section>
     <div class="mb-4">
         <div class="row">
             <div class="col-8 align-self-center">
-                <form action="<?php crudObterDados(); ?>" method="POST">
+                <form action="crud_update.php" method="POST">
                     <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                     <div class="form-group">
@@ -29,4 +40,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once '../includes/footer.php'; ?>

@@ -6,8 +6,8 @@ session_start();
 include_once 'connect.php';
 
 // Import de bibliotecas de funções
-include_once '../packages/erros.php';
-require_once '../packages/processos.php';
+include_once '../functions/erros.php';
+require_once '../functions/processos.php';
 
 // Atribui o conteudo dos campos do formulario a variáveis
 $email = pg_escape_string(_CONEXAO_, $_POST['email']);

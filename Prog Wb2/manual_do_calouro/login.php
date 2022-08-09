@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'includes/header.php'; ?>
+<?php include_once 'php/includes/header.php'; ?>
 
 <section>
     <div class="mb-4">
@@ -45,4 +45,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'includes/footer.php'; ?>
+<?php include_once 'php/includes/footer.php'; ?>
