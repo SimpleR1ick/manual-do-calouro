@@ -2,8 +2,6 @@
 <?php include_once 'includes/header.php'; ?>
 
 <!-- Conteúdo da pagina -->
-<?php include_once 'includes/cadastrar.php'; ?>
-
 <section>
     <div class="mb-4">
         <div class="container">
@@ -11,7 +9,7 @@
                 <div class="border rounded shadow-sm p-4 bg-light">
                     <h1 class="h1">Cadastro</h1>
 
-                    <form id="cadastro" action="<?php formularioCadastro(); ?>" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <form id="cadastro" action="includes/cadastrar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
                         <!-- Nome -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="nome">Nome</label>
@@ -42,7 +40,7 @@
                                 <button name="btnCadastrar" class="btn btn-primary" type="submit">Cadastrar</button>
                             </div>
                             <div class="col-9">
-                                <?php exibirErros(); ?>
+                                <?php //exibirErros(); ?>
                             </div>
                         </div>
                     </form>

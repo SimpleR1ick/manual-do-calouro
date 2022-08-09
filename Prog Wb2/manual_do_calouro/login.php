@@ -1,9 +1,6 @@
 <!-- Header-->
 <?php include_once 'includes/header.php'; ?>
 
-<!-- Conteúdo da pagina -->
-<?php include_once 'includes/logar.php'; ?>
-
 <section>
     <div class="mb-4">
         <div class="container">
@@ -11,7 +8,7 @@
                 <div class="border rounded shadow-sm p-4 bg-light">
                     <h1 class="h1">Login</h1>
 
-                    <form id="login" action="<?php formularioLogin(); ?>" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <form id="login" action="includes/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
                         <!-- Email -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="email">Email</label>
@@ -29,7 +26,7 @@
                                 <button id="btnLogar" name="btnLogar" class="btn btn-primary" type="submit">Login</button>
                             </div>
                             <div class="col-9">
-                                <?php exibirErros(); ?>
+                                <?php //exibirErros(); ?>
                             </div>
                         </div>
                     </form>

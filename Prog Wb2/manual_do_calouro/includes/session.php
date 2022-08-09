@@ -3,10 +3,7 @@
 session_start();
 
 // Conectando com o banco de dados
-require_once 'connect.php';
-
-// Definindo a conexão como uma constante global
-define('_CONEXAO_', $connect);
+include_once 'connect.php';
 
 /**
  * Função para iniciar a sessão do usuario no site
