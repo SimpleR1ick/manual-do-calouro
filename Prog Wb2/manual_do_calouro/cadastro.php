@@ -9,7 +9,7 @@
                 <div class="border rounded shadow-sm p-4 bg-light">
                     <h1 class="h1">Cadastro</h1>
 
-                    <form id="cadastro" action="includes/cadastrar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <form id="cadastro" action="php/includes/cadastrar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
                         <!-- Nome -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="nome">Nome</label>

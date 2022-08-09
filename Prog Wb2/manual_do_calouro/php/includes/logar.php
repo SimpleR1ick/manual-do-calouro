@@ -3,7 +3,7 @@
 session_start();
 
 // Import de bibliotecas de funções
-include_once '../functions/erros.php';
+//include_once '../functions/erros.php';
 require_once '../functions/processos.php';
 
 // Conectando com o banco de dados
@@ -45,13 +45,13 @@ function logarUsuario($email, $senha): void {
 
         // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
         $_SESSION['id_usuario'] = $result['id_usuario'];
-        $erros[] = "<p class='align-middle text-center text-danger'> Logado com sucesso! </p>";
-        header('Location: ../index.php'); // retorna para página index.php
+        //$erros[] = "<p class='align-middle text-center text-danger'> Logado com sucesso! </p>";
+        header('Location: ../../index.php'); // retorna para página index.php
 
     } else {
         // Adiciona à sessão uma mensagem de erro
-        $erros[] = "<p class='align-middle text-center text-danger'> Usuário ou senha inválidos! </p>";
-        header('Location: ../login.php'); // retorna para página de login
+        //$erros[] = "<p class='align-middle text-center text-danger'> Usuário ou senha inválidos! </p>";
+        header('Location: ../../login.php'); // retorna para página de login
     }
 }
 ?>

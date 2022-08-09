@@ -8,7 +8,7 @@
                 <div class="border rounded shadow-sm p-4 bg-light">
                     <h1 class="h1">Login</h1>
 
-                    <form id="login" action="includes/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <form id="login" action="php/includes/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
                         <!-- Email -->
                         <div class="form-group">
                             <label class="font-weight-bold" for="email">Email</label>

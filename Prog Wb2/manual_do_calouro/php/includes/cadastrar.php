@@ -3,7 +3,7 @@
 session_start();
 
 // Import de bibliotecas de funções
-include_once '../functions/erros.php';
+//include_once '../functions/erros.php';
 require_once '../functions/processos.php';
 
 // Conectando com o banco de dados
@@ -29,6 +29,7 @@ cadastraUsuario($nome, $email, $senha, $senha2);
 
 /**
  * Função para verificar se o email de entrada ja esta cadastrado
+ * 
  * @author Henrique Dalmagro
  */
 function validaEmail($email): void {
@@ -39,8 +40,8 @@ function validaEmail($email): void {
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
         // Adiciona à minha sessão uma mensagem de erro
-        $erros[] = "<p class='align-middle text-center text-danger'> Email já cadastrado! </p>";
-        header('Location: ../cadastro.php'); // Retorna para o cadastro
+        //$erros[] = "<p class='align-middle text-center text-danger'> Email já cadastrado! </p>";
+        header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
 
@@ -52,20 +53,22 @@ function validaEmail($email): void {
  * 
  * @author Henrique Dalmagro
  */
-function validaSenha($senha1, $senha2): void {   
+function validaSenha($senha1, $senha2): void {
+    // Se as senhas não concidirem retorna o usuario ao inicio do cadastro   
     if ($senha1 !== $senha2) {
         // Adiciona à minha sessão uma mensagem de erro
-        $erros[] = "<p class='align-middle text-center text-danger'> Senhas não idênticas! </p>";
-        header('Location: ../cadastro.php'); // Retorna para o cadastro
+        //$erros[] = "<p class='align-middle text-center text-danger'> Senhas não idênticas! </p>";
+        header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
 
 /**
  * Função para cadastrar o usuario 
  * 
- * @param $nome - Nome do usuario
- * @param $email - Email valido
- * @param $senhaSegura - Senha criptografada em MD5
+ * @param string $nome Nome do usuario
+ * @param string $email Email valido
+ * @param string $senha Primeira senha
+ * @param string $senha2 Confirmação da senha
  * 
  * @author Henrique Dalmagro
  */
@@ -85,13 +88,13 @@ function cadastraUsuario($nome, $email, $senha, $senha2): void {
 
     if ($query) {
         // Adiciona a minha sessão uma mensagem de sucesso
-        $erros[] = "<p class='align-middle text-center text-danger'> Cadastrado com sucesso! </p>";
-        header('Location: ../login.php');// Envia o usuário de à página de login
+        //$erros[] = "<p class='align-middle text-center text-danger'> Cadastrado com sucesso! </p>";
+        header('Location: ../../login.php');// Envia o usuário de à página de login
 
     } else {
         // Adiciona à minha sessão uma mensagem de erro
-        $erros[] = "<p class='align-middle text-center text-danger'> Erro ao cadastrar! </p>";
-        header('Location: ../cadastro.php'); // Retorna para o cadastro
+        //$erros[] = "<p class='align-middle text-center text-danger'> Erro ao cadastrar! </p>";
+        header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
 ?>
