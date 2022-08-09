@@ -2,12 +2,12 @@
 // Iniciar a sessão
 session_start();
 
-// Conectando com o banco de dados
-include_once 'connect.php';
-
 // Import de bibliotecas de funções
 include_once '../functions/erros.php';
 require_once '../functions/processos.php';
+
+// Conectando com o banco de dados
+include_once 'connect.php';
 
 // Atribui o conteudo dos campos do formulario a variáveis
 $nome = pg_escape_string(_CONEXAO_, $_POST['nome']);
