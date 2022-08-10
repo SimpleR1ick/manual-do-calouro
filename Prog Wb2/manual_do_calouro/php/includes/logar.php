@@ -3,8 +3,7 @@
 session_start();
 
 // Import de bibliotecas de funções
-//include_once '../functions/erros.php';
-require_once '../functions/processos.php';
+include_once '../functions/processos.php';
 
 // Conectando com o banco de dados
 include_once 'connect.php';
@@ -26,7 +25,8 @@ logarUsuario($email, $senha);
 /**
  * Função para logar no website
  * 
- * @param $email - 
+ * @param string $email um email sanitizado
+ * @param string $senha umae sanitizada 
  * 
  * @author Henrique Dalmagro
  */
@@ -45,12 +45,12 @@ function logarUsuario($email, $senha): void {
 
         // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
         $_SESSION['id_usuario'] = $result['id_usuario'];
-        //$erros[] = "<p class='align-middle text-center text-danger'> Logado com sucesso! </p>";
+        $_SESSION['erros'] = 'Logado com sucesso!';
         header('Location: ../../index.php'); // retorna para página index.php
 
     } else {
         // Adiciona à sessão uma mensagem de erro
-        //$erros[] = "<p class='align-middle text-center text-danger'> Usuário ou senha inválidos! </p>";
+        $_SESSION['erros'] = 'Usuário ou senha inválidos!';
         header('Location: ../../login.php'); // retorna para página de login
     }
 }

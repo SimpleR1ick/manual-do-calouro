@@ -1,6 +1,9 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
+<!-- Conteudo da pagina -->
+<?php include_once 'php/functions/erros.php'; ?>
+
 <section>
     <div class="mb-4">
         <div class="container">
@@ -26,7 +29,7 @@
                                 <button id="btnLogar" name="btnLogar" class="btn btn-primary" type="submit">Login</button>
                             </div>
                             <div class="col-9">
-                                <?php //exibirErros(); ?>
+                                <?php exibirErros(); ?>
                             </div>
                         </div>
                     </form>

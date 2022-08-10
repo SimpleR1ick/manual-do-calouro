@@ -2,6 +2,8 @@
 <?php include_once 'php/includes/header.php'; ?>
 
 <!-- Conteúdo da pagina -->
+<?php include_once 'php/functions/erros.php'; ?>
+
 <section>
     <div class="mb-4">
         <div class="container">
@@ -40,7 +42,7 @@
                                 <button name="btnCadastrar" class="btn btn-primary" type="submit">Cadastrar</button>
                             </div>
                             <div class="col-9">
-                                <?php //exibirErros(); ?>
+                                <?php exibirErros(); ?>
                             </div>
                         </div>
                     </form>

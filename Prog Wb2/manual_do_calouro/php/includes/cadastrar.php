@@ -3,8 +3,7 @@
 session_start();
 
 // Import de bibliotecas de funções
-//include_once '../functions/erros.php';
-require_once '../functions/processos.php';
+include_once '../functions/processos.php';
 
 // Conectando com o banco de dados
 include_once 'connect.php';
@@ -28,7 +27,9 @@ $email = sanitizaEmail($email);
 cadastraUsuario($nome, $email, $senha, $senha2);
 
 /**
- * Função para verificar se o email de entrada ja esta cadastrado
+ * Função para verificar se o email de entrada ja esta cadastrado no banco de dados
+ * 
+ * @param string $email
  * 
  * @author Henrique Dalmagro
  */
@@ -40,7 +41,7 @@ function validaEmail($email): void {
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
         // Adiciona à minha sessão uma mensagem de erro
-        //$erros[] = "<p class='align-middle text-center text-danger'> Email já cadastrado! </p>";
+        $_SESSION['erros'] = 'Email já cadastrado!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
@@ -57,7 +58,7 @@ function validaSenha($senha1, $senha2): void {
     // Se as senhas não concidirem retorna o usuario ao inicio do cadastro   
     if ($senha1 !== $senha2) {
         // Adiciona à minha sessão uma mensagem de erro
-        //$erros[] = "<p class='align-middle text-center text-danger'> Senhas não idênticas! </p>";
+        $_SESSION['erros'] = 'Senhas não idênticas!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
@@ -88,12 +89,12 @@ function cadastraUsuario($nome, $email, $senha, $senha2): void {
 
     if ($query) {
         // Adiciona a minha sessão uma mensagem de sucesso
-        //$erros[] = "<p class='align-middle text-center text-danger'> Cadastrado com sucesso! </p>";
+        $_SESSION['erros'] = 'Cadastrado com sucesso!';
         header('Location: ../../login.php');// Envia o usuário de à página de login
 
     } else {
         // Adiciona à minha sessão uma mensagem de erro
-        //$erros[] = "<p class='align-middle text-center text-danger'> Erro ao cadastrar! </p>";
+        $_SESSION['erros'] = 'Erro ao cadastrar!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }

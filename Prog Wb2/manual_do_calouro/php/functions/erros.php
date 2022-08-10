@@ -1,7 +1,4 @@
 <?php
-// Cria um array para armazenar as mensagens de erros
-$erros = array();
-
 /**
  * Função para imprimir o ultimo erro gerado
  * 
@@ -9,10 +6,10 @@ $erros = array();
  */
 function exibirErros(): void {
     // Verifica se existe alguma menssagem de erro de login e imprime
-    if (!empty($erros)) {
-        foreach ($erros as $erro){
-            echo $erro;
-        }
+    if (isset($_SESSION['erros'])) {
+        echo "<p class='align-middle text-center text-danger'> {$_SESSION['erros']} </p>";
+        
+        $_SESSION['erros'] = null;
     }
 }
 ?>
