@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css" />
 
     <!-- JQuery -->
@@ -30,7 +30,7 @@
 
                 <!-- Redirecionamento das respectivas paginas -->
                 <div class="collapse navbar-collapse" id="barra_nav">
-                    <ul class="navbar-nav ml-auto mr-md-4">
+                    <ul class="navbar-nav ms-auto me-md-4">
                         <!-- Home -->
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Home</a>
@@ -64,7 +64,7 @@
                             <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar" />
 
                             <div class="input-group-append">
-                                <button class="btn btn-dark mr-3" type="submit">
+                                <button class="btn btn-dark me-3" type="submit">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </div>
