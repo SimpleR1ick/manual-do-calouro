@@ -1,7 +1,7 @@
 <?php include_once 'session.php'; ?>
 
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" dir="ltr">
 <head>
     <!-- Meta tags Obrigatórias -->
     <meta charset="utf-8" />
@@ -31,6 +31,10 @@
                 <!-- Redirecionamento das respectivas paginas -->
                 <div class="collapse navbar-collapse" id="barra_nav">
                     <ul class="navbar-nav ms-auto me-md-4">
+                        <li class="nav-item">
+                            <!-- === ADMIN === -->
+                            <?php include "php/includes/adm_menu.php"?>
+                        </li>
                         <!-- Home -->
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Home</a>
@@ -51,7 +55,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contatos.php">Contatos</a>
                         </li>
-
                         <!-- ROD -->
                         <li class="nav-item">
                             <a class="nav-link" href="rod.php">ROD</a>
@@ -75,6 +78,6 @@
                     <?php verificaLogin(); ?>
                     
                 </div>
-            </div>
-        </nav>
+            </nav>
+        </div>
     </header>
