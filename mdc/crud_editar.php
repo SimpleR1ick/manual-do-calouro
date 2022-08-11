@@ -6,11 +6,11 @@
 require_once 'php/includes/connect.php';
 
 if (isset($_GET['id'])) {
-    $id = pg_escape_string(_CONEXAO_, $_GET['id']);
+    $id = pg_escape_string(CONNECT, $_GET['id']);
 
     // Seleciona na tabela usuarios um usuario com mesmo ID
     $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
-    $query = pg_query(_CONEXAO_, $sql);
+    $query = pg_query(CONNECT, $sql);
 
     // Converte o resultado para um array
     $dados = pg_fetch_array($query);

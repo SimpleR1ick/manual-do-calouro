@@ -19,7 +19,7 @@ function armazenaDadosUsuario(): array {
         
         // Busca os dados do usuário atravéz do id
         $sql = "SELECT nom_usuario, acesso, ativo FROM usuario WHERE id_usuario = '$id'";
-        $query = pg_query(_CONEXAO_, $sql);
+        $query = pg_query(CONNECT, $sql);
         
         // Transforma as colunas da query em um array
         $userData = pg_fetch_array($query);

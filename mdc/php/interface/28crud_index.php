@@ -24,7 +24,7 @@ include_once '28mensagem.php';
 			<tbody>
 				<?php
 				$sql = "SELECT id_usuario, nom_usuario, email FROM usuario";
-				$resultado = pg_query(_CONEXAO_, $sql);
+				$resultado = pg_query(CONNECT, $sql);
 
 				if (pg_num_rows($resultado) > 0) {
 					while ($dados = pg_fetch_array($resultado)) {

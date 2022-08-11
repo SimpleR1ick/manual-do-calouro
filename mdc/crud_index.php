@@ -24,7 +24,7 @@ echo $_SESSION['mensag']; ?>
                         <?php     
                         // Seleciona a tabela usuarios por inteira, menos os usuarios administrador
                         $sql = "SELECT * FROM usuario WHERE acesso != 0";
-                        $query = pg_query(_CONEXAO_, $sql);
+                        $query = pg_query(CONNECT, $sql);
 
                         // Enquanto houver linhas no query, imprime os dados dos usuarios
                         if (pg_num_rows($query) > 0) {

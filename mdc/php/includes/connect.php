@@ -20,6 +20,6 @@ $pass = "IKXmlWoguZUV-Rav8eB14MghUUXaZAk8";
 $connect = pg_connect("host=$host dbname=$db user=$user password=$pass");
 
 // Definindo a conexão como uma constante global
-define('_CONEXAO_', $connect)
+define('CONNECT', $connect)
 
 ?>

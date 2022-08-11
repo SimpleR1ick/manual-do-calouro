@@ -9,10 +9,10 @@ include_once '../functions/processos.php';
 require_once 'connect.php';
 
 // Atribui o conteudo dos campos do formulario a variáveis
-$nome = pg_escape_string(_CONEXAO_, $_POST['nome']);
-$email = pg_escape_string(_CONEXAO_, $_POST['email']);
-$senha = pg_escape_string(_CONEXAO_, $_POST['senha']);
-$senha2 = pg_escape_string(_CONEXAO_, $_POST['senhaConfirma']);
+$nome = pg_escape_string(CONNECT, $_POST['nome']);
+$email = pg_escape_string(CONNECT, $_POST['email']);
+$senha = pg_escape_string(CONNECT, $_POST['senha']);
+$senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
 
 // Sanitizando o nome e as senhas (remove qualquer tag HTML)
 $nome = htmlspecialchars($nome);
@@ -42,7 +42,7 @@ cadastraUsuario($nome, $email, $senha);
 function validaEmail($email): void {
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT email FROM usuario WHERE email = '$email'";
-    $query = pg_query(_CONEXAO_, $sql);
+    $query = pg_query(CONNECT, $sql);
 
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
@@ -85,7 +85,7 @@ function cadastraUsuario($nome, $email, $senha): void {
 
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaSegura')";
-    $query = pg_query(_CONEXAO_, $sql);
+    $query = pg_query(CONNECT, $sql);
 
     // Se a requição houve retorno, a insert teve sucesso
     if ($query) {

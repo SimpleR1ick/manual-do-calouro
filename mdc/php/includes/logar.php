@@ -9,8 +9,8 @@ include_once '../functions/processos.php';
 require_once 'connect.php';
 
 // Atribui o conteudo dos campos do formulario a variáveis
-$email = pg_escape_string(_CONEXAO_, $_POST['email']);
-$senha = pg_escape_string(_CONEXAO_, $_POST['senha']);
+$email = pg_escape_string(CONNECT, $_POST['email']);
+$senha = pg_escape_string(CONNECT, $_POST['senha']);
 
 // Sanitizando a senha (remove qualquer tag HTML)
 $email = htmlspecialchars($email);
@@ -36,7 +36,7 @@ function logarUsuario($email, $senha): void {
 
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaSegura'";
-    $query = pg_query(_CONEXAO_, $sql);
+    $query = pg_query(CONNECT, $sql);
 
     // Verifica se a inserção teve resultado
     if (pg_num_rows($query) == 1) {

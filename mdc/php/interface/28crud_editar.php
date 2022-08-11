@@ -8,11 +8,11 @@ include_once '28crud_header.php';
 
 //Select com o id que veio da URL
 if (isset($_GET['id'])) {
-	$id = pg_escape_string(_CONEXAO_, $_GET['id']);
+	$id = pg_escape_string(CONNECT, $_GET['id']);
 
 	$sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
 	
-	$resultado = pg_query(_CONEXAO_, $sql);
+	$resultado = pg_query(CONNECT, $sql);
 	
 	$dados = pg_fetch_all($resultado);
 }
