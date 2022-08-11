@@ -5,8 +5,8 @@ session_start();
 // Import de bibliotecas de funções
 include_once '../functions/processos.php';
 
-// Conectando com o banco de dados
-include_once 'connect.php';
+// Conexão com banco de dados
+require_once 'connect.php';
 
 // Atribui o conteudo dos campos do formulario a variáveis
 $nome = pg_escape_string(_CONEXAO_, $_POST['nome']);
@@ -23,8 +23,14 @@ $email = htmlspecialchars($email);
 // Sanitizando e validando o email
 $email = sanitizaEmail($email);
 
+// Verifica se as senhas são identicas
+validaSenha($senha, $senha2);
+
+// Verifica se o email recebido ja existe no banco de dados
+validaEmail($email);
+
 // Tenta inserir o usuario no banco de dados
-cadastraUsuario($nome, $email, $senha, $senha2);
+cadastraUsuario($nome, $email, $senha);
 
 /**
  * Função para verificar se o email de entrada ja esta cadastrado no banco de dados
@@ -41,7 +47,7 @@ function validaEmail($email): void {
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
         // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['erros'] = 'Email já cadastrado!';
+        $_SESSION['mensag'] = 'Email já cadastrado!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
@@ -58,7 +64,7 @@ function validaSenha($senha1, $senha2): void {
     // Se as senhas não concidirem retorna o usuario ao inicio do cadastro   
     if ($senha1 !== $senha2) {
         // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['erros'] = 'Senhas não idênticas!';
+        $_SESSION['mensag'] = 'Senhas não idênticas!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }
@@ -73,28 +79,22 @@ function validaSenha($senha1, $senha2): void {
  * 
  * @author Henrique Dalmagro
  */
-function cadastraUsuario($nome, $email, $senha, $senha2): void {
-    // Verifica se o email recebido ja consta no banco de dados
-    validaEmail($email);
-
-    // Verifica se as senhas são identicas
-    validaSenha($senha, $senha2);
-
+function cadastraUsuario($nome, $email, $senha): void {
     // Invoca a função para criptografar a senha
-    $senhaSegura = cripgrafaSenha($senha);
+    $senhaSegura = hashMD5($senha);
 
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaSegura')";
     $query = pg_query(_CONEXAO_, $sql);
 
+    // Se a requição houve retorno, a insert teve sucesso
     if ($query) {
-        // Adiciona a minha sessão uma mensagem de sucesso
-        $_SESSION['erros'] = 'Cadastrado com sucesso!';
+        // Adiciona minha sessão uma mensagem de sucesso
+        $_SESSION['mensag'] = 'Cadastrado com sucesso!';
         header('Location: ../../login.php');// Envia o usuário de à página de login
-
     } else {
-        // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['erros'] = 'Erro ao cadastrar!';
+        // Adiciona minha sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Erro ao cadastrar!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
     }
 }

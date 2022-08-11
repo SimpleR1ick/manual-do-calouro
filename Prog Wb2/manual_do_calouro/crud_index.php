@@ -1,7 +1,10 @@
 <!-- Header-->
-<?php include_once '../includes/header.php'; ?>
+<?php include_once 'php/includes/header.php'; ?>
 
 <!-- Conteúdo da pagina -->
+<?php require_once 'php/includes/connect.php'; 
+echo $_SESSION['mensag']; ?>
+
 <section>
     <div class="mb-4">
         <div class="row">
@@ -29,11 +32,11 @@
                                 ?>
                                 <tr>
                                     <th scope="row"><?php echo $dados['id_usuario']; ?></th>
-
                                     <td><?php echo $dados['nom_usuario']; ?></td>
                                     <td><?php echo $dados['email']; ?></td>
-                                    <td><a href="crud_editar.php" id="<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
-                                    <td><a href="crud_delete.php" id="<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
+                                    
+                                    <td><a href="crud_editar.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
+                                    <td><a href="crud_delete.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
                                 </tr>
                                 <?php
                             } 
@@ -41,13 +44,12 @@
                             echo('
                                 <tr>
                                     <th scope="row">-</th>
-
                                     <td> - </td>
                                     <td> - </td>
                                     <td> - </td>
                                     <td> - </td>
                                 </tr>
-                                ');
+                            ');
                         }                  
                         ?>
                     </tbody>
@@ -58,4 +60,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once '../includes/footer.php'; ?>
+<?php include_once 'php/includes/footer.php'; ?>

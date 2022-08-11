@@ -3,7 +3,7 @@
 session_start();
 
 // Conectando com o banco de dados
-include_once 'connect.php';
+require_once 'connect.php';
 
 /**
  * Função para iniciar a sessão do usuario no site
