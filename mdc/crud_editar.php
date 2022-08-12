@@ -2,15 +2,15 @@
 <?php include_once 'php/includes/header.php'; ?>
 
 <!-- PHP -->
-<?php require_once 'php/functions/crud.php'; ?>
+<?php require_once 'php/functions/crud.php'; 
+$dados = crudGetDados(); ?>
+
 <!-- Conteudo da pagina -->
 <section>
     <div class="mb-4">
         <div class="row">
             <div class="col-8 align-self-center">
                 <form action="crud_update.php" method="POST">
-                    <?php $dados = crudGetDados(); ?>
-
                     <input type="hidden" id="id" name="id" 
                            value="<?php echo $dados['id_usuario']; ?>">
 
