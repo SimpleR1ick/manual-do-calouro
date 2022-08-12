@@ -1,7 +1,8 @@
 <?php
-// Inicar sessão
+// Inicia a sessão
 session_start();
 
+// Conexão com banco de dados
 require_once 'php/includes/connect.php';
 
 // Verifica se houve requisição de update/edição
