@@ -8,13 +8,23 @@
  */
 function crudMain(): void {
     // Seleciona a tabela usuarios por inteira, menos os usuarios administrador
-    $sql = "SELECT * FROM usuario WHERE acesso != 0";
+    $sql = "SELECT id_usuario, nom_usuario, email FROM usuario WHERE acesso != 0";
     $query = pg_query(CONNECT, $sql);
 
     // Enquanto houver linhas no query, imprime os dados dos usuarios
-    if (pg_num_rows($query) > 0) {
+    if (pg_num_rows($query) == 0) {
+        ?>
+            <tr>
+                <th scope="row">-</th>
+                <td> - </td>
+                <td> - </td>
+                <td> - </td>
+                <td> - </td>
+            </tr>
+        <?php
+    } else { // Caso não existe usuarios cadastrados  
         while ($dados = pg_fetch_array($query)) { 
-            ?>
+        ?>
             <tr>
                 <th scope="row"><?php echo $dados['id_usuario']; ?></th>
                 <td><?php echo $dados['nom_usuario']; ?></td>
@@ -23,18 +33,8 @@ function crudMain(): void {
                 <td><a href="crud_editar.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-pen"></i></a></td>
                 <td><a href="crud_delete.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-outline-dark btn-sm"><i class="fa-solid fa-trash"></i></a></td>
             </tr>
-            <?php
+        <?php
         } 
-    } else { // Caso não existe usuarios cadastrados  
-        echo('
-            <tr>
-                <th scope="row">-</th>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-                <td> - </td>
-            </tr>
-        ');
     }
 }
 /**

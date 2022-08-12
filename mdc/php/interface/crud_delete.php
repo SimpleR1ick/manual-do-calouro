@@ -12,9 +12,9 @@ if (isset($_POST['btn-deletar'])) {
 
 	if (pg_query(CONNECT, $sql)) {
 		$_SESSION['mensagem'] = "Excluido com sucesso!";
-		header('Location: 28crud_index.php');
+		header('Location: crud_index.php');
 	} else {
 		$_SESSION['mensagem'] = "Erro ao excluir!";
-		header('Location: 28crud_index.php');
+		header('Location: crud_index.php');
 	}
 }
