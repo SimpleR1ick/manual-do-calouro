@@ -12,14 +12,12 @@ if (isset($_POST['btn-editar'])) {
 	
 	$sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = '$id'";
 
-	echo $sql;
-
 	if (pg_query(CONNECT,$sql)) {
 		$_SESSION['mensagem'] = "Atualizado com sucesso!";
-		header('Location: ../28crud_index.php');
+		header('Location: crud_index.php');
 	} else {
 		$_SESSION['mensagem'] = "Erro ao atualizar!";
-		header('Location: ../28crud_index.php');
+		header('Location: crud_index.php');
 	}
 }	
 ?>
