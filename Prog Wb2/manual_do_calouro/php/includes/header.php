@@ -18,9 +18,9 @@
     <?php tituloSite(); ?>
 </head>
 
-<body class="row">
+<body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark py-3 mb-3">
+        <nav class="navbar navbar-expand-lg navbar-dark py-3 mb-4">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
                     <img height="35px" src="img/logo.png" alt="Logo">
@@ -59,22 +59,23 @@
                         </li>
                     </ul>
 
-                    <!-- Barra de pesquisa -->
-                    <span class="me-lg-3">
-                        <form role="search">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
-        
-                                <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                            </div>
-                        </form>
-                    </span>
+                    <div class="d-flex space-between">
+                        <!-- Barra de pesquisa -->
+                        <div class="me-3">
+                            <form role="search">
+                                <div class="input-group">
+                                    <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
+            
+                                    <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                            </form>
+                        </div>
 
-                    <!-- Área de login -->
-                    <?php verificaLogin(); ?>
+                        <!-- Área de login -->
+                        <?php verificaLogin(); ?>
+                    </div>
+                    
                 </div>
             </div>
         </nav>
     </header>
-
-<?php include_once 'php/includes/teste.php'; ?>

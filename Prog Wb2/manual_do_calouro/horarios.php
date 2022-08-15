@@ -7,21 +7,34 @@
 <!-- Conteudo da pagina -->
 <section>
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-auto">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="infoLabel btn btn-success active">
-                        <input type="radio" name="curso" class="horario" id="info" autocomplete="off" /> INFO
-                    </label>
+        <div class="d-flex justify-content-center">
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="btnradio1">INFO</label>
 
-                    <label class="mecLabel btn btn-success">
-                        <input type="radio" name="curso" class="horario" id="med" autocomplete="off" /> MEC
-                    </label>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio2">MEC</label>
 
-                    <label class="iotLabel btn btn-success ">
-                        <input type="radio" name="curso" class="horario" id="iot" autocomplete="off" /> IOT
-                    </label>
-                </div>
+                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
+                <label class="btn btn-outline-primary" for="btnradio3">IOT</label>
+            </div>
+
+            <div class="btn-group" data-toggle="buttons">
+
+                <input type="radio" class="btn-check" name="curso" id="info" autocomplete="off">
+                <label class="btn btn-secondary" for="info">INFO</label>
+
+                <label class="infoLabel btn btn-success active">
+                    <input type="radio" name="curso" class="horario" id="info" autocomplete="off" /> INFO
+                </label>
+
+                <label class="mecLabel btn btn-success">
+                    <input type="radio" name="curso" class="horario" id="med" autocomplete="off" /> MEC
+                </label>
+
+                <label class="iotLabel btn btn-success ">
+                    <input type="radio" name="curso" class="horario" id="iot" autocomplete="off" /> IOT
+                </label>
             </div>
         </div>
 

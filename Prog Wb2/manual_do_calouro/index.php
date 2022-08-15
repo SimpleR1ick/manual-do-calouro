@@ -1,7 +1,5 @@
 <!-- Header -->
-<?php include_once 'php/includes/header.php'; 
-include_once 'php/includes/adm_menu.php';
-?>
+<?php include_once 'php/includes/header.php'; ?>
 
 <!-- Conteúdo da pagina -->
 <section>
