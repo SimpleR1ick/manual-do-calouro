@@ -15,3 +15,8 @@ footer {
 .caixa1 {
     background-color: #EEEFF2;
 }
+
+span ul.nav.flex-column {
+    background-color: blue;
+    border: 1px solid red;
+}

@@ -1,5 +1,5 @@
     <!-- Rodapé da pagina -->
-    <footer class="text-light p-2">
+    <footer class="text-light p-2 fixed-bottom">
         <div class="container">
             <small>&copy; Todos os direitos reservados 2022</small>
         </div>

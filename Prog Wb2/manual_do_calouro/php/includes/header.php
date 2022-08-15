@@ -18,23 +18,21 @@
     <?php tituloSite(); ?>
 </head>
 
-<body>
+<body class="row">
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark mb-4 p-3">
+        <nav class="navbar navbar-expand-lg navbar-dark py-3 mb-3">
             <div class="container">
-                <a class="navbar-brand text-uppercase" href="index.php"><img height="35px" src="img/logo.png"></a>
+                <a class="navbar-brand" href="index.php">
+                    <img height="35px" src="img/logo.png" alt="Logo">
+                </a>
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra_nav" aria-controls="barra_nav" aria-expanded="false" aria-label="Alterna navegação">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Redirecionamento das respectivas paginas -->
-                <div class="collapse navbar-collapse" id="barra_nav">
-                    <ul class="navbar-nav ms-auto me-md-4">
-                        <li class="nav-item">
-                            <!-- === ADMIN === -->
-                            <?php include "php/includes/adm_menu.php"?>
-                        </li>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
                         <!-- Home -->
                         <li class="nav-item">
                             <a class="nav-link" href="index.php">Home</a>
@@ -49,7 +47,7 @@
                         </li>
                         <!-- Horarios -->
                         <li class="nav-item">
-                            <a class="nav-link" href="horarios.php">Horarios</a>
+                            <a class="nav-link" href="horarios.php">Horários</a>
                         </li>
                         <!-- Contatos -->
                         <li class="nav-item">
@@ -62,22 +60,21 @@
                     </ul>
 
                     <!-- Barra de pesquisa -->
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Pesquisar" />
-
-                            <div class="input-group-append">
-                                <button class="btn btn-dark me-3" type="submit">
-                                    <i class="fa-solid fa-magnifying-glass"></i>
-                                </button>
+                    <span class="me-lg-3">
+                        <form role="search">
+                            <div class="input-group">
+                                <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
+        
+                                <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                             </div>
-                        </div>
-                    </form>
+                        </form>
+                    </span>
 
                     <!-- Área de login -->
                     <?php verificaLogin(); ?>
-                    
                 </div>
-            </nav>
-        </div>
+            </div>
+        </nav>
     </header>
+
+<?php include_once 'php/includes/teste.php'; ?>
