@@ -3,7 +3,7 @@
 session_start();
 
 // Conexão com banco de dados
-require_once 'php/includes/connect.php';
+require_once '../php/includes/connect.php';
 
 // Verifica se existe id do usuário
 if (isset($_GET['id'])) {
@@ -16,10 +16,11 @@ if (isset($_GET['id'])) {
     // Verifica se o usuário foi excluído e envia o user de volta para o crud_index
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = "Excluído com sucesso!";
-        header('Location: crud_index.php');
+        header('Location: ../crud_index.php');
+        
     } else {
         $_SESSION['mensag'] = "Erro ao excluir!";
-        header('Location: crud_index.php');
+        header('Location: ../crud_index.php');
     }
 }
 ?>

@@ -1,12 +1,10 @@
 <?php
 /**
- * 
- * 
- * 
+ * Função para gerar a tabela do crud Usuarios
  * 
  * @author Henrique Dalmagro
  */
-function crudMain(): void {
+function crudMainTable(): void {
     // Seleciona a tabela usuarios por inteira, menos os usuarios administrador
     $sql = "SELECT id_usuario, nom_usuario, email FROM usuario WHERE acesso != 0";
     $query = pg_query(CONNECT, $sql);
@@ -38,8 +36,7 @@ function crudMain(): void {
     }
 }
 /**
- * 
- * 
+ * Função para obter todos os dados de um usuario atravez do id
  * 
  * @author Henrique Dalmagro
  */

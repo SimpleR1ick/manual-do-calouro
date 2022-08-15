@@ -21,7 +21,7 @@
                     </thead>
                         
                     <tbody>
-                        <?php crudMain(); ?>
+                        <?php crudMainTable(); ?>
                     </tbody>
                 </table>
             </div>
