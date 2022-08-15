@@ -5,17 +5,17 @@ session_start();
 // Conexão com banco de dados
 require_once 'php/includes/connect.php';
 
-// Verifica se houve requisição de update/edição
+// Verifica se houve o post do formulario 
 if (isset($_POST['btnUpdate'])) {
     // Declaração de variáveis a serem modificadas
     $id = pg_escape_string(CONNECT, $_POST['id']);
     $nome = pg_escape_string(CONNECT, $_POST['nome']);
     $email = pg_escape_string(CONNECT, $_POST['email']);
 
-    // Query para fazer o update da tabela
+    // Query para fazer o update das informações do usuario
     $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = '$id'";
 
-    // Verifica se o update aconteceu e manda o user de volta para o crud_index
+    // Verifica se o update ocorreu e redireciona para o crud_index
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = "Atualizado com sucesso!";
         header('Location: crud_index.php');

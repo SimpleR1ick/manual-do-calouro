@@ -27,7 +27,7 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#barra_nav" aria-controls="barra_nav" aria-expanded="false" aria-label="Alterna navegação">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
+                
                 <!-- Redirecionamento das respectivas paginas -->
                 <div class="collapse navbar-collapse" id="barra_nav">
                     <ul class="navbar-nav ml-auto mr-md-4">
@@ -51,7 +51,6 @@
                         <li class="nav-item">
                             <a class="nav-link" href="contatos.php">Contatos</a>
                         </li>
-
                         <!-- ROD -->
                         <li class="nav-item">
                             <a class="nav-link" href="rod.php">ROD</a>
@@ -70,10 +69,8 @@
                             </div>
                         </div>
                     </form>
-
                     <!-- Área de login -->
                     <?php verificaLogin(); ?>
-                    
                 </div>
             </div>
         </nav>

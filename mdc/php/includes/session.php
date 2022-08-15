@@ -7,12 +7,10 @@ require_once 'connect.php';
 
 /**
  * Função para iniciar a sessão do usuario no site
- * 
- * @param $connect - dados da conexão com banco de dados
- * 
+ *  
  * @author Henrique Dalmagro - Rafael Barros
  */
-function armazenaDadosUsuario(): array {
+function getDadosUsuario(): array {
     if (isset($_SESSION['id_usuario'])) {
         // Atribuindo à variável id o id da sessão
         $id = $_SESSION['id_usuario'];
@@ -37,7 +35,7 @@ function tituloSite(): void {
     // Verifica se existe um id de usuário na sessão
     if (isset($_SESSION['id_usuario'])) {
         // Chama função que coleta os dados do usuário do banco
-        $userData = armazenaDadosUsuario();
+        $userData = getDadosUsuario();
 
         // Coloca o título da página como o nome de quem logou
         echo "<title>{$userData['nom_usuario']}</title>";
