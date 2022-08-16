@@ -38,9 +38,11 @@ function crudMainTable(): void {
 /**
  * Função para obter todos os dados de um usuario atravez do id
  * 
+ * @return array $userData dados do usuario
+ * 
  * @author Henrique Dalmagro
  */
-function crudGetDados(): array {
+function crudGetDados(): array{
     if (isset($_GET['id'])) {
         $id = pg_escape_string(CONNECT, $_GET['id']);
 
@@ -49,7 +51,9 @@ function crudGetDados(): array {
         $query = pg_query(CONNECT, $sql);
 
         // Retorna o resultado convertido em um array
-        return pg_fetch_array($query);
+        $userData = pg_fetch_array($query);
+
+        return $userData;
     }
 }
 ?>

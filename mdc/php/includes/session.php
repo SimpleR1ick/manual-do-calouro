@@ -7,6 +7,8 @@ require_once 'connect.php';
 
 /**
  * Função para iniciar a sessão do usuario no site
+ * 
+ * @return array $userData dados do usuario
  *  
  * @author Henrique Dalmagro - Rafael Barros
  */
