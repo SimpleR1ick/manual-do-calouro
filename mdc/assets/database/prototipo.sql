@@ -66,9 +66,9 @@ CREATE TABLE sala_aula (
 
 CREATE TABLE evento (
     id_evento SERIAL PRIMARY KEY NOT NULL,
-    nom_evento VARCHAR(50) NOT NULL,
-    dsc_evento VARCHAR(100),
     dat_evento TIMESTAMP NOT NULL
+    nom_evento VARCHAR(50) NOT NULL,
+    dsc_evento VARCHAR(100)
 );
 
 CREATE TABLE turma (
