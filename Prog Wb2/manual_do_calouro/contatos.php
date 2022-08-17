@@ -20,7 +20,7 @@
 
                             <div class="mb-3">
                                 <label class="form-label" for="telefone">Telefone:</label>
-                                <input type="tel" class="form-control" id="telefone" placeholder="Seu telefone" required>
+                                <input type="tel" class="form-control" id="telefone" placeholder="Seu telefone" minlength="8" maxlength="11" required>
                             </div>
 
                             <div class="mb-3">

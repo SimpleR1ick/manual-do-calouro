@@ -3,20 +3,20 @@
 
 <!-- Conteúdo da pagina -->
 <section>
-    <div class="mb-4 container d-flex justify-content-center">
-        <iframe src="https://www.youtube.com/embed/aANuDntBtOU"
-            title="YouTube video player"
-            height="600"
-            width="800"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    <div class="container wrapper d-flex justify-content-center">
+        <iframe 
+            class="video"
+            src="https://www.youtube.com/embed/aANuDntBtOU" 
+            title="YouTube video player" 
+            frameborder="0" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
             allowfullscreen>
         </iframe>
     </div>
 </section>
 
 <section>
-    <div class="p-5 caixa1">
+    <div class="p-5 mt-4 caixa1">
         <div class="container">
             <h1 class="h1">Lorem ipsum</h1>
             <p>

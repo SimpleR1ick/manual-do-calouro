@@ -20,3 +20,15 @@ span ul.nav.flex-column {
     background-color: blue;
     border: 1px solid red;
 }
+
+.wrapper > iframe {
+    width: 840px; 
+    height: 472px;
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper > iframe {
+        width: 100%;
+        height: 200px;
+    }
+}
