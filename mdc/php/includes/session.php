@@ -57,7 +57,7 @@ function verificaLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
         echo
-        "<button onclick='window.location.href = \"includes/logout.php\"' class='btn btn-info' type='button'>
+        "<button onclick='window.location.href = \"php/includes/logout.php\"' class='btn btn-info' type='button'>
             Sair
         </button>";
     // Se não existir um usuário, cria um botão para dar login

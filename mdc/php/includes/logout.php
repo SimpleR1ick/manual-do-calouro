@@ -18,6 +18,6 @@ function executarLogout(): void {
     session_destroy();
 
     // Manda o usuário de volta para a página index.php
-    header('Location: ../index.php');
+    header('Location: ../../index.php');
 }
 ?>
