@@ -26,10 +26,10 @@ CREATE TABLE usuario (
     id_usuario SERIAL PRIMARY KEY NOT NULL ,
     nom_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    senha VARCHAR(250) NOT NULL
+    senha VARCHAR(250) NOT NULL,
     img_perfil VARCHAR(300) DEFAULT NULL,
     ativo BOOLEAN NOT NULL DEFAULT 't',
-    acesso TINYINT(1) NOT NULL DEFAULT 1
+    acesso INT NOT NULL DEFAULT 1
 );
 
 CREATE TABLE servidor (
@@ -66,7 +66,7 @@ CREATE TABLE sala_aula (
 
 CREATE TABLE evento (
     id_evento SERIAL PRIMARY KEY NOT NULL,
-    dat_evento TIMESTAMP NOT NULL
+    dat_evento TIMESTAMP NOT NULL,
     nom_evento VARCHAR(50) NOT NULL,
     dsc_evento VARCHAR(100)
 );
@@ -74,7 +74,7 @@ CREATE TABLE evento (
 CREATE TABLE turma (
     id_turma SERIAL PRIMARY KEY NOT NULL,
     dsc_curso VARCHAR(50) NOT NULL,
-    num_modulo TINYINT(1) NOT NULL
+    num_modulo INT NOT NULL
 );
 
 CREATE TABLE sala (
@@ -94,8 +94,8 @@ CREATE TABLE horario (
 );
 
 CREATE TABLE professor (
-    regras TEXT,
-    fk_servidor_fk_usuario_id_usuario SERIAL PRIMARY KEY NOT NULL
+    fk_servidor_fk_usuario_id_usuario SERIAL PRIMARY KEY NOT NULL,
+    regras TEXT    
 );
 
 CREATE TABLE administrativo (
@@ -109,11 +109,11 @@ CREATE TABLE setor (
 );
 
 CREATE TABLE aula (
+    fk_dia_semana_id_dia_semana SERIAL NOT NULL,
     fk_horario_aula_id_horario_aula SERIAL NOT NULL,
-    fk_disciplina_id_disciplina SERIAL NOT NULL,
     fk_turma_id_turma SERIAL NOT NULL,
     fk_sala_aula_id_sala_aula SERIAL NOT NULL,
-    fk_dia_semana_id_dia_semana SERIAL NOT NULL
+    fk_disciplina_id_disciplina SERIAL NOT NULL
 );
 
 CREATE TABLE usuario_evento (
@@ -122,15 +122,15 @@ CREATE TABLE usuario_evento (
 );
 
 CREATE TABLE professor_disciplina (
-    fk_disciplina_id_disciplina SERIAL NOT NULL,
-    fk_professor_fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL
+    fk_professor_fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL,
+    fk_disciplina_id_disciplina SERIAL NOT NULL
 );
 
 CREATE TABLE contato (
+    id_contato SERIAL PRIMARY KEY NOT NULL,
     fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL,
     fk_tipo_contato_id_tipo SERIAL NOT NULL,
-    dsc_contato VARCHAR(50) NOT NULL,
-    id_contato SERIAL PRIMARY KEY NOT NULL
+    dsc_contato VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE servidor_horario (
