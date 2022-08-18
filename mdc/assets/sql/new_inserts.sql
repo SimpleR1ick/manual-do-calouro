@@ -6,14 +6,15 @@ INSERT INTO usuario (nom_usuario, email, senha) VALUES
     ('Maria', 'mariaeduarda@gmail.com', 'd481dbf8fcb6838a7e5dea0ca8e16d8a'), -- fuckingpassword
     ('Rafael', 'rafaelbarros@hotmailcom'), -- 321
     ('Moisés', 'moisesomena@ifes.edu.br', '72c7d5bed34eb9dc055ef287eaf862ad'); -- ifes2022
+    ('CAE', 'cae@ifes.edu.br', '') -- 
 
 INSERT INTO servidor (fk_usuario_id_usuario, fk_sala_id_sala) VALUES 
     (4, '701'); -- Moisés
 
 INSERT INTO aluno (num_matricula, fk_usuario_id_usuario, fk_turma_id_turma) VALUES
-    ('20201tiimi0365', 1, ), -- Henrique
-    ('', 2, ). -- Duda
-    ('', 3, ); -- Rafael
+    ('20201tiimi0365', 1, 6), -- Henrique
+    ('20201tiimi4167', 2, 6), -- Duda
+    ('20201tiimi0911', 3, 6); -- Rafael
 
 INSERT INTO dia_semana (dsc_dia_semana) VALUES
     ('Domingo'),
@@ -67,7 +68,7 @@ INSERT INTO turma (dsc_curso, num_modulo) VALUES
     ('Info', 5),
     ('Info', 6);
 
-INSERT INTO sala
+INSERT INTO sala ()
 
 INSERT INTO tipo_contato
 
@@ -81,7 +82,7 @@ INSERT INTO setor
 
 INSERT INTO aula
 
-INSERT INTO usuario_evento
+INSERT INTO usuario_evento 
 
 INSERT INTO professor_disciplina
 

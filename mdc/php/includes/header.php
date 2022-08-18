@@ -1,3 +1,4 @@
+<!-- PHP -->
 <?php require_once 'session.php'; ?>
 
 <!DOCTYPE html>
