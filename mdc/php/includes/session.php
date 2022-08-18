@@ -63,7 +63,7 @@ function verificaLogin(): void {
     // Se não existir um usuário, cria um botão para dar login
     } else {
         echo
-        "<button onclick='window.location.href = \"login.php\"' class='btn btn-info' type='button'>
+        "<button onclick='window.location.href = \"login.php\"' class='btn btn-primary' type='button'>
             Entrar
         </button>";
     }

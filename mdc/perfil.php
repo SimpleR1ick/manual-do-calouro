@@ -74,7 +74,7 @@
 
                 <div class="col text-center mt-3">
                     <!-- SALVAR -->
-                    <button class="btn btn-primary mr-2" type="submit">Salvar alterações</button>
+                    <button class="btn btn-primary me-2" type="submit">Salvar alterações</button>
 
                     <!-- MUDAR SENHA -->
                     <button class="btn btn-danger" type="button">Redefinir senha</button>
