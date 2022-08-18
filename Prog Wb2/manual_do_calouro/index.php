@@ -3,7 +3,7 @@
 
 <!-- Conteúdo da pagina -->
 <section>
-    <div class="container wrapper d-flex justify-content-center">
+    <div class="container div-video d-flex justify-content-center">
         <iframe 
             class="video"
             src="https://www.youtube.com/embed/aANuDntBtOU" 
