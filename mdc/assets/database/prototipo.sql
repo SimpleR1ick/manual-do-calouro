@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS usuario_evento CASCADE;
 DROP TABLE IF EXISTS professor_disciplina CASCADE;
 DROP TABLE IF EXISTS contato CASCADE;
 DROP TABLE IF EXISTS servidor_horario CASCADE;
-
+DROP TABLE IF EXISTS curso CASCADE;
 
 /* Modelo Lógico - Protótipo: */
 
@@ -74,7 +74,8 @@ CREATE TABLE evento (
 CREATE TABLE turma (
     id_turma SERIAL PRIMARY KEY NOT NULL,
     dsc_curso VARCHAR(50) NOT NULL,
-    num_modulo INT NOT NULL
+    num_modulo INT NOT NULL,
+    fk_curso_id_curso SERIAL NOT NULL
 );
 
 CREATE TABLE sala (
@@ -136,6 +137,11 @@ CREATE TABLE contato (
 CREATE TABLE servidor_horario (
     fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL,
     fk_horario_id_horario SERIAL NOT NULL
+);
+
+CREATE TABLE curso (
+    id_curso SERIAL PRIMARY KEY NOT NULL,
+    dsc_curso VARCHAR(50) NOT NULL
 );
  
 ALTER TABLE servidor ADD CONSTRAINT FK_servidor_2
@@ -236,4 +242,9 @@ ALTER TABLE servidor_horario ADD CONSTRAINT FK_servidor_horario_1
 ALTER TABLE servidor_horario ADD CONSTRAINT FK_servidor_horario_2
     FOREIGN KEY (fk_horario_id_horario)
     REFERENCES horario (id_horario)
+    ON DELETE CASCADE;
+
+ALTER TABLE turma ADD CONSRTAINT FK_turma_2
+    FOREIGN KEY (fk_curso_id_curso)
+    REFERENCES curso (id_curso)
     ON DELETE CASCADE;
