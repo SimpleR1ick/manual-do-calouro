@@ -26,14 +26,4 @@ function sanitizaEmail($email): string
 
     return $email;
 }
-
-/**
- * 
- * 
- * 
- * @author Henrique Dalmagro
- */
-function uploadFoto() {
-    
-}
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Iniciar a sessão
 session_start();
 
@@ -9,7 +9,6 @@ include_once '../functions/processos.php';
 require_once 'connect.php';
 
 // Atribui o conteudo obtido dos campos do formulario a variáveis]
-$img_perfil = 
 $curso = pg_escape_string(CONNECT, $_POST);
 $modulo = pg_escape_string(CONNECT, $_POST);
 $nome = pg_escape_string(CONNECT, $_POST);
@@ -23,11 +22,6 @@ $email = htmlspecialchars($email);
 
 // Sanitizando e validando o email
 $email = sanitizaEmail($email);
-
-
-
-
-
 
 
 ?>
