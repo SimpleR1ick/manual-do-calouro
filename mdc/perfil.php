@@ -5,8 +5,7 @@
 <section>
     <div class="p-3 d-flex flex-column align-items-center">
 
-        <form action="post" class="w-75 ">
-
+        <form id="perfil" action="php/includes/perfil_update.php" methodo="POST" class="w-75 " enctype="multipart/form-data">
             <!--Primeira row-->
             <div class="row mb-4">
                 <div class="col-6">
@@ -15,7 +14,7 @@
 
                         <label for="foto-editar-perfil form-label">Editar foto de perfil</label>
 
-                        <img id="foto-editar-perfil" class="foto-editar-perfil p-3" src="user.png" alt="user-pic">
+                        <img id="foto-editar-perfil" name="foto-editar-perfil" class="foto-editar-perfil p-3" src="user.png" alt="user-pic">
 
                         <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" type="file">
 

@@ -8,7 +8,7 @@ include_once '../functions/processos.php';
 // Conexão com banco de dados
 require_once 'connect.php';
 
-// Atribui o conteudo dos campos do formulario a variáveis
+// Atribui o conteudo obtido dos campos do formulario a variáveis
 $nome = pg_escape_string(CONNECT, $_POST['nome']);
 $email = pg_escape_string(CONNECT, $_POST['email']);
 $senha = pg_escape_string(CONNECT, $_POST['senha']);

@@ -6,7 +6,8 @@
  * 
  * @author Henrique Dalmagro
  */
-function hashMD5($senha): string {
+function hashMD5($senha): string
+{
     return md5($senha);
 }
 
@@ -17,11 +18,22 @@ function hashMD5($senha): string {
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaEmail($email): string {
+function sanitizaEmail($email): string
+{
     // Sanitizando e validando o email
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
 
     return $email;
+}
+
+/**
+ * 
+ * 
+ * 
+ * @author Henrique Dalmagro
+ */
+function uploadFoto() {
+    
 }
 ?>

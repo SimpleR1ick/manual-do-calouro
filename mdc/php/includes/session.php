@@ -68,4 +68,15 @@ function verificaLogin(): void {
         </button>";
     }
 }
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function exibirPerfil(): void {
+    if (isset($_SESSION['id_usuario']));
+
+}
+
 ?>
