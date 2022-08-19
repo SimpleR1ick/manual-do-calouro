@@ -16,6 +16,7 @@
 
                         <img id="foto-editar-perfil" class="foto-editar-perfil p-3" src="user.png" alt="user-pic">
 
+                        <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
                         <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
                     </picture>
                 </div>
