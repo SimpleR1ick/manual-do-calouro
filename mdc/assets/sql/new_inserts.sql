@@ -6,7 +6,7 @@ INSERT INTO usuario (nom_usuario, email, senha) VALUES
     ('Maria', 'mariaeduarda@gmail.com', 'd481dbf8fcb6838a7e5dea0ca8e16d8a'), -- fuckingpassword
     ('Rafael', 'rafaelbarros@hotmailcom', 'caf1a3dfb505ffed0d024130f58c5cfa'), -- 321
     ('Moisés', 'moisesomena@ifes.edu.br', '72c7d5bed34eb9dc055ef287eaf862ad'), -- ifes2022
-    ('CAE', 'cae@ifes.edu.br', 'e8d95a51f3af4a3b134bf6bb680a213a'); -- senha
+    ('Raphael', 'rbranco@yahoo.com', 'e8d95a51f3af4a3b134bf6bb680a213a'); -- senha
 
 INSERT INTO servidor (fk_usuario_id_usuario, fk_sala_id_sala) VALUES 
     (5, 2), -- Moisés
@@ -14,8 +14,8 @@ INSERT INTO servidor (fk_usuario_id_usuario, fk_sala_id_sala) VALUES
 
 INSERT INTO aluno (num_matricula, fk_usuario_id_usuario, fk_turma_id_turma) VALUES
     ('20201tiimi0365', 1, 6), -- Henrique
-    ('20201tiimi4167', 2, 6), -- Duda
-    ('20201tiimi0911', 3, 6); -- Rafael
+    ('20201tiimi0152', 2, 6), -- Duda
+    ('20201tiimi0160', 3, 6); -- Rafael
 
 INSERT INTO dia_semana (dsc_dia_semana) VALUES
     ('Domingo'),
@@ -44,7 +44,7 @@ INSERT INTO disciplina (dsc_disciplina) VALUES
     ("MAT"),                -- 7
     ("PORTUG"),             -- 8
     ("PROG WEB II"),        -- 9
-    ("Proeto integrador"),  -- 10
+    ("Projeto integrador"),  -- 10
     ("QUI"),                -- 11
     ("SOCIOL");             -- 12
 
@@ -54,20 +54,20 @@ INSERT INTO sala_aula (num_sala_aula) VALUES
     ('LAB 903t'),
     ('LAB 901t');
 
-INSERT INTO evento (dat_evento, nom_evento, dsc_eventos) VALUES 
-    ('2022-05-08 11:10:00', 'Prova de biologia', 'reprodução humana'),
-    ('2022-04-10 08:20:00', 'OBMEP', 'estudar'),
-    ('2022-06-08 13:00:00', 'Prova de matematica', 'recuperação'),
+INSERT INTO evento (dat_evento, nom_evento, dsc_evento) VALUES 
+    ('2022-05-08 11:10:00', 'Prova de Biologia', 'Reprodução Humana'),
+    ('2022-04-10 08:20:00', 'OBMEP', 'Estudar'),
+    ('2022-06-08 13:00:00', 'Prova de Matemática', 'Recuperação'),
     ('2022-11-27 07:30:00', 'Expedição IFES', ''),
-    ('2022-10-11 10:20:00', 'Laboratório de química', '');
+    ('2022-10-11 10:20:00', 'Laboratório de Química', '');
 
-INSERT INTO turma (dsc_curso, num_modulo) VALUES
-    ('Info', 1),
-    ('Info', 2),
-    ('Info', 3),
-    ('Info', 4),
-    ('Info', 5),
-    ('Info', 6);
+INSERT INTO turma (num_modulo, fk_curso_id_curso) VALUES
+    (1, 1),
+    (2, 1),
+    (3, 1),
+    (4, 1),
+    (5, 1),
+    (6, 1);
 
 INSERT INTO sala (num_sala) VALUES
     ('101'),
@@ -81,13 +81,13 @@ INSERT INTO horario (hora_inicio, hora_fim) VALUES
     ('10:30:00', '11:30:00');
 
 INSERT INTO professor (regras, fk_servidor_fk_usuario_id_usuario) VALUES
-    (5, 'Não xingar porra!');
+    ('Não xingar porra!', 5);
 
 INSERT INTO administrativo (fk_servidor_fk_usuario_id_usuario, fk_setor_id_setor) VALUES
     (6, 1);
 
 INSERT INTO setor (dsc_setor) VALUES
-    ('Cordenadoria de Apoio ao Ensino');
+    ('Coordenadoria de Apoio ao Ensino');
 
 INSERT INTO aula (
     fk_dia_semana_id_dia_semana,
@@ -143,8 +143,12 @@ INSERT INTO usuario_evento (fk_usuario_id_usuario, fk_evento_id_evento) VALUES
 INSERT INTO professor_disciplina (fk_professor_fk_servidor_fk_usuario_id_usuario, fk_disciplina_id_disciplina) VALUES
     (5, 10);
 
-INSERT INTO contato (fk_servidor_fk_usuario_id_usuario, fk_tipo_contato_id_tipo, dsc_contato) VALUES
-    (5, 2, '(27) 999666-0410');
+INSERT INTO contato (dsc_contato, fk_servidor_fk_usuario_id_usuario, fk_tipo_contato_id_tipo) VALUES
+    ('(27) 999666-0410', 5, 1);
 
 INSERT INTO servidor_horario (fk_servidor_fk_usuario_id_usuario, fk_horario_id_horario) VALUES
     (5, 1);
+
+INSERT INTO curso (dsc_curso) VALUES
+    ('Info'),
+    ('Mec');
