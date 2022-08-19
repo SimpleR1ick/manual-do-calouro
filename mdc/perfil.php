@@ -5,7 +5,7 @@
 <section>
     <div class="p-3 d-flex flex-column align-items-center">
 
-        <form action="post" class="w-75 ">
+        <form method="post" class="w-75 ">
 
             <!--Primeira row-->
             <div class="row mb-4">
@@ -15,7 +15,7 @@
 
                         <label for="foto-editar-perfil form-label">Editar foto de perfil</label>
 
-                        <img id="foto-editar-perfil" class="foto-editar-perfil p-3" src="user.png" alt="user-pic">
+                        <img id="foto-editar-perfil" class="foto-editar-perfil img-thumbnail rounded p-3" src="img/user.png" alt="user-pic">
 
                         <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" type="file">
 
