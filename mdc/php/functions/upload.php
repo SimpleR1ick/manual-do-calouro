@@ -5,35 +5,52 @@ session_start();
 // Conexão com banco de dados
 require_once '../includes/connect.php';
 
-uploadFoto();
+$dir = '../../img/perfil/';
+
+define('PATH', $dir);
+
+$nome = pg_escape_string(CONNECT, $_FILES['foto']['name']);
+
+$nome_temp = $_FILES['foto']['tmp_name'];
+$foto_size = $_FILES['foto']['size'];
+
+$nome_novo = renomearFoto($nome);
+
+armazenaFoto($nome_novo, $nome_temp, $foto_size);
 
 /**
  * 
  * 
  * 
- * @author Henrique Dalmagro
+ * 
  */
-function uploadFoto() {
-    if (isset($_SESSION['id_usuario'])) {
-        $id = $_SESSION['id_usuario'];
+function renomearFoto($nome): string {
+    $path = pathinfo($nome);
 
-        $fotoNome = pg_escape_string(CONNECT, $_FILES['foto']['name']);
+    $id = $_SESSION['id_usuario'];
+    $type = $path['extension'];
 
-        $fotoTpmNome = $_FILES['foto']['tmp_name'];
-        $fotoTamanho = $_FILES['foto']['size'];
-
-        $fotoNewName = $id . $fotoNome;
-
-        //echo filetype($fotoTpmNome);
-        //echo $fotoNome . "<br>";
-        //echo $fotoTpmNome . "<br>";
-        //echo $fotoTamanho . "<br>";
-
-        if ($fotoTamanho < $_POST['MAX_FILE_SIZE']) {
-            $sql = "UPDATE usuario SET img_perfil='' WHERE id_usuario = '$id'";
-            //$query = pg_query(CONNECT, $sql)
-            move_uploaded_file($fotoTpmNome, "../../img/perfil/" . $fotoNewName);
-        }
-    }    
+    return $id.'.'.$type;
 }
+
+/**
+ * 
+ * 
+ * 
+ * 
+ */
+function armazenaFoto($novo_nome, $nome_temp, $foto_size): void {
+    $id = $_SESSION["id_usuario"];
+
+    if ($foto_size < 33554432) {
+        $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario ='$id'";
+        $query = pg_query(CONNECT, $sql);
+
+        if ($query) {
+            move_uploaded_file($nome_temp, PATH.$novo_nome);
+        }
+    }
+}
+
+
 ?>
