@@ -3,7 +3,7 @@
 
 <!-- PHP -->
 <?php include_once 'php/functions/crud.php'; 
-$dados = crudGetDados(); ?>
+$dados = getDadosUsuario(); ?>
 
 <!-- Conteudo da pagina -->
 <section>
