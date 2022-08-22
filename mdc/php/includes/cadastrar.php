@@ -23,11 +23,11 @@ $email = htmlspecialchars($email);
 // Sanitizando e validando o email
 $email = sanitizaEmail($email);
 
-// Verifica se as senhas são identicas
-validaSenha($senha, $senha2);
-
 // Verifica se o email recebido ja existe no banco de dados
 validaEmail($email);
+
+// Verifica se as senhas são identicas
+validaSenha($senha, $senha2);
 
 // Tenta inserir o usuario no banco de dados
 cadastraUsuario($nome, $email, $senha);
