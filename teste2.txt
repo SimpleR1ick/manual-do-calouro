@@ -1,0 +1,17 @@
+<?php
+    function minhaFuncaoPHP($param1, $param2){
+        return ($param1+$param2);
+    }
+
+    $arg1 = 10;
+    $arg2 = 7;
+?>
+
+<button type="button" onclick="funcaoJava()">Enviar</button>
+
+<script>
+    function funcaoJava(){
+        let retornoPHP = '<?php echo minhaFuncaoPHP($arg1, $arg2); ?>';
+        alert(retornoPHP);
+    }
+</script>

@@ -1,6 +1,8 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
+<!-- PHP -->
+
 <!-- Conteudo da pagina -->
 <section>
     <div class="p-3 d-flex flex-column align-items-center">
@@ -14,7 +16,7 @@
 
                         <label for="foto-editar-perfil form-label">Editar foto de perfil</label>
 
-                        <img id="foto-editar-perfil" class="foto-editar-perfil p-3" src="user.png" alt="user-pic">
+                        <img id="foto-editar-perfil" class="foto-editar-perfil p-3" src="img/perfil/user.png" alt="user-pic">
 
                         <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
                         <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
@@ -73,7 +75,7 @@
 
                 <div class="col text-center mt-3">
                     <!-- SALVAR -->
-                    <button class="btn btn-primary me-2" type="submit">Salvar alterações</button>
+                    <button class="btn btn-primary me-2" name="btnUpdate" type="submit">Salvar alterações</button>
 
                     <!-- MUDAR SENHA -->
                     <button class="btn btn-danger" type="button">Redefinir senha</button>

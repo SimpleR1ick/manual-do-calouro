@@ -1,43 +1,29 @@
 <?php
-// Inicia a sessão
-session_start();
-
-// Conexão com banco de dados
-require_once '../includes/connect.php';
-
-$dir = '../../img/perfil/';
-
+// Definindo como constante global a pasta das fotos de perfil
+$dir = 'img/perfil/';
 define('PATH', $dir);
 
-$nome = pg_escape_string(CONNECT, $_FILES['foto']['name']);
-
+// Nome da foto, nome temporario no servidor e tamanho da foto
+$nome_foto = pg_escape_string(CONNECT, $_FILES['foto']['name']);
 $nome_temp = $_FILES['foto']['tmp_name'];
 $foto_size = $_FILES['foto']['size'];
 
-$nome_novo = renomearFoto($nome);
+// Dados da foto
+$path = pathinfo($nome_foto);
+
+// Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
+$nome_novo = $_SESSION['id_usuario'].'.'.$path['extension'];
 
 armazenaFoto($nome_novo, $nome_temp, $foto_size);
 
 /**
+ * Função para atualizar a foto de perfil
  * 
- * 
- * 
- * 
- */
-function renomearFoto($nome): string {
-    $path = pathinfo($nome);
-
-    $id = $_SESSION['id_usuario'];
-    $type = $path['extension'];
-
-    return $id.'.'.$type;
-}
-
-/**
- * 
- * 
- * 
- * 
+ * @param string $novo_nome nome do arquivo de imagem com o id do usuarios
+ * @param string $nome_temp nome temporario no arquivo do servidor
+ * @param int $foto_size tamanho em mb da foto 
+ *
+ * @author Henrique Dalmagro
  */
 function armazenaFoto($novo_nome, $nome_temp, $foto_size): void {
     $id = $_SESSION["id_usuario"];
@@ -48,9 +34,8 @@ function armazenaFoto($novo_nome, $nome_temp, $foto_size): void {
 
         if ($query) {
             move_uploaded_file($nome_temp, PATH.$novo_nome);
+            header('location: perfil.php');
         }
     }
 }
-
-
 ?>
