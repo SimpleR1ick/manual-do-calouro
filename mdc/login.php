@@ -17,6 +17,7 @@
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
+                                <?php exibirSucesso(); ?>
                             </div>
 
                             <!-- Email -->

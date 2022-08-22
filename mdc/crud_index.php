@@ -28,28 +28,8 @@
         </div>
     </div>
 
-    <!-- MODAL DELETE -->
-    <div class="modal fade" id="btn_delete" tabindex="-1" aria-labelledby="tituloModal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <!-- CABEÇALHO -->
-                <div class="modal-header">
-                    <h5 class="modal-title" id="tituloModal">Deseja mesmo excluir esse item?</h5>
 
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-
-                <!-- RODAPÉ -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-
-                    <a href="crud_delete.php?id=<?php echo $dados['id_usuario']; ?>" class="btn btn-danger">
-                        Deletar
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 </section>
 
 <!-- Footer -->
