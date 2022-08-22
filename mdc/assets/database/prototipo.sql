@@ -244,7 +244,7 @@ ALTER TABLE servidor_horario ADD CONSTRAINT FK_servidor_horario_2
     REFERENCES horario (id_horario)
     ON DELETE CASCADE;
 
-ALTER TABLE turma ADD CONSRTAINT FK_turma_2
+ALTER TABLE turma ADD CONSTRAINT FK_turma_2
     FOREIGN KEY (fk_curso_id_curso)
     REFERENCES curso (id_curso)
     ON DELETE CASCADE;
