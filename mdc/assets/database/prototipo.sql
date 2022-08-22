@@ -73,7 +73,6 @@ CREATE TABLE evento (
 
 CREATE TABLE turma (
     id_turma SERIAL PRIMARY KEY NOT NULL,
-    dsc_curso VARCHAR(50) NOT NULL,
     num_modulo INT NOT NULL,
     fk_curso_id_curso SERIAL NOT NULL
 );
@@ -244,7 +243,7 @@ ALTER TABLE servidor_horario ADD CONSTRAINT FK_servidor_horario_2
     REFERENCES horario (id_horario)
     ON DELETE CASCADE;
 
-ALTER TABLE turma ADD CONSTRAINT FK_turma_2
+ALTER TABLE turma ADD CONSTRAINT FK_turma_1
     FOREIGN KEY (fk_curso_id_curso)
     REFERENCES curso (id_curso)
     ON DELETE CASCADE;
