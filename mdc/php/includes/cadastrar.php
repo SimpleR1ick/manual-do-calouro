@@ -24,19 +24,12 @@ if (isset($_POST['btnCadastrar'])) {
     $email = sanitizaEmail($email);
 
     // Validando o email de entrada
-    $v0 = validaEmail($email);
-
-    if ($v0) {
-        // Verifica se o email recebido ja existe no banco de dados
-        $v1 = verificaEmail($email);
-    }
-    
-    // Verifica se as senhas são identicas
-    $v2 = validaSenha($senha, $senha2);
-
-    if ($v1 && $v2) {
-        // Tenta inserir o usuario no banco de dados
-        cadastraUsuario($nome, $email, $senha);
+    if (validaEmail($email)) {
+        // Verifica se o email recebido ja existe e se as senhas são identicas
+        if (verificaEmail($email) && validaSenha($senha, $senha2)) {
+            // Tenta inserir o usuario no banco de dados
+            cadastraUsuario($nome, $email, $senha);
+        }
     }
 }
 
@@ -74,7 +67,6 @@ function verificaEmail($email): bool {
         $_SESSION['mensag'] = 'Email já cadastrado!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
         return false;
-
     } else {
         return true;
     }
@@ -95,7 +87,6 @@ function validaSenha($senha1, $senha2): bool {
         $_SESSION['mensag'] = 'Senhas não idênticas!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
         return false;
-
     } else {
         return true;
     }

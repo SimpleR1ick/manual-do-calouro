@@ -3,14 +3,14 @@
 
 <!-- PHP -->
 <?php include_once 'php/functions/crud.php'; 
-$dados = getDadosUsuario(); ?>
+$dados = crudGetDados(); ?>
 
 <!-- Conteudo da pagina -->
 <section>
     <div class="mb-4">
         <div class="row">
             <div class="col-8 align-self-center">
-                <form action="crud_update.php" method="POST">
+                <form action="php/functions/update_delete.php" method="POST">
                     <input type="hidden" id="id" name="id" 
                            value="<?php echo $dados['id_usuario']; ?>">
 

@@ -1,6 +1,10 @@
 <!-- Header -->
 <?php include_once 'php/includes/header.php'; ?>
 
+<!-- PHP -->
+<?php include_once 'php/includes/acesso.php'; 
+verificaAcessoCrud(); ?>
+
 <!-- Conteúdo da pagina -->
 <section>
     <div class="container div-video d-flex justify-content-center">
