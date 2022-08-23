@@ -24,19 +24,16 @@ if (isset($_POST['btnLogar'])) {
 }
 
 /**
- * Função para logar no website
+ * Função para executar o login no website
  * 
  * @param string $email um email sanitizado
- * @param string $senha umae sanitizada 
+ * @param string $senha uma senha sanitizada e criptografada
  * 
  * @author Henrique Dalmagro
  */
-function logarUsuario($email, $senha): void {
-    // Invoca a função para criptografar a senha
-    $senhaSegura = hashMD5($senha);
-
+function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaSegura'";
+    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
     $query = pg_query(CONNECT, $sql);
 
     // Verifica se a inserção teve resultado
@@ -44,11 +41,12 @@ function logarUsuario($email, $senha): void {
         // Atribui, como um array, o resultado da requisição
         $result = pg_fetch_array($query);
 
-        // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
+        // Adiciona à sessão o 'id_usuario' do usuario 
         $_SESSION['id_usuario'] = $result['id_usuario'];
+
+        // Adciona a sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Logado com sucesso!';
         header('Location: ../../index.php'); // retorna para página index.php
-
     } else {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';

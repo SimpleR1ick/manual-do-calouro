@@ -12,10 +12,13 @@ function imprimirHorario(): void {
         $sql = "SELECT * FROM horario_aula WHERE id_horario_aula = $i";
         $query = pg_query(CONNECT, $sql);
 
+        // Transforma todas as linhas da query em um array
         $horario = pg_fetch_all($query);
 
         echo '<tr>'; // Inicio da tabela horario
         echo "<td class=\"align-middle\">{$horario[0]['hora_aula_inicio']}<br>{$horario[0]['hora_aula_fim']}</td>";
+
+        print_r($horario);
 
         // Loop para cada horario
         for ($l = 2; $l < 7; $l++) {

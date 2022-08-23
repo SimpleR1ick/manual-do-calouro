@@ -9,6 +9,8 @@
  * @author Henrique Dalmagro
  */
 function hashMD5($senha): string {
+    
+
     return md5($senha);
 }
 
