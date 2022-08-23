@@ -25,8 +25,30 @@ if (isset($_POST['btnIncrement'])) {
     // Sanitizando e validando o email
     $email = sanitizaEmail($email);
 
+}   
+/**
+ * Função para atualizar os dados do usuario
+ * 
+ * @param string $nome um nome qualquer
+ * @param string $email um email qualquer
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizaDadosUsuario($nome, $email): void {
     // Query para fazer o update das informações do usuario
     $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email'";
+
+}
+
+/**
+ * Função para inserir e atualizar o curso e modulo do aluno
+ * 
+ * @param string $curso nome do curso
+ * @param string $modulo numeo do modulo
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizaCursoModulo($curso, $modulo): void {
 
 }
 ?>

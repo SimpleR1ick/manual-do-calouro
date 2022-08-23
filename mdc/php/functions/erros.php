@@ -14,7 +14,6 @@ function exibirErros(): void {
 }
 
 /**
- * 
  * Função para imprimir mesagem de sucesso
  * 
  * @author Rafael Barros

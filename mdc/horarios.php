@@ -4,47 +4,49 @@
 <!-- Conexão -->
 <?php include_once 'php/includes/connect.php'; ?>
 
+<!-- PHP -->
+<?php include_once 'php/functions/horario_aula.php'; ?>
+
 <!-- Conteudo da pagina -->
 <section>
     <div class="container">
 
-        <form class="d-flex flex-column align-items-center" action="" method="GET">
+        <form class="d-flex flex-column align-items-center" action="horarios.php" method="GET">
             <h5>Curso:</h5>
             <!-- GRUPO DE BOTÕES CURSO -->
             <div class="btn-group mb-3" role="group">
                 <!-- INFORMÁTICA -->
-                <input type="radio" class="btn-check" name="curso" id="info" autocomplete="off">
+                <input type="radio" class="btn-check" id="info" name="info" autocomplete="off">
                 <label class="btn btn-success" for="info">INFO</label>
 
                 <!-- INTERNET DAS COISAS -->
-                <input type="radio" class="btn-check" name="curso" id="iot" autocomplete="off">
+                <input type="radio" class="btn-check" id="iot" name="iot" autocomplete="off">
                 <label class="btn btn-success" for="iot">IOT</label>
 
                 <!-- MECATRÔNICA -->
-                <input type="radio" class="btn-check" name="curso" id="meca" autocomplete="off">
+                <input type="radio" class="btn-check" id="meca" name="meca" autocomplete="off">
                 <label class="btn btn-success" for="meca">MEC</label>
-
             </div>
 
             <h5>Módulo:</h5>
             <!-- GRUPO DE BOTÕES MÓDULO -->
             <div class="btn-group mb-3" role="group">
-                <input type="radio" class="btn-check" name="modulo" id="mod1" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod1" name="1" autocomplete="off">
                 <label class="btn btn-success" for="mod1">1°</label>
 
-                <input type="radio" class="btn-check" name="modulo" id="mod2" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod2" name="2" autocomplete="off">
                 <label class="btn btn-success" for="mod2">2°</label>
 
-                <input type="radio" class="btn-check" name="modulo" id="mod3" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod3" name="3" autocomplete="off">
                 <label class="btn btn-success" for="mod3">3°</label>
 
-                <input type="radio" class="btn-check" name="modulo" id="mod4" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod4" name="4" autocomplete="off">
                 <label class="btn btn-success" for="mod4">4°</label>
 
-                <input type="radio" class="btn-check" name="modulo" id="mod5" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod5" name="5" autocomplete="off">
                 <label class="btn btn-success" for="mod5">5°</label>
 
-                <input type="radio" class="btn-check" name="modulo" id="mod6" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod6" name="6" autocomplete="off">
                 <label class="btn btn-success" for="mod6">6°</label>
             </div>
 
@@ -64,56 +66,11 @@
                                 <th scope="col">QUA</th>
                                 <th scope="col">QUI</th>
                                 <th scope="col">SEX</th>
-                                <th scope="col">SÁB</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php
-                            for ($i = 0; $i < 6; $i++) {
-                            ?>
-                                <tr>
-                                    <td class="align-middle">7:30<br>8:20</td>
-                                    <td>
-                                        <span class="d-flex flex-column">
-                                            <small>Sala N°</small>
-                                            <strong>DISCIPLINA</strong>
-                                            <small>Professor</small>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex flex-column">
-                                            <small>Sala N°</small>
-                                            <strong>DISCIPLINA</strong>
-                                            <small>Professor</small>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex flex-column">
-                                            <small>Sala N°</small>
-                                            <strong>DISCIPLINA</strong>
-                                            <small>Professor</small>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex flex-column">
-                                            <small>Sala N°</small>
-                                            <strong>DISCIPLINA</strong>
-                                            <small>Professor</small>
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <span class="d-flex flex-column">
-                                            <small>Sala N°</small>
-                                            <strong>DISCIPLINA</strong>
-                                            <small>Professor</small>
-                                        </span>
-                                    </td>
-                                    <td></td>
-                                </tr>
-                            <?php
-                            }
-                            ?>
+                            <?php imprimirHorario(); ?>
                         </tbody>
                     </table>
                 </div>

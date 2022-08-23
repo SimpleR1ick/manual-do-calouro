@@ -35,7 +35,6 @@
                             <div class="d-flex justify-content-center">
                                 <button id="btnLogar" name="btnLogar" class="btn btn-primary" type="submit">Login</button>
                             </div>
-
                         </form>
 
                         <!-- Redirecionamento para cadastro -->
@@ -47,7 +46,6 @@
                                 </ol>
                             </nav>
                         </div>
-
                     </div>
                 </div>
             </div>

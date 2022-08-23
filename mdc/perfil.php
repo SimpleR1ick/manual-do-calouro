@@ -6,7 +6,7 @@
 <!-- Conteudo da pagina -->
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
-        <form id="perfil" action="php/functions/upload.php" method="POST" class="w-75 " enctype="multipart/form-data">
+        <form id="perfil" action="php/functions/upload_foto.php" method="POST" class="w-75 " enctype="multipart/form-data">
             <div class="row">
                 <div class="col-6 text-center">
                     <label for="foto-editar-perfil" class="form-label fw-bold h5">Editar foto de perfil</label>
@@ -20,15 +20,13 @@
             <div class="row mb-4">
                 <div class="col-6">
                     <!-- IMAGEM DE PERFIL -->
-                    <div class="d-flex flex-column align-items-center">
-                        <picture>
-                            <label for="foto-editar-perfil form-label">Editar foto de perfil</label>
+                    <div class="d-flex flex-column align-items-center">     
+                        <label for="foto-editar-perfil form-label">Editar foto de perfil</label>
 
-                            <img id="foto-editar-perfil" class="foto-editar-perfil p-3" src="img/perfil/user.png" alt="user-pic">
+                        <img id="foto-editar-perfil" class="img-fluid rounded p-3" src="img/perfil/user.png" alt="user-pic">
 
-                            <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
-                            <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
-                        </picture>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
+                        <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
                     </div>
                 </div>
 

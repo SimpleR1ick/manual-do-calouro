@@ -67,9 +67,9 @@ function verificaEmail($email): bool {
         $_SESSION['mensag'] = 'Email já cadastrado!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
         return false;
-    } else {
-        return true;
     }
+    return true;
+    
 }
 
 /**
@@ -87,9 +87,8 @@ function validaSenha($senha1, $senha2): bool {
         $_SESSION['mensag'] = 'Senhas não idênticas!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
         return false;
-    } else {
-        return true;
-    }
+    } 
+    return true;
 }
 
 /**

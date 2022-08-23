@@ -24,6 +24,7 @@ $dados = crudGetDados(); ?>
                         <input class="form-control" type="email" aria-describedby="ajudaEmail" id="email" name="email" 
                                value="<?php echo $dados['email']; ?>">
                     </div>
+                    
                     <button class="btn btn-primary" name="btnUpdate" type="submit"> Atualizar </button>
                 </form>
             </div>

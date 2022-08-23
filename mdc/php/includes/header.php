@@ -1,3 +1,4 @@
+<!-- PHP -->
 <?php include_once 'session.php'; ?>
 
 <!DOCTYPE html>
@@ -73,8 +74,7 @@
 
                         <!-- Área de login -->
                         <?php verificaLogin(); ?>
-                    </div>
-                    
+                    </div>  
                 </div>
             </div>
         </nav>
