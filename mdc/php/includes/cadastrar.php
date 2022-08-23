@@ -16,7 +16,7 @@ if (isset($_POST['btnCadastrar'])) {
     $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
 
     // Sanitizando o nome e as senhas (remove qualquer tag HTML)
-    $nome = htmlspecialchars($nome);
+    $nome = htmlspecialchars($nome, ENT_QUOTES);
     $senha = htmlspecialchars($senha);
     $senha2 = htmlspecialchars($senha2);
 
@@ -26,9 +26,9 @@ if (isset($_POST['btnCadastrar'])) {
     // Validando o email de entrada
     if (validaEmail($email)) {
         // Verifica se o email recebido ja existe e se as senhas são identicas
-        if (verificaEmail($email) && validaSenha($senha, $senha2)) {
+        if (validaSenha($senha, $senha2) && verificaEmail($email)) {
             // Tenta inserir o usuario no banco de dados
-            cadastraUsuario($nome, $email, $senha);
+            cadastraUsuario($nome, $email, md5($senha));
         }
     }
 }
@@ -47,6 +47,25 @@ function validaEmail($email): bool {
     } else {
         return false;
     }
+}
+
+/**
+ * Função para verificar se as senhas coincidem
+ * 
+ * @param string $senha1 Primeira senha
+ * @param string $senha2 Confirmação de senha
+ * 
+ * @author Henrique Dalmagro
+ */
+function validaSenha($senha1, $senha2): bool {
+    // Se as senhas não concidirem retorna o usuario ao inicio do cadastro   
+    if ($senha1 !== $senha2) {
+        // Adiciona à minha sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Senhas não idênticas!';
+        header('Location: ../../cadastro.php'); // Retorna para o cadastro
+        return false;
+    } 
+    return true;
 }
 
 /**
@@ -73,25 +92,6 @@ function verificaEmail($email): bool {
 }
 
 /**
- * Função para verificar se as senhas coincidem
- * 
- * @param string $senha1 Primeira senha
- * @param string $senha2 Confirmação de senha
- * 
- * @author Henrique Dalmagro
- */
-function validaSenha($senha1, $senha2): bool {
-    // Se as senhas não concidirem retorna o usuario ao inicio do cadastro   
-    if ($senha1 !== $senha2) {
-        // Adiciona à minha sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Senhas não idênticas!';
-        header('Location: ../../cadastro.php'); // Retorna para o cadastro
-        return false;
-    } 
-    return true;
-}
-
-/**
  * Função para cadastrar o usuario 
  * 
  * @param string $nome Nome do usuario
@@ -101,12 +101,9 @@ function validaSenha($senha1, $senha2): bool {
  * 
  * @author Henrique Dalmagro
  */
-function cadastraUsuario($nome, $email, $senha): void {
-    // Invoca a função para criptografar a senha
-    $senhaSegura = hashMD5($senha);
-
+function cadastraUsuario($nome, $email, $senhaHash): void {
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaSegura')";
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaHash')";
     $query = pg_query(CONNECT, $sql);
 
     // Se a requição houve retorno, a insert teve sucesso

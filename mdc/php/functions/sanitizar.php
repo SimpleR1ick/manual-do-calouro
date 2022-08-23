@@ -1,17 +1,19 @@
 <?php
 /**
- * Função para criptografar uma senha utilizando hash md5
+ * Função para sanitizar uma string e verificar se ela continua igual 
  * 
- * @param string $senha 
+ * @param string $originalString a string
  * 
- * @return string $senha uma string criptografada hashMD5
+ * @return
  * 
  * @author Henrique Dalmagro
  */
-function hashMD5($senha): string {
+function sanitizaGeral($originalString) {
+    $sanitizeString = htmlspecialchars($originalString);
     
+    if ($sanitizeString != $originalString) {
 
-    return md5($senha);
+    }
 }
 
 /**

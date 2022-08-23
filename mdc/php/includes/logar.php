@@ -3,7 +3,7 @@
 session_start();
 
 // Import de bibliotecas de funções
-include_once '../functions/processos.php';
+include_once '../functions/sanitizar.php';
 
 // Conectando com o banco de dados
 require_once 'connect.php';
@@ -20,7 +20,7 @@ if (isset($_POST['btnLogar'])) {
     $email = sanitizaEmail($email);
 
     // Tenta logar o usuario no site
-    logarUsuario($email, $senha);
+    logarUsuario($email, md5($senha));
 }
 
 /**
