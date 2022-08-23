@@ -8,7 +8,7 @@
 <section>
     <div class="container">
 
-        <form class="d-flex flex-column align-items-center" action="" method="get">
+        <form class="d-flex flex-column align-items-center" action="" method="GET">
             <h5>Curso:</h5>
             <!-- GRUPO DE BOTÕES CURSO -->
             <div class="btn-group mb-3" role="group">

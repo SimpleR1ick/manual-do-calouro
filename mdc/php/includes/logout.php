@@ -1,23 +1,13 @@
 <?php
-// Encerra a sessão do usuário
-executarLogout();
+// Iniciando a sessão
+session_start();
 
-/**
- * Função parar executar o logout do usuario no site
- * 
- * @author Henrique Dalmagro
- */
-function executarLogout(): void {
-    // Iniciando a sessão
-    session_start();
+// Limpa os dados da sessão
+session_unset();
 
-    // Limpa os dados da sessão
-    session_unset();
+// Destrói a sessão
+session_destroy();
 
-    // Destrói a sessão
-    session_destroy();
-
-    // Manda o usuário de volta para a página index.php
-    header('Location: ../../index.php');
-}
+// Manda o usuário de volta para a página index.php
+header('Location: ../../index.php');
 ?>

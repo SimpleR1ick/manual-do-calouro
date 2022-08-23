@@ -7,8 +7,8 @@
 <!-- Conteúdo da pagina -->
 <section>
     <div class="mb-4">
-        <div class="row">
-            <div class="col-8 align-self-center">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -27,6 +27,9 @@
             </div>
         </div>
     </div>
+
+
+    
 </section>
 
 <!-- Footer -->

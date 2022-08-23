@@ -42,3 +42,7 @@ span ul.nav.flex-column {
         max-height: 75vh;
     }
 }
+
+#foto-editar-perfil {
+    max-height: 200px;
+}

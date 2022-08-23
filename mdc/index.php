@@ -1,6 +1,10 @@
 <!-- Header -->
 <?php include_once 'php/includes/header.php'; ?>
 
+<!-- PHP -->
+<?php include_once 'php/includes/acesso.php'; 
+verificaAcessoCrud(); ?>
+
 <!-- Conteúdo da pagina -->
 <section>
     <div class="container div-video d-flex justify-content-center">
@@ -18,18 +22,22 @@
 <section>
     <div class="p-5 mt-4 caixa1">
         <div class="container">
-            <h1 class="h1">Lorem ipsum</h1>
+            <h1 class="h1">História</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius vel orci suscipit ultrices. Aliquam aliquam quis odio a pulvinar. Sed ac lectus sodales, malesuada sapien et, scelerisque orci. Nunc condimentum velit eu nisi molestie, a fringilla eros viverra. Aliquam interdum dolor et arcu vehicula volutpat. Vestibulum in elit eget magna lacinia vulputate condimentum imperdiet lacus. Nulla facilisi. Morbi viverra, libero at mattis volutpat, tellus nisi malesuada lectus, bibendum hendrerit sapien mauris eu ante. Nulla tristique non libero eu accumsan. Nulla cursus nulla vitae ex sollicitudin aliquam eu eget erat. Nulla ut varius nisi. Etiam mollis pharetra justo nec pulvinar. Etiam consectetur magna laoreet, lobortis ante nec, efficitur augue. Curabitur aliquam, neque et pharetra convallis, metus eros fringilla elit, quis ultrices eros velit quis diam.
+                Desde a criação da Escola de Aprendizes Artífices do Espírito Santo, em 1909, até a transformação em Instituto Federal do Espírito Santo, a instituição é referência em educação na sociedade capixaba.
+                <br><br>
+                Resultado da união das unidades do Centro Federal de Educação Tecnológica e das Escolas Agrotécnicas Federais, em 2008, o Ifes promove educação profissional pública de excelência, integrando ensino, pesquisa e extensão, para a construção de uma sociedade democrática, justa e sustentável.
             </p>
         </div>
     </div>
 
     <div class="p-5">
         <div class="container">
-            <h1 class="h1">Lorem ipsum</h1>
+            <h1 class="h1">Estrutura</h1>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius vel orci suscipit ultrices. Aliquam aliquam quis odio a pulvinar. Sed ac lectus sodales, malesuada sapien et, scelerisque orci. Nunc condimentum velit eu nisi molestie, a fringilla eros viverra. Aliquam interdum dolor et arcu vehicula volutpat. Vestibulum in elit eget magna lacinia vulputate condimentum imperdiet lacus. Nulla facilisi. Morbi viverra, libero at mattis volutpat, tellus nisi malesuada lectus, bibendum hendrerit sapien mauris eu ante. Nulla tristique non libero eu accumsan. Nulla cursus nulla vitae ex sollicitudin aliquam eu eget erat. Nulla ut varius nisi. Etiam mollis pharetra justo nec pulvinar. Etiam consectetur magna laoreet, lobortis ante nec, efficitur augue. Curabitur aliquam, neque et pharetra convallis, metus eros fringilla elit, quis ultrices eros velit quis diam.
+                O Instituto Federal do Espírito Santo oferece de cursos técnicos ao doutorado e possui mais de 36 mil alunos. São 100 cursos técnicos, 63 cursos de graduação, 30 cursos de pós-graduação em nível de especialização e aperfeiçoamento, 11 mestrados e 1 doutorado profissional.
+                <br><br>
+                Com 22 campi em funcionamento, incluindo o Centro de Referência em Formação e em Educação a Distância - Cefor, o Ifes se faz presente em todas as microrregiões capixabas. O Instituto possui ainda 49 polos de educação a distância no Espírito Santo, o Polo de Inovação e a Cidade da Inovação. 
             </p>
         </div>
     </div>

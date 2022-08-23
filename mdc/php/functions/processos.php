@@ -21,9 +21,9 @@ function hashMD5($senha): string
 function sanitizaEmail($email): string
 {
     // Sanitizando e validando o email
+    $email = htmlspecialchars($email);
     $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-
+    
     return $email;
 }
 ?>

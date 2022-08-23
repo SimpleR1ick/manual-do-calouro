@@ -8,19 +8,20 @@ include_once '../functions/processos.php';
 // Conectando com o banco de dados
 require_once 'connect.php';
 
-// Atribui o conteudo obtido dos campos do formulario a variáveis
-$email = pg_escape_string(CONNECT, $_POST['email']);
-$senha = pg_escape_string(CONNECT, $_POST['senha']);
+if (isset($_POST['btnLogar'])) {
+    // Atribui o conteudo dos campos do formulario a variáveis
+    $email = pg_escape_string(CONNECT, $_POST['email']);
+    $senha = pg_escape_string(CONNECT, $_POST['senha']);
 
-// Sanitizando a senha (remove qualquer tag HTML)
-$email = htmlspecialchars($email);
-$senha = htmlspecialchars($senha);
+    // Sanitizando a senha (remove qualquer tag HTML)
+    $senha = htmlspecialchars($senha);
 
-// Sanitizando e validando o email
-$email = sanitizaEmail($email);
+    // Sanitizando e validando o email
+    $email = sanitizaEmail($email);
 
-// Tenta logar o usuario no site
-logarUsuario($email, $senha);
+    // Tenta logar o usuario no site
+    logarUsuario($email, $senha);
+}
 
 /**
  * Função para logar no website
@@ -45,7 +46,7 @@ function logarUsuario($email, $senha): void {
 
         // Adiciona à sessão as variáveis 'logado' e 'id_usuario'
         $_SESSION['id_usuario'] = $result['id_usuario'];
-        $_SESSION['mensag'] = 'Logado com sucesso!';
+        $_SESSION['sucess'] = 'Logado com sucesso!';
         header('Location: ../../index.php'); // retorna para página index.php
 
     } else {

@@ -8,38 +8,55 @@ include_once '../functions/processos.php';
 // Conexão com banco de dados
 require_once 'connect.php';
 
-// Atribui o conteudo obtido dos campos do formulario a variáveis
-$nome = pg_escape_string(CONNECT, $_POST['nome']);
-$email = pg_escape_string(CONNECT, $_POST['email']);
-$senha = pg_escape_string(CONNECT, $_POST['senha']);
-$senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
+if (isset($_POST['btnCadastrar'])) {
+    // Atribui o conteudo dos campos do formulario a variáveis
+    $nome = pg_escape_string(CONNECT, $_POST['nome']);
+    $email = pg_escape_string(CONNECT, $_POST['email']);
+    $senha = pg_escape_string(CONNECT, $_POST['senha']);
+    $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
 
-// Sanitizando o nome e as senhas (remove qualquer tag HTML)
-$nome = htmlspecialchars($nome);
-$senha = htmlspecialchars($senha);
-$senha2 = htmlspecialchars($senha2);
-$email = htmlspecialchars($email);
+    // Sanitizando o nome e as senhas (remove qualquer tag HTML)
+    $nome = htmlspecialchars($nome);
+    $senha = htmlspecialchars($senha);
+    $senha2 = htmlspecialchars($senha2);
 
-// Sanitizando e validando o email
-$email = sanitizaEmail($email);
+    // Sanitizando e validando o email
+    $email = sanitizaEmail($email);
 
-// Verifica se as senhas são identicas
-validaSenha($senha, $senha2);
-
-// Verifica se o email recebido ja existe no banco de dados
-validaEmail($email);
-
-// Tenta inserir o usuario no banco de dados
-cadastraUsuario($nome, $email, $senha);
+    // Validando o email de entrada
+    if (validaEmail($email)) {
+        // Verifica se o email recebido ja existe e se as senhas são identicas
+        if (verificaEmail($email) && validaSenha($senha, $senha2)) {
+            // Tenta inserir o usuario no banco de dados
+            cadastraUsuario($nome, $email, $senha);
+        }
+    }
+}
 
 /**
- * Função para verificar se o email de entrada ja esta cadastrado no banco de dados
+ * Função para verificar se o email de entrada é válido
+ * 
+ * @param string $email
+ * 
+ * @author Rafael Barros
+ */
+function validaEmail($email): bool {
+    // Verifica se o email é válido
+    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * Função para verificar se o email de entrada já esta cadastrado no banco de dados
  * 
  * @param string $email
  * 
  * @author Henrique Dalmagro
  */
-function validaEmail($email): void {
+function verificaEmail($email): bool {
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT email FROM usuario WHERE email = '$email'";
     $query = pg_query(CONNECT, $sql);
@@ -49,6 +66,9 @@ function validaEmail($email): void {
         // Adiciona à minha sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Email já cadastrado!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
+        return false;
+    } else {
+        return true;
     }
 }
 
@@ -60,12 +80,15 @@ function validaEmail($email): void {
  * 
  * @author Henrique Dalmagro
  */
-function validaSenha($senha1, $senha2): void {
+function validaSenha($senha1, $senha2): bool {
     // Se as senhas não concidirem retorna o usuario ao inicio do cadastro   
     if ($senha1 !== $senha2) {
         // Adiciona à minha sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Senhas não idênticas!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro
+        return false;
+    } else {
+        return true;
     }
 }
 
@@ -90,7 +113,7 @@ function cadastraUsuario($nome, $email, $senha): void {
     // Se a requição houve retorno, a insert teve sucesso
     if ($query) {
         // Adiciona minha sessão uma mensagem de sucesso
-        $_SESSION['mensag'] = 'Cadastrado com sucesso!';
+        $_SESSION['sucess'] = 'Cadastrado com sucesso!';
         header('Location: ../../login.php');// Envia o usuário de à página de login
     } else {
         // Adiciona minha sessão uma mensagem de erro
