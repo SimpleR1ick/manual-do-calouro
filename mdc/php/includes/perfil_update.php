@@ -9,7 +9,7 @@ include_once '../functions/upload.php';
 // Conexão com banco de dados
 require_once 'connect.php';
 
-if (isset($_POST['btnUpdate'])) {
+if (isset($_POST['btnIncrement'])) {
     // Atribui o conteudo obtido dos campos do formulario a variáveis]
     $curso = pg_escape_string(CONNECT, $_POST);
     $modulo = pg_escape_string(CONNECT, $_POST);

@@ -86,7 +86,7 @@
 
                 <div class="d-flex flex-column align-items-center justify-content-md-around flex-md-row">
                     <!-- SALVAR -->
-                    <button class="btn btn-primary me-2" name="btnUpdate" type="submit">Salvar alterações</button>
+                    <button class="btn btn-primary me-2" name="btnIncrement" type="submit">Salvar alterações</button>
 
                     <!-- MUDAR SENHA -->
                     <button class="btn btn-danger mt-2" type="button">Redefinir senha</button>
