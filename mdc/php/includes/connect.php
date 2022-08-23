@@ -20,5 +20,4 @@ $connect = pg_connect("host=$host dbname=$db user=$user password=$pass");
 
 // Definindo a conexão como uma constante global
 define('CONNECT', $connect)
-
 ?>
