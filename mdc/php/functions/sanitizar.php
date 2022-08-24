@@ -1,35 +1,22 @@
 <?php
 /**
- * Função para sanitizar uma string e verificar se ela continua igual 
+ * Função para sanitizar um array de string e verificar se ela continua igual 
  * 
- * @param string $originalString a string
+ * @param array $arrayString 
  * 
- * @return
+ * @return bool True se encontrar algum inject - False se a validação ocorrer com sucesso
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaGeral($originalString) {
-    $sanitizeString = htmlspecialchars($originalString);
-    
-    if ($sanitizeString != $originalString) {
+function sanitizaPost($arrayString): bool {
+    foreach ($arrayString as $str) {
+        $strCopy = htmlspecialchars($str);
 
+        if ($strCopy != $str) {
+            return true;
+            break;
+        }
+    return false;
     }
-}
-
-/**
- * Função para sanitizar e validar um email removendo qualquer tag HTML
- * 
- * @param string $email
- * 
- * @return string $emaul um email sanitizado de caracter especiais
- * 
- * @author Henrique Dalmagro
- */
-function sanitizaEmail($email): string {
-    // Sanitizando e validando o email
-    $email = htmlspecialchars($email);
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    
-    return $email;
 }
 ?>

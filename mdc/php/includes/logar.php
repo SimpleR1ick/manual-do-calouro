@@ -9,18 +9,22 @@ include_once '../functions/sanitizar.php';
 require_once 'connect.php';
 
 if (isset($_POST['btnLogar'])) {
-    // Atribui o conteudo dos campos do formulario a variáveis
-    $email = pg_escape_string(CONNECT, $_POST['email']);
-    $senha = pg_escape_string(CONNECT, $_POST['senha']);
+    // Sanitização
+    if (sanitizaPost($_POST)) {
+        $_SESSION['mensag'] = 'Erro ao logar!';
+        header('Location: ../../login.php'); // Retorna para o cadastro
 
-    // Sanitizando a senha (remove qualquer tag HTML)
-    $senha = htmlspecialchars($senha);
+    } else {
+        // Atribui o conteudo dos campos do formulario a variáveis
+        $email = pg_escape_string(CONNECT, $_POST['email']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
 
-    // Sanitizando e validando o email
-    $email = sanitizaEmail($email);
+        // Validações
+        $emailFiltrado = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-    // Tenta logar o usuario no site
-    logarUsuario($email, md5($senha));
+        // Tenta logar o usuario no site
+        logarUsuario($emailFiltrado, md5($senha));
+    }
 }
 
 /**
@@ -38,11 +42,11 @@ function logarUsuario($email, $senhaHash): void {
 
     // Verifica se a inserção teve resultado
     if (pg_num_rows($query) == 1) {
-        // Atribui, como um array, o resultado da requisição
-        $result = pg_fetch_array($query);
+        // Transforma o resultado da requisição em um array enumerado
+        $result = pg_fetch_row($query);
 
-        // Adiciona à sessão o 'id_usuario' do usuario 
-        $_SESSION['id_usuario'] = $result['id_usuario'];
+        // Adiciona a sessão o id retornado do banco
+        $_SESSION['id_usuario'] = $result[0];
 
         // Adciona a sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Logado com sucesso!';

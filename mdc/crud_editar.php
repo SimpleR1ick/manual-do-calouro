@@ -10,7 +10,7 @@ $dados = crudGetDados(); ?>
     <div class="mb-4">
         <div class="row">
             <div class="col-8 align-self-center">
-                <form action="php/functions/update_delete.php" method="POST">
+                <form action="php/functions/crud_forms.php" method="POST">
                     <input type="hidden" id="id" name="id" 
                            value="<?php echo $dados['id_usuario']; ?>">
 
@@ -25,7 +25,7 @@ $dados = crudGetDados(); ?>
                                value="<?php echo $dados['email']; ?>">
                     </div>
                     
-                    <button class="btn btn-primary" name="btnUpdate" type="submit"> Atualizar </button>
+                    <button class="btn btn-primary" name="btnAtualizar" type="submit"> Atualizar </button>
                 </form>
             </div>
         </div>

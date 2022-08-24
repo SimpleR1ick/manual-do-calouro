@@ -56,7 +56,7 @@ function crudMainTable(): void {
 
                         <!-- RODAPÉ -->
                         <div class="modal-footer">
-                            <form action="php/functions/update_delete.php" method="POST">
+                            <form action="php/functions/crud_forms.php" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                                 <button type="submit" name="btnDeletar" id="toastDeleteBtn" class="btn btn-danger"> Deletar </button>

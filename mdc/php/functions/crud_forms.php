@@ -5,12 +5,15 @@ session_start();
 // Conexão com banco de dados
 require_once '../includes/connect.php';
 
-// Verifica se o formulario foi de update ou delete
-if (isset($_POST['btnUpdate'])) {
+// Verifica se o formulario foi de update, delete ou register
+if (isset($_POST['btnAtualizar'])) {
     crudUpdate();
 }
 else if (isset($_POST['btnDeletar'])) {
     crudDelete();
+}
+else if (isset($_POST['btnCadastrar'])) {
+    crudRegister();
 }
 
 /**
@@ -38,7 +41,7 @@ function crudUpdate(): void {
     }
 }
 /**
- * Função para delete os dados de um usuario
+ * Função para deletar os dados de um usuario
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
@@ -58,5 +61,15 @@ function crudDelete(): void {
         $_SESSION['toast'] = "Erro ao excluir!";
         header('Location: ../../crud_index.php');
     }
+}
+
+/**
+ * 
+ * 
+ * 
+ *
+ */
+function crudRegister(): void {
+    return;
 }
 ?>
