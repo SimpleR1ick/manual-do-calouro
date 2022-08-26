@@ -46,3 +46,12 @@ span ul.nav.flex-column {
 #foto-editar-perfil {
     max-height: 200px;
 }
+
+.card-contato {
+    max-width: 800px;
+}
+
+.card-contato img {
+    max-width: 200px;
+    padding: 15px;
+}
