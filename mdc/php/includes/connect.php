@@ -13,7 +13,7 @@ $connect = pg_connect("host=$host port=$port dbname=$db user=$user password=$pas
 $host = "kesavan.db.elephantsql.com";
 $user = "jqvnqgvm";
 $db = "jqvnqgvm";
-$pass = "IKXmlWoguZUV-Rav8eB14MghUUXaZAk8";
+$pass = "8-3og-adIEeL7GbtV_wqH5E8jaRePvS3";
 
 // Conexão com banco de dados
 $connect = pg_connect("host=$host dbname=$db user=$user password=$pass");

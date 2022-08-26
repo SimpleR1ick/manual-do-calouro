@@ -2,7 +2,7 @@
 <?php include_once 'php/includes/header.php'; ?>
 
 <!-- PHP -->
-<?php include_once 'php/functions/crud.php'; 
+<?php include_once 'php/interface/crud.php'; 
 $dados = crudGetDados(); ?>
 
 <!-- Conteudo da pagina -->

@@ -5,7 +5,7 @@
 <?php include_once 'php/includes/connect.php'; ?>
 
 <!-- PHP -->
-<?php include_once 'php/functions/horario_aula.php'; ?>
+<?php include_once 'php/interface/horario.php'; ?>
 
 <!-- Conteudo da pagina -->
 <section>

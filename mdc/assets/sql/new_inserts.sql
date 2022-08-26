@@ -10,7 +10,8 @@ INSERT INTO usuario (nom_usuario, email, senha) VALUES
 
 INSERT INTO curso (dsc_curso) VALUES
     ('Info'),
-    ('Mec');
+    ('Mec'),
+    ('Iot');
 
 INSERT INTO turma (num_modulo, fk_curso_id_curso) VALUES
     (1, 1),
@@ -18,12 +19,24 @@ INSERT INTO turma (num_modulo, fk_curso_id_curso) VALUES
     (3, 1),
     (4, 1),
     (5, 1),
-    (6, 1);
+    (6, 1),
+    (1, 2),
+    (2, 2),
+    (3, 2),
+    (4, 2),
+    (5, 2),
+    (6, 2),
+    (1, 3),
+    (2, 3),
+    (3, 3),
+    (4, 3),
+    (5, 3),
+    (6, 3);
 
 INSERT INTO aluno (num_matricula, fk_usuario_id_usuario, fk_turma_id_turma) VALUES
-    ('20201tiimi0365', 1, 6), -- Henrique
-    ('20201tiimi0152', 2, 6), -- Duda
-    ('20201tiimi0160', 3, 6); -- Rafael
+    ('20201tiimi0365', 2, 6), -- Henrique
+    ('20201tiimi0152', 3, 6), -- Duda
+    ('20201tiimi0160', 4, 6); -- Rafael
 
 INSERT INTO sala (num_sala) VALUES
     ('101'),
@@ -49,7 +62,7 @@ INSERT INTO dia_semana (dsc_dia_semana) VALUES
     ('Quarta-feira'),
     ('Quinta-feira'),
     ('Sexta-feira'),
-    ('Sabado');
+    ('Sábado');
 
 INSERT INTO horario_aula (hora_aula_inicio, hora_aula_fim) VALUES
     ('07:30:00', '08:20:00'),

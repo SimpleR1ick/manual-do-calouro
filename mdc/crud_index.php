@@ -2,7 +2,7 @@
 <?php include_once 'php/includes/header.php'; ?>
 
 <!-- PHP -->
-<?php require_once 'php/functions/crud.php'; ?>
+<?php require_once 'php/interface/crud.php'; ?>
 
 <!-- Conteúdo da pagina -->
 <section>

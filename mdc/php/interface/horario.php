@@ -56,6 +56,6 @@ function imprimirHorario(): void {
             }
         }
         echo '</tr>'; // Fim da tabela horario
-    } 
+    }
 }
 ?>
