@@ -13,7 +13,7 @@ define('PATH', $dir);
 if (isset($_POST['btnIncrement'])) {
     
     // Verifica a a imagem existe
-    if ($_POST['foto' != NULL]) {
+    if ($_POST['foto'] != NULL) {
         // Nome da foto, nome temporario no servidor e tamanho da foto
         $nome_foto = pg_escape_string(CONNECT, $_FILES['foto']['name']);
         $nome_temp = $_FILES['foto']['tmp_name'];
@@ -41,9 +41,6 @@ if (isset($_POST['btnIncrement'])) {
  * @author Henrique Dalmagro
  */
 function armazenaFoto($novo_nome, $nome_temp): void {
-    
-
-    
     $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario =''";
     $query = pg_query(CONNECT, $sql);
 
@@ -54,5 +51,4 @@ function armazenaFoto($novo_nome, $nome_temp): void {
         header('location: ../../perfil.php');
     }
 }
-
 ?>
