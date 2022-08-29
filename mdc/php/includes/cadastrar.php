@@ -53,6 +53,7 @@ function cadastraUsuario($nome, $emailValidado, $senhaHash): void {
         // Adiciona minha sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
         header('Location: ../../login.php');// Envia o usuário de à página de login
+
     } else {
         $_SESSION['mensag'] = 'Erro ao cadastrar!';
         header('Location: ../../cadastro.php'); // Retorna para o cadastro

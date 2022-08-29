@@ -7,7 +7,7 @@ require_once '../includes/connect.php';
 
 // Definindo como constante global a pasta das fotos de perfil
 $dir = '../../img/perfil/';
-define('PATH', $dir);
+define('DIR', $dir);
 
 // Verifica se houve a ação do POST
 if (isset($_POST['btnIncrement'])) {
@@ -44,7 +44,7 @@ function armazenaFoto($novo_nome, $nome_temp): void {
     $sql = "UPDATE usuario SET img_perfil ='$novo_nome' 
             WHERE id_usuario ='{$_SESSION['id_usuario']}'";
 
-    if (move_uploaded_file($nome_temp, PATH.$novo_nome)) {
+    if (move_uploaded_file($nome_temp, DIR.$novo_nome)) {
         if (pg_query(CONNECT, $sql)){
             $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
             header('location: ../../perfil.php');

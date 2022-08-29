@@ -40,25 +40,30 @@ if (isset($_POST['btnLogar'])) {
  */
 function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
+    $sql = "SELECT id_usuario, ativo FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
     $query = pg_query(CONNECT, $sql);
 
     // Verifica se a inserção teve resultado
-    if (pg_num_rows($query) == 1) {
-        // Transforma o resultado da requisição em um array enumerado
-        $result = pg_fetch_row($query);
-
-        // Adiciona a sessão o id retornado do banco
-        $_SESSION['id_usuario'] = $result[0];
-
-        // Adciona a sessão uma mensagem de sucesso
-        $_SESSION['sucess'] = 'Logado com sucesso!';
-        header('Location: ../../index.php'); // retorna para página index.php
-        
-    } else {
+    if (pg_num_rows($query) == 0) {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';
         header('Location: ../../login.php'); // retorna para página de login
+    } else {
+        // Transforma o resultado da requisição em um array enumerado
+        $result = pg_fetch_row($query);
+
+        // Verifica se a conta do usuario esta ativa
+        if ($result[1] == 't') {
+            // Adiciona a sessão o id retornado do banco
+            $_SESSION['id_usuario'] = $result[0];
+            
+            $_SESSION['sucess'] = 'Logado com sucesso!';
+            header('Location: ../../index.php'); // retorna para página index.php
+
+        } else {
+            $_SESSION['mensag'] = 'Usuario inativo!';
+            header('Location: ../../login.php');
+        }
     }
 }
 ?>

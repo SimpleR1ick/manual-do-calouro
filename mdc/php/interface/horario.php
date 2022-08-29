@@ -5,7 +5,7 @@
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
-function imprimirHorario(): void {
+function horarioMainTable(): void {
     // Loop para os 5 dias da semana
     for ($i = 1; $i < 7; $i++) {
         // Seleciona da tabela horario_aula, todos os horarios
@@ -17,9 +17,7 @@ function imprimirHorario(): void {
 
         echo '<tr>'; // Inicio da tabela horario
         echo "<td class=\"align-middle\">{$horario[0]['hora_aula_inicio']}<br>{$horario[0]['hora_aula_fim']}</td>";
-
-        print_r($horario);
-
+        
         // Loop para cada horario
         for ($l = 2; $l < 7; $l++) {
             $sql2 = "SELECT s.num_sala_aula, d.dsc_disciplina

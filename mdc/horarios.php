@@ -70,7 +70,7 @@
                         </thead>
 
                         <tbody>
-                            <?php imprimirHorario(); ?>
+                            <?php horarioMainTable(); ?>
                         </tbody>
                     </table>
                 </div>
