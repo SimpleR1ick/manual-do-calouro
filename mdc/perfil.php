@@ -21,13 +21,21 @@
             <div class="row mb-4">
                 <div class="col-6">
                     <!-- IMAGEM DE PERFIL -->
-                    <div class="d-flex flex-column align-items-center">     
-                        <label for="foto-editar-perfil form-label">Editar foto de perfil</label>
+                    <div class="d-flex flex-column align-items-center p-3">
 
-                        <img id="foto-editar-perfil" class="img-fluid rounded p-3" src="img/perfil/user.png" alt="user-pic">
-
+                        <?php
+                        if (isset($userData['img_perfil'])) {
+                            ?>
+                            <img id="foto-editar-perfil" class="img-fluid" src="img/perfil/<?php echo $userData['img_perfil']; ?>" alt="user-pic">
+                            <?php
+                        } else {
+                            echo '<img id="foto-editar-perfil" class="img-fluid rounded" src="img/perfil/user.png" alt="user-pic">';
+                        }
+                        ?>
+                        
                         <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
-                        <input class="mt-2 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
+
+                        <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
                     </div>
                 </div>
 
@@ -36,11 +44,11 @@
                     <div class="mb-3">
                         <label for="curso" class="form-label fw-bold">Curso</label>
 
-                        <select id="curso" class="form-select">
+                        <select id="curso" name="modulo" class="form-select">
                             <option selected value="">Selecione seu curso...</option>
-                            <option value="info">Informática para Internet</option>
-                            <option value="iot">Internet das Coisas</option>
-                            <option value="meca">Mecatrônica</option>
+                            <option value="1">Informática para Internet</option>
+                            <option value="2">Mecatrônica</option>
+                            <option value="3">Internet das Coisas</option>
                         </select>
                     </div>
 
@@ -48,7 +56,7 @@
                     <div class="mb-3">
                         <label for="modulo" class="form-label fw-bold">Módulo</label>
 
-                        <select id="modulo" class="form-select">
+                        <select id="modulo" name="modulo" class="form-select">
                             <option selected value="">Selecione seu módulo...</option>
                             <option value="1">1° módulo</option>
                             <option value="2">2° módulo</option>

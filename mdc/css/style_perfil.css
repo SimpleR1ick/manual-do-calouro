@@ -1,7 +1,14 @@
-.foto-editar-perfil{
+/*.foto-editar-perfil{
     height: 22vw;
     max-height: 210px;  
-    min-height: 120px;  
+    min-height: 120px;
+}*/
+
+#foto-editar-perfil {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 300px; 
+    height: 337px;
 }
 
 form{

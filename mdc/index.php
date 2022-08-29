@@ -30,7 +30,7 @@ verificaAcessoCrud(); ?>
             </p>
         </div>
     </div>
-
+    
     <div class="p-5">
         <div class="container">
             <h1 class="h1">Estrutura</h1>

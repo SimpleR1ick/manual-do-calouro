@@ -34,7 +34,7 @@
                         <!-- Senha -->
                         <div class="mb-3">
                             <label class="form-label" for="senha">Senha:</label>
-                            <input id="senha" name="senha" class="form-control" type="password" minlength="6" placeholder="Sua senha" autocomplete="off" required>
+                            <input id="senha" name="senha" class="form-control" type="password" min="6" placeholder="Sua senha" autocomplete="off" required>
                         </div>
                         
                         <div class="mb-3">

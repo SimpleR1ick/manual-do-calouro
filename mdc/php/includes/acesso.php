@@ -7,7 +7,9 @@
  */
 function verificaAcessoCrud(): void {
     if (isset($_SESSION['id_usuario'])) {
-        if ($_SESSION['acesso'] == 0) {
+        $dados = getDadosUsuario();
+        
+        if ($dados['acesso'] == 0) {
             header('Location: crud_index.php');
         }
     }

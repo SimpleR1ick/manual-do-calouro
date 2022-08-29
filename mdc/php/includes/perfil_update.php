@@ -3,28 +3,28 @@
 session_start();
 
 // Import de bibliotecas de funções
-include_once '../functions/processos.php';
+include_once '../functions/sanitizar.php';
 include_once '../functions/upload.php';
 
 // Conexão com banco de dados
 require_once 'connect.php';
 
 if (isset($_POST['btnIncrement'])) {
-    // Atribui o conteudo obtido dos campos do formulario a variáveis]
-    $curso = pg_escape_string(CONNECT, $_POST);
-    $modulo = pg_escape_string(CONNECT, $_POST);
-    $nome = pg_escape_string(CONNECT, $_POST);
-    $email = pg_escape_string(CONNECT, $_POST);
 
-    // Sanitizando as variaveis (remove qualquer tag HTML)
-    $curso = htmlspecialchars($curso);
-    $modulo = htmlspecialchars($modulo);
-    $nome = htmlspecialchars($nome);
-    $email = htmlspecialchars($email);
+    if (sanitizaPost($_POST)) {
+        $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
+        header('Location: ../../perfil.php'); // Retorna para o perfil
+    
+    } else {
+        // Atribui o conteudo obtido dos campos do formulario a variáveis]
+        $curso = pg_escape_string(CONNECT, $_POST['curso']);
+        $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
+        $nome = pg_escape_string(CONNECT, $_POST['nome']);
+        $email = pg_escape_string(CONNECT, $_POST['email']);
 
-    // Sanitizando e validando o email
-    $email = sanitizaEmail($email);
-
+        // Sanitizando e validando o email
+    
+    }
 }   
 /**
  * Função para atualizar os dados do usuario
@@ -35,20 +35,36 @@ if (isset($_POST['btnIncrement'])) {
  * @author Henrique Dalmagro
  */
 function atualizaDadosUsuario($nome, $email): void {
-    // Query para fazer o update das informações do usuario
-    $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email'";
+    // Query para fazer o update das informações do usuário
+    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = {$_SESSION['id_usuario']}";
 
 }
 
 /**
- * Função para inserir e atualizar o curso e modulo do aluno
+ * Função para inserir o curso e o modulo do aluno
  * 
- * @param string $curso nome do curso
- * @param string $modulo numeo do modulo
+ * @param string $curso código único do curso
+ * @param string $modulo código único do módulo
  * 
- * @author Henrique Dalmagro
+ * @author Rafael Barros
  */
-function atualizaCursoModulo($curso, $modulo): void {
+function inserirCursoModulo($curso, $modulo): void {
+    // Query para fazer o update das informações do aluno
+    $sql = "INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
+            ({$_SESSION['id_usuario']},
+            (SELECT id_turma
+            FROM turma
+            WHERE num_modulo = $modulo
+            AND fk_curso_id_curso = $curso))";
 
+    // Verfica se o update funcionou e guarda uma mensagem de acordo
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
+        header('Location: ../../perfil.php');
+
+    } else {
+        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
+        header('Location: ../../perfil.php');
+    }
 }
 ?>

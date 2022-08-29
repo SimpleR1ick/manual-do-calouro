@@ -44,7 +44,12 @@ span ul.nav.flex-column {
 }
 
 #foto-editar-perfil {
-    max-height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 10vw;
+    height: 10vw;
+    min-width: 100px;
+    min-height: 100px;
 }
 
 .card-contato {

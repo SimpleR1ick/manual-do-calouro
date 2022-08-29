@@ -4,26 +4,29 @@ session_start();
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
+include_once '../functions/verifica_valida.php';
 
 // Conectando com o banco de dados
 require_once 'connect.php';
+
+// Definindo como constante global o caminho em caso de erro
+$path = '../../login.php';
+define('PATH', $path);
 
 if (isset($_POST['btnLogar'])) {
     // Sanitização
     if (sanitizaPost($_POST)) {
         $_SESSION['mensag'] = 'Erro ao logar!';
         header('Location: ../../login.php'); // Retorna para o cadastro
+    }
+    // Atribui o conteudo dos campos do formulario a variáveis
+    $email = pg_escape_string(CONNECT, $_POST['email']);
+    $senha = pg_escape_string(CONNECT, $_POST['senha']);
 
-    } else {
-        // Atribui o conteudo dos campos do formulario a variáveis
-        $email = pg_escape_string(CONNECT, $_POST['email']);
-        $senha = pg_escape_string(CONNECT, $_POST['senha']);
-
-        // Validações
-        $emailFiltrado = filter_var($email, FILTER_SANITIZE_EMAIL);
-
-        // Tenta logar o usuario no site
-        logarUsuario($emailFiltrado, md5($senha));
+    // Validações para logar um usuario
+    if (validaEmail($email, PATH)) {
+        // Tenta realizar o login no site
+        logarUsuario($email, md5($senha));
     }
 }
 
@@ -51,6 +54,7 @@ function logarUsuario($email, $senhaHash): void {
         // Adciona a sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Logado com sucesso!';
         header('Location: ../../index.php'); // retorna para página index.php
+        
     } else {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';

@@ -41,12 +41,16 @@ if (isset($_POST['btnIncrement'])) {
  * @author Henrique Dalmagro
  */
 function armazenaFoto($novo_nome, $nome_temp): void {
-    $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario =''";
-    $query = pg_query(CONNECT, $sql);
+    $sql = "UPDATE usuario SET img_perfil ='$novo_nome' 
+            WHERE id_usuario ='{$_SESSION['id_usuario']}'";
 
     if (move_uploaded_file($nome_temp, PATH.$novo_nome)) {
-        header('location: ../../index.php');
-    } else {  
+        if (pg_query(CONNECT, $sql)){
+            $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
+            header('location: ../../perfil.php');
+        } 
+    } else {
+        $_SESSION['mensag'] = 'Erro ao atualizar foto!';
         header('location: ../../perfil.php');
     }
 }
