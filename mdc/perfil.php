@@ -2,11 +2,12 @@
 <?php include_once 'php/includes/header.php'; ?>
 
 <!-- PHP -->
+<?php $userData = getDadosUsuario(); ?>
 
 <!-- Conteudo da pagina -->
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
-        <form id="perfil" action="php/functions/upload_foto.php" method="POST" class="w-75 " enctype="multipart/form-data">
+        <form id="perfil" action="php/functions/upload.php" method="POST" class="w-75 " enctype="multipart/form-data">
             <div class="row">
                 <div class="col-6 text-center">
                     <label for="foto-editar-perfil" class="form-label fw-bold h5">Editar foto de perfil</label>
@@ -67,13 +68,15 @@
                 <!-- NOME -->
                 <div class="mb-3">
                     <label for="nome" class="form-label fw-bold">Nome</label>
-                    <input required type="text" class="form-control" id="nome" placeholder="Fulano Ciclano da Silva">
+                    <input required type="text" class="form-control" id="nome" name="nome"
+                        value="<?php echo $userData['nom_usuario']; ?>">
                 </div>
 
                 <!-- EMAIL -->
                 <div class="mb-3">
                     <label for="email" class="form-label fw-bold">Email</label>
-                    <input required type="email" class="form-control" id="email" placeholder="nome@exemplo.com">
+                    <input required type="email" class="form-control" id="email" name="email" 
+                        value="<?php echo $userData['email']; ?>">
                 </div>
                 <!-- Fim da Segunda row-->
             </div>

@@ -18,13 +18,13 @@ if (isset($_POST['btnCadastrar'])) {
         // Atribui o conteudo dos campos do formulario a variáveis
         $nome = pg_escape_string(CONNECT, $_POST['nome']);
         $email = pg_escape_string(CONNECT, $_POST['email']);
-        $senha1 = pg_escape_string(CONNECT, $_POST['senha']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
         $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
 
         // Validações
         $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 
-        if (validaEmail($email) && validaSenha($senha1, $senha2)) {
+        if (validaEmail($email) && validaSenha($senha, $senha2)) {
             // Tenta inserir o usuario no banco de dados
             cadastraUsuario($nome, $email, md5($senha));
         }

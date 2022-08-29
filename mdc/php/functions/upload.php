@@ -6,14 +6,14 @@ session_start();
 require_once '../includes/connect.php';
 
 // Definindo como constante global a pasta das fotos de perfil
-$dir = 'img/perfil/';
+$dir = '../../img/perfil/';
 define('PATH', $dir);
 
 // Verifica se houve a ação do POST
 if (isset($_POST['btnIncrement'])) {
     
     // Verifica a a imagem existe
-    if ($_POST['foto'] != NULL) {
+    if ($_FILES['foto'] != NULL) {
         // Nome da foto, nome temporario no servidor e tamanho da foto
         $nome_foto = pg_escape_string(CONNECT, $_FILES['foto']['name']);
         $nome_temp = $_FILES['foto']['tmp_name'];
@@ -44,10 +44,9 @@ function armazenaFoto($novo_nome, $nome_temp): void {
     $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario =''";
     $query = pg_query(CONNECT, $sql);
 
-    if (move_uploaded_file($nome_temp, PATH.$novo_nome)
-    
-    ) {
-        
+    if (move_uploaded_file($nome_temp, PATH.$novo_nome)) {
+        header('location: ../../index.php');
+    } else {  
         header('location: ../../perfil.php');
     }
 }
