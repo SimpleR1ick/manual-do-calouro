@@ -1,6 +1,9 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php';?>
 
+<!-- PHP -->
+<?php $userData = getDadosUsuario(); ?>
+
 <!-- Conteúdo da pagina -->
 <section>
     <div class="mb-4">
@@ -11,11 +14,10 @@
                 <div class="card-body">
 
                     <div class="h1 text-center">Fale conosco</div>
-                        <form>
-
+                        <form action="" method="POST">
                             <div class="mb-3">
                                 <label class="form-label" for="email">E-mail:</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="ajudaEmail" placeholder="Seu email" required>
+                                <input type="email" class="form-control" id="email" aria-describedby="ajudaEmail" placeholder="Seu email" required value="<?php echo $userData['email']; ?>">
                             </div>
 
                             <div class="mb-3">

@@ -14,11 +14,11 @@ for ($i = 1; $i < 7; $i++) {
     // Loop para cada horario
     for ($l = 2; $l < 7; $l++) {
         $sql2 = "SELECT s.num_sala_aula, d.dsc_disciplina
-                    FROM aula au
-                    JOIN sala_aula s ON (au.fk_sala_aula_id_sala_aula = s.id_sala_aula)
-                    JOIN disciplina d ON (au.fk_disciplina_id_disciplina = d.id_disciplina)
-                    WHERE au.fk_horario_aula_id_horario_aula = $i 
-                    AND au.fk_dia_semana_id_dia_semana = $l;";
+                 FROM aula au
+                 JOIN sala_aula s ON (au.fk_sala_aula_id_sala_aula = s.id_sala_aula)
+                 JOIN disciplina d ON (au.fk_disciplina_id_disciplina = d.id_disciplina)
+                 WHERE au.fk_horario_aula_id_horario_aula = $i 
+                 AND au.fk_dia_semana_id_dia_semana = $l;";
         
         $query2 = pg_query(CONNECT, $sql2);
 

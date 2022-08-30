@@ -58,7 +58,7 @@ function logarUsuario($email, $senhaHash): void {
             // Adiciona a sessão o id retornado do banco
             $_SESSION['id_usuario'] = $result[0];
             
-            $_SESSION['sucess'] = 'Logado com sucesso!';
+            $_SESSION['toast'] = 'Logado com sucesso!';
             header('Location: ../../index.php'); // retorna para página index.php
         }
     }
