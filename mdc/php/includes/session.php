@@ -14,17 +14,18 @@ require_once 'connect.php';
  */
 function getDadosUsuario(): array {
     if (isset($_SESSION['id_usuario'])) {
-        // Atribuindo à variável id o id da sessão
+        // Armazenao id da sessão em uma variavel
         $id = $_SESSION['id_usuario'];
-        
+
         // Busca os dados do usuário atravéz do id
-        $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
+        $sql = "SELECT id_usuario, nom_usuario, email, acesso, ativo, img_perfil 
+                FROM usuario WHERE id_usuario = '$id'";
         $query = pg_query(CONNECT, $sql);
         
         // Transforma as colunas da query em um array
-        $userData = pg_fetch_array($query);
+        $result = pg_fetch_array($query);
 
-        return $userData;
+        return $result;
     }
 }
 
@@ -66,6 +67,21 @@ function verificaLogin(): void {
         "<button onclick='window.location.href = \"login.php\"' class='btn btn-primary' type='button'>
             Entrar
         </button>";
+    }
+}
+
+/**
+ * Função para verificar o acesso ao crud de usuarios
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaAcessoCrud(): void {
+    if (isset($_SESSION['id_usuario'])) {
+        $userData = getDadosUsuario();
+        
+        if ($userData['acesso'] == 0) {
+            header('Location: crud_index.php');
+        }
     }
 }
 ?>

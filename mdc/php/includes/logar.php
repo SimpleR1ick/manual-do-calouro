@@ -2,12 +2,12 @@
 // Iniciar a sessão
 session_start();
 
+// Conectando com o banco de dados
+require_once 'connect.php';
+
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
 include_once '../functions/verifica_valida.php';
-
-// Conectando com o banco de dados
-require_once 'connect.php';
 
 // Definindo como constante global o caminho em caso de erro
 $path = '../../login.php';
@@ -34,7 +34,7 @@ if (isset($_POST['btnLogar'])) {
  * Função para executar o login no website
  * 
  * @param string $email um email sanitizado
- * @param string $senha uma senha sanitizada e criptografada
+ * @param string $senhaHash uma senha sanitizada e criptografada
  * 
  * @author Henrique Dalmagro
  */
@@ -48,21 +48,18 @@ function logarUsuario($email, $senhaHash): void {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';
         header('Location: ../../login.php'); // retorna para página de login
+
     } else {
         // Transforma o resultado da requisição em um array enumerado
         $result = pg_fetch_row($query);
 
         // Verifica se a conta do usuario esta ativa
-        if ($result[1] == 't') {
+        if (verificaAtivo($result[1], PATH)) {
             // Adiciona a sessão o id retornado do banco
             $_SESSION['id_usuario'] = $result[0];
             
             $_SESSION['sucess'] = 'Logado com sucesso!';
             header('Location: ../../index.php'); // retorna para página index.php
-
-        } else {
-            $_SESSION['mensag'] = 'Usuario inativo!';
-            header('Location: ../../login.php');
         }
     }
 }

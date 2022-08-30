@@ -61,4 +61,19 @@ function verificaEmail($email, $pagePath): bool {
     }
     return true;  
 }
+
+/**
+ * Função para verificar se o status do usuario e ativo
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaAtivo($ativo, $pagePath): bool { 
+    // Verifica se a conta do usuario esta ativa
+    if ($ativo == 'f') {
+        $_SESSION['mensag'] = 'Usuario inativo!';
+        header("Location: $pagePath");
+        return false;
+    }
+    return true;
+}
 ?>

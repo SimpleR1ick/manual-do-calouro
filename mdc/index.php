@@ -1,9 +1,7 @@
 <!-- Header -->
 <?php include_once 'php/includes/header.php'; ?>
 
-<!-- PHP -->
-<?php include_once 'php/includes/acesso.php'; 
-verificaAcessoCrud(); ?>
+<?php verificaAcessoCrud(); ?>
 
 <!-- Conteúdo da pagina -->
 <section>

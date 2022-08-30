@@ -2,6 +2,9 @@
 // Iniciar a sessão
 session_start();
 
+// Conexão com banco de dados
+require_once 'connect.php';
+
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
 include_once '../functions/verifica_valida.php';
@@ -9,9 +12,6 @@ include_once '../functions/verifica_valida.php';
 // Definindo como constante global o caminho em caso de erro
 $path = '../../cadastro.php';
 define('PATH', $path);
-
-// Conexão com banco de dados
-require_once 'connect.php';
 
 if (isset($_POST['btnCadastrar'])) {
     // Sanitização

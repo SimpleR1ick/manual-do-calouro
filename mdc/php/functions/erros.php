@@ -9,7 +9,7 @@ function exibirErros(): void {
     if (isset($_SESSION['mensag'])) {
         echo "<p class='align-middle text-center text-danger'> {$_SESSION['mensag']} </p>";
         
-        $_SESSION['mensag'] = null;
+        unset($_SESSION['mensag']);
     }
 }
 
@@ -23,7 +23,7 @@ function exibirSucesso(): void {
     if (isset($_SESSION['sucess'])) {
         echo "<p class='align-middle text-center text-success'> {$_SESSION['sucess']} </p>";
 
-        $_SESSION['sucess'] = null;
+        unset($_SESSION['sucess']);
     }
 }
 ?>

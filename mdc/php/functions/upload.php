@@ -9,25 +9,21 @@ require_once '../includes/connect.php';
 $dir = '../../img/perfil/';
 define('DIR', $dir);
 
-// Verifica se houve a ação do POST
-if (isset($_POST['btnIncrement'])) {
-    
-    // Verifica a a imagem existe
-    if ($_FILES['foto'] != NULL) {
-        // Nome da foto, nome temporario no servidor e tamanho da foto
-        $nome_foto = pg_escape_string(CONNECT, $_FILES['foto']['name']);
-        $nome_temp = $_FILES['foto']['tmp_name'];
-        $foto_size = $_FILES['foto']['size'];
+// Verifica a a imagem existe
+if ($_FILES['foto'] != NULL) {
+    // Nome da foto, nome temporario no servidor e tamanho da foto
+    $nome_foto = pg_escape_string(CONNECT, $_FILES['foto']['name']);
+    $nome_temp = $_FILES['foto']['tmp_name'];
+    $foto_size = $_FILES['foto']['size'];
 
-        // Dados da foto
-        $path = pathinfo($nome_foto);
+    // Dados da foto
+    $path = pathinfo($nome_foto);
 
-        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
-        $nome_final = time().'.'.$path['extension'];
+    // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
+    $nome_final = time().'.'.$path['extension'];
 
-        if ($foto_size < $_POST['MAX_FILE_SIZE']) {
-            armazenaFoto($nome_final, $nome_temp, $foto_size);
-        }
+    if ($foto_size < $_POST['MAX_FILE_SIZE']) {
+        armazenaFoto($nome_final, $nome_temp, $foto_size);
     }
 }
 

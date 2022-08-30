@@ -7,7 +7,7 @@
     <form action="php/functions/crud_forms.php" method="POST">
         
 
-        <button class="btn btn-primary" name="btnCadastrar" type="submit"> Cadastrar </button>
+    <button class="btn btn-primary" name="btnCadastrar" type="submit"> Cadastrar </button>
 </section>
 
 <!-- Footer -->

@@ -29,7 +29,7 @@
                             <img id="foto-editar-perfil" class="img-fluid" src="img/perfil/<?php echo $userData['img_perfil']; ?>" alt="user-pic">
                             <?php
                         } else {
-                            echo '<img id="foto-editar-perfil" class="img-fluid rounded" src="img/perfil/user.png" alt="user-pic">';
+                            echo '<img id="foto-editar-perfil" class="img-fluid rounded" src="img/user.png" alt="user-pic">';
                         }
                         ?>
                         
