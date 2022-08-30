@@ -71,15 +71,6 @@
 
     </div>
 
-    <!-- ACESSO -->
-    <div class="mb-3">
-
-        <label for="user_adm_acesso" class="form-label">ACESSO</label>
-
-        <input type="number" min="0" max="3" class="form-control" id="user_adm_acesso">
-
-    </div>
-
     <!-- SETOR -->
     <div class="mb-3">
 

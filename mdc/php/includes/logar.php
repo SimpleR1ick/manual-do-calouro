@@ -10,8 +10,8 @@ include_once '../functions/sanitizar.php';
 include_once '../functions/verifica_valida.php';
 
 // Definindo como constante global o caminho em caso de erro
-$path = '../../login.php';
-define('PATH', $path);
+$dir = '../../login.php';
+define('PATH', $dir);
 
 if (isset($_POST['btnLogar'])) {
     // Sanitização

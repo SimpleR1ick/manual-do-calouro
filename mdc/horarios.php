@@ -1,12 +1,6 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
-<!-- Conexão -->
-<?php include_once 'php/includes/connect.php'; ?>
-
-<!-- PHP -->
-<?php include_once 'php/interface/horario.php'; ?>
-
 <!-- Conteudo da pagina -->
 <section>
     <div class="container">
@@ -70,7 +64,7 @@
                         </thead>
 
                         <tbody>
-                            <?php horarioMainTable(); ?>
+                            <?php include_once 'php/interface/horario.php'; ?>
                         </tbody>
                     </table>
                 </div>

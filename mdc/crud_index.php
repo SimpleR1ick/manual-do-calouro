@@ -1,9 +1,6 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
-<!-- PHP -->
-<?php require_once 'php/interface/crud.php'; ?>
-
 <!-- Conteúdo da pagina -->
 <section>
     <div class="mb-4">
@@ -21,7 +18,7 @@
                     </thead>
                         
                     <tbody>
-                        <?php crudMainTable(); ?>
+                        <?php include_once 'php/interface/crud.php'; ?>
                     </tbody>
                 </table>
             </div>
