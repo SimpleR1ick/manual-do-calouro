@@ -7,13 +7,24 @@
 <!-- Conteudo da pagina -->
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
-        <form id="perfil" action="php/functions/upload.php" method="POST" class="w-75 " enctype="multipart/form-data">
+        <form id="perfil" action="php/includes/perfil_update.php" method="POST" class="w-75 " enctype="multipart/form-data">
+            <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['acesso']; ?>">
+
             <div class="row">
                 <div class="col-6 text-center">
                     <label for="foto-editar-perfil" class="form-label fw-bold h5">Editar foto de perfil</label>
                 </div>
+                <!-- VERIFIAÇÃO -->
+                <?php
+                if ($userData['acesso'] == 2) {
+                    $textoCampo = 'Editar regras';
+                }
+                else if ($userData['acesso'] == 1) {
+                    $textoCampo = 'Editar turma';
+                }   
+                ?>
                 <div class="col-6 text-center">
-                    <label class="form-label fw-bold h5">Editar turma</label>
+                    <label class="form-label fw-bold h5"><?php echo $textoCampo; ?></label>
                 </div>
             </div>
 

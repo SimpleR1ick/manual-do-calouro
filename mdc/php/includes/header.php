@@ -76,7 +76,7 @@
                         </div>
 
                         <!-- Área de login -->
-                        <?php verificaLogin(); ?>
+                        <?php exibirLogin(); ?>
                     </div>  
                 </div>
             </div>

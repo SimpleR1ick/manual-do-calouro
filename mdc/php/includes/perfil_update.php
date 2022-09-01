@@ -10,22 +10,34 @@ include_once '../functions/upload.php';
 require_once 'connect.php';
 
 if (isset($_POST['btnIncrement'])) {
-
     if (sanitizaPost($_POST)) {
         $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
         header('Location: ../../perfil.php'); // Retorna para o perfil
     
-    } else {
+    }
+    if ($_POST['acesso'] == 1) {
         // Atribui o conteudo obtido dos campos do formulario a variáveis]
         $curso = pg_escape_string(CONNECT, $_POST['curso']);
         $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
         $nome = pg_escape_string(CONNECT, $_POST['nome']);
         $email = pg_escape_string(CONNECT, $_POST['email']);
 
-        // Sanitizando e validando o email
-    
+        inserirCursoModulo($curso, $modulo);
+
+        atualizaDadosUsuario($nome, $email);
+
+    } else if ($_POST['acesso'] == 2) {
+        $regras = pg_escape_string(CONNECT, $_POST['regras']);
+        $nome = pg_escape_string(CONNECT, $_POST['nome']);
+        $email = pg_escape_string(CONNECT, $_POST['email']);
     }
-}   
+    $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
+    header('Location: ../../perfil.php');
+
+    $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
+    header('Location: ../../perfil.php');
+}
+    
 /**
  * Função para atualizar os dados do usuario
  * 
@@ -36,10 +48,10 @@ if (isset($_POST['btnIncrement'])) {
  */
 function atualizaDadosUsuario($nome, $email): void {
     // Query para fazer o update das informações do usuário
-    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = {$_SESSION['id_usuario']}";
+    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
+            WHERE id_usuario = {$_SESSION['id_usuario']}";
 
 }
-
 /**
  * Função para inserir o curso e o modulo do aluno
  * 
@@ -59,12 +71,16 @@ function inserirCursoModulo($curso, $modulo): void {
 
     // Verfica se o update funcionou e guarda uma mensagem de acordo
     if (pg_query(CONNECT, $sql)) {
-        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
-        header('Location: ../../perfil.php');
+        
 
     } else {
-        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
-        header('Location: ../../perfil.php');
+        
     }
+}
+
+function inserirRegras(): void {
+    // Query para fazer o update das informações do professor
+    $sql = "INSERT INTO professor (fk_servidor_fk_usuario_id_usuario, regras) VALUES
+            ()"
 }
 ?>

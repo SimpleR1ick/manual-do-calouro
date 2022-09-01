@@ -1,5 +1,11 @@
-<?php 
-if ($userData['acesso'] == 1) { 
+<?php
+if ($userData['acesso'] == 2) {
+    ?>
+    <div class="mb-2">
+        <textarea class="w-100" id="regras" name="regras" required rows="6"></textarea>
+    </div>
+    <?php
+} else if ($userData['acesso'] == 1) { 
     ?>
     <div class="col-6 d-flex flex-column justify-content-center">
         <!-- CURSO -->
@@ -29,13 +35,6 @@ if ($userData['acesso'] == 1) {
             </select>
         </div>
     </div>
-<?php
-} else if ($userData['acesso'] == 2) {
-    ?>
-    <div class="mb-2">
-        <label class="form-label" for="texto"> Regras de sala: </label><br>
-        <textarea class="w-100" id="texto" name="texto" required rows="6"></textarea>
-    </div>
-<?php
+    <?php
 }
 ?>

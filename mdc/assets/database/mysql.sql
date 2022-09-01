@@ -10,8 +10,9 @@
 
 === acesso ===
 0 = administrador
-1 = usuário básico
-2 = servidor
+1 = aluno
+2 = professor
+3 = serivdor
 
 */
 CREATE TABLE Usuarios (
