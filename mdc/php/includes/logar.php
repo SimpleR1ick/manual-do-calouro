@@ -47,7 +47,9 @@ function logarUsuario($email, $senhaHash): void {
     if (pg_num_rows($query) == 0) {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';
-        header('Location: ../../login.php'); // retorna para página de login
+
+        // retorna para página de login
+        header('Location: ../../login.php'); 
 
     } else {
         // Transforma o resultado da requisição em um array enumerado
@@ -58,8 +60,9 @@ function logarUsuario($email, $senhaHash): void {
             // Adiciona a sessão o id retornado do banco
             $_SESSION['id_usuario'] = $result[0];
             
+            // retorna para página index.php
             $_SESSION['toast'] = 'Logado com sucesso!';
-            header('Location: ../../index.php'); // retorna para página index.php
+            header('Location: ../../index.php'); 
         }
     }
 }

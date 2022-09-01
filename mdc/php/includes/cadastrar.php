@@ -44,19 +44,23 @@ if (isset($_POST['btnCadastrar'])) {
  * 
  * @author Henrique Dalmagro
  */
-function cadastraUsuario($nome, $emailValidado, $senhaHash): void {
+function cadastraUsuario($nome, $email, $senhaHash): void {
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$emailValidado', '$senhaHash')";
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaHash')";
     
-    // Se a requição houve retorno, a insert teve sucesso
+    // Se a requição houve retorno, o insert teve sucesso
     if (pg_query(CONNECT, $sql)) {
         // Adiciona minha sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
-        header('Location: ../../login.php');// Envia o usuário de à página de login
+
+        // Envia o usuário de à página de login
+        header('Location: ../../login.php');
 
     } else {
         $_SESSION['mensag'] = 'Erro ao cadastrar!';
-        header('Location: ../../cadastro.php'); // Retorna para o cadastro
+
+        // Retorna para o cadastro
+        header('Location: ../../cadastro.php'); 
     }
-}   
+}
 ?>

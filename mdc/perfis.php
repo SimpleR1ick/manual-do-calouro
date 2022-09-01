@@ -22,54 +22,15 @@
                 <div class="col-6">
                     <!-- IMAGEM DE PERFIL -->
                     <div class="d-flex flex-column align-items-center p-3">
-
-                        <?php
-                        if (isset($userData['img_perfil'])) {
-                            ?>
-                            <img id="foto-editar-perfil" class="img-fluid" src="img/perfil/<?php echo $userData['img_perfil']; ?>" alt="user-pic">
-                            <?php
-                        } else {
-                            echo '<img id="foto-editar-perfil" class="img-fluid rounded" src="img/user.png" alt="user-pic">';
-                        }
-                        ?>
-                        
+                        <?php exibirFoto(); ?>
+                    
                         <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
-
                         <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
                     </div>
                 </div>
-
-                <div class="col-6 d-flex flex-column justify-content-center">
-                    <!-- CURSO -->
-                    <div class="mb-3">
-                        <label for="curso" class="form-label fw-bold">Curso</label>
-
-                        <select id="curso" name="modulo" class="form-select">
-                            <option selected value="">Selecione seu curso...</option>
-                            <option value="1">Informática para Internet</option>
-                            <option value="2">Mecatrônica</option>
-                            <option value="3">Internet das Coisas</option>
-                        </select>
-                    </div>
-
-                    <!-- MÓDULO -->
-                    <div class="mb-3">
-                        <label for="modulo" class="form-label fw-bold">Módulo</label>
-
-                        <select id="modulo" name="modulo" class="form-select">
-                            <option selected value="">Selecione seu módulo...</option>
-                            <option value="1">1° módulo</option>
-                            <option value="2">2° módulo</option>
-                            <option value="3">3° módulo</option>
-                            <option value="4">4° módulo</option>
-                            <option value="5">5° módulo</option>
-                            <option value="6">6° módulo</option>
-                        </select>
-                    </div>
-                </div>
+                <?php include_once 'php/interface/perfil.php'; ?>
                 <!--Fim da Primeira row-->
             </div>
-
 
             <!--Segunda row-->
             <div class="row">
@@ -89,7 +50,6 @@
                 <!-- Fim da Segunda row-->
             </div>
 
-
             <!--Terceira row-->
             <div class="row mt-3">
 
@@ -100,7 +60,6 @@
                     <!-- MUDAR SENHA -->
                     <button class="btn btn-danger mt-2" type="button">Redefinir senha</button>
                 </div>
-
                 <!-- Fim da Terceira row-->
             </div>
         </form>

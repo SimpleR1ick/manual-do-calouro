@@ -30,7 +30,7 @@ function getDadosUsuario(): array {
 }
 
 /**
- * Função para alterar o titulo do site com o nome do usuario
+ * Função para alterar o titulo do site 
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
@@ -42,19 +42,17 @@ function tituloSite(): void {
 
         // Coloca o título da página como o nome de quem logou
         echo "<title>{$userData['nom_usuario']}</title>";
-
-    // Caso não exista, deixa o título padrão da página
     } else {
+        // Coloca o tiulo default da pagina
         echo "<title>Manual do Calouro</title>";
     }
 }
-
 /**
  * Função para verificar se existe um usuario logado
  *  
  * @author Henrique Dalmagro
  */
-function verificaLogin(): void {
+function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
         echo
@@ -67,6 +65,21 @@ function verificaLogin(): void {
         "<button onclick='window.location.href = \"login.php\"' class='btn btn-primary' type='button'>
             Entrar
         </button>";
+    }
+}
+
+/**
+ * Função para exibir a imagem de perfil
+ * 
+ * @author Henrique Dalmagro
+ */
+function exibirFoto(): void {
+    if (isset($userData['img_perfil'])) {
+        // Imagem do Usuario cadastrada no banco
+        echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='img/perfil/{$userData['img_perfil']}>";
+    } else {
+        // Imagem Default 
+        echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="img/user.png">';
     }
 }
 
