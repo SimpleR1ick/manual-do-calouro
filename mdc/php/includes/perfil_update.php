@@ -15,10 +15,13 @@ if (isset($_POST['btnIncrement'])) {
         header('Location: ../../perfil.php'); // Retorna para o perfil
     
     }
-    if ($_POST['acesso'] == 1) {
+    // Armazena do a array a uma variavel o nivel de acesso do usuario
+    $acesso = $_POST['acesso'];
+
+    if ($acesso == 1) {
         perfilProfessor();
 
-    } else if ($_POST['acesso'] == 2) {
+    } else if ($acesso == 2) {
         perfilAluno();
     }
 }

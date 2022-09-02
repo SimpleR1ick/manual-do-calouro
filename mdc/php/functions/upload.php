@@ -1,10 +1,4 @@
 <?php
-// inicia a sessão
-session_start();
-
-// Conexão com banco de dados
-require_once '../includes/connect.php';
-
 // Definindo como constante global a pasta das fotos de perfil
 $dir = '../../img/uploads/';
 define('DIR', $dir);
