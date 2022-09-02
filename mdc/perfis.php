@@ -7,7 +7,7 @@
 <!-- Conteudo da pagina -->
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
-        <form class="w-75" action="php/includes/perfil_update.php" method="POST" enctype="multipart/form-data">
+        <form class="w-75" action="php/includes/update.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['acesso']; ?>">
 
             <div class="row">
