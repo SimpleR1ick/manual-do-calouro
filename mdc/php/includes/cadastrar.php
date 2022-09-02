@@ -33,6 +33,8 @@ if (isset($_POST['btnCadastrar'])) {
             cadastraUsuario($nome, $email, md5($senha));
         }
     }
+    // Encerando a conexão
+    pg_close(CONNECT);
 }
 
 /**

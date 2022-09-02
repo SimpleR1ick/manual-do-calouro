@@ -28,6 +28,8 @@ if (isset($_POST['btnLogar'])) {
         // Tenta realizar o login no site
         logarUsuario($email, md5($senha));
     }
+    // Encerando a conexão
+    pg_close(CONNECT);
 }
 
 /**

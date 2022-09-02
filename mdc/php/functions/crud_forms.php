@@ -15,14 +15,15 @@ else if (isset($_POST['btnDeletar'])) {
 else if (isset($_POST['btnCadastrar'])) {
     crudRegister();
 }
+// Encerando a conexão
+pg_close(CONNECT);
+
 /**
  * Função para atualizar os dados de um usuario
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
 function crudUpdate(): void {
-    print_r($_POST);
-
     // Declaração de variáveis a serem modificadas
     $id = pg_escape_string(CONNECT, $_POST['id']);
     $nome = pg_escape_string(CONNECT, $_POST['nome']);
@@ -43,11 +44,11 @@ function crudUpdate(): void {
     // Verifica se o update ocorreu e redireciona para o crud_index
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = "Atualizado com sucesso!";
-        //header('Location: ../../crud_index.php');
+        header('Location: ../../crud_index.php');
 
     } else {
         $_SESSION['mensag'] = "Erro ao atualizar!";
-        //header('Location: ../../crud_index.php');
+        header('Location: ../../crud_index.php');
     }
     
 }

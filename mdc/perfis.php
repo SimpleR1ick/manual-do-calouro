@@ -7,7 +7,7 @@
 <!-- Conteudo da pagina -->
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
-        <form id="perfil" action="php/includes/perfil_update.php" method="POST" class="w-75 " enctype="multipart/form-data">
+        <form class="w-75" action="php/includes/perfil_update.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['acesso']; ?>">
 
             <div class="row">
@@ -16,11 +16,11 @@
                 </div>
                 <!-- VERIFIAÇÃO -->
                 <?php
-                if ($userData['acesso'] == 2) {
-                    $textoCampo = 'Editar regras';
-                }
-                else if ($userData['acesso'] == 1) {
+                if ($userData['acesso'] == 1) {
                     $textoCampo = 'Editar turma';
+                }
+                else if ($userData['acesso'] == 2) {
+                    $textoCampo = 'Editar regras';
                 }   
                 ?>
                 <div class="col-6 text-center">
@@ -39,7 +39,10 @@
                         <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
                     </div>
                 </div>
-                <?php include_once 'php/interface/perfil.php'; ?>
+
+                <div class="col-6 d-flex flex-column justify-content-center">
+                    <?php include_once 'php/interface/perfil.php'; ?>
+                </div>
                 <!--Fim da Primeira row-->
             </div>
 

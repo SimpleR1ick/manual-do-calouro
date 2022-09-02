@@ -60,6 +60,7 @@
                                 <th scope="col">QUA</th>
                                 <th scope="col">QUI</th>
                                 <th scope="col">SEX</th>
+                                <th scope="col">SAB</th>
                             </tr>
                         </thead>
 

@@ -73,19 +73,18 @@ INSERT INTO horario_aula (hora_aula_inicio, hora_aula_fim) VALUES
     ('12:10:00', '13:00:00');
 
 INSERT INTO disciplina (dsc_disciplina) VALUES 
-    --('-'),                  -- 1
-	('BIO'),                -- 2
-    ('DES SIST'),           -- 3
-    ('DISP MOV'),           -- 4
-    ('ELET BAS'),           -- 5 
-    ('Empreendedorismo'),   -- 6
-    ('FILOS'),              -- 7
-    ('MAT'),                -- 8
-    ('PORTUG'),             -- 9
-    ('PROG WEB II'),        -- 10
-    ('Projeto integrador'), -- 11
-    ('QUI'),                -- 12
-    ('SOCIOL');             -- 13
+	('BIO'),                -- 1
+    ('DES SIST'),           -- 2
+    ('DISP MOV'),           -- 3
+    ('ELET BAS'),           -- 4 
+    ('Empreendedorismo'),   -- 5
+    ('FILOS'),              -- 6
+    ('MAT'),                -- 7
+    ('PORTUG'),             -- 8
+    ('PROG WEB II'),        -- 9
+    ('Projeto integrador'), -- 10
+    ('QUI'),                -- 11
+    ('SOCIOL');             -- 12
 
 INSERT INTO sala_aula (num_sala_aula) VALUES 
     --('-'),
@@ -133,18 +132,18 @@ INSERT INTO aula (
 
         -- Quarta-feira
         (4, 1, 6, 1, 8),
-        (4, 2, 6, 1, 13),
+        (4, 2, 6, 1, 11),
         (4, 3, 6, 1, 7),
         (4, 4, 6, 1, 7),
-        (4, 5, 6, 1, 7),
-        (4, 6, 6, 1, 5),
+        (4, 5, 6, 1, 4),
+        (4, 6, 6, 1, 4),
 
         -- Quinta-feira
         (5, 2, 6, 1, 6),
         (5, 3, 6, 1, 8),
         (5, 4, 6, 1, 8),
-        (5, 5, 6, 3, 4),
-        (5, 6, 6, 3, 4),
+        (5, 5, 6, 3, 2),
+        (5, 6, 6, 3, 2),
 
         -- Sexta-feira
         (6, 2, 6, 3, 3),

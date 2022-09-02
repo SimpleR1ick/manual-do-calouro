@@ -12,18 +12,20 @@ include_once '../functions/upload.php';
 if (isset($_POST['btnIncrement'])) {
     if (sanitizaPost($_POST)) {
         $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
-        header('Location: ../../perfil.php'); // Retorna para o perfil
+        header('Location: ../../perfis.php'); // Retorna para o perfil
     
     }
     // Armazena do a array a uma variavel o nivel de acesso do usuario
     $acesso = $_POST['acesso'];
 
     if ($acesso == 1) {
-        perfilProfessor();
+        perfilAluno();
 
     } else if ($acesso == 2) {
-        perfilAluno();
+        perfilProfessor();
     }
+    // Encerando a conexão
+    pg_close(CONNECT);
 }
  
 /**
@@ -89,7 +91,7 @@ function atualizaDadosUsuario(): void {
         header('Location: ../../index.php');
     } else {
         $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
-        header('Location: ../../perfil.php');
+        header('Location: ../../perfis.php');
     }
 }
 ?>

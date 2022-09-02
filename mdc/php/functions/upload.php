@@ -37,11 +37,11 @@ function armazenaFoto($novo_nome, $nome_temp): void {
     if (move_uploaded_file($nome_temp, DIR.$novo_nome)) {
         if (pg_query(CONNECT, $sql)){
             $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
-            header('location: ../../perfil.php');
+            header('location: ../../perfis.php');
         } 
     } else {
         $_SESSION['mensag'] = 'Erro ao atualizar foto!';
-        header('location: ../../perfil.php');
+        header('location: ../../perfis.php');
     }
 }
 ?>

@@ -19,5 +19,7 @@ function crudGetDados(): array{
 
         return $userData;
     }
+    // Encerando a conexão
+    pg_close(CONNECT);
 }
 ?>

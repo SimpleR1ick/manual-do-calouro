@@ -27,6 +27,8 @@ function getDadosUsuario(): array {
 
         return $result;
     }
+    // Encerando a conexão
+    pg_close(CONNECT);  
 }
 
 /**
@@ -47,6 +49,7 @@ function tituloSite(): void {
         echo "<title>Manual do Calouro</title>";
     }
 }
+
 /**
  * Função para verificar se existe um usuario logado
  *  
@@ -74,12 +77,14 @@ function exibirLogin(): void {
  * @author Henrique Dalmagro
  */
 function exibirFoto(): void {
-    if (isset($userData['img_perfil'])) {
-        // Imagem do Usuario cadastrada no banco
-        echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='img/perfil/{$userData['img_perfil']}>";
-    } else {
-        // Imagem Default 
-        echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="img/user.png">';
+    if (isset($_SESSION['id_usuario'])) { 
+        if (isset($userData['img_perfil'])) {
+            // Imagem do Usuario cadastrada no banco
+            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='img/uploads/{$userData['img_perfil']}>";
+        } else {
+            // Imagem Default 
+            echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="img/user.png">';
+        }
     }
 }
 

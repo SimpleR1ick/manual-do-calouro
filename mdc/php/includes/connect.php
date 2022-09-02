@@ -1,14 +1,4 @@
 <?php
-/*
-// Dados para conexão com banco de dados local
-$host = "localhost";
-$port = "5432";
-$db = "Manual_do_Calouro";
-$user = "postgres";
-$pass = "252804277353"; // Senha variavel 
-
-$connect = pg_connect("host=$host port=$port dbname=$db user=$user password=$pass");
-*/
 // Dados para conexão com o banco de elephatnSQL
 $host = "kesavan.db.elephantsql.com";
 $user = "jqvnqgvm";
