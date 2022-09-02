@@ -16,17 +16,17 @@
                     <div class="h1 text-center">Fale conosco</div>
                         <form action="" method="POST">
                             <div class="mb-3">
-                                <label class="form-label" for="email">E-mail:</label>
-                                <input type="email" class="form-control" id="email" aria-describedby="ajudaEmail" placeholder="Seu email" required value="<?php echo $userData['email']; ?>">
+                                <label class="form-label" for="email"> E-mail: </label>
+                                <input type="email" class="form-control" id="email" name="email" aria-describedby="ajudaEmail" placeholder="Seu email" required value="<?php echo $userData['email']; ?>">
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="telefone">Telefone:</label>
-                                <input type="tel" class="form-control" id="telefone" placeholder="Seu telefone" minlength="8" maxlength="11" required>
+                                <label class="form-label" for="telefone"> Telefone: </label>
+                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Seu telefone" minlength="8" maxlength="11" required>
                             </div>
 
                             <div class="mb-3">
-                                <label class="form-label" for="assunto">Assunto:</label>
+                                <label class="form-label" for="assunto"> Assunto: </label>
                                 <select class="form-select" name="assunto" id="assunto" required>
                                     <option value="">Selecione um assunto</option>
                                     <option value="calendario">Calendário</option>
@@ -39,12 +39,12 @@
                             </div>
 
                             <div class="mb-2">
-                                <label class="form-label" for="texto">Escreva sua mensagem:</label><br>
+                                <label class="form-label" for="texto"> Escreva sua mensagem: </label><br>
                                 <textarea class="w-100" id="texto" name="texto" required rows="6"></textarea>
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary">Enviar</button>
+                                <button type="submit" class="btn btn-primary"> Enviar </button>
                             </div>
                         </form>
                     </div>
