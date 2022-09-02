@@ -60,3 +60,7 @@ span ul.nav.flex-column {
     max-width: 200px;
     padding: 15px;
 }
+
+.img-contato {
+    size: 100%;
+}
