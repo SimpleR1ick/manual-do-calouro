@@ -15,10 +15,10 @@ define('PATH', $dir);
 
 if (isset($_POST['btnLogar'])) {
     // Sanitização
-    if (sanitizaPost($_POST)) {
+    if (verificaInjectHtml($_POST)) {
         $_SESSION['mensag'] = 'Erro ao logar!';
         header('Location: ../../login.php'); // Retorna para o cadastro
-    }
+    } 
     // Atribui o conteudo dos campos do formulario a variáveis
     $email = pg_escape_string(CONNECT, $_POST['email']);
     $senha = pg_escape_string(CONNECT, $_POST['senha']);
@@ -30,6 +30,7 @@ if (isset($_POST['btnLogar'])) {
     }
     // Encerando a conexão
     pg_close(CONNECT);
+
 }
 
 /**

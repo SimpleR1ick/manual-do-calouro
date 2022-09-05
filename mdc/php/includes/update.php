@@ -9,12 +9,11 @@ require_once 'connect.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/upload.php';
 
-// Definindo como constante global o id da sessão atual
 $id = $_SESSION['id_usuario'];
 define('ID', $id);
 
 if (isset($_POST['btnIncrement'])) {
-    if (sanitizaPost($_POST)) {
+    if (verificaInjectHtml($_POST)) {
         $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
         header('Location: ../../perfis.php'); // Retorna para o perfil
     
@@ -63,7 +62,7 @@ function perfilAluno(): void {
     $curso = pg_escape_string(CONNECT, $_POST['curso']);
 
     // Fazer verificação se o aluno ja esta cadastrado
-    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = 'ID')";
+    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = ID)";
     $query = pg_query(CONNECT, $sql);
 
     if (pg_num_rows($query) > 0) {
@@ -97,7 +96,7 @@ function atualizaDadosUsuario(): void {
 
     // Query para fazer o update das informações do usuário
     $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
-            WHERE id_usuario = {$_SESSION['id_usuario']}";
+            WHERE id_usuario = ID";
 
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';

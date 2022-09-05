@@ -15,7 +15,7 @@ define('PATH', $dir);
 
 if (isset($_POST['btnCadastrar'])) {
     // Sanitização
-    if (sanitizaPost($_POST)) {
+    if (verificaInjectHtml($_POST)) {
         $_SESSION['mensag'] = 'Erro ao cadastrar!';
         header("Location: PATH"); // Retorna para o cadastro
     }

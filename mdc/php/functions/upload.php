@@ -1,7 +1,4 @@
 <?php
-// Definindo como constante global a pasta das fotos de perfil
-$dir = '../../img/uploads/';
-define('DIR', $dir);
 
 // Verifica a a imagem existe
 if ($_FILES['foto'] != NULL) {
@@ -16,32 +13,18 @@ if ($_FILES['foto'] != NULL) {
     // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
     $nome_final = time().'.'.$path['extension'];
 
+    // Verifica se o tamanho da foto esta no limite permitido
     if ($foto_size < $_POST['MAX_FILE_SIZE']) {
-        armazenaFoto($nome_final, $nome_temp, $foto_size);
-    }
-}
+        $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario = ID";
 
-/**
- * Função para atualizar a foto de perfil
- * 
- * @param string $novo_nome nome do arquivo de imagem com o id do usuarios
- * @param string $nome_temp nome temporario no arquivo do servidor
- * @param int $foto_size tamanho em mb da foto 
- *
- * @author Henrique Dalmagro
- */
-function armazenaFoto($novo_nome, $nome_temp): void {
-    $sql = "UPDATE usuario SET img_perfil ='$novo_nome' 
-            WHERE id_usuario ='{$_SESSION['id_usuario']}'";
-
-    if (move_uploaded_file($nome_temp, DIR.$novo_nome)) {
-        if (pg_query(CONNECT, $sql)){
-            $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
-            header('location: ../../perfis.php');
-        } 
-    } else {
-        $_SESSION['mensag'] = 'Erro ao atualizar foto!';
-        header('location: ../../perfis.php');
-    }
+        if (pg_query(CONNECT, $sql)) {
+            if (move_uploaded_file($nome_temp, 'img/uploads/'.$novo_nome)) {
+                $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
+            }
+        } else {
+            $_SESSION['mensag'] = 'Erro ao atualizar foto!';
+        }
+    } 
+    $_SESSION['mensag'] = 'Tamanho limite da foto foi excedido';
 }
 ?>
