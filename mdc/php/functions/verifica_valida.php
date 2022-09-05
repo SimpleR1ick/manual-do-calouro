@@ -13,6 +13,8 @@
 function validaSenha($senha1, $senha2, $pagePath): bool {
     if ($senha1 !== $senha2) {
         $_SESSION['mensag'] = 'Senhas não idênticas!';
+
+        // Retorna a pagina de origem
         header("Location: $pagePath"); 
         return false;
     } 
@@ -30,11 +32,18 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
  * @author Rafael Barros - Henrique Dalmagro
  */
 function validaEmail($email, $pagePath): bool {
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['mensag'] = 'Email invalido!';
+    // Sanitiza o email e em seguida valida o formato
+    $f_email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
+
+    // Verficia se o email e invalido
+    if (!$v_email) {
+        $_SESSION['mensag'] = 'Formato de e-mail invalido!';
+
+        // Retorna a pagina de origem
         header("Location: $pagePath"); 
         return false;
-    }
+    } 
     return true; 
 }
 
@@ -56,6 +65,8 @@ function verificaEmail($email, $pagePath): bool {
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
         $_SESSION['mensag'] = 'Email já cadastrado!';
+
+        // Retorna a pagina de origem
         header("Location: $pagePath"); 
         return false;
     }
@@ -71,6 +82,8 @@ function verificaAtivo($ativo, $pagePath): bool {
     // Verifica se a conta do usuario esta ativa
     if ($ativo == 'f') {
         $_SESSION['mensag'] = 'Usuario inativo!';
+
+        // Retorna a pagina de origem
         header("Location: $pagePath");
         return false;
     }

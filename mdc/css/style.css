@@ -62,5 +62,13 @@ span ul.nav.flex-column {
 }
 
 .img-contato {
-    size: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    min-width: 90px;
+    min-height: 90px;
+    max-width: 110px;
+}
+
+#td {
+    min-width: 80px;
 }

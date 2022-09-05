@@ -10,37 +10,37 @@
             <!-- GRUPO DE BOTÕES CURSO -->
             <div class="btn-group mb-3" role="group">
                 <!-- INFORMÁTICA -->
-                <input type="radio" class="btn-check" id="info" name="info" autocomplete="off">
+                <input type="radio" class="btn-check" id="info" name="curso" value="1" autocomplete="off">
                 <label class="btn btn-success" for="info">INFO</label>
 
-                <!-- INTERNET DAS COISAS -->
-                <input type="radio" class="btn-check" id="iot" name="iot" autocomplete="off">
-                <label class="btn btn-success" for="iot">IOT</label>
-
                 <!-- MECATRÔNICA -->
-                <input type="radio" class="btn-check" id="meca" name="meca" autocomplete="off">
-                <label class="btn btn-success" for="meca">MEC</label>
+                <input type="radio" class="btn-check" id="mec" name="curso" value="2" autocomplete="off">
+                <label class="btn btn-success" for="mec">MEC</label>
+
+                <!-- INTERNET DAS COISAS -->
+                <input type="radio" class="btn-check" id="iot" name="curso" value="3" autocomplete="off">
+                <label class="btn btn-success" for="iot">IOT</label>
             </div>
 
             <h5>Módulo:</h5>
             <!-- GRUPO DE BOTÕES MÓDULO -->
             <div class="btn-group mb-3" role="group">
-                <input type="radio" class="btn-check" id="mod1" name="1" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod1" name="modulo" value="1" autocomplete="off">
                 <label class="btn btn-success" for="mod1">1°</label>
 
-                <input type="radio" class="btn-check" id="mod2" name="2" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod2" name="modulo" value="2" autocomplete="off">
                 <label class="btn btn-success" for="mod2">2°</label>
 
-                <input type="radio" class="btn-check" id="mod3" name="3" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod3" name="modulo" value="3" autocomplete="off">
                 <label class="btn btn-success" for="mod3">3°</label>
 
-                <input type="radio" class="btn-check" id="mod4" name="4" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod4" name="modulo" value="4" autocomplete="off">
                 <label class="btn btn-success" for="mod4">4°</label>
 
-                <input type="radio" class="btn-check" id="mod5" name="5" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod5" name="modulo" value="5" autocomplete="off">
                 <label class="btn btn-success" for="mod5">5°</label>
 
-                <input type="radio" class="btn-check" id="mod6" name="6" autocomplete="off">
+                <input type="radio" class="btn-check" id="mod6" name="modulo" value="6" autocomplete="off">
                 <label class="btn btn-success" for="mod6">6°</label>
             </div>
 

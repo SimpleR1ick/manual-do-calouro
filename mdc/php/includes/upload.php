@@ -1,5 +1,4 @@
 <?php
-
 // Verifica a a imagem existe
 if ($_FILES['foto'] != NULL) {
     // Nome da foto, nome temporario no servidor e tamanho da foto
@@ -7,12 +6,22 @@ if ($_FILES['foto'] != NULL) {
     $nome_temp = $_FILES['foto']['tmp_name'];
     $foto_size = $_FILES['foto']['size'];
 
-    // Dados da foto
-    $path = pathinfo($nome_foto);
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $pathBanco = pg_query(CONNECT, $sql);
 
-    // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
-    $nome_final = time().'.'.$path['extension'];
+    if ($pathBanco == null) {
+        // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
+        $path = pathinfo($nome_foto);
 
+        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
+        $nome_final = time().'.'.$path['extension'];
+
+    } else {
+        // Utiliza o mesmo nome do banco para atualizar a foto
+        $nome_final = $pathBanco;
+    }
+    pg_close(CONNECT);
+    
     // Verifica se o tamanho da foto esta no limite permitido
     if ($foto_size < $_POST['MAX_FILE_SIZE']) {
         $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario = ID";
