@@ -83,7 +83,7 @@ function exibirFoto(): void {
         $userData = getDadosUsuario();
 
         // Armazena em uma variavel o nome da foto do usuario
-        $path = $userData['img_peerfil'];
+        $path = $userData['img_perfil'];
         
         if (!empty($path)) {
             // Imagem do Usuario cadastrada no banco

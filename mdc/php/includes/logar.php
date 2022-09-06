@@ -25,14 +25,15 @@ if (isset($_POST['btnLogar'])) {
 
     // Validações para logar um usuario
     if (validaEmail($email, PATH)) {
-        // Tenta realizar o login no site
-        logarUsuario($email, md5($senha));
+        // Verifica se o usuario esta ativo
+        if (verificaAtivo($email, PATH)) {
+            // Tenta realizar o login no site
+            logarUsuario($email, md5($senha));
+        }  
     }
     // Encerando a conexão
     pg_close(CONNECT);
-
 }
-
 /**
  * Função para executar o login no website
  * 
@@ -43,30 +44,25 @@ if (isset($_POST['btnLogar'])) {
  */
 function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario, ativo FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
+    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
     $query = pg_query(CONNECT, $sql);
 
+    // Transforma o resultado da requisição em um array enumerado
+    $result = pg_fetch_row($query);
+
     // Verifica se a inserção teve resultado
-    if (pg_num_rows($query) == 0) {
+    if (pg_num_rows($query) == 1) {
+        // Adiciona a sessão o id retornado do banco
+        $_SESSION['id_usuario'] = $result[0];
+        
+        // retorna para pagina home
+        header('Location: ../../index.php'); 
+    } else {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';
 
         // retorna para página de login
         header('Location: ../../login.php'); 
-
-    } else {
-        // Transforma o resultado da requisição em um array enumerado
-        $result = pg_fetch_row($query);
-
-        // Verifica se a conta do usuario esta ativa
-        if (verificaAtivo($result[1], PATH)) {
-            // Adiciona a sessão o id retornado do banco
-            $_SESSION['id_usuario'] = $result[0];
-            
-            // retorna para página index.php
-            $_SESSION['toast'] = 'Logado com sucesso!';
-            header('Location: ../../index.php'); 
-        }
     }
 }
 ?>

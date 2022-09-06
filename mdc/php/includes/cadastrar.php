@@ -59,6 +59,7 @@ function cadastraUsuario($nome, $email, $senhaHash): void {
         header('Location: ../../login.php');
 
     } else {
+        // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao cadastrar!';
 
         // Retorna para o cadastro

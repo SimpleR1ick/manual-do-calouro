@@ -11,6 +11,10 @@ include_once '../functions/verifica_valida.php';
 
 //include_once '../functions/upload.php';
 
+// Definindo como constante global o caminho em caso de erro
+$dir = '../../perfis.php';
+define('PATH', $dir);
+
 if (isset($_POST['btnIncrement'])) {
     if (verificaInjectHtml($_POST)) {
         $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
@@ -23,25 +27,61 @@ if (isset($_POST['btnIncrement'])) {
     $nome = pg_escape_string(CONNECT, $_POST['nome']);
     $email = pg_escape_string(CONNECT, $_POST['email']);
 
-    atualizaDadosUsuario($nome, $email);
+    // Verifica se o email ja consta no banco de dados
+    if (verificaEmail($email, PATH)) {
+        
+        atualizaDadosUsuario($nome, $email);
 
-    switch ($acesso) {
-        case 1:
-            // Atribui o conteudo obtido dos campos modulo e curso do formulario
-            $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
-            $curso = pg_escape_string(CONNECT, $_POST['curso']);
+        switch ($acesso) {
+            case 1:
+                // Atribui o conteudo obtido dos campos modulo e curso do formulario
+                $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
+                $curso = pg_escape_string(CONNECT, $_POST['curso']);
 
-            perfilAluno($modulo, $curso);
+                perfilAluno($modulo, $curso);
 
-        case 2:
-            // Atribui o conteudo obtido do campo regras do formulario
-            $regras = pg_escape_string(CONNECT, $_POST['regras']);
+            case 2:
+                // Atribui o conteudo obtido do campo regras do formulario
+                $regras = pg_escape_string(CONNECT, $_POST['regras']);
 
-            perfilProfessor($regras);
+                perfilProfessor($regras);
+        }
     }
     // Encerando a conexão
     pg_close(CONNECT);
 }
+
+    
+/**
+ * Função para atualizar os dados do usuario
+ * 
+ * @param string $nome um nome qualquer
+ * @param string $email um email qualquer
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizaDadosUsuario($nome, $email): void {
+    // Query para fazer o update das informações do usuário
+    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
+            WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+
+    $query = pg_query(CONNECT, $sql);
+
+    if ($query) {
+        // Adiciona à sessão uma mensagem de sucesso
+        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
+
+        // Retorna a pagina home
+        header('Location: ../../index.php');
+    } else {
+        // Adiciona à sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
+
+        // Retorna a pagina perfil
+        header('Location: ../../perfis.php');
+    }
+}
+
 /**
  * Função para inserir o curso e o modulo do aluno
  * 
@@ -50,13 +90,13 @@ if (isset($_POST['btnIncrement'])) {
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
-function perfilAluno($modulo, $curso): void {
+function perfilAluno($modulo, $curso) {
     // Fazer verificação se o aluno ja esta cadastrado
     $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = '{$_SESSION['id_usuario']}')";
     $query = pg_query(CONNECT, $sql);
 
     if (pg_num_rows($query) > 0) {
-        $sql = "UPDATE aluno 
+        $sql = "UPDATE aluno
                 SET fk_usuario_id_usuario = 
                 (SELECT id_turma
                 FROM turma
@@ -72,7 +112,10 @@ function perfilAluno($modulo, $curso): void {
                 WHERE num_modulo = $modulo
                 AND fk_curso_id_curso = $curso))";
     }
-    pg_query(CONNECT, $sql);
+    if (!pg_query(CONNECT, $sql)) {
+        // Adiciona à sessão uma mensagem de sucesso
+        $_SESSION['mensag'] = 'Erro ao atualizar curso e modulo!';
+    }
 }
 
 /**
@@ -81,33 +124,14 @@ function perfilAluno($modulo, $curso): void {
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
-function perfilProfessor($regras): void {
+function perfilProfessor($regras) {
     // Query para fazer o update das informações do professor
     $sql = "UPDATE professor SET regras = '$regras'
             WHERE fk_servidor_fk_usuario_id_usuario = '{$_SESSION['id_usuario']}'";
 
-    pg_query(CONNECT, $sql);
-}
-    
-/**
- * Função para atualizar os dados do usuario
- * 
- * @param string $nome um nome qualquer
- * @param string $email um email qualquer
- * 
- * @author Henrique Dalmagro
- */
-function atualizaDadosUsuario($nome, $email): void {
-    // Query para fazer o update das informações do usuário
-    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
-            WHERE id_usuario = '{$_SESSION['id_usuario']}'";
-
-    if (pg_query(CONNECT, $sql)) {
-        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
-        header('Location: ../../index.php');
-    } else {
-        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
-        header('Location: ../../perfis.php');
-    }
+    if (!pg_query(CONNECT, $sql)) {
+        // Adiciona à sessão uma mensagem de sucesso
+        $_SESSION['mensag'] = 'Erro ao atualizar as regras!';
+    }  
 }
 ?>

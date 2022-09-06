@@ -5,6 +5,9 @@ session_start();
 // Conexão com banco de dados
 require_once '../includes/connect.php';
 
+// Import de bibliotecas de funções
+include_once '../functions/verifica_valida.php';
+
 // Verifica se o formulario foi de update, delete ou register
 if (isset($_POST['btnAtualizar'])) {
     crudUpdate();
@@ -77,13 +80,37 @@ function crudDelete(): void {
 }
 
 /**
+ * Função para registrar os dados de um usuario
  * 
- * 
- * 
- *
+ *@author Henrique Dalmagro
  */
 function crudRegister(): void {
-    return;
+    $email = pg_escape_string(CONNECT, $_POST['email']);
+    
+    // Somente raliza o processo se o e-mail digitado não estiver cadastrado
+    if (verificaEmail($email, '../crud_index.php')) {  
+        $nome = pg_escape_string(CONNECT, $_POST['nome']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
+        $acesso = pg_escape_string(CONNECT, $_POST['acesso']);
+
+        $sql = "INSERT INTO usuario (nom_usuario, email, senha, acesso) VALUES 
+                ('$nome', '$email', '$senha', '$acesso')";
+
+        if (pg_query(CONNECT, $sql)) {
+            // Adiciona minha sessão uma mensagem de sucesso
+            $_SESSION['sucess'] = 'Cadastrado com sucesso!';
+
+            // Envia o usuário de à página de index do crud
+            header('Location: ../../crud_index.php');
+
+        } else {
+            // Adiciona à sessão uma mensagem de erro
+            $_SESSION['mensag'] = 'Erro ao cadastrar!';
+
+            // Retorna para o cadastro do crud
+            header('Location: ../../crud_cadastro.php'); 
+        }
+    }
 }
 ?>
 
