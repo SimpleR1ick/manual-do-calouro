@@ -1,6 +1,8 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
+<?php verificaNivelAcesso(); ?>
+
 <!-- Conteúdo da pagina -->
 <section>
     <div class="mb-4">

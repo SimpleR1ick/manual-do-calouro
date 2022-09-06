@@ -1,9 +1,10 @@
 <!-- Header-->
-<?php include_once 'php/includes/header.php'; ?>
+<?php include_once 'php/includes/header.php';
+verificaNivelAcesso(); ?>
 
-<!-- PHP -->
 <?php include_once 'php/functions/crud_proces.php';
-$dados = crudGetDados(); ?>
+$dados = crudGetDados(); 
+?>
 
 <!-- Conteudo da pagina -->
 <section>

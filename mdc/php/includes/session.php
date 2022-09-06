@@ -6,29 +6,29 @@ session_start();
 require_once 'connect.php';
 
 /**
- * Função para iniciar a sessão do usuario no site
+ * Função para armazenar os dados do usuario da sessão atual
  * 
- * @return array $userData dados do usuario
+ * @return array $userData retorna um array assossiativo com os dados
  *  
  * @author Henrique Dalmagro - Rafael Barros
  */
 function getDadosUsuario(): array {
     if (isset($_SESSION['id_usuario'])) {
-        // Armazenao id da sessão em uma variavel
+        // Armazena o id da sessão em uma variavel
         $id = $_SESSION['id_usuario'];
 
-        // Busca os dados do usuário atravéz do id
-        $sql = "SELECT id_usuario, nom_usuario, email, acesso, ativo, img_perfil 
+        // Busca os dados do usuário atravéz do id na sessão
+        $sql = "SELECT id_usuario, nom_usuario, email, img_perfil, acesso, ativo
                 FROM usuario WHERE id_usuario = '$id'";
         $query = pg_query(CONNECT, $sql);
-        
+
         // Transforma as colunas da query em um array
         $result = pg_fetch_array($query);
 
         return $result;
-    }
+    } 
     // Encerando a conexão
-    pg_close(CONNECT);  
+    pg_close(CONNECT); 
 }
 
 /**
@@ -39,11 +39,13 @@ function getDadosUsuario(): array {
 function tituloSite(): void {    
     // Verifica se existe um id de usuário na sessão
     if (isset($_SESSION['id_usuario'])) {
-        // Chama função que coleta os dados do usuário do banco
         $userData = getDadosUsuario();
 
+        // Armazena em uma variavel o nome do usuario
+        $userName = $userData['nom_usuario'];
+
         // Coloca o título da página como o nome de quem logou
-        echo "<title>{$userData['nom_usuario']}</title>";
+        echo "<title>$userName</title>";
     } else {
         // Coloca o tiulo default da pagina
         echo "<title>Manual do Calouro</title>";
@@ -59,13 +61,13 @@ function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
         echo
-        "<button onclick='window.location.href = \"php/includes/logout.php\"' class='btn btn-info' type='button'>
+        "<button class='btn btn-info' type='button' onclick='window.location.href = \"php/includes/logout.php\"'>
             Sair
         </button>";
     // Se não existir um usuário, cria um botão para dar login
     } else {
         echo
-        "<button onclick='window.location.href = \"login.php\"' class='btn btn-primary' type='button'>
+        "<button class='btn btn-primary' type='button' onclick='window.location.href = \"login.php\"'>
             Entrar
         </button>";
     }
@@ -77,10 +79,15 @@ function exibirLogin(): void {
  * @author Henrique Dalmagro
  */
 function exibirFoto(): void {
-    if (isset($_SESSION['id_usuario'])) { 
-        if (isset($userData['img_perfil'])) {
+    if (isset($_SESSION['id_usuario'])) {
+        $userData = getDadosUsuario();
+
+        // Armazena em uma variavel o nome da foto do usuario
+        $path = $userData['img_peerfil'];
+        
+        if (!empty($path)) {
             // Imagem do Usuario cadastrada no banco
-            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='img/uploads/{$userData['img_perfil']}>";
+            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='img/uploads/$path>";
         } else {
             // Imagem Default 
             echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="img/user.png">';
@@ -93,13 +100,18 @@ function exibirFoto(): void {
  * 
  * @author Henrique Dalmagro
  */
-function verificaAcessoCrud(): void {
+function verificaNivelAcesso(): void {
     if (isset($_SESSION['id_usuario'])) {
         $userData = getDadosUsuario();
+
+        // Armazena em uma variavel o nivel de acesso do usuario  
+        $acesso = $userData['acesso'];
         
-        if ($userData['acesso'] == 0) {
-            header('Location: crud_index.php');
+        if ($acesso != 0) {
+            header('Location: index.php');
         }
+    } else {
+        header('Location: index.php');
     }
 }
 ?>

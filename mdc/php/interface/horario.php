@@ -1,4 +1,6 @@
 <?php
+// Fazer verificação se o usuario e um aluno e se ja possui uma turma
+
 // Verifica se o método GET enviou algo
 if (isset($_GET['curso']) && isset($_GET['modulo'])) {
     // Armazena curso e módulo em variáveis
