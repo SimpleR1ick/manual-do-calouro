@@ -25,15 +25,22 @@ verificaNivelAcesso(); ?>
                 <input required id="user_senha" name="senha" type="password" class="form-control" minlength="6" aria-describedby="senhaHelp">
             </div>
     
-            <!-- ACESSO -->
-            <div class="mb-3">
-                <label for="user_acesso" class="form-label"> Acesso </label>
-                <input type="number" min="0" max="3" class="form-control" id="user_acesso" name="acesso">
-            </div>
-    
-            <button class="btn btn-primary
-            me-3" name="btnCadastrar" type="submit"> Cadastrar </button>
+            <div class="input-group mb-3" id="user_adm_ativo">
+                    <!-- ACESSO -->
+                    <div class="me-3">
+                        <label class="form-label" for="user_adm_acesso">Acesso</label>
+                        <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="0" max="3" value="<?php echo $dados['acesso']; ?>">
+                    </div>
 
+                    <div class="form-text">
+                        <small>3 - servidor</small><br>
+                        <small>2 - professor</small><br>
+                        <small>1 - aluno</small><br>
+                        <small>0 - admin</small>
+                    </div>
+                </div>
+    
+            <button class="btn btn-primary me-3" type="submit" name="btnCadastrar" >Cadastrar</button>
             <a href="./crud_index.php" class="btn btn-danger">Cancelar</a>
         </form>
     </div>

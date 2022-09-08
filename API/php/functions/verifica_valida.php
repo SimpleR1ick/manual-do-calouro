@@ -77,7 +77,6 @@ function verificaEmail($email, $pagePath): bool {
  * Função para verificar se o status do usuario e ativo
  * 
  * @param string $email Do usuario para verificação
- * 
  * @param string $pagePath Pagina de retorno se houver erro
  * 
  * @return bool|false Se o usuario estiver inativo

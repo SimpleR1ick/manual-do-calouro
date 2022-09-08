@@ -1,7 +1,6 @@
 <!-- Header-->
-<?php include_once 'php/includes/header.php'; ?>
-
-<?php verificaNivelAcesso(); ?>
+<?php include_once 'php/includes/header.php';
+verificaNivelAcesso(); ?>
 
 <!-- Conteúdo da pagina -->
 <section class="container">
@@ -27,7 +26,7 @@
 
             <div class="row d-flex justify-content-center mt-3">
                 <div class="col-2">
-                    <a href="./crud_cadastro.php" class="btn btn-sm btn-primary">Adicionar novo usuário</a>
+                    <a href="./crud_cadastro.php" class="btn btn-secondary ">Cadastrar</a>
                 </div>
             </div>
         </div>

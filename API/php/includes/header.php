@@ -69,15 +69,13 @@
                             <form role="search">
                                 <div class="input-group">
                                     <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
-            
+
                                     <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                                 </div>
                             </form>
                         </div>
-
-                        <!-- Área de login -->
-                        <?php exibirLogin(); ?>
-                    </div>  
+                    </div>
+                    <?php exibirLogin(); ?>  
                 </div>
             </div>
         </nav>
