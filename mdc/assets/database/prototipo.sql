@@ -19,8 +19,9 @@ DROP TABLE IF EXISTS professor_disciplina CASCADE;
 DROP TABLE IF EXISTS contato CASCADE;
 DROP TABLE IF EXISTS servidor_horario CASCADE;
 DROP TABLE IF EXISTS curso CASCADE;
+DROP TABLE IF EXISTS professor_disciplina CASCADE;
 
-/* Modelo Lógico - Protótipo: */
+/* Modelo Físico: */
 
 CREATE TABLE usuario (
     id_usuario SERIAL PRIMARY KEY NOT NULL ,
@@ -71,12 +72,6 @@ CREATE TABLE evento (
     dsc_evento VARCHAR(100)
 );
 
-CREATE TABLE turma (
-    id_turma SERIAL PRIMARY KEY NOT NULL,
-    num_modulo INT NOT NULL,
-    fk_curso_id_curso SERIAL NOT NULL
-);
-
 CREATE TABLE sala (
     id_sala SERIAL PRIMARY KEY NOT NULL,
     num_sala VARCHAR(10) NOT NULL
@@ -110,20 +105,15 @@ CREATE TABLE setor (
 
 CREATE TABLE aula (
     fk_dia_semana_id_dia_semana SERIAL NOT NULL,
+    fk_professor_disciplina_id_professor_disciplina SERIAL NOT NULL,
     fk_horario_aula_id_horario_aula SERIAL NOT NULL,
     fk_turma_id_turma SERIAL NOT NULL,
-    fk_sala_aula_id_sala_aula SERIAL NOT NULL,
-    fk_disciplina_id_disciplina SERIAL NOT NULL
+    fk_sala_aula_id_sala_aula SERIAL NOT NULL
 );
 
 CREATE TABLE usuario_evento (
     fk_usuario_id_usuario SERIAL NOT NULL,
     fk_evento_id_evento SERIAL NOT NULL
-);
-
-CREATE TABLE professor_disciplina (
-    fk_professor_fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL,
-    fk_disciplina_id_disciplina SERIAL NOT NULL
 );
 
 CREATE TABLE contato (
@@ -138,9 +128,20 @@ CREATE TABLE servidor_horario (
     fk_horario_id_horario SERIAL NOT NULL
 );
 
+CREATE TABLE turma (
+    id_turma SERIAL PRIMARY KEY NOT NULL,
+    num_modulo INT NOT NULL,
+    fk_curso_id_curso SERIAL NOT NULL
+);
+
 CREATE TABLE curso (
     id_curso SERIAL PRIMARY KEY NOT NULL,
     dsc_curso VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE professor_disciplina (
+    fk_professor_fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL,
+    fk_disciplina_id_disciplina SERIAL NOT NULL
 );
  
 ALTER TABLE servidor ADD CONSTRAINT FK_servidor_2
@@ -184,8 +185,8 @@ ALTER TABLE aula ADD CONSTRAINT FK_aula_1
     ON DELETE CASCADE;
  
 ALTER TABLE aula ADD CONSTRAINT FK_aula_2
-    FOREIGN KEY (fk_disciplina_id_disciplina)
-    REFERENCES disciplina (id_disciplina)
+    FOREIGN KEY (fk_professor_disciplina_id_professor_disciplina)
+    REFERENCES professor_disciplina (id_professor_disciplina)
     ON DELETE CASCADE;
  
 ALTER TABLE aula ADD CONSTRAINT FK_aula_3
@@ -213,16 +214,6 @@ ALTER TABLE usuario_evento ADD CONSTRAINT FK_usuario_evento_2
     REFERENCES evento (id_evento)
     ON DELETE CASCADE;
  
-ALTER TABLE professor_disciplina ADD CONSTRAINT FK_professor_disciplina_1
-    FOREIGN KEY (fk_disciplina_id_disciplina)
-    REFERENCES disciplina (id_disciplina)
-    ON DELETE CASCADE;
- 
-ALTER TABLE professor_disciplina ADD CONSTRAINT FK_professor_disciplina_2
-    FOREIGN KEY (fk_professor_fk_servidor_fk_usuario_id_usuario)
-    REFERENCES professor (fk_servidor_fk_usuario_id_usuario)
-    ON DELETE CASCADE;
- 
 ALTER TABLE contato ADD CONSTRAINT FK_contato_2
     FOREIGN KEY (fk_servidor_fk_usuario_id_usuario)
     REFERENCES servidor (fk_usuario_id_usuario)
@@ -242,8 +233,18 @@ ALTER TABLE servidor_horario ADD CONSTRAINT FK_servidor_horario_2
     FOREIGN KEY (fk_horario_id_horario)
     REFERENCES horario (id_horario)
     ON DELETE CASCADE;
-
+ 
 ALTER TABLE turma ADD CONSTRAINT FK_turma_1
     FOREIGN KEY (fk_curso_id_curso)
     REFERENCES curso (id_curso)
+    ON DELETE CASCADE;
+
+ALTER TABLE professor_disciplina ADD CONSTRAINT FK_professor_disciplina_1
+    FOREIGN KEY (fk_disciplina_id_disciplina)
+    REFERENCES disciplina (id_disciplina)
+    ON DELETE CASCADE;
+
+ALTER TABLE professor_disciplina ADD CONSTRAINT FK_professor_disciplina_2
+    FOREIGN KEY (fk_professor_fk_servidor_fk_usuario_id_usuario)
+    REFERENCES professor (fk_servidor_fk_usuario_id_usuario)
     ON DELETE CASCADE;
