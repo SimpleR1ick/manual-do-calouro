@@ -7,48 +7,62 @@ $dados = crudGetDados();
 ?>
 
 <!-- Conteudo da pagina -->
-<section>
-    <div class="mb-4">
-        <div class="row">
-            <div class="col-8 align-self-center">
+<section class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-8">
                 <form action="php/functions/crud_forms.php" method="POST">
                     <input type="hidden" id="id" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                     <!-- NOME -->
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="nome"> Nome </label>
+                    <div class="mb-3">
+                        <label class="form-label" for="nome"> Nome </label>
                         <input class="form-control" type="text" id="nome" name="nome" value="<?php echo $dados['nom_usuario']; ?>">
                     </div>
 
                     <!-- EMAIL -->
-                    <div class="form-group">
-                        <label class="font-weight-bold" for="email"> E-mail </label>
+                    <div class="mb-3">
+                        <label class="form-label" for="email"> E-mail </label>
                         <input class="form-control" type="email" aria-describedby="ajudaEmail" id="email" name="email" value="<?php echo $dados['email']; ?>">
                     </div>
 
-                    <!-- ATIVO -->
-                    <div class="mb-3">
-                        <div class="form-check">
-                            <input required class="form-check-input" type="radio" id="user_adm_ativoTrue" name="ativo-inativo" value="true" checked>
-                            <label class="form-check-label" for="user_adm_ativoTrue"> Ativo </label>
+                    <div class="input-group mb-3" id="user_adm_ativo">
+                        <!-- ATIVO -->
+                        <div class="me-5">
+                            <label for="user_adm_ativo" class="form-label">
+                                STATUS
+                            </label>
+                            <div class="form-check">
+                                <input required class="form-check-input" type="radio" id="user_adm_ativoTrue" name="ativo-inativo" value="true" checked>
+                                <label class="form-check-label" for="user_adm_ativoTrue"> Ativo </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" id="user_adm_ativoFalse" name="ativo-inativo" value="false">
+                                <label class="form-check-label" for="user_adm_ativoFalse"> Inativo </label>
+                            </div>
                         </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" id="user_adm_ativoFalse" name="ativo-inativo" value="false">
-                            <label class="form-check-label" for="user_adm_ativoFalse"> Inativo </label>
+
+                        <!-- ACESSO -->
+                        <div class="me-3">
+                            <label class="form-label" for="user_adm_acesso">ACESSO</label>
+
+                            <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="0" max="3" value="<?php echo $dados['acesso']; ?>">
+                        </div>
+
+                        <div class="form-text">
+                            <small>3 - servidor</small><br>
+                            <small>2 - professor</small><br>
+                            <small>1 - aluno</small><br>
+                            <small>0 - admin</small>
                         </div>
                     </div>
 
-                    <!-- ACESSO -->
-                    <div class="mb-3">
-                        <label class="form-label" for="user_adm_acesso">ACESSO</label>
-                        <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="0" max="3" value="<?php echo $dados['acesso']; ?>">
-                    </div>
+                    
 
-                    <button class="btn btn-primary" name="btnAtualizar" type="submit"> Atualizar </button>
+                    <button class="btn btn-primary me-2" name="btnAtualizar" type="submit"> Atualizar </button>
+                    <a href="./crud_index.php" class="btn btn-danger">Cancelar</a>
                 </form>
             </div>
         </div>
-    </div>
 </section>
 
 <!-- Footer -->

@@ -4,7 +4,7 @@
 <?php verificaNivelAcesso(); ?>
 
 <!-- Conteúdo da pagina -->
-<section>
+<section class="container">
     <div class="mb-4">
         <div class="row d-flex justify-content-center">
             <div class="col-8">
@@ -23,6 +23,12 @@
                         <?php include_once 'php/interface/crud.php'; ?>
                     </tbody>
                 </table>
+            </div>
+
+            <div class="row d-flex justify-content-center mt-3">
+                <div class="col-2">
+                    <a href="./crud_cadastro.php" class="btn btn-sm btn-primary">Adicionar novo usuário</a>
+                </div>
             </div>
         </div>
     </div>  

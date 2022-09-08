@@ -93,6 +93,8 @@ function crudRegister(): void {
         $senha = pg_escape_string(CONNECT, $_POST['senha']);
         $acesso = pg_escape_string(CONNECT, $_POST['acesso']);
 
+        $senha = md5($senha);
+
         $sql = "INSERT INTO usuario (nom_usuario, email, senha, acesso) VALUES 
                 ('$nome', '$email', '$senha', '$acesso')";
 
