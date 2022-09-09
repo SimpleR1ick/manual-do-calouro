@@ -9,31 +9,35 @@ require_once 'connect.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/verifica_valida.php';
 
-// Definindo como constante global o caminho em caso de erro
-$dir = '../../login.php';
-define('PATH', $dir);
 
-if (isset($_POST['btnLogar'])) {
-    // Sanitização
-    if (verificaInjectHtml($_POST)) {
-        $_SESSION['mensag'] = 'Erro ao logar!';
-        header('Location: ../../login.php'); // Retorna para o cadastro
-    } 
-    // Atribui o conteudo dos campos do formulario a variáveis
-    $email = pg_escape_string(CONNECT, $_POST['email']);
-    $senha = pg_escape_string(CONNECT, $_POST['senha']);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Definindo como constante global o caminho em caso de erro
+    $dir = '../../login.php';
+    define('PATH', $dir);
 
-    // Validações para logar um usuario
-    if (validaEmail($email, PATH)) {
-        // Verifica se o usuario esta ativo
-        if (verificaAtivo($email, PATH)) {
-            // Tenta realizar o login no site
-            logarUsuario($email, md5($senha));
-        }  
+    if (isset($_POST['btnLogar'])) {
+        // Sanitização
+        if (verificaInjectHtml($_POST)) {
+            $_SESSION['mensag'] = 'Erro ao logar!';
+            header('Location: ../../login.php'); // Retorna para o cadastro
+        } 
+        // Atribui o conteudo dos campos do formulario a variáveis
+        $email = pg_escape_string(CONNECT, $_POST['email']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
+    
+        // Validações para logar um usuario
+        if (validaEmail($email, PATH)) {
+            // Verifica se o usuario esta ativo
+            if (verificaAtivo($email, PATH)) {
+                // Tenta realizar o login no site
+                logarUsuario($email, md5($senha));
+            }  
+        }
+        // Encerando a conexão
+        pg_close(CONNECT);
     }
-    // Encerando a conexão
-    pg_close(CONNECT);
 }
+
 /**
  * Função para executar o login no website
  * 

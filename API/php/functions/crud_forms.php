@@ -8,18 +8,20 @@ require_once '../includes/connect.php';
 // Import de bibliotecas de funções
 include_once '../functions/verifica_valida.php';
 
-// Verifica se o formulario foi de update, delete ou register
-if (isset($_POST['btnAtualizar'])) {
-    crudUpdate();
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Verifica se o formulario foi de update, delete ou register
+    if (isset($_POST['btnAtualizar'])) {
+        crudUpdate();
+    }
+    else if (isset($_POST['btnDeletar'])) {
+        crudDelete();
+    }
+    else if (isset($_POST['btnCadastrar'])) {
+        crudRegister();
+    }
+    // Encerando a conexão
+    pg_close(CONNECT);
 }
-else if (isset($_POST['btnDeletar'])) {
-    crudDelete();
-}
-else if (isset($_POST['btnCadastrar'])) {
-    crudRegister();
-}
-// Encerando a conexão
-pg_close(CONNECT);
 
 /**
  * Função para atualizar os dados de um usuario

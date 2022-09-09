@@ -7,19 +7,23 @@
  * @author Henrique Dalmagro
  */
 function crudGetDados(): array{
-    if (isset($_GET['id'])) {
-        $id = pg_escape_string(CONNECT, $_GET['id']);
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
-        // Seleciona na tabela usuarios um usuario com mesmo ID
-        $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
-        $query = pg_query(CONNECT, $sql);
+        // 
+        if (isset($_GET['id'])) {
+            $id = pg_escape_string(CONNECT, $_GET['id']);
 
-        // Retorna o resultado convertido em um array
-        $userData = pg_fetch_array($query);
+            // Seleciona na tabela usuarios um usuario com mesmo ID
+            $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
+            $query = pg_query(CONNECT, $sql);
 
-        return $userData;
+            // Retorna o resultado convertido em um array
+            $userData = pg_fetch_array($query);
+
+            return $userData;
+        }
+        // Encerando a conexão
+        pg_close(CONNECT);
     }
-    // Encerando a conexão
-    pg_close(CONNECT);
 }
 ?>

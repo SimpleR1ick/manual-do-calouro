@@ -11,46 +11,47 @@ include_once '../functions/verifica_valida.php';
 
 //include_once '../functions/upload.php';
 
-// Definindo como constante global o caminho em caso de erro
-$dir = '../../perfis.php';
-define('PATH', $dir);
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Definindo como constante global o caminho em caso de erro
+    $dir = '../../perfis.php';
+    define('PATH', $dir);
 
-if (isset($_POST['btnIncrement'])) {
-    if (verificaInjectHtml($_POST)) {
-        $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
-        header('Location: ../../perfis.php'); // Retorna para o perfil
-    
-    }
-    // Armazena em uma variavel o nivel de acesso via post em um hyden input
-    $acesso = $_POST['acesso'];
-
-    $nome = pg_escape_string(CONNECT, $_POST['nome']);
-    $email = pg_escape_string(CONNECT, $_POST['email']);
-
-    // Verifica se o email ja consta no banco de dados
-    if (verificaEmail($email, PATH)) {
+    if (isset($_POST['btnIncrement'])) {
+        if (verificaInjectHtml($_POST)) {
+            $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
+            header('Location: ../../perfis.php'); // Retorna para o perfil
         
-        atualizaDadosUsuario($nome, $email);
-
-        switch ($acesso) {
-            case 1:
-                // Atribui o conteudo obtido dos campos modulo e curso do formulario
-                $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
-                $curso = pg_escape_string(CONNECT, $_POST['curso']);
-
-                perfilAluno($modulo, $curso);
-
-            case 2:
-                // Atribui o conteudo obtido do campo regras do formulario
-                $regras = pg_escape_string(CONNECT, $_POST['regras']);
-
-                perfilProfessor($regras);
         }
-    }
-    // Encerando a conexão
-    pg_close(CONNECT);
-}
+        // Armazena em uma variavel o nivel de acesso via post em um hyden input
+        $acesso = $_POST['acesso'];
 
+        $nome = pg_escape_string(CONNECT, $_POST['nome']);
+        $email = pg_escape_string(CONNECT, $_POST['email']);
+
+        // Verifica se o email ja consta no banco de dados
+        if (verificaEmail($email, PATH)) {
+            
+            atualizaDadosUsuario($nome, $email);
+
+            switch ($acesso) {
+                case 1:
+                    // Atribui o conteudo obtido dos campos modulo e curso do formulario
+                    $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
+                    $curso = pg_escape_string(CONNECT, $_POST['curso']);
+
+                    perfilAluno($modulo, $curso);
+
+                case 2:
+                    // Atribui o conteudo obtido do campo regras do formulario
+                    $regras = pg_escape_string(CONNECT, $_POST['regras']);
+
+                    perfilProfessor($regras);
+            }
+        }
+        // Encerando a conexão
+        pg_close(CONNECT);
+    }
+}
     
 /**
  * Função para atualizar os dados do usuario

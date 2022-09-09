@@ -9,32 +9,35 @@ require_once 'connect.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/verifica_valida.php';
 
-// Definindo como constante global o caminho em caso de erro
-$dir = '../../cadastro.php';
-define('PATH', $dir);
+// Verificando o 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Definindo como constante global o caminho em caso de erro
+    $dir = '../../cadastro.php';
+    define('PATH', $dir);
 
-if (isset($_POST['btnCadastrar'])) {
-    // Sanitização
-    if (verificaInjectHtml($_POST)) {
-        $_SESSION['mensag'] = 'Erro ao cadastrar!';
-        header("Location: PATH"); // Retorna para o cadastro
-    }
-    // Atribui o conteudo dos campos do formulario a variáveis
-    $nome = pg_escape_string(CONNECT, $_POST['nome']);
-    $email = pg_escape_string(CONNECT, $_POST['email']);
-    $senha = pg_escape_string(CONNECT, $_POST['senha']);
-    $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
-
-    // Validações para cadastrar um usuário
-    if (validaEmail($email, PATH) && validaSenha($senha, $senha2, PATH)){
-        // Verifica se o email ja consta no banco de dados
-        if (verificaEmail($email, PATH)) {
-            // Tenta Cadastrar o usuario no site
-            cadastraUsuario($nome, $email, md5($senha));
+    if (isset($_POST['btnCadastrar'])) {
+        // Sanitização
+        if (verificaInjectHtml($_POST)) {
+            $_SESSION['mensag'] = 'Erro ao cadastrar!';
+            header("Location: PATH"); // Retorna para o cadastro
         }
+        // Atribui o conteudo dos campos do formulario a variáveis
+        $nome = pg_escape_string(CONNECT, $_POST['nome']);
+        $email = pg_escape_string(CONNECT, $_POST['email']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
+        $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
+
+        // Validações para cadastrar um usuário
+        if (validaEmail($email, PATH) && validaSenha($senha, $senha2, PATH)){
+            // Verifica se o email ja consta no banco de dados
+            if (verificaEmail($email, PATH)) {
+                // Tenta Cadastrar o usuario no site
+                cadastraUsuario($nome, $email, md5($senha));
+            }
+        }
+        // Encerando a conexão
+        pg_close(CONNECT);
     }
-    // Encerando a conexão
-    pg_close(CONNECT);
 }
 
 /**

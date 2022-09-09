@@ -31,32 +31,47 @@ function verificaInjectHtml($arrayString): bool {
  */
 function removerTagsHtml($array): array {
     foreach ($array as $key => $value) {
-        // Invoca uma função que remove tags HTML
-        $f_string = htmlspecialchars($value, ENT_QUOTES);
-
+        // Invoca funções que remove TAGS HTML, contra-barras e espaço em branco
+        $value = htmlspecialchars($value, ENT_QUOTES);
+        $value = stripslashes($value);
+        $f_string = trim($value);
+    
         // Sobreescreve o valor original
         $array[$key] = $f_string;
     }
     return $array;
 }
+/**
+ * 
+ * 
+ * 
+ */
+function validaNome($string) {
+    if(!preg_match("/^[a-zA-Z]$/", $string)){
+        $_SESSION['mensag'] = 'Não utilize numeros e caracter especiais';
+        return false;
+    }
+    return true;
+}
 
 /**
- * Função para remover os espaços em branco em cada par de chave valor
  * 
- * @param array $array
  * 
- * @return array $array
  * 
- * @author Henrique Dalmagro
+ * 
  */
-function removerEspacosEmBranco($array): array {
-    foreach ($array as $key => $value) {
-        // Invoca uma função que remove character em branco
-        $copy = trim($value);
+function sanitizaString($value): string {
+    $value = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Sobreescreve o valor original
-        $array[$key] = $copy;
-    }
-    return $array;
+    return $value;
+}
+
+/**
+ * 
+ * 
+ * 
+ */
+function criptografia() {
+    $chave = password_hash($_POST['email'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
 }
 ?>
