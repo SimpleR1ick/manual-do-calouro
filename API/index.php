@@ -1,5 +1,6 @@
 <!-- Header -->
-<?php include_once 'php/includes/header.php'; ?>
+<?php include_once 'php/includes/header.php'; 
+verificaAcessoCrud(); ?>
 
 <!-- Conteúdo da pagina -->
 <section>

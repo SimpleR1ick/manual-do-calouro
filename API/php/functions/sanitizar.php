@@ -10,7 +10,7 @@
  */
 function verificaInjectHtml($arrayString): bool {
     foreach ($arrayString as $string) {
-        $f_string = htmlspecialchars($string);
+        $f_string = htmlspecialchars($string, ENT_QUOTES);
 
         if ($f_string != $string) {
             return true;
@@ -32,7 +32,6 @@ function verificaInjectHtml($arrayString): bool {
 function sanitizaPost($array): array {
     foreach ($array as $key => $value) {
         // Invoca funções que remove TAGS HTML, contra-barras e espaço em branco
-        $value = htmlspecialchars($value, ENT_QUOTES);
         $value = stripslashes($value);
         $f_string = trim($value);
     

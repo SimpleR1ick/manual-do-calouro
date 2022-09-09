@@ -87,8 +87,5 @@
                 </ul>
             </div>
         </div>
-        <div class="col py-3">
-            <?php include_once "forms_crud/"?>
-        </div>
     </div>
 </div>

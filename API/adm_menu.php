@@ -1,3 +1,5 @@
+<?php include_once 'php/admin/adm_header.php'; ?>
+
 <div class="d-flex justify-content-center mb-3">
     <!-- BOTÃO DE ABRIR O PAINEL -->
     <!--<a class="nav-link" data-bs-toggle="offcanvas" href="#adm_menu" role="button" aria-controls="adm_menu">
@@ -23,3 +25,5 @@
         </div>
     </div>
 </div>
+
+<?php include_once 'php/admin/adm_footer.php'; ?>

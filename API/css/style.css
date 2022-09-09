@@ -41,6 +41,7 @@ span ul.nav.flex-column {
         width: 100%;
         max-height: 75vh;
     }
+
 }
 
 #foto-editar-perfil {
@@ -69,6 +70,12 @@ span ul.nav.flex-column {
     max-width: 110px;
 }
 
-#td {
+td {
     min-width: 80px;
+}
+
+@media screen and (max-width: 900px) {
+    td strong, td small {
+        font-size: 13px;
+    }
 }

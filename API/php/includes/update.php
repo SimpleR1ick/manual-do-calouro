@@ -17,42 +17,49 @@ define('PATH', $dir);
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+    // Verifica se o POST foi enviado pelo botão
     if (isset($_POST['btnIncrement'])) {
+        // Sanitização
+        $_POST = sanitizaPost($_POST); 
         
         if (verificaInjectHtml($_POST)) {
             $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
             header('Location: ../../perfis.php'); // Retorna para o perfil
         
         }
+        $id = $_SESSION['id_usuario'];
         $nome = pg_escape_string(CONNECT, $_POST['nome']);
         $email = pg_escape_string(CONNECT, $_POST['email']);
 
-        // Verifica se o email ja consta no banco de dados
-        if (verificaEmail($email, PATH)) {
+        // Validações
+        if (validaNome($nome, PATH) && validaEmail($email, PATH)) {
+            // Verifica se o email ja consta no banco de dados
+            if (verificaEmail($email, PATH)) {
             
-            atualizaDadosUsuario($nome, $email);
+                atualizaDadosUsuario($nome, $email);
 
-            // Armazena em uma variavel o nivel de acesso via post em um hyden input
-            $acesso = $_POST['acesso'];
+                // Nivel de acesso recebido via post em um hyden input
+                switch ($_POST['acesso']) {
+                    case 1:
+                        // Atribui o conteudo obtido dos campos modulo e curso do formulario
+                        $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
+                        $curso = pg_escape_string(CONNECT, $_POST['curso']);
 
-            switch ($acesso) {
-                case 1:
-                    // Atribui o conteudo obtido dos campos modulo e curso do formulario
-                    $modulo = pg_escape_string(CONNECT, $_POST['modulo']);
-                    $curso = pg_escape_string(CONNECT, $_POST['curso']);
+                        perfilAluno($modulo, $curso);
 
-                    perfilAluno($modulo, $curso);
+                    case 2:
+                        // Atribui o conteudo obtido do campo regras do formulario
+                        $regras = pg_escape_string(CONNECT, $_POST['regras']);
 
-                case 2:
-                    // Atribui o conteudo obtido do campo regras do formulario
-                    $regras = pg_escape_string(CONNECT, $_POST['regras']);
-
-                    perfilProfessor($regras);
+                        perfilProfessor($regras);
+                    case 3:
+                        //
+                        perfilServidor();    
+                }
             }
+            // Encerando a conexão
+            pg_close(CONNECT);
         }
-        // Encerando a conexão
-        pg_close(CONNECT);
     }
 }
     
@@ -67,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 function atualizaDadosUsuario($nome, $email): void {
     // Query para fazer o update das informações do usuário
     $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
-            WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+            WHERE id_usuario = $id";
 
     $query = pg_query(CONNECT, $sql);
 
@@ -96,23 +103,18 @@ function atualizaDadosUsuario($nome, $email): void {
  */
 function perfilAluno($modulo, $curso) {
     // Fazer verificação se o aluno ja esta cadastrado
-    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = '{$_SESSION['id_usuario']}')";
+    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id)";
     $query = pg_query(CONNECT, $sql);
 
     if (pg_num_rows($query) > 0) {
-        $sql = "UPDATE aluno
-                SET fk_usuario_id_usuario = 
-                (SELECT id_turma
-                FROM turma
+        $sql = "UPDATE aluno SET fk_usuario_id_usuario = (SELECT id_turma FROM turma
                 WHERE num_modulo = $modulo
                 AND fk_curso_id_curso = $curso)
-                WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+                WHERE id_usuario = $id";
     } else {
         // Query para fazer o update das informações do aluno
         $sql = "INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
-                ('{$_SESSION['id_usuario']}',
-                (SELECT id_turma
-                FROM turma
+                ($id, (SELECT id_turma FROM turma
                 WHERE num_modulo = $modulo
                 AND fk_curso_id_curso = $curso))";
     }
@@ -137,5 +139,14 @@ function perfilProfessor($regras) {
         // Adiciona à sessão uma mensagem de sucesso
         $_SESSION['mensag'] = 'Erro ao atualizar as regras!';
     }  
+}
+
+/**
+ * 
+ * 
+ * 
+ */
+function perfilServidor() {
+
 }
 ?>

@@ -15,9 +15,11 @@ define('PATH', $dir);
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+    // Verifica se o POST foi enviado pelo botão
     if (isset($_POST['btnCadastrar'])) {
         // Sanitização
+        $_POST = sanitizaPost($_POST); 
+
         if (verificaInjectHtml($_POST)) {
             $_SESSION['mensag'] = 'Erro ao cadastrar!';
             header("Location: PATH"); // Retorna para o cadastro
@@ -28,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $senha = pg_escape_string(CONNECT, $_POST['senha']);
         $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
 
-        // Validações para cadastrar um usuário
-        if (validaEmail($email, PATH) && validaSenha($senha, $senha2, PATH)){
+        // Validações
+        if (validaNome($nome, PATH) && validaEmail($email, PATH) && validaSenha($senha, $senha2, PATH)){
             // Verifica se o email ja consta no banco de dados
             if (verificaEmail($email, PATH)) {
                 // Tenta Cadastrar o usuario no site

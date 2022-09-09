@@ -20,8 +20,8 @@ if ($_FILES['foto'] != NULL) {
         // Utiliza o mesmo nome do banco para atualizar a foto
         $nome_final = $pathBanco;
     }
-    pg_close(CONNECT);
     
+
     // Verifica se o tamanho da foto esta no limite permitido
     if ($foto_size < $_POST['MAX_FILE_SIZE']) {
         $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario = ID";

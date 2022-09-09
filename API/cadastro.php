@@ -1,9 +1,6 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
-<!-- Conteúdo da pagina -->
-<?php include_once 'php/functions/erros.php'; ?>
-
 <section>
     <div class="mb-4">
         <div class="container">
