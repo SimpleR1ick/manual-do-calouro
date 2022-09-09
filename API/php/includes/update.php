@@ -11,20 +11,19 @@ include_once '../functions/verifica_valida.php';
 
 //include_once '../functions/upload.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Definindo como constante global o caminho em caso de erro
-    $dir = '../../perfis.php';
-    define('PATH', $dir);
+// Definindo como constante global o caminho em caso de erro
+$dir = '../../perfis.php';
+define('PATH', $dir);
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    
     if (isset($_POST['btnIncrement'])) {
+        
         if (verificaInjectHtml($_POST)) {
             $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
             header('Location: ../../perfis.php'); // Retorna para o perfil
         
         }
-        // Armazena em uma variavel o nivel de acesso via post em um hyden input
-        $acesso = $_POST['acesso'];
-
         $nome = pg_escape_string(CONNECT, $_POST['nome']);
         $email = pg_escape_string(CONNECT, $_POST['email']);
 
@@ -32,6 +31,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (verificaEmail($email, PATH)) {
             
             atualizaDadosUsuario($nome, $email);
+
+            // Armazena em uma variavel o nivel de acesso via post em um hyden input
+            $acesso = $_POST['acesso'];
 
             switch ($acesso) {
                 case 1:

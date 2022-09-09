@@ -1,5 +1,4 @@
-<!-- PHP -->
-<?php include_once 'session.php'; ?>
+<?php require_once '../functions/session.php'; ?>
 
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">

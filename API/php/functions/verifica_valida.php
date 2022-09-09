@@ -1,23 +1,23 @@
 <?php
 /**
- * Função para verificar se as senhas coincidem
+ * Função para verificar se o nome de entrada esta nos parametros do site
  * 
- * @param string $senha1 Primeira senha
- * @param string $senha2 Confirmação de senha
+ * @param string $string Nome a ser verificado
  * @param string $pagePath Caminho de retorno em caso de erro
  * 
- * @return bool|false Caso as senhas foram diferentes
- * 
+ * @return bool|false Caso tenha numeros ou caracter especiais
+ *  
  * @author Henrique Dalmagro
  */
-function validaSenha($senha1, $senha2, $pagePath): bool {
-    if ($senha1 !== $senha2) {
-        $_SESSION['mensag'] = 'Senhas não idênticas!';
+function validaNomeUsuario($string, $pagePath) {
+    // Verifica se a string possui numeros ou caracter especiais
+    if (!preg_match("/^[a-zA-Z]$/", $string)){
+        $_SESSION['mensag'] = 'Não utilize numeros e caracter especiais';
 
         // Retorna a pagina de origem
         header("Location: $pagePath"); 
         return false;
-    } 
+    }
     return true;
 }
 
@@ -45,6 +45,28 @@ function validaEmail($email, $pagePath): bool {
         return false;
     } 
     return true; 
+}
+
+/**
+ * Função para verificar se as senhas coincidem
+ * 
+ * @param string $senha1 Primeira senha
+ * @param string $senha2 Confirmação de senha
+ * @param string $pagePath Caminho de retorno em caso de erro
+ * 
+ * @return bool|false Caso as senhas foram diferentes
+ * 
+ * @author Henrique Dalmagro
+ */
+function validaSenha($senha1, $senha2, $pagePath): bool {
+    if ($senha1 !== $senha2) {
+        $_SESSION['mensag'] = 'Senhas não idênticas!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath"); 
+        return false;
+    } 
+    return true;
 }
 
 /**

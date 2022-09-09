@@ -29,7 +29,7 @@ function verificaInjectHtml($arrayString): bool {
  * 
  * @author Henrique Dalmagro
  */
-function removerTagsHtml($array): array {
+function sanitizaPost($array): array {
     foreach ($array as $key => $value) {
         // Invoca funções que remove TAGS HTML, contra-barras e espaço em branco
         $value = htmlspecialchars($value, ENT_QUOTES);
@@ -41,19 +41,6 @@ function removerTagsHtml($array): array {
     }
     return $array;
 }
-/**
- * 
- * 
- * 
- */
-function validaNome($string) {
-    if(!preg_match("/^[a-zA-Z]$/", $string)){
-        $_SESSION['mensag'] = 'Não utilize numeros e caracter especiais';
-        return false;
-    }
-    return true;
-}
-
 /**
  * 
  * 

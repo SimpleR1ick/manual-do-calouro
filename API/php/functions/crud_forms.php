@@ -6,7 +6,7 @@ session_start();
 require_once '../includes/connect.php';
 
 // Import de bibliotecas de funções
-include_once '../functions/verifica_valida.php';
+include_once './verifica_valida.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se o formulario foi de update, delete ou register

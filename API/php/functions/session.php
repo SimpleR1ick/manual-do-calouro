@@ -3,7 +3,7 @@
 session_start();
 
 // Conectando com o banco de dados
-require_once 'connect.php';
+require_once '../includes/connect.php';
 
 /**
  * Função para armazenar os dados do usuario da sessão atual
@@ -96,6 +96,38 @@ function exibirFoto(): void {
 }
 
 /**
+ * Função para imprimir o ultimo erro gerado
+ * 
+ * @author Rafael Barros - Henrique Dalmagro
+ */
+function exibirErros(): void {
+    // Verifica se existe alguma menssagem de erro de login e imprime
+    if (isset($_SESSION['mensag'])) {
+        $texto_mensagem = $_SESSION['mensag'];
+
+        echo "<p class='align-middle text-center text-danger'>$texto_mensagem</p>";
+        
+        unset($_SESSION['mensag']);
+    }
+}
+
+/**
+ * Função para imprimir mesagem de sucesso
+ * 
+ * @author Rafael Barros
+ */
+function exibirSucesso(): void {
+    // Verifica se existe alguma mensagem de sucesso de login 
+    if (isset($_SESSION['sucess'])) {
+        $texto_sucesso = $_SESSION['sucess'];
+
+        echo "<p class='align-middle text-center text-success'>$texto_sucesso</p>";
+
+        unset($_SESSION['sucess']);
+    }
+}
+
+/**
  * Função para verificar o acesso ao crud de usuarios
  * 
  * @author Henrique Dalmagro
@@ -112,6 +144,24 @@ function verificaNivelAcesso(): void {
         }
     } else {
         header('Location: index.php');
+    }
+}
+
+/**
+ * Função para verificar o acesso ao crud de usuarios
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaAcessoCrud(): void {
+    if (isset($_SESSION['id_usuario'])) {
+        $userData = getDadosUsuario();
+
+        // Armazena em uma variavel o nivel de acesso do usuario  
+        $acesso = $userData['acesso'];
+
+        if ($acesso == 0) {
+            header('Location: crud_index.php');
+        }
     }
 }
 ?>

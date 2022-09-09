@@ -8,7 +8,6 @@
  */
 function crudGetDados(): array{
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-
         // 
         if (isset($_GET['id'])) {
             $id = pg_escape_string(CONNECT, $_GET['id']);

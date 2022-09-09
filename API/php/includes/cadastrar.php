@@ -9,12 +9,13 @@ require_once 'connect.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/verifica_valida.php';
 
+// Definindo como constante global o caminho em caso de erro
+$dir = '../../cadastro.php';
+define('PATH', $dir);
+
 // Verificando o 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Definindo como constante global o caminho em caso de erro
-    $dir = '../../cadastro.php';
-    define('PATH', $dir);
-
+    
     if (isset($_POST['btnCadastrar'])) {
         // Sanitização
         if (verificaInjectHtml($_POST)) {
