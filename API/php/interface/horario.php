@@ -23,16 +23,16 @@ if (isset($_GET['curso']) && isset($_GET['modulo'])) {
                 u.nom_usuario
                 FROM aula au
                 JOIN sala_aula s ON (au.fk_sala_aula_id_sala_aula = s.id_sala_aula)
-                JOIN disciplina d ON (au.fk_disciplina_id_disciplina = d.id_disciplina)
-                LEFT JOIN professor_disciplina pd ON (d.id_disciplina = pd.fk_disciplina_id_disciplina)
+                JOIN professor_disciplina pd ON (au.fk_professor_disciplina_id_professor_disciplina = pd.id_professor_disciplina)
+                LEFT JOIN disciplina d ON (d.id_disciplina = pd.fk_disciplina_id_disciplina)
                 LEFT JOIN professor p ON (pd.fk_professor_fk_servidor_fk_usuario_id_usuario = p.fk_servidor_fk_usuario_id_usuario)
                 LEFT JOIN servidor se ON (p.fk_servidor_fk_usuario_id_usuario = se.fk_usuario_id_usuario)
                 LEFT JOIN usuario u ON (se.fk_usuario_id_usuario = u.id_usuario)
                 JOIN turma t ON (au.fk_turma_id_turma = t.id_turma)
                 LEFT JOIN horario_aula ha ON (ha.id_horario_aula = au.fk_horario_aula_id_horario_aula)
                 WHERE au.fk_dia_semana_id_dia_semana IN (2, 3, 4, 5, 6, 7)
-                AND t.fk_curso_id_curso = $curso
-                AND t.num_modulo = $modulo)
+                AND t.fk_curso_id_curso = 1
+                AND t.num_modulo = 6)
 
             UNION
 
@@ -47,8 +47,8 @@ if (isset($_GET['curso']) && isset($_GET['modulo'])) {
                 nom_usuario
                 FROM (SELECT * , '-' AS num_sala_aula, '-' AS dsc_disciplina, '-' AS nom_usuario FROM (SELECT * FROM
                 (SELECT id_dia_semana, id_horario_aula, id_turma FROM dia_semana, horario_aula, turma
-                WHERE turma.fk_curso_id_curso = $curso
-                AND turma.num_modulo = $modulo
+                WHERE turma.fk_curso_id_curso = 1
+                AND turma.num_modulo = 6
                 except
                 SELECT fk_dia_semana_id_dia_semana AS id_dia_semana, fk_horario_aula_id_horario_aula AS id_horario_aula, fk_turma_id_turma FROM aula ORDER BY id_dia_semana)
                 AS table1
