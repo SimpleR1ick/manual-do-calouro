@@ -15,6 +15,9 @@ include_once '../functions/verificar.php';
 $dir = '../../perfis.php';
 define('PATH', $dir);
 
+// Armazenado o id da sessão em uma variavel
+$id = $_SESSION['id_usuario'];
+
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se o POST foi enviado pelo botão
@@ -27,7 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: ../../perfis.php'); // Retorna para o perfil
         
         }
-        $id = $_SESSION['id_usuario'];
         $nome = pg_escape_string(CONNECT, $_POST['nome']);
         $email = pg_escape_string(CONNECT, $_POST['email']);
 
@@ -72,6 +74,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  * @author Henrique Dalmagro
  */
 function atualizaDadosUsuario($nome, $email): void {
+    global $id;
+
     // Query para fazer o update das informações do usuário
     $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
             WHERE id_usuario = $id";
@@ -102,6 +106,8 @@ function atualizaDadosUsuario($nome, $email): void {
  * @author Rafael Barros - Henrique Dalmagro
  */
 function perfilAluno($modulo, $curso) {
+    global $id;
+
     // Fazer verificação se o aluno ja esta cadastrado
     $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id)";
     $query = pg_query(CONNECT, $sql);
@@ -131,9 +137,11 @@ function perfilAluno($modulo, $curso) {
  * @author Rafael Barros - Henrique Dalmagro
  */
 function perfilProfessor($regras) {
+    global $id;
+
     // Query para fazer o update das informações do professor
     $sql = "UPDATE professor SET regras = '$regras'
-            WHERE fk_servidor_fk_usuario_id_usuario = '{$_SESSION['id_usuario']}'";
+            WHERE fk_servidor_fk_usuario_id_usuario = $id";
 
     if (!pg_query(CONNECT, $sql)) {
         // Adiciona à sessão uma mensagem de sucesso
