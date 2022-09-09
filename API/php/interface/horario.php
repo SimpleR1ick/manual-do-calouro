@@ -76,8 +76,10 @@ if (isset($_GET['curso']) && isset($_GET['modulo'])) {
         echo "<td class=\"align-middle\">{$horario[$i]['hora_aula_inicio']}<br>{$horario[$i]['hora_aula_fim']}</td>";
 
         // Loop para cada aula
-        for ($l = 0; $l < 6; $l++) { ?>
-            <td>
+        for ($l = 0; $l < 6; $l++) {
+            $qtd, $a = verificaQtdAula($aulas, $a);
+            ?>
+            <td rowspan="<?php echo $qtd ?>">
                 <span class="d-flex flex-column">
                     <small><?php echo $aulas[$a]['num_sala_aula']; ?></small>
                     <strong class="text-break"><?php echo $aulas[$a]['dsc_disciplina']; ?></strong>
@@ -110,5 +112,21 @@ if (isset($_GET['curso']) && isset($_GET['modulo'])) {
             <?php
         }
     }
+}
+
+function verificaQtdAula($aula, $pos): int {
+    $qtd = 1;
+    $continua = true;
+
+    while ($continua) {
+        if ($aulas[$pos]['dsc_disciplina'] == $aulas[$pos+1]['dsc_disciplina']) {
+            $qtd++;
+            $pos++;
+        } else {
+            $continua = false;
+        }
+    }
+
+    return $qtd, $pos;
 }
 ?>
