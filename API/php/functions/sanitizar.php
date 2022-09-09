@@ -41,6 +41,7 @@ function sanitizaPost($array): array {
     }
     return $array;
 }
+
 /**
  * Função para filtar uma string de caracter especiais
  * 
