@@ -2,12 +2,14 @@
 // Inicia a sessão
 session_start();
 
-// Conexão com banco de dados
-require_once '../includes/connect.php';
+// Incia a conexão com banco de dados
+require_once './db_connect.php';
 
 // Import de bibliotecas de funções
-include_once './verifica_valida.php';
+include_once '../functions/sanitizar.php';
+include_once '../functions/validar.php';
 
+// Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se o formulario foi de update, delete ou register
     if (isset($_POST['btnAtualizar'])) {

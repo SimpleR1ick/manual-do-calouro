@@ -2,12 +2,12 @@
 // Iniciar a sessão
 session_start();
 
-// Conexão com banco de dados
-require_once 'connect.php';
+// Inicia a conexão com banco de dados
+require_once 'db_connect.php';
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
-include_once '../functions/verifica_valida.php';
+include_once '../functions/verificar.php';
 
 //include_once '../functions/upload.php';
 
@@ -15,6 +15,7 @@ include_once '../functions/verifica_valida.php';
 $dir = '../../perfis.php';
 define('PATH', $dir);
 
+// Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (isset($_POST['btnIncrement'])) {

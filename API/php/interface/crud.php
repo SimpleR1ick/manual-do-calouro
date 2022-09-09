@@ -48,7 +48,7 @@ else:
 
                     <!-- RODAPÉ -->
                     <div class="modal-footer">
-                        <form action="php/functions/crud_forms.php" method="POST">
+                        <form action="php/includes/crud_forms.php" method="POST">
                             <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                             <button type="submit" class="btn btn-danger" name="btnDeletar" id="toastDeleteBtn" > Deletar </button>

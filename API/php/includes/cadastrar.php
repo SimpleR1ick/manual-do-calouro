@@ -2,18 +2,18 @@
 // Iniciar a sessão
 session_start();
 
-// Conexão com banco de dados
-require_once 'connect.php';
+// Incia a conexão com banco de dados
+require_once './db_connect.php';
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
-include_once '../functions/verifica_valida.php';
+include_once '../functions/validar.php';
 
 // Definindo como constante global o caminho em caso de erro
 $dir = '../../cadastro.php';
 define('PATH', $dir);
 
-// Verificando o 
+// Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (isset($_POST['btnCadastrar'])) {

@@ -42,23 +42,44 @@ function sanitizaPost($array): array {
     return $array;
 }
 /**
+ * Função para filtar uma string de caracter especiais
  * 
+ * @param string $value A string
+ * @return string $filtrada 
  * 
- * 
- * 
+ * @author Henrique Dalmagro
  */
 function sanitizaString($value): string {
-    $value = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+    $filtrada = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
 
-    return $value;
+    return $filtrada;
 }
 
 /**
+ * Função para criptografar uma string com base_64
  * 
+ * @param string $string A string
+ * @return string $codificada String codificada
  * 
- * 
+ * @author Henrique Dalmagro
  */
-function criptografia() {
-    $chave = password_hash($_POST['email'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+function criptografarString($string): string {
+    $codificada = base64_encode($string);
+
+    return $codificada;
+}
+
+/**
+ * Função para descriptografar uma string com base_64
+ * 
+ * @param string $string A string
+ * @return string $decodificada String codificada
+ * 
+ * @author Henrique Dalmagro
+ */
+function desencriptarString($string): string {
+    $decodificada = base64_decode($string);
+
+    return $decodificada;
 }
 ?>
