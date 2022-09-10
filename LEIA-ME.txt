@@ -1,0 +1,5 @@
+Para acesso ao CRUD, utilize os seguintes login e senha:
+login: trabalho@progweb.com
+senha: progweb
+
+O banco de dados está na nuvem, utilizamos PostgreSQl e ElephantSQl para hostear.
