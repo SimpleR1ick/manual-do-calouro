@@ -31,7 +31,7 @@ function verificaInjectHtml($arrayString): bool {
  */
 function sanitizaPost($array): array {
     foreach ($array as $key => $value) {
-        // Invoca funções que remove TAGS HTML, contra-barras e espaço em branco
+        // Invoca funções que remove contra-barras e espaço em branco
         $value = stripslashes($value);
         $f_string = trim($value);
     

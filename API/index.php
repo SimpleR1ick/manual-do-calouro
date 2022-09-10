@@ -1,17 +1,13 @@
 <!-- Header -->
-<?php include_once 'php/includes/header.php'; 
+<?php include_once 'php/includes/header.php';
 verificaAcessoCrud(); ?>
 
 <!-- Conteúdo da pagina -->
+<?php include_once 'php/includes/toast.php'; ?>
+
 <section>
     <div class="container div-video d-flex justify-content-center">
-        <iframe 
-            class="video"
-            src="https://www.youtube.com/embed/aANuDntBtOU" 
-            title="YouTube video player" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen>
+        <iframe class="video" src="https://www.youtube.com/embed/aANuDntBtOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
         </iframe>
     </div>
 </section>
@@ -27,14 +23,14 @@ verificaAcessoCrud(); ?>
             </p>
         </div>
     </div>
-    
+
     <div class="p-5">
         <div class="container">
             <h1 class="h1">Estrutura</h1>
             <p>
                 O Instituto Federal do Espírito Santo oferece de cursos técnicos ao doutorado e possui mais de 36 mil alunos. São 100 cursos técnicos, 63 cursos de graduação, 30 cursos de pós-graduação em nível de especialização e aperfeiçoamento, 11 mestrados e 1 doutorado profissional.
                 <br><br>
-                Com 22 campi em funcionamento, incluindo o Centro de Referência em Formação e em Educação a Distância - Cefor, o Ifes se faz presente em todas as microrregiões capixabas. O Instituto possui ainda 49 polos de educação a distância no Espírito Santo, o Polo de Inovação e a Cidade da Inovação. 
+                Com 22 campi em funcionamento, incluindo o Centro de Referência em Formação e em Educação a Distância - Cefor, o Ifes se faz presente em todas as microrregiões capixabas. O Instituto possui ainda 49 polos de educação a distância no Espírito Santo, o Polo de Inovação e a Cidade da Inovação.
             </p>
         </div>
     </div>

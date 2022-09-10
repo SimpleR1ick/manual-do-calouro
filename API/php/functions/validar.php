@@ -11,8 +11,8 @@
  */
 function validaNome($string, $pagePath) {
     // Verifica se a string possui numeros ou caracter especiais
-    if (!preg_match("/^[a-zA-Z]$/", $string)){
-        $_SESSION['mensag'] = 'Nomes não podem ter números ou caracteres especiais!';
+    if (!preg_match('/^[a-zA-Z\s]+$/', $string)){
+        $_SESSION['mensag'] = 'Nomes não podem ter números<br>ou caracteres especiais!';
 
         // Retorna a pagina de origem
         header("Location: $pagePath"); 
@@ -59,7 +59,7 @@ function validaEmail($email, $pagePath): bool {
  * @author Henrique Dalmagro
  */
 function validaSenha($senha1, $senha2, $pagePath): bool {
-    if ($senha1 !== $senha2) {
+    if ($senha1 != $senha2) {
         $_SESSION['mensag'] = 'Senhas não idênticas!';
 
         // Retorna a pagina de origem
@@ -67,6 +67,20 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
         return false;
     } 
     return true;
+}
+
+/**
+ * 
+ * 
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaSenha($password) {
+    $pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
+
+    $valid = preg_match($pattern, $password) ? true : false;
+
+    return $valid;
 }
 
 /**

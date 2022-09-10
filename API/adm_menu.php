@@ -19,7 +19,7 @@
 
         <!-- CORPO DO PAINEL -->
         <div class="offcanvas-body d-flex flex-column">
-            <a class="btn btn-lg btn-dark" href="php/interface/crud_index.php" role="button">
+            <a class="btn btn-lg btn-dark" href="crud_index.php" role="button">
                 CRUD
             </a>
         </div>

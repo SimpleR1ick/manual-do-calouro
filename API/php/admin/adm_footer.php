@@ -1,10 +1,4 @@
-    <!-- Rodapé da pagina -->
-    <footer class="text-light p-2 fixed-bottom">
-        <div class="container">
-            <small>&copy; Todos os direitos reservados 2022</small>
-        </div>
-    </footer>
-    
+    <!-- Rodapé da pagina -->    
     <script type="text/javascript" src="js/toast.js"></script>
 
     <!-- JavaScript -->

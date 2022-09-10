@@ -148,6 +148,19 @@ function verificaNivelAcesso(): void {
 }
 
 /**
+ * Função para verificar se existe um usuario na sessão,
+ * caso não o redireciona pro home.
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaUsuarioLogado(): void {
+    if (!isset($_SESSION['id_usuario'])) {
+        $_SESSION['toast'] = 'Acesso negado, necessario login!';
+        header('Location: index.php');
+    }
+}
+
+/**
  * Função para verificar o acesso ao crud de usuarios
  * 
  * @author Henrique Dalmagro

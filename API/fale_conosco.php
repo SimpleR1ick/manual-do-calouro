@@ -1,8 +1,8 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php';?>
 
-<!-- PHP -->
-<?php $userData = getDadosUsuario(); ?>
+<?php verificaUsuarioLogado();
+$userData = getDadosUsuario(); ?>
 
 <!-- Conteúdo da pagina -->
 <section>
