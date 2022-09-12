@@ -19,7 +19,6 @@
 
     <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active border py-4 px-2" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-
                 <!-- TODOS OS CONTATOS -->
                 <!-- CARD CONTATO -->
                 <div class="d-flex flex-column align-items-center">

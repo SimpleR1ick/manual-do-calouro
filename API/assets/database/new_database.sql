@@ -32,7 +32,7 @@ CREATE TABLE usuario (
     acesso INT NOT NULL DEFAULT 1,
     add_data TIMESTAMP DEFAULT NULL,
     chave_confirma VARCHAR(255) DEFAULT NULL,
-    chave_recuper VARCHAR(255) DEFAULT NULL,
+    chave_recupera VARCHAR(255) DEFAULT NULL,
     chave_salt VARCHAR(255) DEFAULT NULL
 );
 

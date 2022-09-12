@@ -25,4 +25,23 @@ function crudGetDados(): array{
         pg_close(CONNECT);
     }
 }
+
+
+/**
+ * 
+ * 
+ * 
+ */
+function perfilAdministrativo($setor) {
+    global $id;
+
+    // Query para fazer o update das informações do administrativo
+    $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
+            WHERE fk_servidor_fk_usuario_id_usuario = $id";
+
+    if (!pg_query(CONNECT, $sql)) {
+        // Adiciona à sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Erro ao atualizar o setor';
+    }
+}
 ?>

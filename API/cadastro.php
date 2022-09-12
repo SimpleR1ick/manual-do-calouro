@@ -1,6 +1,7 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
+<!-- Conteudo da pagina -->
 <section>
     <div class="mb-4">
         <div class="container">

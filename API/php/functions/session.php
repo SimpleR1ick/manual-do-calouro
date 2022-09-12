@@ -87,10 +87,10 @@ function exibirFoto(): void {
         
         if (!empty($path)) {
             // Imagem do Usuario cadastrada no banco
-            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='img/uploads/$path>";
+            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='assets/uploads/$path>";
         } else {
             // Imagem Default 
-            echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="img/user.png">';
+            echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="assets/images/user.png">';
         }
     }
 }

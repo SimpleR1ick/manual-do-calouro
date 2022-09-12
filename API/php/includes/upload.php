@@ -27,7 +27,7 @@ if ($_FILES['foto'] != NULL) {
         $sql = "UPDATE usuario SET img_perfil ='$novo_nome' WHERE id_usuario = ID";
 
         if (pg_query(CONNECT, $sql)) {
-            if (move_uploaded_file($nome_temp, 'img/uploads/'.$novo_nome)) {
+            if (move_uploaded_file($nome_temp, 'assets/uploads/'.$novo_nome)) {
                 $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
             }
         } else {
