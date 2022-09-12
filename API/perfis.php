@@ -15,17 +15,7 @@ $userData = getDadosUsuario(); ?>
                     <label for="foto-editar-perfil" class="form-label fw-bold h5">Editar foto de perfil</label>
                 </div>
                 <!-- VERIFIAÇÃO -->
-                <?php
-                if ($userData['acesso'] == 1) {
-                    $textoCampo = 'Editar turma';
-                }
-                else if ($userData['acesso'] == 2) {
-                    $textoCampo = 'Editar regras';
-                }   
-                ?>
-                <div class="col-6 text-center">
-                    <label class="form-label fw-bold h5"><?php echo $textoCampo; ?></label>
-                </div>
+                <?php textoTipoUsuario($userData); ?>
             </div>
 
             <!--Primeira row-->
@@ -41,7 +31,7 @@ $userData = getDadosUsuario(); ?>
                 </div>
 
                 <div class="col-6 d-flex flex-column justify-content-center">
-                    <?php include_once 'php/interface/perfil.php'; ?>
+                    <?php campoTipoUsuario($userData); ?>
                 </div>
                 <!--Fim da Primeira row-->
             </div>
