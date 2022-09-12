@@ -28,8 +28,12 @@ CREATE TABLE usuario (
     email VARCHAR(100) NOT NULL,
     senha VARCHAR(250) NOT NULL,
     img_perfil VARCHAR(300) DEFAULT NULL,
-    ativo BOOLEAN NOT NULL DEFAULT 't',
-    acesso INT NOT NULL DEFAULT 1
+    ativo BOOLEAN NOT NULL DEFAULT 'f',
+    acesso INT NOT NULL DEFAULT 1,
+    add_data TIMESTAMP DEFAULT NULL,
+    chave_confirma VARCHAR(255) DEFAULT NULL,
+    chave_recuper VARCHAR(255) DEFAULT NULL,
+    chave_salt VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE servidor (
