@@ -155,7 +155,7 @@ function verificaNivelAcesso(): void {
  */
 function verificaUsuarioLogado(): void {
     if (!isset($_SESSION['id_usuario'])) {
-        $_SESSION['toast'] = 'Acesso negado, necessario login!';
+        $_SESSION['mensag'] = 'Acesso negado, necessario login!';
         header('Location: index.php');
     }
 }

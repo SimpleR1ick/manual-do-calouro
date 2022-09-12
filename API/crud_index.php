@@ -19,7 +19,7 @@ verificaNivelAcesso(); ?>
                     </thead>
                         
                     <tbody>
-                        <?php include_once 'php/interface/crud.php'; ?>
+                        <?php include_once 'php/interface/crud_table.php'; ?>
                     </tbody>
                 </table>
             </div>
