@@ -2,6 +2,9 @@
 // Inicia a conexão com banco de dados
 require_once './db_connect.php';
 
+// Para confirmar seu cadastro, clique no link abaixo: <br>
+// <a href='http://localhost/Manual_do_calouro/API/php/includes/confirma.php?link=$chave'>Clique aqui</a>";
+
 if (isset($_GET['chave'])) {
     $chave = pg_escape_string(CONNECT, $_GET['chave']);
 

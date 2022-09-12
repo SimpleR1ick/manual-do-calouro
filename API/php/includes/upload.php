@@ -7,9 +7,9 @@ if ($_FILES['foto'] != NULL) {
     $foto_size = $_FILES['foto']['size'];
 
     $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
-    $pathBanco = pg_query(CONNECT, $sql);
+    $db_path = pg_query(CONNECT, $sql);
 
-    if ($pathBanco == null) {
+    if ($db_path == null) {
         // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
         $path = pathinfo($nome_foto);
 
@@ -18,7 +18,7 @@ if ($_FILES['foto'] != NULL) {
 
     } else {
         // Utiliza o mesmo nome do banco para atualizar a foto
-        $nome_final = $pathBanco;
+        $nome_final = $db_path;
     }
     
 

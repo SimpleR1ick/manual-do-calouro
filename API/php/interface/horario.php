@@ -3,7 +3,6 @@
  * 
  * 
  * 
- * 
  */
 function horarioTable(): void {
     // Verifica se o método GET enviou algo

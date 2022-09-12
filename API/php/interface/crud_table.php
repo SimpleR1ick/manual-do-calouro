@@ -3,7 +3,6 @@
  * 
  * 
  * 
- * 
  */
 function crudTable(): void {
     // Seleciona a tabela usuarios por inteira, menos os usuarios administrador

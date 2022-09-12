@@ -3,7 +3,6 @@
  * 
  * 
  * 
- * 
  */
 function textoTipoUsuario($userData): void {
     if ($userData['acesso'] == 1) {

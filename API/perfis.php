@@ -5,6 +5,7 @@
 $userData = getDadosUsuario(); ?>
 
 <!-- Conteudo da pagina -->
+<?php include_once 'php/interface/perfil.php'; ?>
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
         <form class="w-75" action="php/includes/update.php" method="POST" enctype="multipart/form-data">
@@ -56,7 +57,6 @@ $userData = getDadosUsuario(); ?>
 
             <!--Terceira row-->
             <div class="row mt-3">
-
                 <div class="d-flex flex-column align-items-center justify-content-md-around flex-md-row">
                     <!-- SALVAR -->
                     <button class="btn btn-primary me-2" name="btnIncrement" type="submit">Salvar alterações</button>

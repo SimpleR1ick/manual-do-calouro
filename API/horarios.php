@@ -2,9 +2,9 @@
 <?php include_once 'php/includes/header.php'; ?>
 
 <!-- Conteudo da pagina -->
+<?php include_once 'php/interface/horario.php'; ?>
 <section>
     <div class="container">
-
         <form class="d-flex flex-column align-items-center" action="horarios.php" method="GET">
             <h5>Curso:</h5>
             <!-- GRUPO DE BOTÕES CURSO -->
@@ -65,7 +65,7 @@
                         </thead>
 
                         <tbody>
-                            <?php include_once 'php/interface/horario.php'; ?>
+                            <?php horarioTable(); ?>
                         </tbody>
                     </table>
                 </div>
