@@ -25,7 +25,38 @@ function crudGetDados(): array{
         pg_close(CONNECT);
     }
 }
+    
+/**
+ * Função para atualizar os dados do usuario
+ * 
+ * @param array $dados um nome qualquer
+ * @param string $email um email qualquer
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizaDadosUsuario($connect, $dados): void {
+    // Declaração de variaveis
+    $id = $dados['id'];         // id do usuario
+    $path = $dados['path'];     // Caminho de retorno em erro
+    $nome = $dados['nome'];     // Nome do usuario
+    $email = $dados['email'];   // Email do usuario
 
+    // Query para fazer o update das informações do usuário
+    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = $id";
+
+    $query = pg_query($connect, $sql);
+
+    if ($query) {
+        // Adiciona à sessão uma mensagem de sucesso
+        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
+
+    } else {
+        // Adiciona à sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
+    }
+    // Retorna a pagina perfil
+    header("Location: $path");
+}
 
 /**
  * 
@@ -33,13 +64,11 @@ function crudGetDados(): array{
  * 
  */
 function perfilAdministrativo($setor) {
-    global $id;
-
     // Query para fazer o update das informações do administrativo
     $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
             WHERE fk_servidor_fk_usuario_id_usuario = $id";
 
-    if (!pg_query(CONNECT, $sql)) {
+    if (!pg_query($db, $sql)) {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar o setor';
     }

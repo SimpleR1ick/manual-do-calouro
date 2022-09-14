@@ -17,18 +17,21 @@ define('PATH', $dir);
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se o POST foi enviado pelo botão
     if (isset($_POST['btnCadastrar'])) {
+        // Abra uma conexão com o banco de dados
+        $db = db_connect();
+
         // Sanitização
         $_POST = sanitizaPost($_POST); 
-
+    
         if (verificaInjectHtml($_POST)) {
             $_SESSION['mensag'] = 'Erro ao cadastrar!';
             header("Location: PATH"); // Retorna para o cadastro
         }
         // Atribui o conteudo dos campos do formulario a variáveis
-        $nome = pg_escape_string(CONNECT, $_POST['nome']);
-        $email = pg_escape_string(CONNECT, $_POST['email']);
-        $senha = pg_escape_string(CONNECT, $_POST['senha']);
-        $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
+        $nome = pg_escape_string($db, $_POST['nome']);
+        $email = pg_escape_string($db, $_POST['email']);
+        $senha = pg_escape_string($db, $_POST['senha']);
+        $senha2 = pg_escape_string($db, $_POST['senhaConfirma']);
 
         // Validações
         if (validaNome($nome, PATH) && validaEmail($email, PATH) && validaSenha($senha, $senha2, PATH)){
@@ -39,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         // Encerando a conexão
-        pg_close(CONNECT);
+        pg_close($db);
     }
 }
 
@@ -53,11 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  * @author Henrique Dalmagro
  */
 function cadastraUsuario($nome, $email, $senhaHash): void {
+    // Abra uma conexão com o banco de dados
+    $db = db_connect();
+
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaHash')";
     
     // Se a requição houve retorno, o insert teve sucesso
-    if (pg_query(CONNECT, $sql)) {
+    if (pg_query($db, $sql)) {
         // Adiciona minha sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
 

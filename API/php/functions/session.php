@@ -13,6 +13,9 @@ require_once 'php/includes/db_connect.php';
  * @author Henrique Dalmagro - Rafael Barros
  */
 function getDadosUsuario(): array {
+    // Abra uma conexão com o banco de dados
+    $db = db_connect();
+
     if (isset($_SESSION['id_usuario'])) {
         // Armazena o id da sessão em uma variavel
         $id = $_SESSION['id_usuario'];
@@ -20,7 +23,7 @@ function getDadosUsuario(): array {
         // Busca os dados do usuário atravéz do id na sessão
         $sql = "SELECT id_usuario, nom_usuario, email, img_perfil, acesso, ativo
                 FROM usuario WHERE id_usuario = '$id'";
-        $query = pg_query(CONNECT, $sql);
+        $query = pg_query($db, $sql);
 
         // Transforma as colunas da query em um array
         $result = pg_fetch_array($query);
@@ -28,7 +31,7 @@ function getDadosUsuario(): array {
         return $result;
     } 
     // Encerando a conexão
-    pg_close(CONNECT); 
+    pg_close($db); 
 }
 
 /**
@@ -156,6 +159,7 @@ function verificaNivelAcesso(): void {
 function verificaUsuarioLogado(): void {
     if (!isset($_SESSION['id_usuario'])) {
         $_SESSION['mensag'] = 'Acesso negado, necessario login!';
+        
         header('Location: index.php');
     }
 }

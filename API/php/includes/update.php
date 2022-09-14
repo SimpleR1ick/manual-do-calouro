@@ -59,39 +59,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         pg_close(CONNECT);
     }
 }
-    
-/**
- * Função para atualizar os dados do usuario
- * 
- * @param string $nome um nome qualquer
- * @param string $email um email qualquer
- * 
- * @author Henrique Dalmagro
- */
-function atualizaDadosUsuario($nome, $email): void {
-    global $id;
-
-    // Query para fazer o update das informações do usuário
-    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
-            WHERE id_usuario = $id";
-
-    $query = pg_query(CONNECT, $sql);
-
-    if ($query) {
-        // Adiciona à sessão uma mensagem de sucesso
-        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
-
-        // Retorna a pagina home
-        header('Location: ../../perfis.php');
-    } else {
-        // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';
-
-        // Retorna a pagina perfil
-        header('Location: ../../perfis.php');
-    }
-}
-
 /**
  * Função para inserir o curso e o modulo do aluno
  * 
