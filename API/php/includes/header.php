@@ -50,8 +50,7 @@
                         </li>
                         <!-- Horarios -->
                         <li class="nav-item">
-                            <?php $link = verificaTurma(); ?>
-                            <a class="nav-link" href="<?php echo $link; ?>">Horários</a>
+                            <a class="nav-link" href="<?php verificaTurma(); ?>">Horários</a>
                         </li>
                         <!-- Contatos -->
                         <li class="nav-item">
