@@ -5,9 +5,15 @@
  * 
  */
 function crudTable(): void {
+    // Inicia a conexão
+    $db = db_connect();
+
     // Seleciona a tabela usuarios por inteira, menos os usuarios administrador
     $sql = "SELECT id_usuario, nom_usuario, email FROM usuario WHERE acesso != 0 ORDER BY id_usuario";
-    $query = pg_query(CONNECT, $sql);
+    $query = pg_query($db, $sql);
+
+    // Encerra a conexão
+    pg_close($db);
 
     if (pg_num_rows($query) == 0): ?>
         <tr>

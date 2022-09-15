@@ -6,9 +6,11 @@ session_start();
 require_once './db_connect.php';
 
 // Import de bibliotecas de funções
-include_once '../functions/crud_proces.php';
+include_once '../functions/crud_process.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
+
+define('PATH', '../../crud_index.php');
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -30,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         crudRegister($connect);
     }
     // Encerando a conexão
-    pg_close($db);
+    pg_close($connect);
 }
 
 /**
@@ -44,6 +46,12 @@ function crudUpdate($db): void {
     $nome = pg_escape_string($db, $_POST['nome']);
     $email = pg_escape_string($db, $_POST['email']);
 
+    $dados = array(
+        'id' => $id,
+        'nome' => $nome,
+        'email' => $email
+    );
+
     // Desativa o usuario 
     if ($_POST['ativo-inativo'] == 'false') {
         pg_query($db, "UPDATE usuario SET ativo = 'f' WHERE id_usuario = '$id'");
@@ -52,13 +60,7 @@ function crudUpdate($db): void {
     if ($_POST['acesso'] != null) {
         pg_query($db, "UPDATE usuario SET acesso = '{$_POST['acesso']}' WHERE id_usuario = $id");
     }
-
-    $dados = array(
-        'id' => $id,
-        'nome' => $nome,
-        'email' => $email
-    );
-    atualizaDadosUsuario($db, $dados);
+    atualizaDadosUsuario($dados, 'PATH');
 }
 
 /**
@@ -119,5 +121,3 @@ function crudRegister($db): void {
         }
     }
 }
-?>
-

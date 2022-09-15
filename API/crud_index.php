@@ -4,6 +4,7 @@ verificaNivelAcesso(); ?>
 
 <!-- Conteúdo da pagina -->
 <?php include_once 'php/interface/crud_table.php'; ?>
+
 <section class="container">
     <div class="mb-4">
         <div class="row d-flex justify-content-center">

@@ -2,7 +2,7 @@
 <?php include_once 'php/includes/header.php';
 verificaNivelAcesso(); ?>
 
-<?php include_once 'php/functions/crud_proces.php';
+<?php include_once 'php/functions/crud_process.php';
 $dados = crudGetDados(); ?>
 
 <!-- Conteudo da pagina -->

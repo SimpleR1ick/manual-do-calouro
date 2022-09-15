@@ -7,25 +7,25 @@
  * @author Henrique Dalmagro
  */
 function crudGetDados(): array{
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        // 
-        if (isset($_GET['id'])) {
-            $id = pg_escape_string(CONNECT, $_GET['id']);
+    // Inicia a conexão
+    $db = db_connect();
 
-            // Seleciona na tabela usuarios um usuario com mesmo ID
-            $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
-            $query = pg_query(CONNECT, $sql);
+    if (isset($_GET['id'])) {
+        $id = pg_escape_string($db, $_GET['id']);
 
-            // Retorna o resultado convertido em um array
-            $userData = pg_fetch_array($query);
+        // Seleciona na tabela usuarios um usuario com mesmo ID
+        $sql = "SELECT * FROM usuario WHERE id_usuario = '$id'";
+        $query = pg_query($db, $sql);
 
-            return $userData;
-        }
-        // Encerando a conexão
-        pg_close(CONNECT);
+        // Retorna o resultado convertido em um array
+        $userData = pg_fetch_array($query);
+
+        return $userData;
     }
+    // Encerando a conexão
+    pg_close($db);
 }
-    
+  
 /**
  * Função para atualizar os dados do usuario
  * 
@@ -34,19 +34,21 @@ function crudGetDados(): array{
  * 
  * @author Henrique Dalmagro
  */
-function atualizaDadosUsuario($connect, $dados): void {
+function atualizaDadosUsuario($dados, $path): void {
+    // Inicia a conexão
+    $db = db_connect();
+
     // Declaração de variaveis
-    $id = $dados['id'];         // id do usuario
-    $path = $dados['path'];     // Caminho de retorno em erro
+    $id = $dados['id'];
     $nome = $dados['nome'];     // Nome do usuario
     $email = $dados['email'];   // Email do usuario
 
     // Query para fazer o update das informações do usuário
-    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = $id";
-
-    $query = pg_query($connect, $sql);
-
-    if ($query) {
+    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
+            WHERE id_usuario = $id";
+   
+    // Verifica se a query de update obteve sucesso
+    if (pg_query($db, $sql)) {
         // Adiciona à sessão uma mensagem de sucesso
         $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
 
@@ -54,6 +56,9 @@ function atualizaDadosUsuario($connect, $dados): void {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
     }
+    // Encerra aconexão
+    pg_close($db);
+
     // Retorna a pagina perfil
     header("Location: $path");
 }
@@ -64,13 +69,16 @@ function atualizaDadosUsuario($connect, $dados): void {
  * 
  */
 function perfilAdministrativo($setor) {
+    $db = db_connect();
+
     // Query para fazer o update das informações do administrativo
     $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
-            WHERE fk_servidor_fk_usuario_id_usuario = $id";
+            WHERE fk_servidor_fk_usuario_id_usuario = 'id'";
 
     if (!pg_query($db, $sql)) {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar o setor';
     }
+    pg_close($db);    
 }
 ?>

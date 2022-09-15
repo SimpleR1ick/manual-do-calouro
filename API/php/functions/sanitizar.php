@@ -8,16 +8,25 @@
  * 
  * @author Henrique Dalmagro
  */
-function verificaInjectHtml($arrayString): bool {
+function sanitizaInjectHtmlPOST($arrayString, $pagePath): bool {
+    $count = 0;
+
     foreach ($arrayString as $string) {
         $f_string = htmlspecialchars($string, ENT_QUOTES);
 
         if ($f_string != $string) {
-            return true;
+            $count++;
             break;
         }
     }
-    return false;
+    if ($count > 0) {
+        $_SESSION['mensag'] = 'Erro ao cadastrar, caracter invalidos!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath"); 
+        return false;
+    }
+    return true;
 }
 
 /**
@@ -29,7 +38,7 @@ function verificaInjectHtml($arrayString): bool {
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaPost($array): array {
+function sanitizaCaractersPOST($array): array {
     foreach ($array as $key => $value) {
         // Invoca funções que remove contra-barras e espaço em branco
         $value = stripslashes($value);

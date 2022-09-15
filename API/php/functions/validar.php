@@ -94,9 +94,12 @@ function verificaSenha($password) {
  * @author Henrique Dalmagro
  */
 function verificaEmail($email, $pagePath): bool {
+    // Inicia conexão
+    $db = db_connect();
+
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT email FROM usuario WHERE email = '$email'";
-    $query = pg_query(CONNECT, $sql);
+    $query = pg_query($db, $sql);
 
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
@@ -106,7 +109,10 @@ function verificaEmail($email, $pagePath): bool {
         header("Location: $pagePath"); 
         return false;
     }
-    return true;  
+    return true; 
+    
+    // Encerrra a conexão
+    pg_close($db);
 }
 
 /**
@@ -121,7 +127,7 @@ function verificaEmail($email, $pagePath): bool {
  */
 function verificaAtivo($email, $pagePath): bool { 
     $sql = "SELECT ativo FROM usuario WHERE email = '$email'";
-    $query = pg_query(CONNECT, $sql);
+    $query = pg_query($GLOBALS['db'], $sql);
 
     // Transforma o resultado da requisição em um array enumerado
     $result = pg_fetch_array($query);
