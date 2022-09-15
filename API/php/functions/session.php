@@ -181,4 +181,44 @@ function verificaAcessoCrud(): void {
         }
     }
 }
+
+/**
+ * 
+ * 
+ * 
+ */
+function verificaTurma(): string {
+    if (isset($_SESSION['id_usuario'])) {
+        // Criando conexão com o banco de dados
+        $db = db_connect();
+        
+        // Selecionando o curso e o módulo do usuário da sessão
+        $sql = "SELECT t.fk_curso_id_curso AS curso, t.num_modulo AS modulo FROM turma t JOIN aluno a
+                ON (t.id_turma = a.fk_turma_id_turma)
+                WHERE a.fk_usuario_id_usuario = {$_SESSION['id_usuario']}";
+
+        // Faz uma requisição ao banco de dados
+        $query = pg_query($db, $sql);
+
+        // Fechando a conexão com o banco de dados
+        pg_close($db);
+
+        if ($query) {
+            // Transforma a query em um array
+            $turma = pg_fetch_array($query);
+
+            // Atribuindo o curso e o módulo a variáveis
+            $curso = $turma['curso'];
+            $modulo = $turma['modulo'];
+
+            // Envia para a página de horarios com o curso e o módulo
+            $link = "horarios.php?curso={$curso}&modulo={$modulo}";
+        }
+
+    } else {
+        $link = "horarios.php";
+    }
+
+    return $link;
+}
 ?>

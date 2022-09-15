@@ -53,14 +53,16 @@ function crudUpdate($db): void {
     );
 
     // Desativa o usuario 
-    if ($_POST['ativo-inativo'] == 'false') {
+    if ($_POST['ativo-inativo'] == 'true') {
+        pg_query($db, "UPDATE usuario SET ativo = 't' WHERE id_usuario = '$id'");
+    } else {
         pg_query($db, "UPDATE usuario SET ativo = 'f' WHERE id_usuario = '$id'");
     }
 
     if ($_POST['acesso'] != null) {
         pg_query($db, "UPDATE usuario SET acesso = '{$_POST['acesso']}' WHERE id_usuario = $id");
     }
-    atualizaDadosUsuario($dados, 'PATH');
+    atualizaDadosUsuario($dados, PATH);
 }
 
 /**

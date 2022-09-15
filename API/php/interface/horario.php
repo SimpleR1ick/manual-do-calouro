@@ -7,13 +7,16 @@
 function horarioTable(): void {
     // Verifica se o método GET enviou algo
     if (isset($_GET['curso']) && isset($_GET['modulo'])) {
+        // Criando conexão com o banco de dados
+        $db = db_connect();
+        
         // Armazena curso e módulo em variáveis
         $curso = $_GET['curso'];
         $modulo = $_GET['modulo'];
 
         // Seleciona da tabela horario_aula, todos os horarios
         $sql = "SELECT * FROM horario_aula";
-        $query = pg_query(CONNECT, $sql);
+        $query = pg_query($db, $sql);
 
         // Transforma todas as linhas da query em um array
         $horario = pg_fetch_all($query);
@@ -64,13 +67,13 @@ function horarioTable(): void {
                     AS COMPLETE_TABLE
                     ORDER BY id_horario_aula, id_dia_semana";
         
-        $query = pg_query(CONNECT, $sql);
+        $query = pg_query($db, $sql);
 
         // Transforma todas as linhas da query em um array
         $aulas = pg_fetch_all($query);
 
         // Fecha a conexão
-        pg_close(CONNECT);
+        pg_close($db);
 
         // Iniciando um contador para acessar o índice
         $a = 0;

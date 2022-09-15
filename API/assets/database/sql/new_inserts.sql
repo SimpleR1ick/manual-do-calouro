@@ -1,23 +1,23 @@
-INSERT INTO usuario (nom_usuario, email, senha, acesso) VALUES
-    ('admin', 'mdc@ifes.edu.br', '21232f297a57a5a743894a0e4a801fc3', 0); -- admin
+INSERT INTO usuario (nom_usuario, email, senha, acesso, ativo) VALUES
+    ('admin', 'mdc@ifes.edu.br', '21232f297a57a5a743894a0e4a801fc3', 0, 't'); -- admin
 
 INSERT INTO usuario (nom_usuario, email, senha) VALUES
-    ('Henrique', 'henriquedalmagro@outlook.com', 'a1f925a7b5b70b7b3f7fe2208513e10f'),   -- 123, 2 
-    ('Maria', 'mariaeduarda@gmail.com', 'd481dbf8fcb6838a7e5dea0ca8e16d8a'),            -- fuckingpassword, 3
-    ('Rafael', 'rafaelbarros@hotmailcom', 'caf1a3dfb505ffed0d024130f58c5cfa'),          -- 321, 4
-    ('Raphael', 'rbranco@yahoo.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),               -- senha, 5
-    ('Nauvia', 'nauvia@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha, 6
-    ('Marta', 'marta@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                   -- senha, 7
-    ('Paulo Cezar', 'paulo.cesar@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),       -- senha, 8
-    ('Alessandro', 'bermudes@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),           -- senha, 9
-    ('Ronaldo', 'ronaldo@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),               -- senha, 10
-    ('Diego', 'diego@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                   -- senha, 11
-    ('Ana Paula', 'ana.paula@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),           -- senha, 12
-    ('Geraldo', 'geraldo@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),               -- senha, 13
-    ('Maikon', 'maikon@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha, 14
-    ('Carlos', 'carlos@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha, 15
-    ('Daniel', 'daniel@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha, 16
-    ('Moisés', 'moisesomena@ifes.edu.br', '72c7d5bed34eb9dc055ef287eaf862ad');          -- ifes2022, 17
+    ('Henrique', 'henriquedalmagro@outlook.com', 'a1f925a7b5b70b7b3f7fe2208513e10f'),   -- 123
+    ('Maria', 'mariaeduarda@gmail.com', 'd481dbf8fcb6838a7e5dea0ca8e16d8a'),            -- fuckingpassword
+    ('Rafael', 'rafaelbarros@hotmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa'),          -- 321
+    ('Raphael', 'rbranco@yahoo.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),               -- senha
+    ('Nauvia', 'nauvia@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha
+    ('Marta', 'marta@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                   -- senha
+    ('Paulo Cezar', 'paulo.cesar@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),       -- senha
+    ('Alessandro', 'bermudes@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),           -- senha
+    ('Ronaldo', 'ronaldo@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),               -- senha
+    ('Diego', 'diego@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                   -- senha
+    ('Ana Paula', 'ana.paula@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),           -- senha
+    ('Geraldo', 'geraldo@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),               -- senha
+    ('Maikon', 'maikon@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha
+    ('Carlos', 'carlos@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha
+    ('Daniel', 'daniel@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha
+    ('Moisés', 'moisesomena@ifes.edu.br', '72c7d5bed34eb9dc055ef287eaf862ad');          -- ifes2022
 
 INSERT INTO curso (dsc_curso) VALUES
     ('Info'),
