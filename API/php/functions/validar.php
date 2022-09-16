@@ -1,5 +1,59 @@
 <?php
 /**
+ * Função para verificar se o email de entrada já esta cadastrado no banco de dados
+ * 
+ * @param string $email E-mail a ser buscado
+ * @param string $pagePath Pagina de retorno se houver erro
+ * 
+ * @return bool|false Se estiver em uso
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaEmail($email, $pagePath): bool {
+    // Preparando uma requisição ao banco de dados
+    $sql = "SELECT email FROM usuario WHERE email = '$email'";
+    $query = pg_query(CONNECT, $sql);
+
+    // Verifica se a requisição teve resultado
+    if (pg_num_rows($query) > 0) {
+        $_SESSION['mensag'] = 'Email já cadastrado!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath"); 
+        return false;
+    }
+    return true; 
+}
+
+/**
+ * Função para verificar se o status do usuario e ativo
+ * 
+ * @param string $email Do usuario para verificação
+ * @param string $pagePath Pagina de retorno se houver erro
+ * 
+ * @return bool|false Se o usuario estiver inativo
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaAtivo($email, $pagePath): bool { 
+    $sql = "SELECT ativo FROM usuario WHERE email = '$email'";
+    $query = pg_query(CONNECT, $sql);
+
+    // Transforma o resultado da requisição em um array enumerado
+    $result = pg_fetch_array($query);
+
+    // Verifica se a conta do usuario esta ativa
+    if ($result['ativo'] == 'f') {
+        $_SESSION['mensag'] = 'Usuario inativo!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath");
+        return false;
+    }
+    return true;
+}
+
+/**
  * Função para verificar se o nome de entrada esta nos parametros do site
  * 
  * @param string $string Nome a ser verificado
@@ -72,80 +126,18 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
 /**
  * 
  * 
- * 
  * @author Henrique Dalmagro
  */
-function verificaSenha($password) {
+function verificaSenha($password, $pagePath) {
     $pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
 
-    $valid = preg_match($pattern, $password);
-
-    return $valid;
-}
-
-/**
- * Função para verificar se o email de entrada já esta cadastrado no banco de dados
- * 
- * @param string $email E-mail a ser buscado
- * @param string $pagePath Pagina de retorno se houver erro
- * 
- * @return bool|false Se estiver em uso
- * 
- * @author Henrique Dalmagro
- */
-function verificaEmail($email, $pagePath): bool {
-    // Inicia conexão
-    $db = db_connect();
-
-    // Preparando uma requisição ao banco de dados
-    $sql = "SELECT email FROM usuario WHERE email = '$email'";
-    $query = pg_query($db, $sql);
-
-    // Encerrra a conexão
-    pg_close($db);
-
-    // Verifica se a requisição teve resultado
-    if (pg_num_rows($query) > 0) {
-        $_SESSION['mensag'] = 'Email já cadastrado!';
+    if (preg_match($pattern, $password)) {
+        $_SESSION['mensag'] = 'Senha invalida!';
 
         // Retorna a pagina de origem
         header("Location: $pagePath"); 
         return false;
-    }
+    } 
     return true; 
-}
-
-/**
- * Função para verificar se o status do usuario e ativo
- * 
- * @param string $email Do usuario para verificação
- * @param string $pagePath Pagina de retorno se houver erro
- * 
- * @return bool|false Se o usuario estiver inativo
- * 
- * @author Henrique Dalmagro
- */
-function verificaAtivo($db, $email, $pagePath): bool { 
-    // Inicia conexão
-    //$db = db_connect();
-
-    $sql = "SELECT ativo FROM usuario WHERE email = '$email'";
-    $query = pg_query($db, $sql);
-
-    // Transforma o resultado da requisição em um array enumerado
-    $result = pg_fetch_array($query);
-
-    // Encerrra a conexão
-    //pg_close($db);
-
-    // Verifica se a conta do usuario esta ativa
-    if ($result['ativo'] == 'f') {
-        $_SESSION['mensag'] = 'Usuario inativo!';
-
-        // Retorna a pagina de origem
-        header("Location: $pagePath");
-        return false;
-    }
-    return true;
 }
 ?>
