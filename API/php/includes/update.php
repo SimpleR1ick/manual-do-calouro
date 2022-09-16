@@ -7,7 +7,7 @@ require_once 'db_connect.php';
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
-include_once '../functions/verificar.php';
+include_once '../functions/validar.php';
 
 // Definindo como constante global o caminho em caso de erro
 define('PATH', '../../perfis.php');

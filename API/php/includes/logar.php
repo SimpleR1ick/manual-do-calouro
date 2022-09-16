@@ -4,8 +4,8 @@ session_start();
 
 // Import de bibliotecas de funções
 require_once './db_connect.php';
-require_once '../functions/sanitizar.php';
-require_once '../functions/validar.php';
+include_once '../functions/sanitizar.php';
+include_once '../functions/validar.php';
 
 // Definindo como constante global o caminho em caso de erro
 define('PATH', '../../login.php');
@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Validações
         if (validaEmail($email, PATH)) {
             // Verifica se o usuario esta ativo
-            if (verificaAtivo($email, PATH)) {
+            if (verificaAtivo($db, $email, PATH)) {
                 // Tenta realizar o login no site
                 logarUsuario($email, md5($senha));
             }

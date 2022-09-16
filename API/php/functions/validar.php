@@ -125,9 +125,9 @@ function verificaEmail($email, $pagePath): bool {
  * 
  * @author Henrique Dalmagro
  */
-function verificaAtivo($email, $pagePath): bool { 
+function verificaAtivo($db, $email, $pagePath): bool { 
     // Inicia conexão
-    $db = db_connect();
+    //$db = db_connect();
 
     $sql = "SELECT ativo FROM usuario WHERE email = '$email'";
     $query = pg_query($db, $sql);
@@ -136,7 +136,7 @@ function verificaAtivo($email, $pagePath): bool {
     $result = pg_fetch_array($query);
 
     // Encerrra a conexão
-    pg_close($db);
+    //pg_close($db);
 
     // Verifica se a conta do usuario esta ativa
     if ($result['ativo'] == 'f') {
