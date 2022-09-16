@@ -20,6 +20,7 @@ DROP TABLE IF EXISTS contato CASCADE;
 DROP TABLE IF EXISTS servidor_horario CASCADE;
 DROP TABLE IF EXISTS curso CASCADE;
 DROP TABLE IF EXISTS chave CASCADE;
+DROP TABLE IF EXISTS acesso CASCADE;
 
 /* Modelo Físico: */
 
@@ -30,9 +31,9 @@ CREATE TABLE usuario (
     senha VARCHAR(250) NOT NULL,
     img_perfil VARCHAR(300) DEFAULT NULL,
     ativo BOOLEAN NOT NULL DEFAULT 'f',
-    acesso INT NOT NULL DEFAULT 1,
     add_data TIMESTAMP DEFAULT NULL,
-    chave_salt VARCHAR(255) DEFAULT NULL
+    chave_salt VARCHAR(255) DEFAULT NULL,
+    fk_acesso_id_acesso SERIAL NOT NULL DEFAULT 2
 );
 
 CREATE TABLE servidor (
@@ -151,7 +152,17 @@ CREATE TABLE chave (
     chave_confirma VARCHAR(255),
     fk_usuario_id_usuario SERIAL PRIMARY KEY
 );
- 
+
+CREATE TABLE acesso (
+    id_acesso SERIAL NOT NULL,
+    dsc_acesso VARCHAR(10) NOT NULL
+);
+
+ALTER TABLE usuario ADD CONSTRAINT FK_usuario_2
+    FOREIGN KEY (fk_acesso_id_acesso)
+    REFERENCES acesso (id_acesso)
+    ON DELETE CASCADE;
+
 ALTER TABLE servidor ADD CONSTRAINT FK_servidor_2
     FOREIGN KEY (fk_usuario_id_usuario)
     REFERENCES usuario (id_usuario)
