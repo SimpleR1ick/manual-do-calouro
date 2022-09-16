@@ -21,7 +21,7 @@ function db_connect(): mixed {
 
     if (!$connect) {
         // Mensagem de erro se a conexão falhar
-        die("Erro,falha na conexão com ElephatnSQL!");
+        die("Erro, falha na conexão com ElephatnSQL!");
     }
     return $connect;   
 }
