@@ -7,8 +7,9 @@ require_once './db_connect.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
 
-// Definindo como constante global o caminho em caso de erro
-define('PATH', '../../login.php');
+// Definindo as constantes globais
+define('PATH', '../../login.php'); // Caminho da pagina
+define('CONNECT', db_connect());   // Conexão
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,12 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (sanitizaInjectHtmlPOST($_POST, PATH)) {
         $_POST = sanitizaCaractersPOST($_POST); 
 
-        // Abra uma conexão com o banco de dados
-        $db = db_connect();
-
         // Atribui os campos do formulario a variáveis
-        $email = pg_escape_string($db, $_POST['email']);
-        $senha = pg_escape_string($db, $_POST['senha']);
+        $email = pg_escape_string(CONNECT, $_POST['email']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
     
         // Validações
         if (validaEmail($email, PATH)) {
@@ -32,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         // Encerando a conexão
-        pg_close($db);  
+        pg_close(CONNECT);  
     }     
 }
 
@@ -47,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
-    $query = pg_query($GLOBALS['db'], $sql);
+    $query = pg_query(CONNECT, $sql);
 
     // Transforma o resultado da requisição em um array enumerado
     $result = pg_fetch_row($query);
