@@ -78,7 +78,7 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
 function verificaSenha($password) {
     $pattern = '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d].\S{8,36}$/';
 
-    $valid = preg_match($pattern, $password) ? true : false;
+    $valid = preg_match($pattern, $password);
 
     return $valid;
 }
@@ -94,9 +94,15 @@ function verificaSenha($password) {
  * @author Henrique Dalmagro
  */
 function verificaEmail($email, $pagePath): bool {
+    // Inicia conexão
+    $db = db_connect();
+
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT email FROM usuario WHERE email = '$email'";
-    $query = pg_query(CONNECT, $sql);
+    $query = pg_query($db, $sql);
+
+    // Encerrra a conexão
+    pg_close($db);
 
     // Verifica se a requisição teve resultado
     if (pg_num_rows($query) > 0) {
@@ -106,7 +112,7 @@ function verificaEmail($email, $pagePath): bool {
         header("Location: $pagePath"); 
         return false;
     }
-    return true;  
+    return true; 
 }
 
 /**
@@ -120,11 +126,17 @@ function verificaEmail($email, $pagePath): bool {
  * @author Henrique Dalmagro
  */
 function verificaAtivo($email, $pagePath): bool { 
+    // Inicia conexão
+    $db = db_connect();
+
     $sql = "SELECT ativo FROM usuario WHERE email = '$email'";
-    $query = pg_query(CONNECT, $sql);
+    $query = pg_query($db, $sql);
 
     // Transforma o resultado da requisição em um array enumerado
     $result = pg_fetch_array($query);
+
+    // Encerrra a conexão
+    pg_close($db);
 
     // Verifica se a conta do usuario esta ativa
     if ($result['ativo'] == 'f') {

@@ -6,19 +6,27 @@ session_start();
 require_once './db_connect.php';
 
 // Import de bibliotecas de funções
+include_once '../functions/crud_process.php';
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
+
+define('PATH', '../../crud_index.php');
+define('CONNECT', db_connect());
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Verifica se o formulario foi de update, delete ou register
     if (isset($_POST['btnAtualizar'])) {
+        // Invoca a função de atualização
         crudUpdate();
     }
     else if (isset($_POST['btnDeletar'])) {
+        // Invoca a função de exclusão
         crudDelete();
+
     }
     else if (isset($_POST['btnCadastrar'])) {
+        // Invoca a função de registro
         crudRegister();
     }
     // Encerando a conexão
@@ -36,28 +44,22 @@ function crudUpdate(): void {
     $nome = pg_escape_string(CONNECT, $_POST['nome']);
     $email = pg_escape_string(CONNECT, $_POST['email']);
 
+    atualizaDadosUsuario($id, $nome, $email, PATH);
+
+    $status = $_POST['ativo-inativo'];
+    $acesso = $_POST['acesso'];
+
+    if ($acesso != null) {
+        pg_query(CONNECT, "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id");
+    }
     // Desativa o usuario 
-    if ($_POST['ativo-inativo'] == 'false') {
-        pg_query(CONNECT, "UPDATE usuario SET ativo = 'f' WHERE id_usuario = '$id'");
-    }
-
-    if ($_POST['acesso'] != '') {
-        pg_query(CONNECT, "UPDATE usuario SET acesso = '{$_POST['acesso']}' WHERE id_usuario = $id");
-    }
-
-    // Query para fazer o update das informações do usuario
-    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' WHERE id_usuario = '$id'";
-
-    // Verifica se o update ocorreu e redireciona para o crud_index
-    if (pg_query(CONNECT, $sql)) {
-        $_SESSION['mensag'] = "Atualizado com sucesso!";
-        header('Location: ../../crud_index.php');
-
+    if ($status == 'true') {
+        $bool = 't';
     } else {
-        $_SESSION['mensag'] = "Erro ao atualizar!";
-        header('Location: ../../crud_index.php');
+        $bool = 'f';
     }
-    
+    $sql = "UPDATE usuario SET ativo = '$bool' WHERE id_usuario = '$id'";
+    pg_query(CONNECT, $sql);
 }
 
 /**
@@ -99,8 +101,8 @@ function crudRegister(): void {
 
         $senha = md5($senha);
 
-        $sql = "INSERT INTO usuario (nom_usuario, email, senha, acesso) VALUES 
-                ('$nome', '$email', '$senha', '$acesso')";
+        $sql = "INSERT INTO usuario (nom_usuario, email, senha, ativo, acesso) VALUES 
+                ('$nome', '$email', '$senha', 't', '$acesso')";
 
         if (pg_query(CONNECT, $sql)) {
             // Adiciona minha sessão uma mensagem de sucesso
@@ -118,5 +120,3 @@ function crudRegister(): void {
         }
     }
 }
-?>
-

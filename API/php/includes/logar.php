@@ -2,31 +2,26 @@
 // Iniciar a sessão
 session_start();
 
-// Inicia a conexão com o banco de dados
-require_once './db_connect.php';
-
 // Import de bibliotecas de funções
-include_once '../functions/sanitizar.php';
-include_once '../functions/validar.php';
+require_once './db_connect.php';
+require_once '../functions/sanitizar.php';
+require_once '../functions/validar.php';
 
 // Definindo como constante global o caminho em caso de erro
-$dir = '../../login.php';
-define('PATH', $dir);
+define('PATH', '../../login.php');
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Verifica se o POST foi enviado pelo botão
-    if (isset($_POST['btnLogar'])) {
-        // Sanitização
-        $_POST = sanitizaPost($_POST); 
-        
-        if (verificaInjectHtml($_POST)) {
-            $_SESSION['mensag'] = 'Erro ao logar!';
-            header('Location: ../../login.php'); // Retorna para o cadastro
-        }
-        // Atribui o conteudo dos campos do formulario a variáveis
-        $email = pg_escape_string(CONNECT, $_POST['email']);
-        $senha = pg_escape_string(CONNECT, $_POST['senha']);
+    // Sanitização
+    if (sanitizaInjectHtmlPOST($_POST, PATH)) {
+        $_POST = sanitizaCaractersPOST($_POST); 
+
+        // Abra uma conexão com o banco de dados
+        $db = db_connect();
+
+        // Atribui os campos do formulario a variáveis
+        $email = pg_escape_string($db, $_POST['email']);
+        $senha = pg_escape_string($db, $_POST['senha']);
     
         // Validações
         if (validaEmail($email, PATH)) {
@@ -34,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (verificaAtivo($email, PATH)) {
                 // Tenta realizar o login no site
                 logarUsuario($email, md5($senha));
-            }  
+            }
         }
         // Encerando a conexão
-        pg_close(CONNECT);
-    }
+        pg_close($db);  
+    }     
 }
 
 /**
@@ -52,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
-    $query = pg_query(CONNECT, $sql);
+    $query = pg_query($GLOBALS['db'], $sql);
 
     // Transforma o resultado da requisição em um array enumerado
     $result = pg_fetch_row($query);

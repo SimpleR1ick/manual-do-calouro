@@ -13,22 +13,27 @@ require_once 'php/includes/db_connect.php';
  * @author Henrique Dalmagro - Rafael Barros
  */
 function getDadosUsuario(): array {
+    // Verifica se existe um usuario logado
     if (isset($_SESSION['id_usuario'])) {
         // Armazena o id da sessão em uma variavel
         $id = $_SESSION['id_usuario'];
 
+        // Abra uma conexão com o banco de dados
+        $db = db_connect();
+
         // Busca os dados do usuário atravéz do id na sessão
         $sql = "SELECT id_usuario, nom_usuario, email, img_perfil, acesso, ativo
                 FROM usuario WHERE id_usuario = '$id'";
-        $query = pg_query(CONNECT, $sql);
+        $query = pg_query($db, $sql);
 
         // Transforma as colunas da query em um array
         $result = pg_fetch_array($query);
 
+        // Encerando a conexão
+        pg_close($db);
+     
         return $result;
-    } 
-    // Encerando a conexão
-    pg_close(CONNECT); 
+    }  
 }
 
 /**
@@ -53,6 +58,42 @@ function tituloSite(): void {
 }
 
 /**
+ * 
+ * 
+ * 
+ */
+function verificaTurma(): void {
+    if (isset($_SESSION['id_usuario'])) {
+        $userData = getDadosUsuario();
+
+        if ($userData['acesso'] == 1) {
+            // Criando conexão com o banco de dados
+            $db = db_connect();
+            
+            // Selecionando o curso e o módulo do usuário da sessão
+            $sql = "SELECT t.fk_curso_id_curso AS curso, t.num_modulo AS modulo FROM turma t JOIN aluno a
+                    ON (t.id_turma = a.fk_turma_id_turma)
+                    WHERE a.fk_usuario_id_usuario = {$_SESSION['id_usuario']}";
+            // Faz uma requisição ao banco de dados
+            $query = pg_query($db, $sql);
+
+            // Fechando a conexão com o banco de dados
+            pg_close($db);
+
+            if ($query) {
+                // Transforma a query em um array
+                $result = pg_fetch_array($query);
+
+                // Envia para a página de horarios com o curso e o módulo
+                echo "horarios.php?curso={$result['curso']}&modulo={$result['modulo']}";
+            }
+        }
+    } else {
+        echo "horarios.php";
+    }
+}
+
+/**
  * Função para verificar se existe um usuario logado
  *  
  * @author Henrique Dalmagro
@@ -60,16 +101,10 @@ function tituloSite(): void {
 function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
-        echo
-        "<button class='btn btn-info' type='button' onclick='window.location.href = \"php/includes/logout.php\"'>
-            Sair
-        </button>";
+        echo "<button class='btn btn-info' type='button' onclick='window.location.href = \"php/includes/logout.php\"'>Sair</button>";
     // Se não existir um usuário, cria um botão para dar login
     } else {
-        echo
-        "<button class='btn btn-primary' type='button' onclick='window.location.href = \"login.php\"'>
-            Entrar
-        </button>";
+        echo "<button class='btn btn-primary' type='button' onclick='window.location.href = \"login.php\"'>Entrar</button>";
     }
 }
 
@@ -148,19 +183,6 @@ function verificaNivelAcesso(): void {
 }
 
 /**
- * Função para verificar se existe um usuario na sessão,
- * caso não o redireciona pro home.
- * 
- * @author Henrique Dalmagro
- */
-function verificaUsuarioLogado(): void {
-    if (!isset($_SESSION['id_usuario'])) {
-        $_SESSION['mensag'] = 'Acesso negado, necessario login!';
-        header('Location: index.php');
-    }
-}
-
-/**
  * Função para verificar o acesso ao crud de usuarios
  * 
  * @author Henrique Dalmagro
@@ -175,6 +197,20 @@ function verificaAcessoCrud(): void {
         if ($acesso == 0) {
             header('Location: crud_index.php');
         }
+    }
+}
+
+/**
+ * Função para verificar se existe um usuario na sessão,
+ * caso não o redireciona pro home.
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaUsuarioLogado(): void {
+    if (empty($_SESSION['id_usuario'])) {
+        $_SESSION['mensag'] = 'Acesso negado, necessario login!';
+        
+        header('Location: index.php');
     }
 }
 ?>

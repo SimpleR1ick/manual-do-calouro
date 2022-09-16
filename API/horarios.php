@@ -1,8 +1,9 @@
 <!-- Header-->
 <?php include_once 'php/includes/header.php'; ?>
 
-<!-- Conteudo da pagina -->
+<!-- Conteúdo da página -->
 <?php include_once 'php/interface/horario.php'; ?>
+
 <section>
     <div class="container">
         <form class="d-flex flex-column align-items-center" action="horarios.php" method="GET">

@@ -253,19 +253,7 @@
         </div> 
     </div>
 
-    
-        
-        
-
-        
-
-    </div>
-
 </section>
-
-
-
-
 
 <!-- Footer -->
 <?php include_once 'php/includes/footer.php'; ?>
