@@ -29,19 +29,13 @@ function crudGetDados(): array{
 /**
  * Função para atualizar os dados do usuario
  * 
- * @param array $dados um nome qualquer
  * @param string $email um email qualquer
  * 
  * @author Henrique Dalmagro
  */
-function atualizaDadosUsuario($dados, $path): void {
+function atualizaDadosUsuario($id, $nome, $email, $path): void {
     // Inicia a conexão
     $db = db_connect();
-
-    // Declaração de variaveis
-    $id = $dados['id'];
-    $nome = $dados['nome'];     // Nome do usuario
-    $email = $dados['email'];   // Email do usuario
 
     // Query para fazer o update das informações do usuário
     $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
