@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS professor_disciplina CASCADE;
 DROP TABLE IF EXISTS contato CASCADE;
 DROP TABLE IF EXISTS servidor_horario CASCADE;
 DROP TABLE IF EXISTS curso CASCADE;
+DROP TABLE IF EXISTS chave CASCADE;
 
 /* Modelo Físico: */
 
@@ -31,8 +32,6 @@ CREATE TABLE usuario (
     ativo BOOLEAN NOT NULL DEFAULT 'f',
     acesso INT NOT NULL DEFAULT 1,
     add_data TIMESTAMP DEFAULT NULL,
-    chave_confirma VARCHAR(255) DEFAULT NULL,
-    chave_recupera VARCHAR(255) DEFAULT NULL,
     chave_salt VARCHAR(255) DEFAULT NULL
 );
 
@@ -147,6 +146,11 @@ CREATE TABLE professor_disciplina (
     fk_disciplina_id_disciplina SERIAL NOT NULL,
     fk_professor_fk_servidor_fk_usuario_id_usuario SERIAL NOT NULL
 );
+
+CREATE TABLE chave (
+    chave_confirma VARCHAR(255),
+    fk_usuario_id_usuario SERIAL PRIMARY KEY
+);
  
 ALTER TABLE servidor ADD CONSTRAINT FK_servidor_2
     FOREIGN KEY (fk_usuario_id_usuario)
@@ -251,4 +255,9 @@ ALTER TABLE servidor_horario ADD CONSTRAINT FK_servidor_horario_2
 ALTER TABLE turma ADD CONSTRAINT FK_turma_1
     FOREIGN KEY (fk_curso_id_curso)
     REFERENCES curso (id_curso)
+    ON DELETE CASCADE;
+
+ALTER TABLE chave ADD CONSTRAINT FK_chave_1
+    FOREIGN KEY (fk_usuario_id_usuario)
+    REFERENCES usuario (id_usuario)
     ON DELETE CASCADE;

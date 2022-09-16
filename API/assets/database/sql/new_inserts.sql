@@ -75,7 +75,7 @@ INSERT INTO servidor (fk_usuario_id_usuario, fk_sala_id_sala) VALUES
     (12, 8),
     (13, 9),
     (14, 10),
-    (15, 11),
+    (15, 13),
     (16, 12),
     (17, 13); -- Moisés
 
