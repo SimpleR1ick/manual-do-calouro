@@ -2,10 +2,8 @@
 <?php include_once 'php/includes/header.php';
 verificaNivelAcesso(); ?>
 
-<?php include_once 'php/functions/crud_process.php';
-$dados = crudGetDados(); ?>
-
 <!-- Conteudo da pagina -->
+<?php $dados = getDadosHeader(); ?>
 <section class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-8">
