@@ -19,6 +19,12 @@ INSERT INTO usuario (nom_usuario, email, senha) VALUES
     ('Daniel', 'daniel@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a'),                 -- senha
     ('Moisés', 'moisesomena@ifes.edu.br', '72c7d5bed34eb9dc055ef287eaf862ad');          -- ifes2022
 
+INSERT INTO acesso (dsc_acesso) VALUES
+    ('admin'),
+    ('aluno'),
+    ('servidor'),
+    ('professor');
+
 INSERT INTO curso (dsc_curso) VALUES
     ('Info'),
     ('Mec'),
