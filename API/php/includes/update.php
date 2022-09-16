@@ -10,24 +10,17 @@ include_once '../functions/sanitizar.php';
 include_once '../functions/verificar.php';
 
 // Definindo como constante global o caminho em caso de erro
-$dir = '../../perfis.php';
-define('PATH', $dir);
+define('PATH', '../../perfis.php');
 
 // Armazenado o id da sessão em uma variavel
 $id = $_SESSION['id_usuario'];
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Verifica se o POST foi enviado pelo botão
-    if (isset($_POST['btnIncrement'])) {
-        // Sanitização
-        $_POST = sanitizaPost($_POST); 
+    // Sanitização
+    if (sanitizaInjectHtmlPOST($_POST, PATH)) {
+        $_POST = sanitizaCaractersPOST($_POST); 
         
-        if (verificaInjectHtml($_POST)) {
-            $_SESSION['mensag'] = 'Erro ao atualizar o perfil!';
-            header('Location: ../../perfis.php'); // Retorna para o perfil
-        
-        }
         // Nivel de acesso recebido via post em um hyden input
         switch ($_POST['acesso']) {
             case 1:

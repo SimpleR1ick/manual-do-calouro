@@ -33,7 +33,11 @@ function crudGetDados(): array{
  * 
  * @author Henrique Dalmagro
  */
-function atualizaDadosUsuario($id, $nome, $email, $path): void {
+function atualizaDadosUsuario($dados, $path): void {
+    $id = $dados['id_usuario'];
+    $nome = $dados['nome'];
+    $email = $dados['email'];
+    
     // Inicia a conexão
     $db = db_connect();
 
