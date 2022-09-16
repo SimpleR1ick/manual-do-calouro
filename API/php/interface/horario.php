@@ -2,7 +2,7 @@
 /**
  * 
  * 
- * 
+ * @author Henrique Dalmagro - Rafael Barros
  */
 function horarioTable(): void {
     // Verifica se o método GET enviou algo

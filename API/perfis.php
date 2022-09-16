@@ -15,8 +15,10 @@ $userData = getDadosUsuario(); ?>
                 <div class="col-6 text-center">
                     <label for="foto-editar-perfil" class="form-label fw-bold h5">Editar foto de perfil</label>
                 </div>
-                <!-- VERIFIAÇÃO -->
-                <?php textoTipoUsuario($userData); ?>
+                <!-- TEXTO CAMPO -->
+                <div class='col-6 text-center'>
+                    <?php textoTipoUsuario(); ?>
+                </div>"
             </div>
 
             <!--Primeira row-->
@@ -32,9 +34,8 @@ $userData = getDadosUsuario(); ?>
                 </div>
 
                 <div class="col-6 d-flex flex-column justify-content-center">
-                    <?php campoTipoUsuario($userData); ?>
+                    <?php campoTipoUsuario(); ?>
                 </div>
-                <!--Fim da Primeira row-->
             </div>
 
             <!--Segunda row-->
@@ -52,7 +53,6 @@ $userData = getDadosUsuario(); ?>
                     <input required type="email" class="form-control" id="email" name="email" 
                         value="<?php echo $userData['email']; ?>">
                 </div>
-                <!-- Fim da Segunda row-->
             </div>
 
             <!--Terceira row-->
@@ -64,7 +64,6 @@ $userData = getDadosUsuario(); ?>
                     <!-- MUDAR SENHA -->
                     <button class="btn btn-danger mt-2" type="button">Redefinir senha</button>
                 </div>
-                <!-- Fim da Terceira row-->
             </div>
         </form>
     </div>

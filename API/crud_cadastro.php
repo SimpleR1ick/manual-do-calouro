@@ -2,7 +2,6 @@
 <?php include_once 'php/includes/header.php'; 
 verificaNivelAcesso(); ?>
 
-
 <!-- Conteúdo da pagina -->
 <section>
     <div class="container">

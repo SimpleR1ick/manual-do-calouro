@@ -11,28 +11,26 @@ include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
 
 define('PATH', '../../crud_index.php');
+define('CONNECT', db_connect());
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Abra uma conexão com o banco de dados
-    $connect = db_connect();
-
     // Verifica se o formulario foi de update, delete ou register
     if (isset($_POST['btnAtualizar'])) {
         // Invoca a função de atualização
-        crudUpdate($connect);
+        crudUpdate();
     }
     else if (isset($_POST['btnDeletar'])) {
         // Invoca a função de exclusão
-        crudDelete($connect);
+        crudDelete();
 
     }
     else if (isset($_POST['btnCadastrar'])) {
         // Invoca a função de registro
-        crudRegister($connect);
+        crudRegister();
     }
     // Encerando a conexão
-    pg_close($connect);
+    pg_close(CONNECT);
 }
 
 /**
@@ -40,11 +38,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
-function crudUpdate($db): void {
+function crudUpdate(): void {
     // Declaração de variáveis a serem modificadas
-    $id = pg_escape_string($db, $_POST['id']);
-    $nome = pg_escape_string($db, $_POST['nome']);
-    $email = pg_escape_string($db, $_POST['email']);
+    $id = pg_escape_string(CONNECT, $_POST['id']);
+    $nome = pg_escape_string(CONNECT, $_POST['nome']);
+    $email = pg_escape_string(CONNECT, $_POST['email']);
 
     atualizaDadosUsuario($id, $nome, $email, PATH);
 
@@ -52,7 +50,7 @@ function crudUpdate($db): void {
     $acesso = $_POST['acesso'];
 
     if ($acesso != null) {
-        pg_query($db, "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id");
+        pg_query(CONNECT, "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id");
     }
     // Desativa o usuario 
     if ($status == 'true') {
@@ -61,7 +59,7 @@ function crudUpdate($db): void {
         $bool = 'f';
     }
     $sql = "UPDATE usuario SET ativo = '$bool' WHERE id_usuario = '$id'";
-    pg_query($db, $sql);
+    pg_query(CONNECT, $sql);
 }
 
 /**
@@ -69,15 +67,15 @@ function crudUpdate($db): void {
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
-function crudDelete($db): void {
+function crudDelete(): void {
     // Atribuindo id do usuário
-    $id = pg_escape_string($db, $_POST['id']);
+    $id = pg_escape_string(CONNECT, $_POST['id']);
     
     // Query para excluir o usuário no banco de dados
     $sql = "DELETE FROM usuario WHERE id_usuario = $id";
 
     // Verifica se a exclusão ocorreu sem problemas
-    if (pg_query($db, $sql)) {
+    if (pg_query(CONNECT, $sql)) {
         $_SESSION['toast'] = "Excluído com sucesso!";
         header('Location: ../../crud_index.php');
         
@@ -92,21 +90,21 @@ function crudDelete($db): void {
  * 
  *@author Henrique Dalmagro
  */
-function crudRegister($db): void {
-    $email = pg_escape_string($db, $_POST['email']);
+function crudRegister(): void {
+    $email = pg_escape_string(CONNECT, $_POST['email']);
     
     // Somente raliza o processo se o e-mail digitado não estiver cadastrado
     if (verificaEmail($email, '../crud_index.php')) {  
-        $nome = pg_escape_string($db, $_POST['nome']);
-        $senha = pg_escape_string($db, $_POST['senha']);
-        $acesso = pg_escape_string($db, $_POST['acesso']);
+        $nome = pg_escape_string(CONNECT, $_POST['nome']);
+        $senha = pg_escape_string(CONNECT, $_POST['senha']);
+        $acesso = pg_escape_string(CONNECT, $_POST['acesso']);
 
         $senha = md5($senha);
 
         $sql = "INSERT INTO usuario (nom_usuario, email, senha, ativo, acesso) VALUES 
                 ('$nome', '$email', '$senha', 't', '$acesso')";
 
-        if (pg_query($db, $sql)) {
+        if (pg_query(CONNECT, $sql)) {
             // Adiciona minha sessão uma mensagem de sucesso
             $_SESSION['sucess'] = 'Cadastrado com sucesso!';
 

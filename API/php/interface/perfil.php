@@ -4,29 +4,26 @@
  * 
  * 
  */
-function textoTipoUsuario($userData): void {
+function textoTipoUsuario(): void {
+    global $userData;
+
     if ($userData['acesso'] == 1) {
-        $textoCampo = 'Editar turma';
+        echo "<label class='form-label fw-bold h5'>Editar turma</label>";
     }
     else if ($userData['acesso'] == 2) {
-        $textoCampo = 'Editar regras';
+        echo "<label class='form-label fw-bold h5'>Editar regras</label>";
     }   
-    echo"
-    <!-- TEXTO CAMPO -->
-    <div class='col-6 text-center'>
-        <label class='form-label fw-bold h5'>$textoCampo</label>
-    </div>";
 }
 
 /**
  * 
  * 
  * 
- *
  */
-function campoTipoUsuario($userData): void {
-    if ($userData['acesso'] == 1) {
-        ?>
+function campoTipoUsuario(): void {
+    global $userData;
+
+    if ($userData['acesso'] == 1): ?>
         <!-- CURSO -->
         <div class="mb-3">
             <label for="curso" class="form-label fw-bold">Curso</label>
@@ -52,14 +49,14 @@ function campoTipoUsuario($userData): void {
                 <option value="5">5° módulo</option>
                 <option value="6">6° módulo</option>
             </select>
-        </div>
-        <?php
-    } else if ($userData['acesso'] == 2) { 
-        echo'
+        </div> 
+    <?php 
+    else if ($userData['acesso'] == 2) : ?>
         <!-- REGRAS DE SALA -->
         <div class="mb-3">
             <textarea class="w-100" id="regras" name="regras" required rows="6"></textarea>
-        </div>';
-    }
+        </div>
+        <?php 
+    endif;
 }
 ?>
