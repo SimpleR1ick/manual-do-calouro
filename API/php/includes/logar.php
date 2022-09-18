@@ -2,9 +2,10 @@
 // Iniciar a sessão
 session_start();
 
-// Import de bibliotecas de funções
-require_once './db_connect.php';
+// Inicia a conexão com banco de dados
+require_once 'db_connect.php';
 
+// Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
 include_once '../functions/processar.php';
@@ -20,8 +21,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitização
         $_POST = sanitizaCaractersPOST($_POST); 
 
-        $email = pg_escape_string(CONNECT, $_POST['email']);
-        $senha = pg_escape_string(CONNECT, $_POST['senha']);
+        // Atribuição dos inputs do POST a variaveis
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
     
         // Validações
         if (validaEmail($email, PATH)) {

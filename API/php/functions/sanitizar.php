@@ -4,28 +4,30 @@
  * 
  * @param array $arrayString 
  * 
- * @return bool True se encontrar algum inject - False se a validação ocorrer com sucesso
+ * @return bool|false se encontrar algum inject
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaInjectHtmlPOST($arrayString, $pagePath): bool {
+function sanitizaInjectHtmlPOST($array, $pagePath): bool {
+    // Declaração de variavel contador
     $count = 0;
 
-    foreach ($arrayString as $string) {
+    // Percorre cada indice do array
+    foreach ($array as $string) {
         $f_string = htmlspecialchars($string, ENT_QUOTES);
 
+        // Verifica se a string sanitizada e diferente da original
         if ($f_string != $string) {
-            $count++;
+            $count += 1;
             break;
         }
     }
-    if ($count > 0) {
-        $_SESSION['mensag'] = 'Erro ao cadastrar, caracter invalidos!';
-
+    // Verifica se o contador continua zerado
+    if (!$count == 0) {
         // Retorna a pagina de origem
         header("Location: $pagePath"); 
         return false;
-    }
+    } 
     return true;
 }
 
@@ -34,18 +36,23 @@ function sanitizaInjectHtmlPOST($arrayString, $pagePath): bool {
  * 
  * @param array $array 
  * 
- * @return array $array
+ * @return array o array sanitizado
  * 
  * @author Henrique Dalmagro
  */
 function sanitizaCaractersPOST($array): array {
+    // Percorre cada indice do array
     foreach ($array as $key => $value) {
-        // Invoca funções que remove contra-barras e espaço em branco
+        // Remover as tags HTML, contrabarras e espaços em branco de uma.
+        $value = filter_var($value, FILTER_SANITIZE_STRING);
         $value = stripslashes($value);
-        $f_string = trim($value);
-    
+        $value = trim($value);
+
+        // Escapa de uma sequência para consultar o banco de dados
+        $value = pg_escape_literal(CONNECT, $array[$key]);
+
         // Sobreescreve o valor original
-        $array[$key] = $f_string;
+        $array[$key] = $value;
     }
     return $array;
 }

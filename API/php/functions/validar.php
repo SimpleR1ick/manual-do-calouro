@@ -22,6 +22,33 @@ function validaNome($string, $pagePath) {
 }
 
 /**
+ * Função para verificar se o email de entrada é válido
+ * 
+ * @param string $email O e-mail
+ * @param string $pagePath Caminho de retorno em caso de erro
+ * 
+ * @return bool|false Se o formato for invalido
+ *  
+ * @author Rafael Barros - Henrique Dalmagro
+ */
+function validaEmail($email, $pagePath): bool {
+    // Sanitiza o email e em seguida valida o formato
+    $f_email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    $v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
+
+    // Verficia se o email e invalido
+    if (!$v_email) {
+        $_SESSION['mensag'] = 'Formato de e-mail invalido!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath"); 
+        return false;
+    } 
+    return true; 
+}
+
+
+/**
  * Função para verificar se o email de entrada já esta cadastrado no banco de dados
  * 
  * @param string $email E-mail a ser buscado
@@ -48,32 +75,6 @@ function verificaEmail($email, $pagePath): bool {
 }
 
 /**
- * Função para verificar se o email de entrada é válido
- * 
- * @param string $email O e-mail
- * @param string $pagePath Caminho de retorno em caso de erro
- * 
- * @return bool|false Se o formato for invalido
- *  
- * @author Rafael Barros - Henrique Dalmagro
- */
-function validaEmail($email, $pagePath): bool {
-    // Sanitiza o email e em seguida valida o formato
-    $f_email = filter_var($email, FILTER_SANITIZE_EMAIL);
-    $v_email = filter_var($f_email, FILTER_VALIDATE_EMAIL);
-
-    // Verficia se o email e invalido
-    if (!$v_email) {
-        $_SESSION['mensag'] = 'Formato de e-mail invalido!';
-
-        // Retorna a pagina de origem
-        header("Location: $pagePath"); 
-        return false;
-    } 
-    return true; 
-}
-
-/**
  * Função para verificar se as senhas coincidem
  * 
  * @param string $senha1 A senha
@@ -85,7 +86,7 @@ function validaEmail($email, $pagePath): bool {
  * @author Henrique Dalmagro
  */
 function validaSenha($senha1, $senha2, $pagePath): bool {
-    if ($senha1 != $senha2) {
+    if ($senha1 !== $senha2) {
         $_SESSION['mensag'] = 'Senhas não idênticas!';
 
         // Retorna a pagina de origem

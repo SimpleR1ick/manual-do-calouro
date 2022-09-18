@@ -2,9 +2,10 @@
 // Iniciar a sessão
 session_start();
 
-// Import de bibliotecas de funções
-require_once './db_connect.php';
+// Inicia a conexão com banco de dados
+require_once 'db_connect.php';
 
+// Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
 include_once '../functions/processar.php';
@@ -20,15 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitização
         $_POST = sanitizaCaractersPOST($_POST); 
 
-        $nome = pg_escape_string(CONNECT, $_POST['nome']);
-        $email = pg_escape_string(CONNECT, $_POST['email']);
-        $senha = pg_escape_string(CONNECT, $_POST['senha']);
-        $senha2 = pg_escape_string(CONNECT, $_POST['senhaConfirma']);
+        // Atribuição dos inputs do POST a variaveis
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $senha = $_POST['senha'];
+        $senhaConfirma = $_POST['senhaConfirma'];
         
         // Validações
         if (validaNome($nome, PATH)) {
             if (validaEmail($email, PATH)) {
-                if (validaSenha($senha, $senha2, PATH)) {
+                if (validaSenha($senha, $senhaConfirma, PATH)) {
                     $valida = true;
                 }
             }
@@ -42,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
         // Verifica os processos antecedentes
-        if ($valida and $verifica) {
+        if ($valida && $verifica) {
             // Cadastra o usuario no banco de dados
             cadastrarUsuario($nome, $email, md5($senha), PATH);
         }
