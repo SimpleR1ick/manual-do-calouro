@@ -5,7 +5,6 @@ require_once '../functions/email.php';
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] = 'POST') {
-    
     // Atribui o conteudo dos campo do formulario a variável
     $email = pg_escape_string(CONNECT, $_POST['email']);
 

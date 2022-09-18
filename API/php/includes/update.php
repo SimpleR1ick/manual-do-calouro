@@ -44,13 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $modulo = $_POST['modulo'];
                 $curso = $_POST['curso'];
 
-                atualizarPerfilAluno($modulo, $curso);
+                atualizarPerfilAluno($id, $modulo, $curso);
 
             case 2:
                 // Atribui o conteudo obtido do campo regras do formulario
                 $regras = $_POST['regras'];
 
-                atualizarPerfilProfessor($regras);
+                atualizarPerfilProfessor($id, $regras);
         }
         // Verifica a a imagem existe
         if ($_FILES['foto'] != NULL) {

@@ -32,7 +32,7 @@ if (isset($_GET['chave'])) {
         $id = pg_fetch_result($query, 0, 'id_usuario');
 
         // verifica se updates ocorreram con sucesso
-        if (ativaUsuario($id) and limpaChave($id)) {
+        if (ativaDesativaUsuario($id, 'true') and excluirChave($id)) {
             // Adiciona uma mensagem de sucesso a sessão
             $_SESSION['sucess'] = 'Conta ativada com sucesso!';
 

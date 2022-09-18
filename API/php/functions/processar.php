@@ -98,9 +98,7 @@ function atualizarDadosUsuario($id, $nome, $email, $path): void {
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
-function atualizarPerfilAluno($modulo, $curso) {
-    global $id;
-
+function atualizarPerfilAluno($id, $modulo, $curso) {
     // Fazer verificação se o aluno ja esta cadastrado
     $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id)";
     $query = pg_query(CONNECT, $sql);
@@ -129,9 +127,7 @@ function atualizarPerfilAluno($modulo, $curso) {
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
-function atualizarPerfilProfessor($regras) {
-    global $id;
-
+function atualizarPerfilProfessor($id, $regras) {
     // Query para fazer o update das informações do professor
     $sql = "UPDATE professor SET regras = '$regras'
             WHERE fk_servidor_fk_usuario_id_usuario = $id";
@@ -147,10 +143,10 @@ function atualizarPerfilProfessor($regras) {
  * 
  * @author Henrique Dalmagro
  */
-function atualizarPerfilAdministrativo($setor) {
+function atualizarPerfilAdministrativo($id, $setor) {
     // Query para fazer o update das informações do administrativo
     $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
-            WHERE fk_servidor_fk_usuario_id_usuario = 'id'";
+            WHERE fk_servidor_fk_usuario_id_usuario = $id";
 
     if (!pg_query(CONNECT, $sql)) {
         // Adiciona à sessão uma mensagem de erro
@@ -164,9 +160,10 @@ function atualizarPerfilAdministrativo($setor) {
  * @author Henrique Dalmagro - Rafael Barros
  */
 function ativaDesativaUsuario($id, $status): void {
-    // Desativa o usuario 
+    // Default ativo = false
     $ativo = 'f';
 
+    // Verifica o parametro recebido
     if ($status == 'true') {
         // Ativa o usuario
         $ativo = 't';
@@ -191,22 +188,6 @@ function alteraAcessoUsuario($id, $acesso) {
 }
 
 /**
- * Função para limpar a chave de atiavação de um usuario
- * 
- * @param int $id do usuario
- * @return false em caso de falha
- * 
- * @author Henrique Dalmagro
- */
-function limparChave($id): bool {
-    // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
-    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
-    $result = pg_query(CONNECT, $sql);
-
-    return $result;
-}
-
-/**
  * Função para deletar os dados de um usuario
  * 
  * @author Henrique Dalmagro - Rafael Barros
@@ -225,4 +206,22 @@ function excluirUsuario($id): void {
         header('Location: ../../crud_index.php');
     }
 }
+
+
+/**
+ * Função para limpar a chave de atiavação de um usuario
+ * 
+ * @param int $id do usuario
+ * @return false em caso de falha
+ * 
+ * @author Henrique Dalmagro
+ */
+function excluirChave($id): bool {
+    // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
+    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
+    $result = pg_query(CONNECT, $sql);
+
+    return $result;
+}
+
 ?>
