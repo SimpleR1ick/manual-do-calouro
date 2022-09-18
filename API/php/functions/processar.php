@@ -8,9 +8,13 @@
  * 
  * @author Henrique Dalmagro
  */
-function cadastrarUsuario($nome, $email, $senhaHash, $path): void {
+function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 1): void {
+    // Pagina que enviou o formulario
+    $origem = $_SERVER['HTTP_REFERER'];
+
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha) VALUES ('$nome', '$email', '$senhaHash')";
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha, ativo) 
+            VALUES ('$nome', '$email', '$senhaHash', $acesso)";
     
     // Se a requição houve retorno, o insert teve sucesso
     if (pg_query(CONNECT, $sql)) {
@@ -18,14 +22,14 @@ function cadastrarUsuario($nome, $email, $senhaHash, $path): void {
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
 
         // Envia o usuário de à página de login
-        header('Location: ../../login.php');
+        header("Location: $destino");
 
     } else {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao cadastrar!';
 
         // Retorna para o cadastro
-        header("Location: $path"); 
+        header("Location: $origem"); 
     }
 }
 
@@ -94,7 +98,7 @@ function atualizarDadosUsuario($id, $nome, $email, $path): void {
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
-function perfilAluno($modulo, $curso) {
+function atualizarPerfilAluno($modulo, $curso) {
     global $id;
 
     // Fazer verificação se o aluno ja esta cadastrado
@@ -125,7 +129,7 @@ function perfilAluno($modulo, $curso) {
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
-function perfilProfessor($regras) {
+function atualizarPerfilProfessor($regras) {
     global $id;
 
     // Query para fazer o update das informações do professor
@@ -141,9 +145,9 @@ function perfilProfessor($regras) {
 /**
  * 
  * 
- * 
+ * @author Henrique Dalmagro
  */
-function perfilAdministrativo($setor) {
+function atualizarPerfilAdministrativo($setor) {
     // Query para fazer o update das informações do administrativo
     $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
             WHERE fk_servidor_fk_usuario_id_usuario = 'id'";
@@ -151,6 +155,74 @@ function perfilAdministrativo($setor) {
     if (!pg_query(CONNECT, $sql)) {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar o setor';
+    }
+}
+
+/**
+ * Função para atualizar os dados de um usuario
+ * 
+ * @author Henrique Dalmagro - Rafael Barros
+ */
+function ativaDesativaUsuario($id, $status): void {
+    // Desativa o usuario 
+    $ativo = 'f';
+
+    if ($status == 'true') {
+        // Ativa o usuario
+        $ativo = 't';
+    }
+
+    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
+    pg_query(CONNECT, $sql); 
+}
+
+/**
+ * Função para mudar o nivel de acesso de um usuario no sistema
+ * 
+ * @param int $id do alvo
+ * @param int $acesso referente
+ * 
+ * @author Henrique Dalmagro
+ */
+function alteraAcessoUsuario($id, $acesso) {
+    // Comentar
+    $sql = "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id";
+    pg_query(CONNECT, $sql);
+}
+
+/**
+ * Função para limpar a chave de atiavação de um usuario
+ * 
+ * @param int $id do usuario
+ * @return false em caso de falha
+ * 
+ * @author Henrique Dalmagro
+ */
+function limparChave($id): bool {
+    // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
+    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
+    $result = pg_query(CONNECT, $sql);
+
+    return $result;
+}
+
+/**
+ * Função para deletar os dados de um usuario
+ * 
+ * @author Henrique Dalmagro - Rafael Barros
+ */
+function excluirUsuario($id): void {
+    // Query para excluir o usuário no banco de dados
+    $sql = "DELETE FROM usuario WHERE id_usuario = $id";
+
+    // Verifica se a exclusão ocorreu sem problemas
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['mensag'] = "Excluído com sucesso!";
+        header('Location: ../../crud_index.php');
+        
+    } else {
+        $_SESSION['mensag'] = "Erro ao excluir!";
+        header('Location: ../../crud_index.php');
     }
 }
 ?>

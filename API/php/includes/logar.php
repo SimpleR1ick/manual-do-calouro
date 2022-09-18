@@ -39,5 +39,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }     
 }
 // Encerando a conexão
-pg_close(CONNECT);  
+pg_close(CONNECT);
 ?>

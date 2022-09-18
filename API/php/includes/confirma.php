@@ -5,6 +5,8 @@ session_start();
 // Inicia a conexão com banco de dados
 require_once './db_connect.php';
 
+include_once '../functions/processar.php';
+
 // Abra uma conexão com o banco de dados
 $db = db_connect();
 
@@ -41,35 +43,3 @@ if (isset($_GET['chave'])) {
 }
 // Encerrando a conexão
 pg_close($db);
-
-/**
- * Função para ativar o usuario do id recebido
- * 
- * @param int $id do usuario
- * @return false em caso de falha
- * 
- * @author Henrique Dalmagro
- */
-function ativaUsuario($id): bool {
-    // Atualiza o status do usuario para ativo
-    $sql = "UPDATE usuario SET ativo = 't' WHERE id_usuario = $id";
-    $result =  pg_query($GLOBALS['db'], $sql);  
-
-    return $result;
-}
-
-/**
- * Função para limpar a chave de atiavação de um usuario
- * 
- * @param int $id do usuario
- * @return false em caso de falha
- * 
- * @author Henrique Dalmagro
- */
-function limpaChave($id): bool {
-    // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
-    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
-    $result = pg_query($GLOBALS['db'], $sql);
-
-    return $result;
-}

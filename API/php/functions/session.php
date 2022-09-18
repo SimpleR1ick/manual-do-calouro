@@ -15,11 +15,11 @@ require_once 'php/includes/db_connect.php';
 function getDadosUsuario(): array {
     // Verifica se existe um usuario logado
     if (isset($_SESSION['id_usuario'])) {
-        // Armazena o id da sessão em uma variavel
-        $id = $_SESSION['id_usuario'];
-
         // Abra uma conexão com o banco de dados
         $db = db_connect();
+
+        // Armazena o id da sessão em uma variavel
+        $id = pg_escape_string($db, $_SESSION['id_usuario']);
 
         // Busca os dados do usuário atravéz do id na sessão
         $sql = "SELECT id_usuario, nom_usuario, email, img_perfil, acesso, ativo
@@ -44,10 +44,10 @@ function getDadosUsuario(): array {
  * @author Henrique Dalmagro
  */
 function getDadosHeader(): array {
-    // Inicia a conexão
-    $db = db_connect();
-
     if (isset($_GET['id'])) {
+        // Inicia a conexão
+        $db = db_connect();
+
         $id = pg_escape_string($db, $_GET['id']);
 
         // Seleciona na tabela usuarios um usuario com mesmo ID
@@ -57,10 +57,11 @@ function getDadosHeader(): array {
         // Retorna o resultado convertido em um array
         $userData = pg_fetch_array($query);
 
+        // Encerando a conexão
+        pg_close($db);
+
         return $userData;
-    }
-    // Encerando a conexão
-    pg_close($db);
+    } 
 }
 
 /**
