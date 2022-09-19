@@ -1,6 +1,6 @@
 <?php
 // Import de biblioteca de funções
-require_once './db_connect.php';
+require_once '../includes/db_connect.php';
 require_once '../functions/email.php';
 
 // Verifica se houve a requisição POST para esta pagina

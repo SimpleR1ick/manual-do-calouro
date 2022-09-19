@@ -3,7 +3,7 @@
 session_start();
 
 // Inicia a conexão com banco de dados
-require_once 'db_connect.php';
+require_once '../includes/db_connect.php';
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
