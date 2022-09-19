@@ -8,7 +8,7 @@
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaInjectHtmlPOST($array, $pagePath): bool {
+function verificaInjectHtml($array, $pagePath): bool {
     // Declaração de variavel contador
     $count = 0;
 
@@ -48,8 +48,8 @@ function sanitizaCaractersPOST($array): array {
         $value = stripslashes($value);
         $value = trim($value);
 
-        // Escapa de uma sequência para consultar o banco de dados
-        $value = pg_escape_string(CONNECT, $array[$key]);
+        // Escapa a variavel para consultar no banco de dados
+        $value = pg_escape_string($value);
 
         // Sobreescreve o valor original
         $array[$key] = $value;

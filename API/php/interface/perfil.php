@@ -28,7 +28,7 @@ function campoTipoUsuario(): void {
         <div class="mb-3">
             <label for="curso" class="form-label fw-bold">Curso</label>
 
-            <select id="curso" name="modulo" class="form-select">
+            <select id="curso" name="curso" class="form-select">
                 <option selected value="">Selecione seu curso...</option>
                 <option value="1">Informática para Internet</option>
                 <option value="2">Mecatrônica</option>

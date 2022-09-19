@@ -18,7 +18,7 @@ function uploadImagemPerfil($foto_size, $nome_temp, $nome_novo): void {
                 WHERE id_usuario = '{$_SESSION['id_usuario']}'";
 
         if (pg_query(CONNECT, $sql)) {
-            move_uploaded_file($nome_temp, DIR.$nome_novo);
+            move_uploaded_file($nome_temp, '../../assets/uploads/'.$nome_novo);
             $_SESSION['sucess'] = 'Foto atualizada com sucesso!';
 
         } else {

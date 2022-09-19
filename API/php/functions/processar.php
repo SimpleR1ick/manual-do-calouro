@@ -1,5 +1,36 @@
 <?php
 /**
+ * Função para definir o nome de foto de perfil
+ * 
+ * @param string $nome_foto
+ * 
+ * @return string nome final do arquivo
+ * 
+ * @author Henrique Dalmagro
+ */
+function getNomeFoto($nome_foto): string {
+    $nome_foto = pg_escape_string(CONNECT, $nome_foto);
+
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $query = pg_query(CONNECT, $sql);
+
+    if (pg_num_rows($query) == 1) {
+        $result = pg_fetch_array($query);
+
+        // Utiliza o mesmo nome do banco para atualizar a foto
+        $nome_final = $result['img_perfil'];
+    
+    } else {
+        // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
+        $path = pathinfo($nome_foto);
+
+        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
+        $nome_final = time().'.'.$path['extension'];
+    }
+    return $nome_final;
+}
+
+/**
  * Função para cadastrar o usuario no sistema
  * 
  * @param string $nome 
@@ -15,7 +46,7 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
     $origem = $_SERVER['HTTP_REFERER'];
 
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha, ativo) 
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";
     
     // Se a requição houve retorno, o insert teve sucesso
@@ -68,35 +99,6 @@ function logarUsuario($email, $senhaHash): void {
 }
 
 /**
- * Função para definir o nome de foto de perfil
- * 
- * @param string $nome_foto
- * 
- * @return string nome final do arquivo
- * 
- * @author Henrique Dalmagro
- */
-function getNomeFoto($nome_foto): string {
-    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
-    $query = pg_query(CONNECT, $sql);
-
-    if (pg_num_rows($query) > 0) {
-        $result = pg_fetch_all($query);
-
-        // Utiliza o mesmo nome do banco para atualizar a foto
-        $nome_final = $result['img_perfil'];
-    
-    } else {
-        // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
-        $path = pathinfo($nome_foto);
-
-        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
-        $nome_final = time().'.'.$path['extension'];
-    }
-    return $nome_final;
-}
-
-/**
  * Função para atualizar os dados do usuario
  * 
  * @param int $id
@@ -128,14 +130,14 @@ function atualizarDadosUsuario($id, $nome, $email, $destino): void {
  * Função para inserir o curso e o modulo do aluno
  * 
  * @param int $id
- * @param string $curso código único do curso
- * @param string $modulo código único do módulo
+ * @param int $curso código único do curso
+ * @param int $modulo código único do módulo
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
 function atualizarPerfilAluno($id, $modulo, $curso) {
     // Fazer verificação se o aluno ja esta cadastrado
-    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id)";
+    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id";
     $query = pg_query(CONNECT, $sql);
 
     if (pg_num_rows($query) > 0) {
@@ -166,8 +168,11 @@ function atualizarPerfilAluno($id, $modulo, $curso) {
  * @author Rafael Barros - Henrique Dalmagro
  */
 function atualizarPerfilProfessor($id, $regras) {
+    // Escapa de uma sequência para consultar o banco de dados
+    $regras = pg_escape_string(CONNECT, $regras);
+
     // Query para fazer o update das informações do professor
-    $sql = "UPDATE professor SET regras = '$regras'
+    $sql = "UPDATE professor SET regras ='$regras'
             WHERE fk_servidor_fk_usuario_id_usuario = $id";
 
     if (!pg_query(CONNECT, $sql)) {
@@ -215,16 +220,19 @@ function excluirUsuario($id): void {
 }
 
 /**
- * Função para atualizar os dados de um usuario
+ * Função para limpar a chave de atiavação de um usuario
  * 
- * @param int $id
- * @param bool @status 't' or 'f'
+ * @param int $id do usuario
+ * @return false em caso de falha
  * 
- * @author Henrique Dalmagro - Rafael Barros
+ * @author Henrique Dalmagro
  */
-function ativaDesativaUsuario($id, $ativo): void {
-    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
-    pg_query(CONNECT, $sql); 
+function excluirChaveConfirma($id): bool {
+    // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
+    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
+    $result = pg_query(CONNECT, $sql);
+
+    return $result;
 }
 
 /**
@@ -237,24 +245,20 @@ function ativaDesativaUsuario($id, $ativo): void {
  */
 function alteraAcessoUsuario($id, $acesso) {
     // Comentar
-    $sql = "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id";
+    $sql = "UPDATE usuario SET fk_acesso_id_acesso = '$acesso' WHERE id_usuario = $id";
     pg_query(CONNECT, $sql);
 }
 
 /**
- * Função para limpar a chave de atiavação de um usuario
+ * Função para atualizar os dados de um usuario
  * 
- * @param int $id do usuario
- * @return false em caso de falha
+ * @param int $id
+ * @param bool @status 't' or 'f'
  * 
- * @author Henrique Dalmagro
+ * @author Henrique Dalmagro - Rafael Barros
  */
-function excluirChave($id): bool {
-    // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
-    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
-    $result = pg_query(CONNECT, $sql);
-
-    return $result;
+function ativaDesativaUsuario($id, $ativo): void {
+    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
+    pg_query(CONNECT, $sql); 
 }
-
 ?>
