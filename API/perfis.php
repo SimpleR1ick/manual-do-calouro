@@ -18,7 +18,7 @@ $userData = getDadosUsuario(); ?>
                 <!-- TEXTO CAMPO -->
                 <div class='col-6 text-center'>
                     <?php textoTipoUsuario(); ?>
-                </div>"
+                </div>
             </div>
 
             <!--Primeira row-->
