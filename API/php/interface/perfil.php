@@ -51,7 +51,7 @@ function campoTipoUsuario(): void {
             </select>
         </div> 
      
-    <?php else if ($userData['acesso'] == 2) : ?>
+    <?php else if ($userData['acesso'] == 2): ?>
         <!-- REGRAS DE SALA -->
         <div class="mb-3">
             <textarea class="w-100" id="regras" name="regras" required rows="6"></textarea>
