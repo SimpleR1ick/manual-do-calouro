@@ -1,5 +1,5 @@
 <!-- Header -->
-<?php include_once 'php/includes/header.php';
+<?php include_once 'php/layout/header.php';
 verificaAcessoCrud(); ?>
 
 <!-- Conteúdo da pagina -->
@@ -37,4 +37,4 @@ verificaAcessoCrud(); ?>
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/includes/footer.php'; ?>
+<?php include_once 'php/layout/footer.php'; ?>
