@@ -1,4 +1,5 @@
 $(document).ready(function(){
+
     $('.teste').click(function(){
         var clickBtnValue = $(this).val();
         var ajaxurl = 'ajax.php',
@@ -6,7 +7,8 @@ $(document).ready(function(){
         $.post(ajaxurl, data, function (response) {
             // Response div goes here.
             $('#cont').html(response)
-            alert("action performed successfully");
+            //alert("action performed successfully");
         });
     });
+    
 });

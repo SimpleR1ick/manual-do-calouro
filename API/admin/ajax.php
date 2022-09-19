@@ -1,5 +1,4 @@
 <?php
-echo 'aaaa';
     if (isset($_POST['action'])) {
         switch ($_POST['action']) {
             case 'algo':
@@ -12,11 +11,10 @@ echo 'aaaa';
     }
 
     function select() {
-        echo "The select function is called.";
+        echo "<h1>The select function is called.</h1>";
     }
 
     function insert() {
         echo "The insert function is called.";
-        exit;
     }
 ?>

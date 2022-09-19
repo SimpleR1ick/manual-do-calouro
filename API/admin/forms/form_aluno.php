@@ -1,7 +1,7 @@
 <form method="post" action="">
 
-    <!-- USUÁRIO ADMINISTRATIVO -->
-    <h2>USUÁRIO ADMINISTRATIVO</h2>
+    <!-- USUÁRIO ALUNO -->
+    <h2>USUÁRIO ALUNO</h2>
     <!-- ID -->
     <div class="mb-3">
 
