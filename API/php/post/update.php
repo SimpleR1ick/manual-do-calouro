@@ -87,7 +87,7 @@ function getNomeFoto($nome_foto): string {
         $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
         $query = pg_query(CONNECT, $sql);
 
-        if ($query != null) {
+        if (pg_num_rows($query) > 0) {
             $result = pg_fetch_all($query);
 
             // Utiliza o mesmo nome do banco para atualizar a foto
