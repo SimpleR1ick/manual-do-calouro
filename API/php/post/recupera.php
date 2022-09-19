@@ -1,7 +1,9 @@
 <?php
-// Import de biblioteca de funções
+// Incia a conexão com banco de dados
 require_once '../includes/db_connect.php';
-require_once '../functions/email.php';
+
+// Import da função de email
+include_once '../includes/email.php';
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] = 'POST') {

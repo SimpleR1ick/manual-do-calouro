@@ -1,10 +1,12 @@
 <?php
 /**
- * Função para cadastrar o usuario 
+ * Função para cadastrar o usuario no sistema
  * 
  * @param string $nome 
  * @param string $email 
- * @param string $senha 
+ * @param string $senhaHash
+ * @param path $destino
+ * @param int $acesso 
  * 
  * @author Henrique Dalmagro
  */
@@ -68,11 +70,14 @@ function logarUsuario($email, $senhaHash): void {
 /**
  * Função para atualizar os dados do usuario
  * 
+ * @param int $id
+ * @param string $nome
  * @param string $email um email qualquer
+ * @param path $destino 
  * 
  * @author Henrique Dalmagro
  */
-function atualizarDadosUsuario($id, $nome, $email, $path): void {
+function atualizarDadosUsuario($id, $nome, $email, $destino): void {
     // Query para fazer o update das informações do usuário
     $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
             WHERE id_usuario = $id";
@@ -87,12 +92,13 @@ function atualizarDadosUsuario($id, $nome, $email, $path): void {
         $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
     }
     // Retorna a pagina perfil
-    header("Location: $path");
+    header("Location: $destino");
 }
 
 /**
  * Função para inserir o curso e o modulo do aluno
  * 
+ * @param int $id
  * @param string $curso código único do curso
  * @param string $modulo código único do módulo
  * 
@@ -123,7 +129,8 @@ function atualizarPerfilAluno($id, $modulo, $curso) {
 
 /**
  * 
- * 
+ * @param int $id
+ * @param string $regras
  * 
  * @author Rafael Barros - Henrique Dalmagro
  */
@@ -140,6 +147,8 @@ function atualizarPerfilProfessor($id, $regras) {
 
 /**
  * 
+ * @param int $id
+ * @param int $setor
  * 
  * @author Henrique Dalmagro
  */
@@ -152,39 +161,6 @@ function atualizarPerfilAdministrativo($id, $setor) {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar o setor';
     }
-}
-
-/**
- * Função para atualizar os dados de um usuario
- * 
- * @author Henrique Dalmagro - Rafael Barros
- */
-function ativaDesativaUsuario($id, $status): void {
-    // Default ativo = false
-    $ativo = 'f';
-
-    // Verifica o parametro recebido
-    if ($status == 'true') {
-        // Ativa o usuario
-        $ativo = 't';
-    }
-
-    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
-    pg_query(CONNECT, $sql); 
-}
-
-/**
- * Função para mudar o nivel de acesso de um usuario no sistema
- * 
- * @param int $id do alvo
- * @param int $acesso referente
- * 
- * @author Henrique Dalmagro
- */
-function alteraAcessoUsuario($id, $acesso) {
-    // Comentar
-    $sql = "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id";
-    pg_query(CONNECT, $sql);
 }
 
 /**
@@ -207,6 +183,32 @@ function excluirUsuario($id): void {
     }
 }
 
+/**
+ * Função para atualizar os dados de um usuario
+ * 
+ * @param int $id
+ * @param bool @status 't' or 'f'
+ * 
+ * @author Henrique Dalmagro - Rafael Barros
+ */
+function ativaDesativaUsuario($id, $ativo): void {
+    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
+    pg_query(CONNECT, $sql); 
+}
+
+/**
+ * Função para mudar o nivel de acesso de um usuario no sistema
+ * 
+ * @param int $id do alvo
+ * @param int $acesso referente
+ * 
+ * @author Henrique Dalmagro
+ */
+function alteraAcessoUsuario($id, $acesso) {
+    // Comentar
+    $sql = "UPDATE usuario SET acesso = '$acesso' WHERE id_usuario = $id";
+    pg_query(CONNECT, $sql);
+}
 
 /**
  * Função para limpar a chave de atiavação de um usuario
