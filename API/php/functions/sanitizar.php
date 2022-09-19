@@ -49,7 +49,7 @@ function sanitizaCaractersPOST($array): array {
         $value = trim($value);
 
         // Escapa de uma sequência para consultar o banco de dados
-        $value = pg_escape_literal(CONNECT, $array[$key]);
+        $value = pg_escape_string(CONNECT, $array[$key]);
 
         // Sobreescreve o valor original
         $array[$key] = $value;
