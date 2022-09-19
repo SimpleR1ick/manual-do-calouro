@@ -33,7 +33,7 @@ CREATE TABLE usuario (
     ativo BOOLEAN NOT NULL DEFAULT 'f',
     add_data TIMESTAMP DEFAULT NULL,
     chave_salt VARCHAR(255) DEFAULT NULL,
-    fk_acesso_id_acesso SERIAL NOT NULL DEFAULT 2
+    fk_acesso_id_acesso SERIAL NOT NULL
 );
 
 CREATE TABLE servidor (
@@ -154,11 +154,11 @@ CREATE TABLE chave (
 );
 
 CREATE TABLE acesso (
-    id_acesso SERIAL NOT NULL,
+    id_acesso SERIAL NOT NULL PRIMARY KEY,
     dsc_acesso VARCHAR(10) NOT NULL
 );
 
-ALTER TABLE usuario ADD CONSTRAINT FK_usuario_2
+ALTER TABLE usuario ADD CONSTRAINT FK_usuario_1
     FOREIGN KEY (fk_acesso_id_acesso)
     REFERENCES acesso (id_acesso)
     ON DELETE CASCADE;
