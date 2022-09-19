@@ -64,6 +64,36 @@ function getDadosHeader(): array {
     } 
 }
 
+
+/**
+ * Função para definir o nome de foto de perfil
+ * 
+ * @param string $nome_foto
+ * 
+ * @return string nome final do arquivo
+ * 
+ * @author Henrique Dalmagro
+ */
+function getNomeFoto($nome_foto): void {
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $query = pg_query(CONNECT, $sql);
+
+    if ($query != null) {
+        $result = pg_fetch_all($query);
+
+        // Utiliza o mesmo nome do banco para atualizar a foto
+        $nome_final = $result['img_perfil'];
+    
+    } else {
+        // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
+        $path = pathinfo($nome_foto);
+
+        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
+        $nome_final = time().'.'.$path['extension'];
+    }
+    return $nome_final;
+}
+
 /**
  * Função para alterar o titulo do site 
  * 
