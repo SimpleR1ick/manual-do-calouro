@@ -9,9 +9,9 @@ INSERT INTO usuario (nom_usuario, email, senha, ativo, fk_acesso_id_acesso) VALU
     ('admin', 'mdc@ifes.edu.br', '21232f297a57a5a743894a0e4a801fc3', 't', 1); -- admin
 
 INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) VALUES
-    ('Henrique', 'henriquedalmagro@outlook.com', 'a1f925a7b5b70b7b3f7fe2208513e10f', 2),   -- 123
-    ('Maria', 'mariaeduarda@gmail.com', 'd481dbf8fcb6838a7e5dea0ca8e16d8a', 2),            -- fuckingpassword
-    ('Rafael', 'rafaelbarros@hotmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 2),         -- 321
+    ('Henrique', 'henriquedalmagro@outlook.com', 'a1f925a7b5b70b7b3f7fe2208513e10f', 3),   -- 123
+    ('Maria', 'mariaeduarda@gmail.com', 'd481dbf8fcb6838a7e5dea0ca8e16d8a', 3),            -- fuckingpassword
+    ('Rafael', 'rafaelbarros@hotmail.com', 'caf1a3dfb505ffed0d024130f58c5cfa', 3),         -- 321
     ('Raphael', 'rbranco@yahoo.com', 'e8d95a51f3af4a3b134bf6bb680a213a', 2),               -- senha
     ('Nauvia', 'nauvia@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a', 2),                 -- senha
     ('Marta', 'marta@gmail.com', 'e8d95a51f3af4a3b134bf6bb680a213a', 2),                   -- senha
