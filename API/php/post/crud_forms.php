@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     else if (isset($_POST['btnCadastrar'])) {
         // Comentar
         $nome = $_POST['nome'];
+        $email = $_POST['email'];
         $senha = $_POST['senha'];
         $acesso = $_POST['acesso'];
 

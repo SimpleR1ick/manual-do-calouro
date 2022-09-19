@@ -9,7 +9,7 @@ $userData = getDadosUsuario(); ?>
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
         <form class="w-75" action="php/post/update.php" method="POST" enctype="multipart/form-data">
-            <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['acesso']; ?>">
+            <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['fk_acesso_id_acesso']; ?>">
 
             <div class="row">
                 <div class="col-6 text-center">
@@ -62,8 +62,8 @@ $userData = getDadosUsuario(); ?>
                     <button class="btn btn-primary me-2" name="btnIncrement" type="submit">Salvar alterações</button>
 
                     <!-- MUDAR SENHA -->
-                    <button class="btn btn-danger mt-2" type="button">Redefinir senha</button>
-                </div>
+                    <a href="#" class="btn btn-danger mt-2" type="button">Redefinir senha</a>
+                <</div>
             </div>
         </form>
     </div>

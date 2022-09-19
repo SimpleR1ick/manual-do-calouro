@@ -108,9 +108,9 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
  */
 function verificaSenha($senha, $pagePath) {
     // Mínimo de seis caracteres, pelo menos uma letra, um número e um caractere especia
-    $parametros = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$";
+    $parametros = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,36}$";
 
-    if (preg_match($parametros, $senha)) {
+    if (!preg_match($parametros, $senha)) {
         $_SESSION['mensag'] = 'Senha invalida!';
 
         // Retorna a pagina de origem

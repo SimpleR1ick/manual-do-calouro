@@ -9,7 +9,7 @@ function crudTable(): void {
     $db = db_connect();
 
     // Seleciona a tabela usuarios por inteira, menos os usuarios administrador
-    $sql = "SELECT id_usuario, nom_usuario, email FROM usuario WHERE acesso != 0 ORDER BY id_usuario";
+    $sql = "SELECT id_usuario, nom_usuario, email FROM usuario WHERE fk_acesso_id_acesso != 1 ORDER BY id_usuario";
     $query = pg_query($db, $sql);
 
     // Encerra a conexão
@@ -60,7 +60,7 @@ function crudTable(): void {
 
                         <!-- RODAPÉ -->
                         <div class="modal-footer">
-                            <form action="php/includes/crud_forms.php" method="POST">
+                            <form action="php/post/crud_forms.php" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
                                 <button type="submit" class="btn btn-danger" name="btnDeletar" id="toastDeleteBtn" > Deletar </button>

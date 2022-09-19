@@ -10,7 +10,7 @@
  * 
  * @author Henrique Dalmagro
  */
-function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 1): void {
+function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): void {
     // Pagina que enviou o formulario
     $origem = $_SERVER['HTTP_REFERER'];
 
@@ -68,6 +68,35 @@ function logarUsuario($email, $senhaHash): void {
 }
 
 /**
+ * Função para definir o nome de foto de perfil
+ * 
+ * @param string $nome_foto
+ * 
+ * @return string nome final do arquivo
+ * 
+ * @author Henrique Dalmagro
+ */
+function getNomeFoto($nome_foto): string {
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $query = pg_query(CONNECT, $sql);
+
+    if (pg_num_rows($query) > 0) {
+        $result = pg_fetch_all($query);
+
+        // Utiliza o mesmo nome do banco para atualizar a foto
+        $nome_final = $result['img_perfil'];
+    
+    } else {
+        // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
+        $path = pathinfo($nome_foto);
+
+        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
+        $nome_final = time().'.'.$path['extension'];
+    }
+    return $nome_final;
+}
+
+/**
  * Função para atualizar os dados do usuario
  * 
  * @param int $id
@@ -113,10 +142,12 @@ function atualizarPerfilAluno($id, $modulo, $curso) {
         $sql = "UPDATE aluno SET fk_turma_id_turma = (SELECT id_turma FROM turma
                 WHERE num_modulo = $modulo
                 AND fk_curso_id_curso = $curso)
-                WHERE fk_usuario_id_usuario = $id";
+                WHERE fk_usuario_id_usuario = $id;";
     } else {
         // Query para fazer o update das informações do aluno
-        $sql = "INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
+        $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3
+                WHERE id_usuario = $id;
+                INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
                 ($id, (SELECT id_turma FROM turma
                 WHERE num_modulo = $modulo
                 AND fk_curso_id_curso = $curso))";

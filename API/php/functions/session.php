@@ -22,7 +22,7 @@ function getDadosUsuario(): array {
         $id = pg_escape_string($db, $_SESSION['id_usuario']);
 
         // Busca os dados do usuário atravéz do id na sessão
-        $sql = "SELECT id_usuario, nom_usuario, email, img_perfil, acesso, ativo
+        $sql = "SELECT id_usuario, nom_usuario, email, img_perfil, ativo, fk_acesso_id_acesso
                 FROM usuario WHERE id_usuario = '$id'";
         $query = pg_query($db, $sql);
 
@@ -94,7 +94,7 @@ function verificaTurma(): void {
     if (isset($_SESSION['id_usuario'])) {
         $userData = getDadosUsuario();
 
-        if ($userData['acesso'] == 1) {
+        if ($userData['fk_acesso_id_acesso'] == 3) {
             // Criando conexão com o banco de dados
             $db = db_connect();
             
@@ -200,9 +200,9 @@ function verificaNivelAcesso(): void {
         $userData = getDadosUsuario();
 
         // Armazena em uma variavel o nivel de acesso do usuario  
-        $acesso = $userData['acesso'];
+        $acesso = $userData['fk_acesso_id_acesso'];
         
-        if ($acesso != 0) {
+        if ($acesso != 1) {
             header('Location: index.php');
         }
     } else {
@@ -220,9 +220,9 @@ function verificaAcessoCrud(): void {
         $userData = getDadosUsuario();
 
         // Armazena em uma variavel o nivel de acesso do usuario  
-        $acesso = $userData['acesso'];
+        $acesso = $userData['fk_acesso_id_acesso'];
 
-        if ($acesso == 0) {
+        if ($acesso == 1) {
             header('Location: crud_index.php');
         }
     }

@@ -39,7 +39,7 @@ verificaNivelAcesso(); ?>
                     <!-- ACESSO -->
                     <div class="me-3">
                         <label class="form-label" for="user_adm_acesso">Acesso</label>
-                        <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="0" max="3" value="<?php echo $dados['acesso']; ?>">
+                        <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="0" max="3" value="<?php echo $dados['fk_acesso_id_acesso']; ?>">
                     </div>
 
                     <div class="form-text">

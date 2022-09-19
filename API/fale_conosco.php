@@ -15,14 +15,11 @@ $userData = getDadosUsuario(); ?>
 
                     <div class="h1 text-center">Fale conosco</div>
                         <form action="" method="POST">
-                            <div class="mb-3">
-                                <label class="form-label" for="email"> E-mail: </label>
-                                <input type="email" class="form-control" id="email" name="email" aria-describedby="ajudaEmail" placeholder="Seu email" required value="<?php echo $userData['email']; ?>">
-                            </div>
+                            <input type="hidden" class="form-control" id="email" name="email" aria-describedby="ajudaEmail" placeholder="Seu email" required value="<?php echo $userData['email']; ?>">
 
                             <div class="mb-3">
                                 <label class="form-label" for="telefone"> Telefone: </label>
-                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Seu telefone" minlength="8" maxlength="11" required>
+                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Seu telefone" minlength="8" maxlength="11">
                             </div>
 
                             <div class="mb-3">

@@ -33,6 +33,7 @@
                         <div class="mb-3">
                             <label class="form-label" for="senha">Senha:</label>
                             <input id="senha" name="senha" class="form-control" type="password" min="6" placeholder="Sua senha" autocomplete="off" required>
+                            <div class="form-text">A senha deve conter letras, um numero e um caracter</div>
                         </div>
                         
                         <div class="mb-3">

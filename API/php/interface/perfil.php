@@ -7,10 +7,10 @@
 function textoTipoUsuario(): void {
     global $userData;
 
-    if ($userData['acesso'] == 1) {
+    if ($userData['fk_acesso_id_acesso'] == 3) {
         echo "<label class='form-label fw-bold h5'>Editar turma</label>";
     }
-    else if ($userData['acesso'] == 2) {
+    else if ($userData['fk_acesso_id_acesso'] == 4) {
         echo "<label class='form-label fw-bold h5'>Editar regras</label>";
     }   
 }
@@ -23,7 +23,7 @@ function textoTipoUsuario(): void {
 function campoTipoUsuario(): void {
     global $userData;
 
-    if ($userData['acesso'] == 1) { ?>
+    if ($userData['fk_acesso_id_acesso'] == 3) { ?>
         <!-- CURSO -->
         <div class="mb-3">
             <label for="curso" class="form-label fw-bold">Curso</label>
@@ -51,7 +51,7 @@ function campoTipoUsuario(): void {
             </select>
         </div> 
         <?php
-    } else if ($userData['acesso'] == 2) { ?>
+    } else if ($userData['fk_acesso_id_acesso'] == 4) { ?>
         <!-- REGRAS DE SALA -->
         <div class="mb-3">
             <textarea class="w-100" id="regras" name="regras" required rows="6"></textarea>
