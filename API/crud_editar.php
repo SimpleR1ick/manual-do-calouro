@@ -7,7 +7,7 @@ verificaNivelAcesso(); ?>
 <section class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-8">
-            <form action="php/includes/crud_forms.php" method="POST">
+            <form action="php/post/crud_forms.php" method="POST">
                 <input type="hidden" id="id" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                 <!-- NOME -->

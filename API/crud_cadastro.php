@@ -5,7 +5,7 @@ verificaNivelAcesso(); ?>
 <!-- Conteúdo da pagina -->
 <section>
     <div class="container">
-        <form action="php/includes/crud_forms.php" method="POST">
+        <form action="php/post/crud_forms.php" method="POST">
             <!-- NOME -->
             <div class="mb-3">
                 <label for="user_nome" class="form-label"> Nome </label>

@@ -11,7 +11,7 @@
                 <div class="card-body">
                     <h1 class="h1 text-center">Cadastro</h1>
 
-                    <form id="cadastro" action="php/includes/cadastrar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                    <form id="cadastro" action="php/post/cadastrar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
 
                         <div class="mb-1">
                             <?php exibirErros(); ?>

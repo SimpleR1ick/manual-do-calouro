@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h1 class="h1 text-center">Login</h1>
 
-                        <form id="login" action="php/includes/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                        <form id="login" action="php/post/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
