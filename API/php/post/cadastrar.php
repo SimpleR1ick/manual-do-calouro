@@ -17,7 +17,7 @@ define('CONNECT', db_connect());   // Conexão
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    if (sanitizaInjectHtmlPOST($_POST, PATH)) {
+    if (verificaInjectHtml($_POST, PATH)) {
         // Sanitização
         $_POST = sanitizaCaractersPOST($_POST); 
 

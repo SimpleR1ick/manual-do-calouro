@@ -27,7 +27,7 @@ verificaNivelAcesso(); ?>
                     <div class="me-5">
                         <label for="user_adm_ativo" class="form-label">Status</label>
                         <div class="form-check">
-                            <input required class="form-check-input" type="radio" id="user_adm_ativoTrue" name="ativo-inativo" value="t" checked>
+                            <input required class="form-check-input" type="radio" id="user_adm_ativoTrue" name="ativo-inativo" value="t">
                             <label class="form-check-label" for="user_adm_ativoTrue"> Ativo </label>
                         </div>
                         <div class="form-check">
@@ -35,18 +35,19 @@ verificaNivelAcesso(); ?>
                             <label class="form-check-label" for="user_adm_ativoFalse"> Inativo </label>
                         </div>
                     </div>
-
+                    
                     <!-- ACESSO -->
                     <div class="me-3">
                         <label class="form-label" for="user_adm_acesso">Acesso</label>
-                        <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="0" max="3" value="<?php echo $dados['fk_acesso_id_acesso']; ?>">
+                        <input class="form-control" type="number" id="user_adm_acesso" name="acesso" min="1" max="5" value="<?php echo $dados['fk_acesso_id_acesso']; ?>">
                     </div>
 
                     <div class="form-text">
-                        <small>3 - servidor</small><br>
-                        <small>2 - professor</small><br>
-                        <small>1 - aluno</small><br>
-                        <small>0 - admin</small>
+                        <small>5 - servidor</small><br>
+                        <small>4 - professor</small><br>
+                        <small>3 - aluno</small><br>
+                        <small>2 - usuario</small><br>
+                        <small>1 - admin</small>
                     </div>
                 </div>
 

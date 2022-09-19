@@ -5,35 +5,43 @@ require_once '../includes/db_connect.php';
 // Import da função de email
 include_once '../includes/email.php';
 
+// Definindo as constantes globais
+define('PATH', '../../index.php'); // Caminho da pagina
+
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] = 'POST') {
-    // Atribui o conteudo dos campo do formulario a variável
-    $email = pg_escape_string(CONNECT, $_POST['email']);
 
-    // Preparando uma busca ao email recebido
-    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email'";
-    $query = pg_query(CONNECT, $sql);
+    if (verificaInjectHtml($_POST, PATH)) {
+        // Sanitização
+        $_POST = sanitizaCaractersPOST($_POST); 
 
-    // Verifica se a pesquisa houve resultado
-    if (pg_num_rows($query) == 1) {
-        // Gera um chave HASH unica
-        $chave = sha1(uniqid(mt_rand(), true));
+        $email = $_POST['email'];
 
-        // Insere ao usuario, no acampo chave_recupera a chave gerada
-        $sql = "INSERT INTO usuario SET chave_recupera ='$chave' WHERE email ='$email'";
-        $query = pg_query($sql);
+        // Preparando uma busca ao email recebido
+        $sql = "SELECT id_usuario FROM usuario WHERE email = '$email'";
+        $query = pg_query(CONNECT, $sql);
 
-        // Verifica se o processo anterior ocorreu
-        if (pg_affected_rows($query) == 1) {
-            // Cria um unico link, methodo GET com a chave criada 
-            $link = "localhost/Manual_do_Calouro/API/redefinir.php?$chave";
+        // Verifica se a pesquisa houve resultado
+        if (pg_num_rows($query) == 1) {
+            // Gera um chave HASH unica
+            $chave = sha1(uniqid(mt_rand(), true));
 
-            // Campos do email
-            $assunto = 'Recuperar senha';
-            $mensagem = 'Visite este link'.$link;
+            // Insere ao usuario, no acampo chave_recupera a chave gerada
+            $sql = "INSERT INTO usuario SET chave_recupera ='$chave' WHERE email ='$email'";
+            $query = pg_query(CONNECT, $sql);
 
-            // Invoca a função de envio de email
-            enviarEmail($email, $assunto, $mensagem);
+            // Verifica se o processo anterior ocorreu
+            if (pg_affected_rows($query) == 1) {
+                // Cria um unico link, methodo GET com a chave criada 
+                $link = "localhost/Manual_do_Calouro/API/redefinir.php?$chave";
+
+                // Campos do email
+                $assunto = 'Recuperar senha';
+                $mensagem = 'Visite este link'.$link;
+
+                // Invoca a função de envio de email
+                enviarEmail($email, $assunto, $mensagem);
+            }
         }
     }
 }
