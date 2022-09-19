@@ -1,5 +1,3 @@
-<?php include_once 'php/functions/session.php'; ?>
-
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">
 <head>
@@ -16,7 +14,6 @@
 
     <!-- JQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="teste.js"></script>
 
-    <!-- Titutlo do site-->
-    <?php tituloSite(); ?>
 </head>

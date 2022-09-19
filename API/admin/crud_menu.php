@@ -1,4 +1,4 @@
-<?php require_once "header.php" ?>
+<?php require_once "adm_header.php"; ?>
 
 <div class="container-fluid">
     <div class="row flex-nowrap">
@@ -8,22 +8,32 @@
                     <span class="fs-5 d-none d-sm-inline">Menu CRUD</span>
                 </a>
                 <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    
+                    <form action="crud_menu.php" method="post">
+
+                        <li><input type="submit" class="teste" name="algo" value="algo"></li>
+                        <li><input type="submit" class="teste" name="outro" value="outro"></li>
+                    </form>
+
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
                             <span class="ms-1 d-none d-sm-inline">Usuário</span>
                         </a>
                     </li>
-                    <li class="nav-item dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
-                      </a>
-                      <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                      </ul>
-                    </li>
+
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">
                             <span class="ms-1 d-none d-sm-inline">Contato</span>
@@ -87,5 +97,11 @@
                 </ul>
             </div>
         </div>
+
+        <div id="cont">
+        </div>
+
     </div>
 </div>
+
+<?php require_once "adm_footer.php"; ?>
