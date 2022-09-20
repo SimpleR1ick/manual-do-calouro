@@ -5,13 +5,11 @@ session_start();
 // Inicia a conexão com banco de dados
 require_once '../includes/db_connect.php';
 
-// Função de upload de imagem
-include_once '../includes/upload.php';
-
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
 include_once '../functions/processar.php';
+include_once '../includes/upload.php';
 
 // Definindo as constantes globais
 define('PATH', '../../perfis.php'); // Caminho da pagina
@@ -31,10 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $foto_nome = $_FILES['foto']['name'];
         $foto_size = $_FILES['foto']['size'];
         $path_temp = $_FILES['foto']['tmp_name'];
-
-        $novo_nome = getNomeFoto($foto_nome);
-
-        uploadImagemPerfil($foto_size, $path_temp, $novo_nome);  
+        
+        uploadImagemPerfil($foto_nome, $foto_size, $path_temp);  
     } 
 
     if (verificaInjectHtml($_POST, PATH)) {

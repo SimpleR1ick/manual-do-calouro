@@ -1,36 +1,5 @@
 <?php
 /**
- * Função para definir o nome de foto de perfil
- * 
- * @param string $nome_foto
- * 
- * @return string nome final do arquivo
- * 
- * @author Henrique Dalmagro
- */
-function getNomeFoto($nome_foto): string {
-    $nome_foto = pg_escape_string(CONNECT, $nome_foto);
-
-    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
-    $query = pg_query(CONNECT, $sql);
-
-    if (pg_num_rows($query) == 1) {
-        $result = pg_fetch_array($query);
-
-        // Utiliza o mesmo nome do banco para atualizar a foto
-        $nome_final = $result['img_perfil'];
-    
-    } else {
-        // Transforma em um array os dados da foto ('dirname', 'basename', 'extension', 'filename')
-        $path = pathinfo($nome_foto);
-
-        // Renomeando a foto com o id do usuario e mantendo a extensão do arquivo
-        $nome_final = time().'.'.$path['extension'];
-    }
-    return $nome_final;
-}
-
-/**
  * Função para cadastrar o usuario no sistema
  * 
  * @param string $nome 
@@ -124,6 +93,39 @@ function atualizarDadosUsuario($id, $nome, $email, $destino): void {
     }
     // Retorna a pagina perfil
     header("Location: $destino");
+}
+
+/**
+ * Função para verificar se o usuario ja possui uma imagem de perfil ou não
+ * 
+ * @param string $nome_foto nome do arquivo de imagem
+ * @return string $nome_novo 
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizaNomeFoto($nome_foto): string {
+    // Escapa a string no formatado para o banco de dados
+    $nome_foto = pg_escape_string(CONNECT, $nome_foto);
+
+    // Consulta a coluna img_perfil de um usuario
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $query = pg_query(CONNECT, $sql);
+
+    if (pg_num_rows($query) == 1) {
+        // Transforma o resultado da query em um array
+        $result = pg_fetch_array($query);
+
+        // Utiliza o mesmo nome do banco para atualizar a foto
+        $nome_novo = $result['img_perfil'];
+    
+    } else {
+        // Transforma os dados da foto em um array de chaves ('dirname', 'basename', 'extension', 'filename')
+        $path = pathinfo($nome_foto);
+
+        // Renomeando a foto e mantendo a extensão do arquivo
+        $nome_novo = time().'.'.$path['extension'];
+    }
+    return $nome_novo;  
 }
 
 /**

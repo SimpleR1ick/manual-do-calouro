@@ -21,7 +21,10 @@ function enviarEmail($destinatario, $assunto, $mensagem): void {
 
     // Tenta enviar o email utilizando o canal SMTP
     if (mail($destinatario, $assunto, $mensagem, $headers)) {
-        $_SESSION['mensag'] = 'E-email enviado com sucesso!';
+        $_SESSION['sucess'] = 'E-email enviado com sucesso!';
+
+    } else {
+        $_SESSION['mensag'] = 'Erro ao enviar o email!';
     }
 }
 ?>
