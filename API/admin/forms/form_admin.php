@@ -71,20 +71,5 @@
 
     </div>
 
-    <!-- SETOR -->
-    <div class="mb-3">
-
-        <label for="user_adm_setor"></label>
-
-        <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
-        <select required class="form-select" id="user_adm_setor">
-            <option selected>** SELECIONE UMA OPÇÃO **</option>
-            <option value="1">Coordenadoria de Apoio ao Ensino</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-        </select>
-
-    </div>
-
     <button type="submit" class="btn btn-primary">Salvar alterações</button>
 </form>

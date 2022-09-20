@@ -92,7 +92,7 @@
     <!-- TURMA -->
     <div class="mb-3">
 
-        <label for="user_alun_turma"></label>
+        <label for="user_alun_turma">TURMA</label>
         
         <select required class="form-select" id="user_alun_turma">
             <option selected>** SELECIONE UMA OPÇÃO **</option>

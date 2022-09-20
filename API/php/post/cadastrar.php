@@ -58,6 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } 
     }
 }
-// Encerando a conexão
+// Encerrando a conexão
 pg_close(CONNECT);
 ?>

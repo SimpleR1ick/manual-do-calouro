@@ -107,11 +107,11 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
  * @author Henrique Dalmagro
  */
 function verificaSenha($senha, $pagePath) {
-    // Mínimo de seis caracteres, pelo menos uma letra, um número e um caractere especia
-    $parametros = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,36}$";
+    // Mínimo de seis caracteres, pelo menos uma letra, um número e um caractere especial
+    $parametros = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$";
 
-    if (!preg_match($parametros, $senha)) {
-        $_SESSION['mensag'] = 'Senha invalida!';
+    if (preg_match($parametros, $senha)) {
+        $_SESSION['mensag'] = 'Senha inválida!';
 
         // Retorna a pagina de origem
         header("Location: $pagePath"); 
@@ -139,7 +139,7 @@ function verificaAtivo($email, $pagePath): bool {
 
     // Verifica se a conta do usuario esta ativa
     if ($result['ativo'] == 'f') {
-        $_SESSION['mensag'] = 'Usuario inativo!';
+        $_SESSION['mensag'] = 'Usuário inativo!';
 
         // Retorna a pagina de origem
         header("Location: $pagePath");

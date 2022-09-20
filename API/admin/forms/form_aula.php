@@ -5,7 +5,7 @@
     <!-- DIA DA SEMANA -->
     <div class="mb-3">
 
-        <label for="aula_dia"></label>
+        <label for="aula_dia">DIA DA SEMANA</label>
         
         <select required class="form-select" id="aula_dia">
             <option selected>** SELECIONE UMA OPÇÃO **</option>
@@ -23,7 +23,7 @@
     <!-- HORÁRIO -->
     <div class="mb-3">
 
-        <label for="aula_hora"></label>
+        <label for="aula_hora">HORÁRIO</label>
         
         <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
         <select required class="form-select" id="aula_hora">
@@ -36,7 +36,7 @@
     <!-- TURMA -->
     <div class="mb-3">
 
-        <label for="aula_turma"></label>
+        <label for="aula_turma">TURMA</label>
         
         <select required class="form-select" id="aula_turma">
             <option selected>** SELECIONE UMA OPÇÃO **</option>
@@ -65,7 +65,7 @@
     <!-- SALA DE AULA -->
     <div class="mb-3">
 
-        <label for="aula_sala"></label>
+        <label for="aula_sala">SALA DE AULA</label>
         
         <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
         <select required class="form-select" id="aula_sala">
@@ -78,7 +78,7 @@
     <!-- DISCIPLINA -->
     <div class="mb-3">
 
-        <label for="aula_dis"></label>
+        <label for="aula_dis">DISCIPLINA</label>
         
         <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
         <select required class="form-select" id="aula_dis">
