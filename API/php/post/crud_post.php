@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             // Verifica se o email esta disponivel
             if (verificaEmail($email, $uri)) {
                 // Tenta cadastrar o usuario
-                cadastrarUsuario($nome, $email ,md5($senha), $uriAlvo);  
+                cadastrarUsuario($nome, $email ,md5($senha), $uriAlvo, $acesso);  
             }
         }
 
