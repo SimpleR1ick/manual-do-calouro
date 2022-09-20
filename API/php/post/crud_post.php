@@ -5,7 +5,6 @@ session_start();
 // Incia a conexão com banco de dados
 require_once '../includes/db_connect.php';
 
-define('PATH', '../../crud_index.php');
 define('CONNECT', db_connect());
 
 // Import de bibliotecas de funções
@@ -15,50 +14,69 @@ include_once '../functions/usuario.php';
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {
-    header("Location: {$_SERVER['HTTP_REFERER']}");
-} 
-else if (verificaInjectHtml($_POST, PATH)) {
-    // Sanitização
-    $_POST = sanitizaCaractersPOST($_POST);
+    
+    // Verifica se há algum caracter indesejado
+    if (verificaInjectHtml($_POST)) {
 
-    // Verifica se o formulario foi de update, delete ou register
-    if (isset($_POST['btnAtualizar'])) {
-        // Invoca a função de atualização
+        // Verifica se o formulario foi de update atualização
+        if (isset($_POST['btnAtualizar'])) {
+            // Sanitização
+            $dados = sanitizaFormularioPOST($_POST);
 
-        // Declaração de variáveis a serem modificadas
-        $id = $_POST['id'];
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $status = $_POST['ativo-inativo'];
-        $acesso = $_POST['acesso'];
+            // Declaração de variáveis a serem modificadas
+            $id = $dados['id'];
+            $nome = $dados['nome'];
+            $email = $dados['email'];
+        
+            // Variavel com caminho da pagina
+            $uri = '../../crud_editar.php';
 
-        atualizarDadosUsuario($id, $nome, $email, PATH);
+            // Atualiza os dados do usuario
+            atualizarDadosUsuario($id, $nome, $email, $uri);
 
-        if ($status != null) {
-            alteraStatusUsuario($id, $status);
+            $status = $dados['status'];
+            $acesso = $dados['acesso'];
+            
+            // Verifica se status e o acesso foi alterado
+            if ($status != null) {
+                alteraStatusUsuario($id, $status);
+            } 
+            if ($acesso != null) {
+                alteraAcessoUsuario($id, $acesso);
+            }
+        } 
+
+        // Verifica se o formulario foi de cadastro
+        else if (isset($_POST['btnCadastrar'])) {
+            
+            // Sanitização
+            $dados = sanitizaFormularioPOST($_POST);
+
+            // Atribuição dos campos a variaveis
+            $nome = $dados['nome'];
+            $email = $dados['email'];
+            $senha = $dados['senha'];
+            $acesso = $dados['acesso'];
+
+            // Variavel com caminho da pagina
+            $uriErro = '../../crud_cadastro.php';
+            $uriAlvo = '../../crud_index.php';
+
+            // Verifica se o email esta disponivel
+            if (verificaEmail($email, $uri)) {
+                // Tenta cadastrar o usuario
+                cadastrarUsuario($nome, $email ,md5($senha), $uriAlvo);  
+            }
         }
-        if ($acesso != null) {
-            alteraAcessoUsuario($id, $acesso);
-        }
-    } 
-    else if (isset($_POST['btnCadastrar'])) {
-        // Comentar
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
-        $acesso = $_POST['acesso'];
 
-        // Comentar
-        if (verificaEmail($email, PATH)) {
-            // Comentar
-            cadastrarUsuario($nome, $email ,md5($senha), PATH);  
-        }
-    }
-    else if (isset($_POST['btnDeletar'])) {
-        // Atribuindo id do usuário
-        $id = $_POST['id'];
+        // Verifica se o formulario foi de exclusão
+        else if (isset($_POST['btnDeletar'])) {
+            // Atribuindo id do usuário via hidden input
+            $id = $_POST['id'];
 
-        excluirUsuario($id);
+            // Tenta excluir o usuario
+            excluirUsuario($id);
+        }
     }
 }
 // Encerando a conexão

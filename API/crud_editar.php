@@ -27,11 +27,11 @@ verificaNivelAcesso(); ?>
                     <div class="me-5">
                         <label for="user_adm_ativo" class="form-label">Status</label>
                         <div class="form-check">
-                            <input required class="form-check-input" type="radio" id="user_adm_ativoTrue" name="ativo-inativo" value="t">
+                            <input required class="form-check-input" type="radio" id="user_adm_ativoTrue" name="status" value="t">
                             <label class="form-check-label" for="user_adm_ativoTrue"> Ativo </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" id="user_adm_ativoFalse" name="ativo-inativo" value="f">
+                            <input class="form-check-input" type="radio" id="user_adm_ativoFalse" name="status" value="f">
                             <label class="form-check-label" for="user_adm_ativoFalse"> Inativo </label>
                         </div>
                     </div>

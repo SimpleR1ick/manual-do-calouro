@@ -206,12 +206,13 @@ function excluirUsuario($id): void {
     // Verifica se a exclusão ocorreu sem problemas
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = "Excluído com sucesso!";
-        header('Location: ../../crud_index.php');
         
     } else {
         $_SESSION['mensag'] = "Erro ao excluir!";
-        header('Location: ../../crud_index.php');
+    
     }
+    // Retorna a pagina do crud
+    header('Location: ../../crud_index.php');
 }
 
 /**
