@@ -11,10 +11,8 @@ define('PATH', '../../index.php'); // Caminho da pagina
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] = 'POST') {
 
-    if (verificaInjectHtml($_POST, PATH)) {
-        // Sanitização
-        $_POST = sanitizaCaractersPOST($_POST); 
-
+    if (verificaInjectHtml($_POST)) {
+        
         $email = $_POST['email'];
 
         // Preparando uma busca ao email recebido
