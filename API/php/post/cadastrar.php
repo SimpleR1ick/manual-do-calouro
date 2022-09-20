@@ -3,20 +3,22 @@
 session_start();
 
 // Inicia a conexão com banco de dados
-require_once '../includes/db_connect.php';
-
-// Import de bibliotecas de funções
-include_once '../functions/sanitizar.php';
-include_once '../functions/validar.php';
-include_once '../functions/processar.php';
+require_once '../includes/db_connect.php'; 
 
 // Definindo as constantes globais
-define('PATH', '../../cadastro.php'); // Caminho da pagina
 define('CONNECT', db_connect());   // Conexão
+define('PATH', '../../cadastro.php'); // Caminho da pagina
+
+// Import de bibliotecas de funções
+include_once '../functions/sanitiza.php'; 
+include_once '../functions/valida.php';
+include_once '../functions/usuario.php';
 
 // Verifica se houve a requisição POST para esta pagina
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+}
+else if (isset($_POST['btnCadastrar'])) {
     if (verificaInjectHtml($_POST, PATH)) {
         // Sanitização
         $_POST = sanitizaCaractersPOST($_POST); 

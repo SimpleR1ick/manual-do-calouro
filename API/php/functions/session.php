@@ -1,10 +1,4 @@
 <?php
-// Iniciar a sessão
-session_start();
-
-// Inicia a conexão com o banco de dados
-require_once 'php/includes/db_connect.php';
-
 /**
  * Função para armazenar os dados do usuario da sessão atual
  * 

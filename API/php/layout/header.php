@@ -1,4 +1,10 @@
-<?php include_once 'php/functions/session.php'; ?>
+<?php 
+// Iniciar a sessão
+session_start();
+
+require_once 'php/includes/connect.php'; // Inicia a conexão com o banco de dados
+require_once 'php/functions/session.php';// Funções da sessão
+?>
 
 <!DOCTYPE html>
 <html lang="pt-br" dir="ltr">

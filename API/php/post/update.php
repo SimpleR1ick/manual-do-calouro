@@ -5,11 +5,13 @@ session_start();
 // Inicia a conexão com banco de dados
 require_once '../includes/db_connect.php';
 
+// Função de upload de imagem
+require_once '../includes/upload.php';
+
 // Import de bibliotecas de funções
 include_once '../functions/sanitizar.php';
 include_once '../functions/validar.php';
 include_once '../functions/processar.php';
-include_once '../includes/upload.php';
 
 // Definindo as constantes globais
 define('PATH', '../../perfis.php'); // Caminho da pagina
@@ -19,10 +21,10 @@ define('CONNECT', db_connect());   // Conexão
 $id = $_SESSION['id_usuario'];
 
 // Verifica se houve a requisição POST para esta pagina
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    
-    print_r($_FILES);
-
+if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+    header("Location: {$_SERVER['HTTP_REFERER']}");
+}
+else if (isset($_POST['btnIncrement'])) {
     // Verifica a a imagem existe
     if ($_FILES['foto']['error'] < 0) {        
         // Nome da foto, tamanho da foto, nome temporario no servidor
@@ -30,6 +32,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $foto_size = $_FILES['foto']['size'];
         $path_temp = $_FILES['foto']['tmp_name'];
         
+        // Prepara o nome do arquivo para ser movido
+        $foto_nome = atualizaNomeFotoUsuario($foto_nome);
+
+        // Atualiza o nome no banco e move o arquivo
         uploadImagemPerfil($foto_nome, $foto_size, $path_temp);  
     } 
 
@@ -49,13 +55,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $modulo = $_POST['modulo'];
                 $curso = $_POST['curso'];
 
-                atualizarPerfilAluno($id, $modulo, $curso);
+                atualizarDadosUsuarioAluno($id, $modulo, $curso);
 
             case 4:
                 // Atribui o conteudo obtido do campo regras do formulario
                 $regras = $_POST['regras'];
 
-                atualizarPerfilProfessor($id, $regras);
+                atualizarDadosUsuarioProfessor($id, $regras);
         }
 
         // Validações
