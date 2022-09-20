@@ -166,9 +166,6 @@ function atualizarDadosUsuarioAluno($id, $modulo, $curso) {
  * @author Rafael Barros - Henrique Dalmagro
  */
 function atualizarDadosUsuarioProfessor($id, $regras) {
-    // Escapa de uma sequência para consultar o banco de dados
-    $regras = pg_escape_string(CONNECT, $regras);
-
     // Query para fazer o update das informações do professor
     $sql = "UPDATE professor SET regras ='$regras'
             WHERE fk_servidor_fk_usuario_id_usuario = $id";

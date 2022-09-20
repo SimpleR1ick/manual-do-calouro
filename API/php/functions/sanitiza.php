@@ -8,8 +8,9 @@
  * 
  * @author Henrique Dalmagro
  */
-function verificaInjectHtml($array, $pagePath): bool {
-    // Declaração de variavel contador
+function verificaInjectHtml($array): bool {
+    // Declaração de variavel
+    $origem = $_SERVER['HTTP_REFERER'];
     $count = 0;
 
     // Percorre cada indice do array
@@ -25,7 +26,7 @@ function verificaInjectHtml($array, $pagePath): bool {
     // Verifica se o contador continua zerado
     if (!$count == 0) {
         // Retorna a pagina de origem
-        header("Location: $pagePath"); 
+        header("Location: $origem"); 
         return false;
     } 
     return true;
@@ -40,7 +41,7 @@ function verificaInjectHtml($array, $pagePath): bool {
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaCaractersPOST($array): array {
+function sanitizaFormularioPOST($array): array {
     // Percorre cada indice do array
     foreach ($array as $key => $value) {
         // Remover as tags HTML, contrabarras e espaços em branco de uma.
@@ -69,33 +70,5 @@ function sanitizaString($value): string {
     $filtrada = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
 
     return $filtrada;
-}
-
-/**
- * Função para criptografar uma string com base_64
- * 
- * @param string $string A string
- * @return string $codificada String codificada
- * 
- * @author Henrique Dalmagro
- */
-function criptografarString($string): string {
-    $codificada = base64_encode($string);
-
-    return $codificada;
-}
-
-/**
- * Função para descriptografar uma string com base_64
- * 
- * @param string $string A string
- * @return string $decodificada String codificada
- * 
- * @author Henrique Dalmagro
- */
-function desencriptarString($string): string {
-    $decodificada = base64_decode($string);
-
-    return $decodificada;
 }
 ?>
