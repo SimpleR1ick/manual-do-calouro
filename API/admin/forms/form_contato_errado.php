@@ -14,12 +14,12 @@
     <!-- USUÁRIO SERVIDOR -->
     <div class="mb-3">
 
-        <label for="cont_serv"></label>
+        <label for="cont_serv">HORÁRIO</label>
         
         <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
         <select required class="form-select" id="cont_serv">
             <option selected>** SELECIONE UMA OPÇÃO **</option>
-            <option value="[ID HORA]">[HORA]</option>
+            <option value="[ID HORA]">[HORAS]</option>
         </select>
 
     </div>
@@ -27,7 +27,7 @@
     <!-- TURMA -->
     <div class="mb-3">
 
-        <label for="aula_turma"></label>
+        <label for="aula_turma">TURMA</label>
         
         <select required class="form-select" id="aula_turma">
             <option selected>** SELECIONE UMA OPÇÃO **</option>
@@ -56,7 +56,7 @@
     <!-- SALA DE AULA -->
     <div class="mb-3">
 
-        <label for="aula_sala"></label>
+        <label for="aula_sala">SALA DE AULA</label>
         
         <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
         <select required class="form-select" id="aula_sala">
@@ -69,7 +69,7 @@
     <!-- DISCIPLINA -->
     <div class="mb-3">
 
-        <label for="aula_dis"></label>
+        <label for="aula_dis">DISCIPLINA</label>
         
         <!-- AQUI PRECISA DE PHP PARA FAZER UM SELECT E COLOCAR AS OPÇÕES SEM PRECISAR CADASTRAR NA MÃO -->
         <select required class="form-select" id="aula_dis">

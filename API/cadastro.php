@@ -32,13 +32,15 @@
                         <!-- Senha -->
                         <div class="mb-3">
                             <label class="form-label" for="senha">Senha:</label>
-                            <input id="senha" name="senha" class="form-control" type="password" min="6" placeholder="Sua senha" autocomplete="off" required>
-                            <div class="form-text">A senha deve conter letras, um numero e um caracter</div>
+                            <input id="senha" name="senha" class="form-control" type="password" min="6" placeholder="Sua senha" autocomplete="off"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
+                            <div id="dica-senha" class="form-text">Mínimo de 6 caracteres, uma letra, um número e um caractere especial</div>
                         </div>
                         
                         <div class="mb-3">
                             <label class="form-label" for="senha2">Confirmar senha:</label>
-                            <input id="senhaConfirma" name="senhaConfirma" class="form-control" type="password" placeholder="Confirme sua senha" autocomplete="off" required>
+                            <input id="senhaConfirma" name="senhaConfirma" class="form-control" type="password" placeholder="Confirme sua senha" autocomplete="off"
+                            pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
                         </div>
 
                         <div class="d-flex justify-content-center">

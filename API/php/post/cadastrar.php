@@ -12,6 +12,7 @@ include_once '../functions/processar.php';
 
 // Definindo as constantes globais
 define('PATH', '../../cadastro.php'); // Caminho da pagina
+define('LOGIN', '../../login.php'); // Caminho da pagina
 define('CONNECT', db_connect());   // Conexão
 
 // Verifica se houve a requisição POST para esta pagina
@@ -45,11 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         // Verifica os processos antecedentes
         if ($valida && $verifica) {
-            // Cadastra o usuario no banco de dados
-            cadastrarUsuario($nome, $email, md5($senha), PATH);
+            // Cadastra o usuário no banco de dados
+            cadastrarUsuario($nome, $email, md5($senha), LOGIN);
         }
     } 
 }
-// Encerando a conexão
+// Encerrando a conexão
 pg_close(CONNECT);
 ?>

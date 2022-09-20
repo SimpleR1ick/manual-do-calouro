@@ -129,10 +129,10 @@ function verificaTurma(): void {
 function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
-        echo "<button class='btn btn-info' type='button' onclick='window.location.href = \"php/includes/logout.php\"'>Sair</button>";
+        echo "<button class='btn btn-info mt-2 mt-lg-0' type='button' onclick='window.location.href = \"php/includes/logout.php\"'>Sair</button>";
     // Se não existir um usuário, cria um botão para dar login
     } else {
-        echo "<button class='btn btn-primary' type='button' onclick='window.location.href = \"login.php\"'>Entrar</button>";
+        echo "<button class='btn btn-primary mt-2 mt-lg-0' type='button' onclick='window.location.href = \"login.php\"'>Entrar</button>";
     }
 }
 

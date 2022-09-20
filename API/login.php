@@ -41,6 +41,9 @@
                                     <li class="breadcrumb-item active" aria-current="page">Não tem uma conta?</li>
                                     <li class="breadcrumb-item"><a href="cadastro.php">Cadastre-se</a></li>
                                 </ol>
+                                <div class="text-center">
+                                    <a href="redefinir_senha.php">Esqueci minha senha</a>
+                                </div>
                             </nav>
                         </div>
                     </div>

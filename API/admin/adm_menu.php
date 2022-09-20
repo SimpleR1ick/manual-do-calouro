@@ -26,6 +26,12 @@
                                 <li><input type="submit" name="professor" class="dropdown-item" value="Professor"></li>
                             </ul>
                         </li>
+                        
+                         <li class="nav-item">
+                            <input type="submit" class="nav-link"
+                            name="aula" 
+                            value="Aula">
+                        </li>
                             
                         <li class="nav-item">
                             <input type="submit" class="nav-link" name="contato" value="Contato">
@@ -33,74 +39,50 @@
 
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="disciplina" 
+                            value="Disciplina">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="evento" 
+                            value="Evento">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="horario-aula" 
+                            value="Horário de Aula">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="horario" 
+                            value="Horário">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="sala-aula" 
+                            value="Sala de Aula">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="sala" 
+                            value="Sala">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="setor" 
+                            value="Setor">
                         </li>
                         
                         <li class="nav-item">
                             <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
-                        </li>
-                        
-                        <li class="nav-item">
-                            <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
-                        </li>
-                        
-                        <li class="nav-item">
-                            <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
-                        </li>
-                        
-                        <li class="nav-item">
-                            <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
-                        </li>
-                        
-                        <li class="nav-item">
-                            <input type="submit" class="nav-link"
-                            name="" 
-                            value="">
+                            name="tipo-contato" 
+                            value="Tipo de Contato">
                         </li>
                         
                     </form>
@@ -111,34 +93,65 @@
         <div class="container p-3">
             <?php
                 /* EVENT LISTENERS DOS BOTÕES */
-                if(array_key_exists('admin', $_POST)) {
-                    admin();
-                }
-                else if(array_key_exists('aluno', $_POST)) {
-                    aluno();
-                }
-                else if(array_key_exists('contato', $_POST)) {
-                    contato();
-                }
-
-            
-
-                /* CHAMADAS DOS FORMS */
-
-                // USUÁRIO
-                function admin() {
-                    include_once '../forms/form_admin.php';
-                }
-
-                function aluno() {
-                    include_once '../forms/form_aluno.php';
-                }
                 
+                switch (reset($_POST)) {
+                    case 'Admin':
+                        include_once 'forms/form_admin.php';
+                        break;
 
-                // CONTATO
-                function contato() {
-                    include_once '../forms/form_contato.php';
+                    case 'Aluno':
+                        include_once 'forms/form_aluno.php';
+                        break;
+
+                    case 'Servidor':
+                        include_once 'forms/form_servidor.php';
+                        break;
+
+                    case 'Professor':
+                        include_once 'forms/form_professor.php';
+                        break;
+
+                    case 'Aula':
+                        include_once 'forms/form_aula.php';
+                        break;
+
+                    // case 'Contato':
+                    //     include_once 'forms/form_contato.php';
+                    //     break;
+
+                    case 'Disciplina':
+                        include_once 'forms/form_disciplina.php';
+                        break;
+
+                    case 'Evento':
+                        include_once 'forms/form_evento.php';
+                        break;
+
+                    case 'Horário de Aula':
+                        include_once 'forms/form_horario_aula.php';
+                        break;
+
+                    case 'Horário':
+                        include_once 'forms/form_horario.php';
+                        break;
+
+                    case 'Sala de Aula':
+                        include_once 'forms/form_sala_aula.php';
+                        break;
+
+                    case 'Sala':
+                        include_once 'forms/form_sala.php';
+                        break;
+
+                    case 'Setor':
+                        include_once 'forms/form_setor.php';
+                        break;
+
+                    case 'Tipo de Contato':
+                        include_once 'forms/form_tipo_contato.php';
+                        break;
                 }
+
             ?>
         </div>
 
