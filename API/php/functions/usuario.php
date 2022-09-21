@@ -45,7 +45,7 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
  */
 function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email' AND senha = '$senhaHash'";
+    $sql = "SELECT id_usuario FROM usuario WHERE email ='$email' AND senha ='$senhaHash'";
     $query = pg_query(CONNECT, $sql);
 
     // Transforma o resultado da requisição em um array enumerado
@@ -108,7 +108,7 @@ function atualizaNomeFotoUsuario($nome_foto): string {
  */
 function atualizarDadosUsuario($id, $nome, $email, $destino): void {
     // Query para fazer o update das informações do usuário
-    $sql = "UPDATE usuario SET nom_usuario = '$nome', email = '$email' 
+    $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email' 
             WHERE id_usuario = $id";
    
     // Verifica se a query de update obteve sucesso
@@ -120,8 +120,10 @@ function atualizarDadosUsuario($id, $nome, $email, $destino): void {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
     }
+    print_r($_POST);
+    print_r($_FILES);
     // Retorna a pagina perfil
-    header("Location: $destino");
+    //header("Location: $destino");
 }
 
 /**
@@ -139,10 +141,10 @@ function atualizarDadosUsuarioAluno($id, $modulo, $curso) {
     $query = pg_query(CONNECT, $sql);
 
     if (pg_num_rows($query) > 0) {
-        $sql = "UPDATE aluno SET fk_turma_id_turma = (SELECT id_turma FROM turma
-                WHERE num_modulo = $modulo
-                AND fk_curso_id_curso = $curso)
-                WHERE fk_usuario_id_usuario = $id;";
+        $sql = "UPDATE aluno SET fk_turma_id_turma = (SELECT id_turma FROM turma 
+                WHERE num_modulo = $modulo 
+                AND fk_curso_id_curso = $curso) 
+                WHERE fk_usuario_id_usuario = $id";
     } else {
         // Query para fazer o update das informações do aluno
         $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3

@@ -2,15 +2,16 @@
 // Inicia a sessão
 session_start();
 
-// Incia a conexão com banco de dados
-require_once '../includes/db_connect.php';
-
-define('CONNECT', db_connect());
+// Inicia a conexão com banco de dados
+require_once '../includes/connect.php'; 
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitiza.php'; 
 include_once '../functions/valida.php';
 include_once '../functions/usuario.php';
+
+// Definindo a conexão como uma constante global
+define('CONNECT', db_connect());
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] != 'POST') {

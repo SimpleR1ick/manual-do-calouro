@@ -3,26 +3,24 @@
 session_start();
 
 // Inicia a conexão com banco de dados
-require_once '../includes/db_connect.php';
-
-// Função de upload de imagem
-require_once '../includes/upload.php';
+require_once '../includes/connect.php';
 
 // Import de bibliotecas de funções
-include_once '../functions/sanitizar.php';
-include_once '../functions/validar.php';
-include_once '../functions/processar.php';
+include_once '../functions/sanitiza.php';
+include_once '../functions/valida.php';
+include_once '../functions/usuario.php';
+include_once '../includes/upload.php';
 
 // Definindo as constantes globais
 define('CONNECT', db_connect());   // Conexão
 
 // Verifica se houve a requisição POST para esta pagina
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     if (verificaInjectHtml($_POST)) {
 
         // Verifica a a imagem existe
-        if (isset($_FILES['foto'])) {        
+        if (is_uploaded_file(($_FILES['foto']['type']))) {        
             // Nome da foto, tamanho da foto, nome temporario no servidor
             $foto_nome = $_FILES['foto']['name'];
             $foto_size = $_FILES['foto']['size'];
@@ -51,19 +49,23 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $uri = '../../perfis.php';
 
             // Nivel de acesso recebido via post em um hyden input
-            switch ($acesso) {
-                case 3:
-                    // Atribui o conteudo obtido dos campos modulo e curso do formulario
-                    $modulo = $dados['modulo'];
-                    $curso = $dados['curso'];
+            if ($acesso == 3) {
+                // Atribui o conteudo obtido dos campos modulo e curso do formulario
+                $modulo = $dados['modulo'];
+                $curso = $dados['curso'];
 
+                if (!empty($modulo) && !empty($curso)) {
                     atualizarDadosUsuarioAluno($id, $modulo, $curso);
+                }
+            }  
+            
+            if ($acesso == 4) {
+                // Atribui o conteudo obtido do campo regras do formulario
+                $regras = $dados['regras'];
 
-                case 4:
-                    // Atribui o conteudo obtido do campo regras do formulario
-                    $regras = $_POST['regras'];
-
+                if (!empty($regras)) {
                     atualizarDadosUsuarioProfessor($id, $regras);
+                } 
             }
 
             // Validações
@@ -77,6 +79,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         }
     }
 }
+
 // Encerando a conexão
 pg_close(CONNECT);
 ?>

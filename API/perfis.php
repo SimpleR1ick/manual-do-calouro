@@ -7,6 +7,8 @@ $userData = getDadosUsuario(); ?>
 <!-- Conteudo da pagina -->
 <?php include_once 'php/interface/perfil.php'; ?>
 <section>
+<?php exibirErros(); ?>
+<?php exibirSucesso(); ?>
     <div class="p-3 d-flex flex-column align-items-center container">
         <form class="w-75" action="php/post/update.php" method="POST" enctype="multipart/form-data">
             <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['fk_acesso_id_acesso']; ?>">

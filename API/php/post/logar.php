@@ -3,18 +3,18 @@
 session_start();
 
 // Inicia a conexão com banco de dados
-require_once '../includes/db_connect.php';
-
-// Definindo as constantes globais
-define('CONNECT', db_connect());   // Conexão
+require_once '../includes/connect.php'; 
 
 // Import de bibliotecas de funções
-include_once '../functions/sanitizar.php';
-include_once '../functions/validar.php';
-include_once '../functions/processar.php';
+include_once '../functions/sanitiza.php'; 
+include_once '../functions/valida.php';
+include_once '../functions/usuario.php';
+
+// Definindo a conexão como uma constante global
+define('CONNECT', db_connect());
 
 // Verifica se houve a requisição POST para esta pagina
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // Verifica se o botão de envio foi pressionado
     if (isset($_POST['btnLogar'])) {

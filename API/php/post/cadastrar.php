@@ -3,7 +3,7 @@
 session_start();
 
 // Inicia a conexão com banco de dados
-require_once '../includes/db_connect.php'; 
+require_once '../includes/connect.php'; 
 
 // Import de bibliotecas de funções
 include_once '../functions/sanitiza.php'; 
@@ -43,12 +43,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 }
             }
             // Verificações
-            if ($valida) {
+            if (isset($valida)) {
                 if (verificaEmail($email, $uriErro)) {
                     if (verificaSenha($senha, $uriErro)) {
                         $verifica = true;
-                    }
-                }
+                    }   
+                }      
             }
             // Verifica se todas as etapas passaram
             if ($valida && $verifica) {
@@ -60,4 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 // Encerrando a conexão
 pg_close(CONNECT);
+
+
 ?>
