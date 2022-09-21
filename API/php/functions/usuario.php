@@ -14,9 +14,12 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
     // Pagina que enviou o formulario
     $origem = $_SERVER['HTTP_REFERER'];
 
+    // Gera um timestamp data atual
+    $hora = date('d/m/y');
+
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
-            VALUES ('$nome', '$email', '$senhaHash', $acesso)";
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha, add_data, fk_acesso_id_acesso) 
+            VALUES ('$nome', '$email', '$senhaHash', $hora, $acesso)";
     
     // Se a requição houve retorno, o insert teve sucesso
     if (pg_query(CONNECT, $sql)) {

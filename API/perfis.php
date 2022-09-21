@@ -65,7 +65,7 @@ $userData = getDadosUsuario(); ?>
 
                     <!-- MUDAR SENHA -->
                     <a href="#" class="btn btn-danger mt-2" type="button">Redefinir senha</a>
-                <</div>
+                </div>
             </div>
         </form>
     </div>

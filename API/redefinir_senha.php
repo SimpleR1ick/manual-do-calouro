@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h1 class="h1 text-center">Recuperar senha</h1>
 
-                        <form id="redefinir" action="php/post/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                        <form id="redefinir" action="php/post/recupera.php" method="POST" autocomplete="on">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
@@ -23,7 +23,6 @@
 
                                 <input id="email" name="email" class="form-control" type="email" aria-describedby="ajudaEmail" placeholder="Seu email" autocomplete="on" required>
                             </div>
-
                         </form>
                     </div>
                 </div>

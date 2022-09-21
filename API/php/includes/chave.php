@@ -11,7 +11,7 @@ function verificaChaveConfirma($db): bool {
         $chave = pg_escape_string($db, $_GET['chave']);
 
         // Preparando uma busca ao id do usuario da chave recebida
-        $sql = "SELECT id_usuario FROM usuario WHERE chave_confirma = '$chave' LIMIT 1";
+        $sql = "SELECT id_usuario FROM chave WHERE chave_confirma = '$chave' LIMIT 1";
         $query = pg_query($db, $sql);
 
         // Verifica se a consulta teve resultado 
@@ -35,7 +35,7 @@ function verificaChaveConfirma($db): bool {
  */
 function excluirChaveConfirma($id): bool {
     // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
-    $sql =  "UPDATE usuario SET chave_confirma = NULL WHERE id_usuario = $id'";
+    $sql =  "UPDATE chave SET chave_confirma = NULL WHERE id_usuario = $id'";
     $result = pg_query(CONNECT, $sql);
 
     return $result;

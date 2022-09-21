@@ -47,7 +47,6 @@ function validaEmail($email, $pagePath): bool {
     return true; 
 }
 
-
 /**
  * Função para verificar se o email de entrada já esta cadastrado no banco de dados
  * 

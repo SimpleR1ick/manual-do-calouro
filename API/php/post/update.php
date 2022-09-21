@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (verificaInjectHtml($_POST)) {
 
         // Verifica a a imagem existe
-        if (is_uploaded_file(($_FILES['foto']['type']))) {        
+        if (is_uploaded_file(($_FILES['foto']['tmp_name']))) {        
             // Nome da foto, tamanho da foto, nome temporario no servidor
             $foto_nome = $_FILES['foto']['name'];
             $foto_size = $_FILES['foto']['size'];
@@ -79,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
 // Encerando a conexão
 pg_close(CONNECT);
 ?>
