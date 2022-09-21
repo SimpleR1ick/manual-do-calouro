@@ -15,18 +15,14 @@ if ($_SERVER['REQUEST_METHOD'] = 'POST') {
         
         $email = $_POST['email'];
 
-        // Preparando uma busca ao email recebido
-        $sql = "SELECT id_usuario FROM usuario WHERE email = '$email'";
-        $query = pg_query(CONNECT, $sql);
+        // Buscar email
 
         // Verifica se a pesquisa houve resultado
         if (pg_num_rows($query) == 1) {
             // Gera um chave HASH unica
             $chave = sha1(uniqid(mt_rand(), true));
 
-            // Insere ao usuario, no acampo chave_recupera a chave gerada
-            $sql = "INSERT INTO usuario SET chave_recupera ='$chave' WHERE email ='$email'";
-            $query = pg_query(CONNECT, $sql);
+            // SQL
 
             // Verifica se o processo anterior ocorreu
             if (pg_affected_rows($query) == 1) {

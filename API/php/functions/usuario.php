@@ -120,10 +120,8 @@ function atualizarDadosUsuario($id, $nome, $email, $destino): void {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
     }
-    print_r($_POST);
-    print_r($_FILES);
     // Retorna a pagina perfil
-    //header("Location: $destino");
+    header("Location: $destino");
 }
 
 /**
