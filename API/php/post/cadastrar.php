@@ -22,13 +22,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verifica se algum campo possui caracter indesejados
         if (verificaInjectHtml($_POST)) {
             // Sanitização
-            sanitizaFormularioPOST($_POST); 
+            $dados = sanitizaFormularioPOST($_POST); 
     
             // Atribuição dos inputs do POST a variaveis
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $senha2 = $_POST['senhaConfirma'];
+            $nome = $dados['nome'];
+            $email = $dados['email'];
+            $senha = $dados['senha'];
+            $senha2 = $dados['senhaConfirma'];
 
             // Variaveis dos caminhos possiveis
             $uriErro = '../../cadastro.php';

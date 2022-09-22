@@ -22,11 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verifica se algum campo possui caracter indesejados
         if (verificaInjectHtml($_POST)) {
             // Sanitização
-            sanitizaFormularioPOST($_POST); 
+            $dados = sanitizaFormularioPOST($_POST); 
 
             // Atribuição dos inputs do POST a variaveis
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
+            $email = $dados['email'];
+            $senha = $dados['senha'];
         
             // Variaveis dos caminhos possiveis
             $uriErro = '../../login.php';

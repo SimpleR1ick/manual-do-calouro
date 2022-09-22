@@ -35,15 +35,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Verifica se o botão foi pressionado
         if (isset($_POST['btnIncrement'])) {
             // Sanitização
-            sanitizaFormularioPOST($_POST);
+            $dados = sanitizaFormularioPOST($_POST);
 
             // Armazenado o id da sessão em uma variavel
             $id = $_SESSION['id_usuario'];
 
             // Atribui os conteudos obtido dos camps nome e email do formulario
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $acesso = $_POST['acesso'];
+            $nome = $dados['nome'];
+            $email = $dados['email'];
+            $acesso = $dados['acesso'];
 
             // Variavel com caminho da pagina
             $uri = '../../perfis.php';
@@ -51,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Nivel de acesso recebido via post em um hyden input
             if ($acesso == 3) {
                 // Atribui o conteudo obtido dos campos modulo e curso do formulario
-                $modulo = $_POST['modulo'];
-                $curso = $_POST['curso'];
+                $modulo = $dados['modulo'];
+                $curso = $dados['curso'];
 
                 if (!empty($modulo) && !empty($curso)) {
                     atualizarDadosUsuarioAluno($id, $modulo, $curso);
@@ -61,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             if ($acesso == 4) {
                 // Atribui o conteudo obtido do campo regras do formulario
-                $regras = $_POST['regras'];
+                $regras = $dados['regras'];
 
                 if (!empty($regras)) {
                     atualizarDadosUsuarioProfessor($id, $regras);

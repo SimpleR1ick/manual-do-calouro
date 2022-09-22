@@ -22,12 +22,12 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         // Verifica se o formulario foi de update atualização
         if (isset($_POST['btnAtualizar'])) {
             // Sanitização
-            sanitizaFormularioPOST($_POST);
+            $dados = sanitizaFormularioPOST($_POST);
 
             // Declaração de variáveis a serem modificadas
-            $id = $_POST['id'];
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
+            $id = $dados['id'];
+            $nome = $dados['nome'];
+            $email = $dados['email'];
         
             // Variavel com caminho da pagina
             $uri = '../../crud_editar.php';
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             // Atualiza os dados do usuario
             atualizarDadosUsuario($id, $nome, $email, $uri);
 
-            $status = $_POST['status'];
-            $acesso = $_POST['acesso'];
+            $status = $dados['status'];
+            $acesso = $dados['acesso'];
             
             // Verifica se status e o acesso foi alterado
             if ($status != null) {
@@ -49,14 +49,15 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
 
         // Verifica se o formulario foi de cadastro
         else if (isset($_POST['btnCadastrar'])) {
+            
             // Sanitização
-            sanitizaFormularioPOST($_POST);
+            $dados = sanitizaFormularioPOST($_POST);
 
             // Atribuição dos campos a variaveis
-            $nome = $_POST['nome'];
-            $email = $_POST['email'];
-            $senha = $_POST['senha'];
-            $acesso = $_POST['acesso'];
+            $nome = $dados['nome'];
+            $email = $dados['email'];
+            $senha = $dados['senha'];
+            $acesso = $dados['acesso'];
 
             // Variavel com caminho da pagina
             $uriErro = '../../crud_cadastro.php';
