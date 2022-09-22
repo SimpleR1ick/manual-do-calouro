@@ -60,10 +60,10 @@ function crudTable(): void {
 
                         <!-- RODAPÉ -->
                         <div class="modal-footer">
-                            <form action="php/post/crud_forms.php" method="POST">
+                            <form action="../php/post/crud_post.php" method="POST">
                                 <input type="hidden" name="id" value="<?php echo $dados['id_usuario']; ?>">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Voltar</button>
-                                <button type="submit" class="btn btn-danger" name="btnDeletar" id="toastDeleteBtn" > Deletar </button>
+                                <button type="submit" class="btn btn-danger" name="btnDeletar" id="toastDeleteBtn" >Deletar</button>
                             </form>
                         </div>
                     </div>

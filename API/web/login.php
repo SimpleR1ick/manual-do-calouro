@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php'; ?>
+<?php include_once '../php/layout/header.php'; ?>
 
 <section>
     <div class="mb-4">
@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h1 class="h1 text-center">Login</h1>
 
-                        <form id="login" action="php/post/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
+                        <form id="login" action="../php/post/logar.php" method="POST" autocomplete="on" enctype="multipart/form-data">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
@@ -54,4 +54,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

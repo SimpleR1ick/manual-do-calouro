@@ -1,8 +1,8 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php'; ?>
+<?php include_once '../php/layout/header.php'; ?>
 
 <!-- Conteúdo da página -->
-<?php include_once 'php/interface/horario.php'; ?>
+<?php include_once '../php/interface/horario.php'; ?>
 
 <section>
     <div class="container">
@@ -76,4 +76,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

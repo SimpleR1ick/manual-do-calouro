@@ -1,9 +1,9 @@
 <!-- Header -->
-<?php include_once 'php/layout/header.php';
+<?php include_once '../php/layout/header.php';
 verificaAcessoCrud(); ?>
 
 <!-- Conteúdo da pagina -->
-<?php include_once 'php/includes/toast.php'; ?>
+<?php include_once '../php/includes/toast.php'; ?>
 
 <section>
     <div class="container div-video d-flex justify-content-center">
@@ -37,4 +37,4 @@ verificaAcessoCrud(); ?>
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

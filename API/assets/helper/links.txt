@@ -1,11 +1,11 @@
 https://www.php.net/manual/en/book.pgsql.php
 
----------- Email ----------
 https://www.php.net/manual/pt_BR/function.mail.php
+
 https://www.w3schools.in/php/mail/
+
 https://www.devmedia.com.br/enviando-email-com-php/37216
 
----------- Upload ---------
 https://www.php.net/manual/pt_BR/features.file-upload.php
 
 https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept

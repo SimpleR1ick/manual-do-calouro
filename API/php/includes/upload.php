@@ -1,5 +1,34 @@
 <?php
 /**
+ * Função para verificar se o usuario ja possui uma imagem de perfil ou não
+ * 
+ * @param string $nome_foto nome do arquivo de imagem
+ * @return string $nome_novo 
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizaNomeFotoUsuario($nome_foto): string {
+    // Escapa a string no formatado para o banco de dados
+    $nome_foto = pg_escape_string(CONNECT, $nome_foto);
+
+    // Consulta a coluna img_perfil de um usuario
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $query = pg_query(CONNECT, $sql);
+
+    if (pg_num_rows($query) == 1) {
+        // Transforma o resultado da query em um array
+        $result = pg_fetch_array($query);
+        $nome_novo = $result['img_perfil'];
+    
+    } else {
+        // Transforma os dados da foto em um array de chaves ('dirname', 'basename', 'extension', 'filename')
+        $path = pathinfo($nome_foto);
+        $nome_novo = time().'.'.$path['extension'];
+    }
+    return $nome_novo;  
+}
+
+/**
  * Função para mover um arquivo recebido via upload
  * 
  * @param int $foto_size

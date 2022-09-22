@@ -14,12 +14,13 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
     // Pagina que enviou o formulario
     $origem = $_SERVER['HTTP_REFERER'];
 
-    // Gera um timestamp data atual
-    $hora = date('d/m/y');
+    $date = date_create('America/Sao_Paulo');
+
+    print_r($date);
 
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha, add_data, fk_acesso_id_acesso) 
-            VALUES ('$nome', '$email', '$senhaHash', $hora, $acesso)";
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
+            VALUES ('$nome', '$email', '$senhaHash', $acesso)";
     
     // Se a requição houve retorno, o insert teve sucesso
     if (pg_query(CONNECT, $sql)) {
@@ -60,43 +61,14 @@ function logarUsuario($email, $senhaHash): void {
         $_SESSION['id_usuario'] = $result[0];
         
         // retorna para pagina home
-        header('Location: ../../index.php'); 
+        header('Location: ../../web/index.php'); 
     } else {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Usuário ou senha inválidos!';
 
         // retorna para página de login
-        header('Location: ../../login.php'); 
+        header('Location: ../../web/login.php'); 
     }
-}
-
-/**
- * Função para verificar se o usuario ja possui uma imagem de perfil ou não
- * 
- * @param string $nome_foto nome do arquivo de imagem
- * @return string $nome_novo 
- * 
- * @author Henrique Dalmagro
- */
-function atualizaNomeFotoUsuario($nome_foto): string {
-    // Escapa a string no formatado para o banco de dados
-    $nome_foto = pg_escape_string(CONNECT, $nome_foto);
-
-    // Consulta a coluna img_perfil de um usuario
-    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
-    $query = pg_query(CONNECT, $sql);
-
-    if (pg_num_rows($query) == 1) {
-        // Transforma o resultado da query em um array
-        $result = pg_fetch_array($query);
-        $nome_novo = $result['img_perfil'];
-    
-    } else {
-        // Transforma os dados da foto em um array de chaves ('dirname', 'basename', 'extension', 'filename')
-        $path = pathinfo($nome_foto);
-        $nome_novo = time().'.'.$path['extension'];
-    }
-    return $nome_novo;  
 }
 
 /**
@@ -128,73 +100,46 @@ function atualizarDadosUsuario($id, $nome, $email, $destino): void {
 }
 
 /**
- * Função para inserir o curso e o modulo do aluno
+ * Função para mudar o nivel de acesso de um usuario no sistema
  * 
- * @param int $id
- * @param int $curso código único do curso
- * @param int $modulo código único do módulo
- * 
- * @author Rafael Barros - Henrique Dalmagro
- */
-function atualizarDadosUsuarioAluno($id, $modulo, $curso) {
-    // Fazer verificação se o aluno ja esta cadastrado
-    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id";
-    $query = pg_query(CONNECT, $sql);
-
-    if (pg_num_rows($query) > 0) {
-        $sql = "UPDATE aluno SET fk_turma_id_turma = (SELECT id_turma FROM turma 
-                WHERE num_modulo = $modulo 
-                AND fk_curso_id_curso = $curso) 
-                WHERE fk_usuario_id_usuario = $id";
-    } else {
-        // Query para fazer o update das informações do aluno
-        $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3
-                WHERE id_usuario = $id;
-                INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
-                ($id, (SELECT id_turma FROM turma
-                WHERE num_modulo = $modulo
-                AND fk_curso_id_curso = $curso))";
-    }
-    if (!pg_query(CONNECT, $sql)) {
-        // Adiciona à sessão uma mensagem de sucesso
-        $_SESSION['mensag'] = 'Erro ao atualizar curso e modulo!';
-    }
-}
-
-/**
- * 
- * @param int $id
- * @param string $regras
- * 
- * @author Rafael Barros - Henrique Dalmagro
- */
-function atualizarDadosUsuarioProfessor($id, $regras) {
-    // Query para fazer o update das informações do professor
-    $sql = "UPDATE professor SET regras ='$regras'
-            WHERE fk_servidor_fk_usuario_id_usuario = $id";
-
-    if (!pg_query(CONNECT, $sql)) {
-        // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Erro ao atualizar as regras!';
-    }  
-}
-
-/**
- * 
- * @param int $id
- * @param int $setor
+ * @param int $id do alvo
+ * @param int $acesso referente
  * 
  * @author Henrique Dalmagro
  */
-function atualizarDadosUsuarioAdministrativo($id, $setor) {
-    // Query para fazer o update das informações do administrativo
-    $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
-            WHERE fk_servidor_fk_usuario_id_usuario = $id";
+function atualizarAcessoUsuario($id, $acesso) {
+    // Comentar
+    $sql = "UPDATE usuario SET fk_acesso_id_acesso = '$acesso' WHERE id_usuario = $id";
+    
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = 'Acesso atualizado com sucesso';
 
-    if (!pg_query(CONNECT, $sql)) {
-        // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Erro ao atualizar o setor';
+    } else {
+        $_SESSION['mensag'] = 'Erro, acesso não alterado!';
     }
+    // Retorna a pagina do crud
+    header('Location: ../../web/crud_index.php');
+}
+
+/**
+ * Função para atualizar os dados de um usuario
+ * 
+ * @param int $id
+ * @param bool @status 't' or 'f'
+ * 
+ * @author Henrique Dalmagro - Rafael Barros
+ */
+function atualizarStatusUsuario($id, $ativo): void {
+    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
+    
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = 'Status atualizado com sucesso';
+
+    } else {
+        $_SESSION['mensag'] = 'Erro, status não alterado!';
+    }
+    // Retorna a pagina do crud
+    header('Location: ../../web/crud_index.php');
 }
 
 /**
@@ -202,7 +147,7 @@ function atualizarDadosUsuarioAdministrativo($id, $setor) {
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
-function excluirUsuario($id): void {
+function deletarUsuario($id): void {
     // Query para excluir o usuário no banco de dados
     $sql = "DELETE FROM usuario WHERE id_usuario = $id";
 
@@ -215,33 +160,6 @@ function excluirUsuario($id): void {
     
     }
     // Retorna a pagina do crud
-    header('Location: ../../crud_index.php');
-}
-
-/**
- * Função para mudar o nivel de acesso de um usuario no sistema
- * 
- * @param int $id do alvo
- * @param int $acesso referente
- * 
- * @author Henrique Dalmagro
- */
-function alteraAcessoUsuario($id, $acesso) {
-    // Comentar
-    $sql = "UPDATE usuario SET fk_acesso_id_acesso = '$acesso' WHERE id_usuario = $id";
-    pg_query(CONNECT, $sql);
-}
-
-/**
- * Função para atualizar os dados de um usuario
- * 
- * @param int $id
- * @param bool @status 't' or 'f'
- * 
- * @author Henrique Dalmagro - Rafael Barros
- */
-function alteraStatusUsuario($id, $ativo): void {
-    $sql = "UPDATE usuario SET ativo = '$ativo' WHERE id_usuario = '$id'";
-    pg_query(CONNECT, $sql); 
+    header('Location: ../../web/crud_index.php');
 }
 ?>

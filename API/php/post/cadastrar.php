@@ -31,8 +31,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $senha2 = $dados['senhaConfirma'];
 
             // Variaveis dos caminhos possiveis
-            $uriErro = '../../cadastro.php';
-            $uriAlvo = '../../login.php';
+            $uriErro = '../../web/cadastro.php';
+            $uriAlvo = '../../web/login.php';
             
             // Validações
             if (validaNome($nome, $uriErro)) {

@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $senha = $dados['senha'];
         
             // Variaveis dos caminhos possiveis
-            $uriErro = '../../login.php';
+            $uriErro = '../../web/login.php';
             
             // Validações
             if (validaEmail($email, $uriErro)) {

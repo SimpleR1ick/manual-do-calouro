@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php'; ?>
+<?php include_once '../php/layout/header.php'; ?>
 
 <!-- Conteudo da pagina -->
 <section>
@@ -27,12 +27,12 @@
     <div class="p-5">
         <div class="container">
             <h1>Baixe o ROD</h1>
-            <p>Documento válido a partir do semestre letivo de 2020/1- homologado pela <a href="/assets/rod/Res_CS_65_2019_-_Homologa_o_Regulamento_da_Organização_Didática_dos_Cursos_Técnicos_do_Instituto_Federal_do_Espirito_Santo.pdf" download>Resolução CS 65/2019</a> e alterado pela Resolução <a href="assets/rod/Resolução_CS_42_2021_-_Alterar_a_Resolução_CS_nº_65_2019.pdf" download>CS 42/2021.</a></p>
+            <p>Documento válido a partir do semestre letivo de 2020/1- homologado pela <a href="../assets/rod/Res_CS_65_2019_-_Homologa_o_Regulamento_da_Organização_Didática_dos_Cursos_Técnicos_do_Instituto_Federal_do_Espirito_Santo.pdf" download>Resolução CS 65/2019</a> e alterado pela Resolução <a href="../assets/rod/Resolução_CS_42_2021_-_Alterar_a_Resolução_CS_nº_65_2019.pdf" download>CS 42/2021.</a></p>
             <ul>
-                <li><a href="assets/download/rod_normal.pdf" download>ROD dos cursos técnicos</a></li>
-                <li><a href="assets/download/rod_acessibilidade.pdf" download>ROD dos cursos técnicos - para pessoas com baixa visão</a></li>
+                <li><a href="../assets/download/rod_normal.pdf" download>ROD dos cursos técnicos</a></li>
+                <li><a href="../assets/download/rod_acessibilidade.pdf" download>ROD dos cursos técnicos - para pessoas com baixa visão</a></li>
                 <li><a href="https://youtu.be/pCosRUYPdgY">ROD dos cursos técnicos - libras</a></li>
-                <li><a href="assets/download/rodinho.pdf" download>Rodinho: ROD resumido</a></li>
+                <li><a href="../assets/download/rodinho.pdf" download>Rodinho: ROD resumido</a></li>
                 <li><a href="https://youtu.be/cfZPhDuqhlQ">Rodinho: ROD resumido - libras</a></li>
             </ul>
         </div>
@@ -40,4 +40,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

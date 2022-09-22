@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php'; ?>
+<?php include_once '../php/layout/header.php'; ?>
 
 <section>
     <div class="mb-4">
@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h1 class="h1 text-center">Recuperar senha</h1>
 
-                        <form id="recuperar" action="php/post/recupera.php" method="POST" autocomplete="on">
+                        <form id="recuperar" action="../php/post/recupera.php" method="POST" autocomplete="on">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
@@ -37,4 +37,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

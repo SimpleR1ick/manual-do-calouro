@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $acesso = $dados['acesso'];
 
             // Variavel com caminho da pagina
-            $uri = '../../perfis.php';
+            $uri = '../../web/perfis.php';
 
             // Nivel de acesso recebido via post em um hyden input
             if ($acesso == 3) {
@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $curso = $dados['curso'];
 
                 if (!empty($modulo) && !empty($curso)) {
-                    atualizarDadosUsuarioAluno($id, $modulo, $curso);
+                    atualizarUsuarioAluno($id, $modulo, $curso);
                 }
             }  
             
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $regras = $dados['regras'];
 
                 if (!empty($regras)) {
-                    atualizarDadosUsuarioProfessor($id, $regras);
+                    atualizarUsuarioProfessor($id, $regras);
                 } 
             }
 

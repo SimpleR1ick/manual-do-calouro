@@ -12,9 +12,10 @@ include_once '../functions/usuario.php';
 
 // Definindo a conexão como uma constante global
 define('CONNECT', db_connect());
+$uriCrud = '../../web/crud_index.php';
 
 // Verifica se houve a requisição POST para esta pagina
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Verifica se há algum caracter indesejado
     if (verificaInjectHtml($_POST)) {
@@ -28,22 +29,19 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $id = $dados['id'];
             $nome = $dados['nome'];
             $email = $dados['email'];
-        
-            // Variavel com caminho da pagina
-            $uri = '../../crud_editar.php';
-
+    
             // Atualiza os dados do usuario
-            atualizarDadosUsuario($id, $nome, $email, $uri);
+            atualizarDadosUsuario($id, $nome, $email, $uriCrud);
 
             $status = $dados['status'];
             $acesso = $dados['acesso'];
             
             // Verifica se status e o acesso foi alterado
             if ($status != null) {
-                alteraStatusUsuario($id, $status);
+                atualizarStatusUsuario($id, $status);
             } 
             if ($acesso != null) {
-                alteraAcessoUsuario($id, $acesso);
+                atualizarAcessoUsuario($id, $acesso);
             }
         } 
 
@@ -60,13 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $acesso = $dados['acesso'];
 
             // Variavel com caminho da pagina
-            $uriErro = '../../crud_cadastro.php';
-            $uriAlvo = '../../crud_index.php';
+            $uriErro = '../../web/crud_cadastro.php';
 
             // Verifica se o email esta disponivel
             if (verificaEmail($email, $uri)) {
                 // Tenta cadastrar o usuario
-                cadastrarUsuario($nome, $email ,md5($senha), $uriAlvo, $acesso);  
+                cadastrarUsuario($nome, $email ,md5($senha), $uriCrud, $acesso);  
             }
         }
 
@@ -76,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST') {
             $id = $_POST['id'];
 
             // Tenta excluir o usuario
-            excluirUsuario($id);
+            deletarUsuario($id);
         }
     }
 }

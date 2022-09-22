@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php';
+<?php include_once '../php/layout/header.php';
 verificaNivelAcesso(); ?>
 
 <!-- Conteudo da pagina -->
@@ -7,7 +7,7 @@ verificaNivelAcesso(); ?>
 <section class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-8">
-            <form action="php/post/crud_forms.php" method="POST">
+            <form action="../php/post/crud_post.php" method="POST">
                 <input type="hidden" id="id" name="id" value="<?php echo $dados['id_usuario']; ?>">
 
                 <!-- NOME -->
@@ -59,4 +59,4 @@ verificaNivelAcesso(); ?>
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

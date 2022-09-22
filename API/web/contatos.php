@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php require_once 'php/layout/header.php'; ?>
+<?php require_once '../php/layout/header.php'; ?>
 
 <section class="container">
 
@@ -256,4 +256,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

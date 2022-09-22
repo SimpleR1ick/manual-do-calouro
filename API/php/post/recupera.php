@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitização
         $email = sanitizaString($_POST['email']);
 
-        $uriErro = '../../redefinir_senha.php';
+        $uriErro = '../../web/redefinir_senha.php';
 
         if (validaEmail($email, $uriErro)) {
             // Preparando uma requisição ao banco de dados
@@ -28,13 +28,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (pg_num_rows($query) == 1) {
                 $id = pg_fetch_row($query);
 
-                // Gera um chave HASH unica
-                $chave = sha1(uniqid(mt_rand(), true));
-
                 // Verifica se a inserção da chave ocorreu
-                if (inserirChaveCofnrima($id[0], $chave)) {
+                if (inserirChaveCofnrima($id[0])) {
 
-                    $link = "localhost/Manual_do_Calouro/API/redefinir.php?$chave";
+                    $link = "localhost/Manual_do_Calouro/API/web/redefinir_senha.php?$chave";
 
                     // Campos do email
                     $assunto = 'Recuperar senha';
