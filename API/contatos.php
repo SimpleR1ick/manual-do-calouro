@@ -31,7 +31,7 @@
                                     <div class="row">
                                         <!-- FOTO DO SERVIDOR -->
                                         <div class="col-4 d-flex justify-content-center align-items-center" id="div-img-contato">
-                                            <img class="img-contato" src="img/user.png" alt="foto do prof">
+                                            <img class="img-contato" src="assets/images/user.png" alt="foto do prof">
                                         </div>
 
                                         <!-- INFORMAÇÕES DE CONTATO DO SERVIDOR -->
@@ -88,7 +88,7 @@
                                     <div class="row">
                                         <!-- FOTO DO SERVIDOR -->
                                         <div class="col-4 d-flex justify-content-center align-items-center" id="div-img-contato">
-                                            <img class="img-contato" src="img/user.png" alt="foto do prof">
+                                            <img class="img-contato" src="assets/images/user.png" alt="foto do prof">
                                         </div>
     
                                         <!-- INFORMAÇÕES DE CONTATO DO SERVIDOR -->
@@ -146,7 +146,7 @@
                                     <div class="row">
                                         <!-- FOTO DO SERVIDOR -->
                                         <div class="col-4 d-flex justify-content-center align-items-center" id="div-img-contato">
-                                            <img class="img-contato" src="img/user.png" alt="foto do prof">
+                                            <img class="img-contato" src="assets/images/user.png" alt="foto do prof">
                                         </div>
 
                                         <!-- INFORMAÇÕES DE CONTATO DO SERVIDOR -->
@@ -210,7 +210,7 @@
                                     <div class="row">
                                         <!-- FOTO DO SERVIDOR -->
                                         <div class="col-4 d-flex justify-content-center align-items-center" id="div-img-contato">
-                                            <img class="img-contato" src="img/user.png" alt="foto do prof">
+                                            <img class="img-contato" src="assets/images/user.png" alt="foto do prof">
                                         </div>
     
                                         <!-- INFORMAÇÕES DE CONTATO DO SERVIDOR -->

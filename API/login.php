@@ -42,7 +42,7 @@
                                     <li class="breadcrumb-item"><a href="cadastro.php">Cadastre-se</a></li>
                                 </ol>
                                 <div class="text-center">
-                                    <a href="redefinir_senha.php">Esqueci minha senha</a>
+                                    <a href="recuperar_senha.php">Esqueci minha senha</a>
                                 </div>
                             </nav>
                         </div>
