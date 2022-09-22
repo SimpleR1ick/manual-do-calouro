@@ -104,7 +104,7 @@ INSERT INTO setor (dsc_setor) VALUES
     ('Coordenadoria de Apoio ao Ensino');
 
 INSERT INTO administrativo (fk_servidor_fk_usuario_id_usuario, fk_setor_id_setor) VALUES
-    (6, 1);
+    (5, 1);
 
 INSERT INTO dia_semana (dsc_dia_semana) VALUES
     ('Domingo'),

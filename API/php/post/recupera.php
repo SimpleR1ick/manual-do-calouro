@@ -14,34 +14,37 @@ define('CONNECT', db_connect());
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    $email = $_POST['email'];
+    if (isset($_POST['btnRecuperar'])) {
+        // Sanitização
+        $email = sanitizaString($_POST['email']);
 
-    $uriErro = '../../redefinir_senha.php';
+        $uriErro = '../../redefinir_senha.php';
 
-    if (validaEmail($email, $uriErro)) {
+        if (validaEmail($email, $uriErro)) {
+            // Preparando uma requisição ao banco de dados
+            $sql = "SELECT id_usuario FROM usuario WHERE email ='$email'";
+            $query = pg_query(CONNECT, $sql);
 
-        // Preparando uma requisição ao banco de dados
-        $sql = "SELECT id_usuario FROM usuario WHERE email ='$email'";
-        $query = pg_query(CONNECT, $sql);
+            if (pg_num_rows($query) == 1) {
+                $id = pg_fetch_row($query);
 
-        if (pg_num_rows($query) == 1) {
-            $id = pg_fetch_row($query);
+                // Gera um chave HASH unica
+                $chave = sha1(uniqid(mt_rand(), true));
 
-            // Gera um chave HASH unica
-            $chave = sha1(uniqid(mt_rand(), true));
+                // Verifica se a inserção da chave ocorreu
+                if (inserirChaveCofnrima($id[0], $chave)) {
 
-            // Verifica se a inserção da chave ocorreu
-            if (inserirChaveCofnrima($id[0], $chave)) {
+                    $link = "localhost/Manual_do_Calouro/API/redefinir.php?$chave";
 
-                $link = "localhost/Manual_do_Calouro/API/redefinir.php?$chave";
+                    // Campos do email
+                    $assunto = 'Recuperar senha';
+                    $mensagem = 'Visite este link'.$link;
 
-                // Campos do email
-                $assunto = 'Recuperar senha';
-                $mensagem = 'Visite este link'.$link;
-
-                // Invoca a função de envio de email
-                enviarEmail($email, $assunto, $mensagem);
-            }        
+                    // Invoca a função de envio de email
+                    enviarEmail($email, $assunto, $mensagem);
+                }  
+            }  
+        }    
     }
 }
 // Encerrandod a conexão
