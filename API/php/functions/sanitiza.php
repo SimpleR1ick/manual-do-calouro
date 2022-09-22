@@ -41,9 +41,9 @@ function verificaInjectHtml($array): bool {
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaFormularioPOST($array): array {
+function sanitizaFormularioPOST($_POST): void {
     // Percorre cada indice do array
-    foreach ($array as $key => $value) {
+    foreach ($_POST as $key => $value) {
         // Remover as tags HTML, contrabarras e espaços em branco de uma.
         $value = filter_var($value, FILTER_SANITIZE_STRING);
         $value = stripslashes($value);
@@ -53,9 +53,8 @@ function sanitizaFormularioPOST($array): array {
         $value = pg_escape_string($value);
 
         // Sobreescreve o valor original
-        $array[$key] = $value;
+        $_POST[$key] = $value;
     }
-    return $array;
 }
 
 /**
