@@ -36,7 +36,7 @@ function inserirChaveCofnrima($id): bool {
 
     $sql = "INSERT INTO chave VALUES fk_usuario_id_usuario = $id, chave_confirma ='$chave')";
  
-    if (pg_query(CONNECT, $sql)) {
+    if (!pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = 'Erro ao inserir a chave :(';
 
         return false;
@@ -55,7 +55,9 @@ function inserirChaveCofnrima($id): bool {
 function excluirChaveConfirma($id): void {
     // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
     $sql = "DELETE FROM chave WHERE fk_id_usuario_id_usuario = $id";
-    pg_query(CONNECT, $sql);
-
+    
+    if (!pg_query(CONNECT, $sql)) {
+        $_SESSION['mensag'] = 'Erro ao excluir a chave :(';     
+    }
 }
 ?>

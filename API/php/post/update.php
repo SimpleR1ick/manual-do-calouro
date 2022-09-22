@@ -9,6 +9,7 @@ require_once '../includes/connect.php';
 include_once '../functions/sanitiza.php';
 include_once '../functions/valida.php';
 include_once '../functions/usuario.php';
+include_once '../functions/atualiza.php';
 include_once '../includes/upload.php';
 
 // Definindo as constantes globais

@@ -138,8 +138,6 @@ function atualizarStatusUsuario($id, $ativo): void {
     } else {
         $_SESSION['mensag'] = 'Erro, status não alterado!';
     }
-    // Retorna a pagina do crud
-    header('Location: ../../web/crud_index.php');
 }
 
 /**
@@ -152,14 +150,8 @@ function deletarUsuario($id): void {
     $sql = "DELETE FROM usuario WHERE id_usuario = $id";
 
     // Verifica se a exclusão ocorreu sem problemas
-    if (pg_query(CONNECT, $sql)) {
-        $_SESSION['mensag'] = "Excluído com sucesso!";
-        
-    } else {
+    if (!pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = "Erro ao excluir!";
-    
     }
-    // Retorna a pagina do crud
-    header('Location: ../../web/crud_index.php');
 }
 ?>
