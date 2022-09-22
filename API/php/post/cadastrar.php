@@ -60,6 +60,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 // Encerrando a conexão
 pg_close(CONNECT);
-
-
 ?>
