@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $path_temp = $_FILES['foto']['tmp_name'];
             
             // Prepara o nome do arquivo para ser movido
-            $foto_nome = atualizaNomeFotoUsuario($foto_nome);
+            $foto_nome = atualizarNomeFotoUsuario($foto_nome);
 
             // Atualiza o nome no banco e move o arquivo
             uploadImagemPerfil($foto_nome, $foto_size, $path_temp);  

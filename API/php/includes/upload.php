@@ -7,7 +7,7 @@
  * 
  * @author Henrique Dalmagro
  */
-function atualizaNomeFotoUsuario($nome_foto): string {
+function atualizarNomeFotoUsuario($nome_foto): string {
     // Escapa a string no formatado para o banco de dados
     $nome_foto = pg_escape_string(CONNECT, $nome_foto);
 
