@@ -14,10 +14,6 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
     // Pagina que enviou o formulario
     $origem = $_SERVER['HTTP_REFERER'];
 
-    $date = date_create('America/Sao_Paulo');
-
-    print_r($date);
-
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";

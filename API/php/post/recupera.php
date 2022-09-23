@@ -4,6 +4,7 @@ require_once '../includes/connect.php';
 
 // Import de bibliotecas de funções
 include_once '../includes/email.php';
+include_once '../includes/chave.php';
 include_once '../functions/sanitiza.php'; 
 include_once '../functions/valida.php';
 include_once '../functions/usuario.php';
@@ -18,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitização
         $email = sanitizaString($_POST['email']);
 
-        
-
         $uriErro = '../../web/redefinir_senha.php';
 
         if (validaEmail($email, $uriErro)) {
@@ -29,18 +28,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             if (pg_num_rows($query) == 1) {
                 $id = pg_fetch_row($query);
-
+                $chave = sha1(uniqid(mt_rand())); // Gera um chave HASH unica
+ 
                 // Verifica se a inserção da chave ocorreu
-                if (inserirChaveCofnrima($id[0])) {
+                if (inserirChaveCofnrima($id[0], $chave)) {
 
-                    $link = "localhost/Manual_do_Calouro/API/web/redefinir_senha.php?$chave";
+                    $link = "<a href=\"localhost/Manual_do_Calouro/API/web/redefinir_senha.php?chave=$chave\">Clique aqui</a>";
                     // Campos do email
                     $assunto = 'Recuperar senha';
                     $mensagem = 'Visite este link'.$link;
 
                     // Invoca a função de envio de email
                     enviarEmail($email, $assunto, $mensagem);
-                }  
+                }
             }  
         }    
     }

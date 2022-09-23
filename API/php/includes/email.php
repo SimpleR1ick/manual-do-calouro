@@ -10,7 +10,7 @@
  */
 function enviarEmail($destinatario, $assunto, $mensagem): void {
     // Email de origem que envia a mensagem
-    $remetente = 'stevegames04@gmail.com';
+    $remetente = 'manualdocalouro.ifes@gmail.com';
 
     // Email em formato html, cabeçalho e versão
     $headers = 'MIME-Version: 1.0' . "\r\n" .

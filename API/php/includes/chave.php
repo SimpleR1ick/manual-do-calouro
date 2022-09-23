@@ -30,14 +30,12 @@ function validaChaveConfirma(): bool {
  * 
  * 
  */
-function inserirChaveCofnrima($id): bool {
-    // Gera um chave HASH unica
-    $chave = sha1(uniqid(mt_rand(), true));
-
-    $sql = "INSERT INTO chave VALUES (fk_usuario_id_usuario = $id, chave_confirma ='$chave')";
+function inserirChaveCofnrima($id, $chave): bool {
+    $sql = "INSERT INTO chave (fk_usuario_id_usuario, chave_confirma) VALUES ($id, '$chave')";
  
     if (!pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = 'Erro ao inserir a chave :(';
+        header('Location: ../../web/index.php'); 
 
         return false;
     }
@@ -54,7 +52,7 @@ function inserirChaveCofnrima($id): bool {
  */
 function excluirChaveConfirma($id): void {
     // Atualiza o valor da chave_confirma para NULL, desta forma excluidoa
-    $sql = "DELETE FROM chave WHERE fk_id_usuario_id_usuario = $id";
+    $sql = "DELETE FROM chave WHERE fk_usuario_id_usuario = $id";
     
     if (!pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = 'Erro ao excluir a chave :(';     
