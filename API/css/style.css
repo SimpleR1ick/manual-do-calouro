@@ -70,6 +70,10 @@ span ul.nav.flex-column {
     max-width: 110px;
 }
 
+#img-perfil {
+    width: 5px;
+}
+
 td {
     min-width: 80px;
 }
