@@ -10,6 +10,8 @@ include_once '../functions/sanitiza.php';
 include_once '../functions/valida.php';
 include_once '../functions/usuario.php';
 
+include_once '../includes/email.php';
+
 // Definindo a conexão como uma constante global
 define('CONNECT', db_connect());
 
