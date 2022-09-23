@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h1 class="h1 text-center">Redefinir senha</h1>
 
-                        <form id="redefinir" action="../php/post/recupera.php" method="POST" autocomplete="on">
+                        <form id="redefinir" action="../php/post/redefine.php" method="POST" autocomplete="on">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>

@@ -1,4 +1,4 @@
-INSERT INTO acesso (dsc_acesso) VALUES
+ INSERT INTO acesso (dsc_acesso) VALUES
     ('admin'),
     ('usuario'),
     ('aluno'),

@@ -25,8 +25,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <a href="redefinir_senha.php" class="btn btn-primary">Enviar</a>
-                                <!-- <button id="btnRecuperar" name="btnRecuperar" class="btn btn-primary" type="submit">Enviar</button> -->
+                                <button id="btnRecuperar" name="btnRecuperar" class="btn btn-primary" type="submit">Enviar</button> 
                             </div>
                         </form>
                     </div>
