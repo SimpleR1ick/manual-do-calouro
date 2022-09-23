@@ -2,8 +2,8 @@
 // Iniciar a sessão
 session_start();
 
-require_once 'php/includes/connect.php'; // Inicia a conexão com o banco de dados
-require_once 'php/functions/session.php';// Funções da sessão
+require_once '../php/includes/connect.php'; // Inicia a conexão com o banco de dados
+require_once '../php/functions/session.php';// Funções da sessão
 ?>
 
 <!DOCTYPE html>
@@ -16,12 +16,12 @@ require_once 'php/functions/session.php';// Funções da sessão
     <!-- Font Awesome - Ícones -->
     <script src="https://kit.fontawesome.com/0bc28c3585.js" crossorigin="anonymous"></script>
 
-    <!-- CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css" />
-
     <!-- JQuery -->
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css" />
 
     <!-- Titutlo do site-->
     <?php tituloSite(); ?>
@@ -32,7 +32,7 @@ require_once 'php/functions/session.php';// Funções da sessão
         <nav class="navbar navbar-expand-lg navbar-dark py-3 mb-4">
             <div class="container">
                 <a class="navbar-brand" href="index.php">
-                    <img height="35px" src="assets/images/logo.png" alt="Logo">
+                    <img height="35px" src="../assets/images/logo.png" alt="Logo">
                 </a>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">

@@ -1,9 +1,9 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php';
+<?php include_once '../php/layout/header.php';
 verificaNivelAcesso(); ?>
 
 <!-- Conteúdo da pagina -->
-<?php include_once 'php/interface/crud_table.php'; ?>
+<?php include_once '../php/interface/crud_table.php'; ?>
 
 <section class="container">
     <div class="mb-4">
@@ -36,4 +36,4 @@ verificaNivelAcesso(); ?>
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

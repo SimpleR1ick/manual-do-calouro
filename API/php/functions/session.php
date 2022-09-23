@@ -123,7 +123,7 @@ function verificaTurma(): void {
 function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
-        echo "<button class='btn btn-info mt-2 mt-lg-0' type='button' onclick='window.location.href = \"php/includes/logout.php\"'>Sair</button>";
+        echo "<button class='btn btn-info mt-2 mt-lg-0' type='button' onclick='window.location.href = \"../php/includes/logout.php\"'>Sair</button>";
     // Se não existir um usuário, cria um botão para dar login
     } else {
         echo "<button class='btn btn-primary mt-2 mt-lg-0' type='button' onclick='window.location.href = \"login.php\"'>Entrar</button>";
@@ -144,10 +144,10 @@ function exibirFoto(): void {
         
         if (!empty($path)) {
             // Imagem do Usuario cadastrada no banco
-            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='assets/uploads/$path'>";
+            echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='../assets/uploads/$path'>";
         } else {
             // Imagem Default 
-            echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="assets/images/user.png">';
+            echo '<img id="foto-editar-perfil" class="img-fluid rounded" alt="user-pic" src="../assets/images/user.png">';
         }
     }
 }

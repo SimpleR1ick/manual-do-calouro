@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php'; ?>
+<?php include_once '../php/layout/header.php'; ?>
 
 <section>
     <div class="mb-4">
@@ -10,7 +10,7 @@
                     <div class="card-body">
                         <h1 class="h1 text-center">Redefinir senha</h1>
 
-                        <form id="redefinir" action="php/post/recupera.php" method="POST" autocomplete="on">
+                        <form id="redefinir" action="../php/post/recupera.php" method="POST" autocomplete="on">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
@@ -20,15 +20,13 @@
                             <!-- Senha -->
                             <div class="mb-3">
                                 <label class="form-label" for="novaSenha">Nova senha:</label>
-                                <input id="novaSenha" name="novaSenha" class="form-control" type="password" min="6" placeholder="Sua nova senha" autocomplete="off"
-                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
+                                <input id="novaSenha" name="novaSenha" class="form-control" type="password" min="6" placeholder="Sua nova senha" autocomplete="off" required>
                                 <div id="dica-senha" class="form-text">Mínimo de 6 caracteres, uma letra, um número e um caractere especial</div>
                             </div>
                             
                             <div class="mb-3">
                                 <label class="form-label" for="novaSenha2">Confirmar nova senha:</label>
-                                <input id="novaSenhaConfirma" name="novaSenhaConfirma" class="form-control" type="password" placeholder="Confirme sua senha" autocomplete="off"
-                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,}$" required>
+                                <input id="novaSenhaConfirma" name="novaSenhaConfirma" class="form-control" type="password" placeholder="Confirme sua senha" autocomplete="off" required>
                             </div>
 
                             <div class="d-flex justify-content-center">
@@ -44,4 +42,4 @@
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php'; ?>
+<?php include_once '../php/layout/footer.php'; ?>

@@ -1,5 +1,5 @@
 <!-- Header-->
-<?php include_once 'php/layout/header.php';?>
+<?php include_once '../php/layout/header.php';?>
 
 <?php verificaUsuarioLogado();
 $userData = getDadosUsuario(); ?>
@@ -52,4 +52,4 @@ $userData = getDadosUsuario(); ?>
 </section>
 
 <!-- Footer -->
-<?php include_once 'php/layout/footer.php';?>
+<?php include_once '../php/layout/footer.php';?>

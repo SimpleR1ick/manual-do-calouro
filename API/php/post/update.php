@@ -9,6 +9,7 @@ require_once '../includes/connect.php';
 include_once '../functions/sanitiza.php';
 include_once '../functions/valida.php';
 include_once '../functions/usuario.php';
+include_once '../includes/atualiza.php';
 include_once '../includes/upload.php';
 
 // Definindo as constantes globais
@@ -27,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $path_temp = $_FILES['foto']['tmp_name'];
             
             // Prepara o nome do arquivo para ser movido
-            $foto_nome = atualizaNomeFotoUsuario($foto_nome);
+            $foto_nome = atualizarNomeFotoUsuario($foto_nome);
 
             // Atualiza o nome no banco e move o arquivo
             uploadImagemPerfil($foto_nome, $foto_size, $path_temp);  
@@ -46,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $acesso = $dados['acesso'];
 
             // Variavel com caminho da pagina
-            $uri = '../../perfis.php';
+            $uri = '../../web/perfis.php';
 
             // Nivel de acesso recebido via post em um hyden input
             if ($acesso == 3) {
@@ -55,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $curso = $dados['curso'];
 
                 if (!empty($modulo) && !empty($curso)) {
-                    atualizarDadosUsuarioAluno($id, $modulo, $curso);
+                    atualizarUsuarioAluno($id, $modulo, $curso);
                 }
             }  
             
@@ -64,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $regras = $dados['regras'];
 
                 if (!empty($regras)) {
-                    atualizarDadosUsuarioProfessor($id, $regras);
+                    atualizarUsuarioProfessor($id, $regras);
                 } 
             }
 
