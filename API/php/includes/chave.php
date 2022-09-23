@@ -11,7 +11,7 @@ function validaChaveConfirma(): bool {
         $chave = pg_escape_string(CONNECT, $_GET['chave']);
 
         // Preparando uma busca ao id do usuario da chave recebida
-        $sql = "SELECT chave_confirma FROM chave WHERE chave_confirma = '$chave' LIMIT 1";
+        $sql = "SELECT * FROM chave WHERE chave_confirma ='$chave' LIMIT 1";
         $query = pg_query(CONNECT, $sql);
 
         // Verifica se a consulta teve resultado 
@@ -34,7 +34,7 @@ function inserirChaveCofnrima($id): bool {
     // Gera um chave HASH unica
     $chave = sha1(uniqid(mt_rand(), true));
 
-    $sql = "INSERT INTO chave VALUES fk_usuario_id_usuario = $id, chave_confirma ='$chave')";
+    $sql = "INSERT INTO chave VALUES (fk_usuario_id_usuario = $id, chave_confirma ='$chave')";
  
     if (!pg_query(CONNECT, $sql)) {
         $_SESSION['mensag'] = 'Erro ao inserir a chave :(';

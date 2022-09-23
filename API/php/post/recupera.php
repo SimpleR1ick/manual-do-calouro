@@ -18,6 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Sanitização
         $email = sanitizaString($_POST['email']);
 
+        
+
         $uriErro = '../../web/redefinir_senha.php';
 
         if (validaEmail($email, $uriErro)) {
@@ -32,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if (inserirChaveCofnrima($id[0])) {
 
                     $link = "localhost/Manual_do_Calouro/API/web/redefinir_senha.php?$chave";
-
                     // Campos do email
                     $assunto = 'Recuperar senha';
                     $mensagem = 'Visite este link'.$link;
