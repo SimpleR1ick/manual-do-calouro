@@ -11,27 +11,28 @@
  * @author Henrique Dalmagro
  */
 function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): void {
-    // Pagina que enviou o formulario
     $origem = $_SERVER['HTTP_REFERER'];
 
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";
     
-    // Se a requição houve retorno, o insert teve sucesso
-    if (pg_query(CONNECT, $sql)) {
-        // Adiciona minha sessão uma mensagem de sucesso
+    try {
+        $cadastro = pg_query(CONNECT, $sql);
+
+        if (!$cadastro) {
+            throw new Exception('Erro ao cadastrar!');
+        }
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
 
-        // Envia o usuário de à página de login
+        // Envia o usuário de à página desejada
         header("Location: $destino");
 
-    } else {
-        // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Erro ao cadastrar!';
+    } catch (Exception $e) {
+        $_SESSION['mensag'] = $e->getMessage();
 
         // Retorna para o cadastro
-        header("Location: $origem"); 
+        header("Location: $origem");    
     }
 }
 
@@ -68,6 +69,76 @@ function logarUsuario($email, $senhaHash): void {
 }
 
 /**
+ * Função para inserir o curso e o modulo do aluno
+ * 
+ * @param int $id
+ * @param int $curso código único do curso
+ * @param int $modulo código único do módulo
+ * 
+ * @author Rafael Barros - Henrique Dalmagro
+ */
+function atualizarUsuarioAluno($id, $modulo, $curso) {
+    // Fazer verificação se o aluno ja esta cadastrado
+    $sql = "SELECT fk_usuario_id_usuario FROM aluno WHERE fk_usuario_id_usuario = $id";
+    $query = pg_query(CONNECT, $sql);
+
+    if (pg_num_rows($query) > 0) {
+        $sql = "UPDATE aluno SET fk_turma_id_turma = (SELECT id_turma FROM turma 
+                WHERE num_modulo = $modulo 
+                AND fk_curso_id_curso = $curso) 
+                WHERE fk_usuario_id_usuario = $id";
+    } else {
+        // Query para fazer o update das informações do aluno
+        $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3
+                WHERE id_usuario = $id;
+                INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
+                ($id, (SELECT id_turma FROM turma
+                WHERE num_modulo = $modulo
+                AND fk_curso_id_curso = $curso))";
+    }
+    if (!pg_query(CONNECT, $sql)) {
+        // Adiciona à sessão uma mensagem de sucesso
+        $_SESSION['mensag'] = 'Erro ao atualizar curso e modulo!';
+    }
+}
+
+/**
+ * 
+ * @param int $id
+ * @param string $regras
+ * 
+ * @author Rafael Barros - Henrique Dalmagro
+ */
+function atualizarUsuarioProfessor($id, $regras) {
+    // Query para fazer o update das informações do professor
+    $sql = "UPDATE professor SET regras ='$regras'
+            WHERE fk_servidor_fk_usuario_id_usuario = $id";
+
+    if (!pg_query(CONNECT, $sql)) {
+        // Adiciona à sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Erro ao atualizar as regras!';
+    }  
+}
+
+/**
+ * 
+ * @param int $id
+ * @param int $setor
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizarUsuarioAdministrativo($id, $setor) {
+    // Query para fazer o update das informações do administrativo
+    $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
+            WHERE fk_servidor_fk_usuario_id_usuario = $id";
+
+    if (!pg_query(CONNECT, $sql)) {
+        // Adiciona à sessão uma mensagem de erro
+        $_SESSION['mensag'] = 'Erro ao atualizar o setor';
+    }
+}
+
+/**
  * Função para atualizar os dados do usuario
  * 
  * @param int $id
@@ -99,7 +170,10 @@ function atualizarDadosUsuario($id, $nome, $email): void {
  * 
  */
 function atualizarSenhaUsuario($id, $senha): void {
-    $sql = "UPDATE usuario SET senha = '$senha' WHERE id_usuario = $id";
+
+    $hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql = "UPDATE usuario SET senha = '$hash' WHERE id_usuario = $id";
 
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['sucess'] = 'Senha atualizada com sucesso';

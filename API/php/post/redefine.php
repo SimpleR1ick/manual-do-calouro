@@ -16,24 +16,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['btnRedefinir'])) {
 
         if (verificaInjectHtml($_POST)) {
-
+            // Sanitização
             $dados = sanitizaFormularioPOST($_POST);
 
+            // Atribuição dos inputs do POST a variaveis
             $id = $dados['id'];
             $novaSenha = $dados['novaSenha'];
             $novaSenha2 = $dados['novaSenhaConfirma'];
 
+            // Variavel com caminho da pagina
             $uriErro = '../../web/redefinir_senha';
 
+            // Valida se as senhas são iguais
             if (validaSenha($novaSenha, $novaSenha2, $uriErro)) {
+                // Verifica se a senha atende os requisitos minimos
                 if (verificaSenha($novaSenha, $uriErro)) {
-                    
-                    $senhaHash = criptografarSenha($novaSenha);
+                    // Atualiza a senha do usuario
+                    atualizarSenhaUsuario($id, $novaSenha);
 
-                    atualizarSenhaUsuario($id, $senhaHash);
+                    header('Location: ../../web/login.php');
                 }
             }
-            header('Location: ../../web/login.php');
         }
     }
 }
