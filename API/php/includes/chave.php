@@ -63,7 +63,6 @@ function inserirChaveCofnrima($id, $chave): bool {
     if (pg_num_rows($result) == 0) {
         // Prepara um SQL de inserção da chave
         $sql = "INSERT INTO chave (fk_usuario_id_usuario, chave_confirma) VALUES ($id, '$chave')";
-<<<<<<< Updated upstream
 
     } else {
         // Prepara um SQL de atualização da chave
@@ -82,34 +81,9 @@ function inserirChaveCofnrima($id, $chave): bool {
     // Trata a exeção com uma mensagem de erro
     } catch (Exception $e) {
         $_SESSION['mensag'] = $e->getMessage();
-=======
->>>>>>> Stashed changes
 
-    } else {
-        // Prepara um SQL de atualização da chave
-        $sql = "UPDATE chave SET chave_confirma = '$chave' WHERE fk_usuario_id_usuario = $id";
-    }
-    
-    try {
-        $query = pg_query(CONNECT, $sql);
-
-        if (!$query) {
-            throw new Exception("Erro inserir a chave!");
-        }
-    
-    // Trata a exeção com uma mensagem de erro
-    } catch (Exception $e) {
-        $_SESSION['mensag'] = $e->getMessage();
-        
-        // Retorna a pagina de home
-        header('Location: ../../web/index.php'); 
         return false;
     }
-<<<<<<< Updated upstream
-=======
-    // Retorno da função
-    return true;
->>>>>>> Stashed changes
 }
 
 /**
