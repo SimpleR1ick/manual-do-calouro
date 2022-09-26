@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Verificações
                 if (verificaAtivo($email, $uriErro)) {
                     // Tenta realizar o login no site
-                    logarUsuario($email, md5($senha));
+                    logarUsuario($email, $senha);
                 }
             }
         }   

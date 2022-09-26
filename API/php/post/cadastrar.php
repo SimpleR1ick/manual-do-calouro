@@ -34,8 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Variaveis dos caminhos possiveis
             $uriErro = '../../web/cadastro.php';
-            $uriAlvo = '../../web/login.php';
-            
+     
             // Validações
             if (validaNome($nome, $uriErro)) {
                 if (validaEmail($email, $uriErro)) {
@@ -55,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verifica se todas as etapas passaram
             if ($valida && $verifica) {
                 // Cadastra o usuario no banco de dados
-                cadastrarUsuario($nome, $email, md5($senha), $uriAlvo);
+                cadastrarUsuario($nome, $email, $senha);
             }
         } 
     }

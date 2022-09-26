@@ -65,17 +65,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verifica se o email esta disponivel
             if (verificaEmail($email, $uriErro)) {
                 // Tenta cadastrar o usuario
-                cadastrarUsuario($nome, $email ,md5($senha), $uriCrud, $acesso);  
+                cadastrarUsuario($nome, $email ,$senha, $acesso);  
             }
         }
 
         // Verifica se o formulario foi de exclusão
         else if (isset($_POST['btnDeletar'])) {
             // Atribuindo id do usuário via hidden input
-            $id = $_POST['id'];
+            $id = sanitizaString($_POST['id']);
 
             // Tenta excluir o usuario
-            deletarUsuario($id);
+            excluirUsuario($id);
         }
     }
 }

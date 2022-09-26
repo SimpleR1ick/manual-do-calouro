@@ -10,11 +10,26 @@
  * 
  * @author Henrique Dalmagro
  */
-function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): void {
+function cadastrarUsuario($nome, $email, $senha, $acesso = 2): void {
+    // Gera uma senha hash com salt unico;
+    $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+    // Obtem a pagina que enviou a ação anterior
+    $origem = $_SERVER['HTTP_REFERER'];
+
+    if ($origem == "http://localhost/Manual_do_Calouro/API/web/cadastro.php") {
+        // Coloca o destino como a pagina de login
+        $destino = "../../web/login.php";
+
+    } else {
+        // Coloca o destino como a pagina main do crud
+        $destino = "../../web/crud_index.php";
+    }
+    
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";
-    
+
     try {
         $cadastro = pg_query(CONNECT, $sql);
 
@@ -25,41 +40,42 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
 
         // Envia o usuário de à página desejada
         header("Location: $destino");
-
+    
     } catch (Exception $e) {
         $_SESSION['mensag'] = $e->getMessage();
 
         // Retorna para o cadastro
-        header("Location: {$_SERVER['HTTP_REFERER']}");    
+        header("Location: $origem");    
     }
 }
 
 /**
  * Função para executar o login no website
  * 
- * @param string $email um email sanitizado
- * @param string $senhaHash uma senha sanitizada e criptografada
+ * @param string $email do usuario
+ * @param string $senhaHash criptografada
  * 
  * @author Henrique Dalmagro
  */
-function logarUsuario($email, $senhaHash): void {
+function logarUsuario($email, $senha): void {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario FROM usuario WHERE email ='$email' 
-            AND senha='$senhaHash'";
-
+    $sql = "SELECT id_usuario, senha FROM usuario WHERE email ='$email'";
+    $query = pg_query(CONNECT, $sql);
+    
     try {
-        $result = pg_query(CONNECT, $sql);
-
         // Verifica se a inserção teve resultado
-        if (pg_num_rows($result) == 0) {
-            throw new Exception('Usuário ou senha inválidos!');
+        if (!pg_num_rows($query) == 1) {
+            throw new Exception('Usuário inválido!');
         }
         // Transforma o resultado da requisição em um array enumerado
-        $id = pg_fetch_row($result);
+        $result = pg_fetch_row($query);
 
+        if (!password_verify($senha, $result[1])) {
+            throw new Exception('Senha inválida!');
+        }
         // Adiciona a sessão o id retornado do banco
-        $_SESSION['id_usuario'] = $id[0];
-        
+        $_SESSION['id_usuario'] = $result[0];
+
         // retorna para pagina home
         header('Location: ../../web/index.php'); 
 
@@ -136,9 +152,12 @@ function atualizarUsuarioAdministrativo($id, $setor) {
     $sql = "UPDATE administrativo SET fk_setor_id_setor = $setor
             WHERE fk_servidor_fk_usuario_id_usuario = $id";
 
-    if (!pg_query(CONNECT, $sql)) {
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = 'Setor atualizado com sucesso!';
+
+    } else {
         // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Erro ao atualizar o setor';
+        $_SESSION['mensag'] = 'Erro ao atualizar o setor!';
     }
 }
 
@@ -171,13 +190,10 @@ function atualizarDadosUsuario($id, $nome, $email): void {
 /**
  * 
  * 
- * 
+ * @author Henrique Dalmagro
  */
-function atualizarSenhaUsuario($id, $senha): void {
-
-    $hash = password_hash($senha, PASSWORD_DEFAULT);
-
-    $sql = "UPDATE usuario SET senha = '$hash' WHERE id_usuario = $id";
+function atualizarSenhaUsuario($id, $senhaHash): void {
+    $sql = "UPDATE usuario SET senha = '$senhaHash' WHERE id_usuario = $id";
 
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['sucess'] = 'Senha atualizada com sucesso';
@@ -229,14 +245,19 @@ function atualizarStatusUsuario($id, $ativo): void {
 /**
  * Função para deletar os dados de um usuario
  * 
+ * @param int $id
+ * 
  * @author Henrique Dalmagro - Rafael Barros
  */
-function deletarUsuario($id): void {
+function excluirUsuario($id): void {
     // Query para excluir o usuário no banco de dados
     $sql = "DELETE FROM usuario WHERE id_usuario = $id";
 
     // Verifica se a exclusão ocorreu sem problemas
-    if (!pg_query(CONNECT, $sql)) {
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = "Usuario excluido com sucesso!";
+
+    } else {
         $_SESSION['mensag'] = "Erro ao excluir!";
     }
 }

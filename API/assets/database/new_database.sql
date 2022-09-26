@@ -28,11 +28,10 @@ CREATE TABLE usuario (
     id_usuario SERIAL PRIMARY KEY NOT NULL ,
     nom_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    senha VARCHAR(250) NOT NULL,
-    img_perfil VARCHAR(300) DEFAULT NULL,
+    senha VARCHAR(255) NOT NULL,
+    img_perfil VARCHAR(14) DEFAULT NULL,
     ativo BOOLEAN NOT NULL DEFAULT 'f',
     add_data TIMESTAMP DEFAULT NULL,
-    chave_salt VARCHAR(255) DEFAULT NULL,
     fk_acesso_id_acesso SERIAL NOT NULL
 );
 
