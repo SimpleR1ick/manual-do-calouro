@@ -11,8 +11,6 @@
  * @author Henrique Dalmagro
  */
 function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): void {
-    $origem = $_SERVER['HTTP_REFERER'];
-
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";
@@ -32,7 +30,7 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
         $_SESSION['mensag'] = $e->getMessage();
 
         // Retorna para o cadastro
-        header("Location: $origem");    
+        header("Location: {$_SERVER['HTTP_REFERER']}");    
     }
 }
 
@@ -46,22 +44,28 @@ function cadastrarUsuario($nome, $email, $senhaHash, $destino, $acesso = 2): voi
  */
 function logarUsuario($email, $senhaHash): void {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario FROM usuario WHERE email ='$email' AND senha ='$senhaHash'";
-    $query = pg_query(CONNECT, $sql);
+    $sql = "SELECT id_usuario FROM usuario WHERE email ='$email' 
+            AND senha='$senhaHash'";
 
-    // Transforma o resultado da requisição em um array enumerado
-    $result = pg_fetch_row($query);
+    try {
+        $result = pg_query(CONNECT, $sql);
 
-    // Verifica se a inserção teve resultado
-    if (pg_num_rows($query) == 1) {
+        // Verifica se a inserção teve resultado
+        if (pg_num_rows($result) == 0) {
+            throw new Exception('Usuário ou senha inválidos!');
+        }
+        // Transforma o resultado da requisição em um array enumerado
+        $id = pg_fetch_row($result);
+
         // Adiciona a sessão o id retornado do banco
-        $_SESSION['id_usuario'] = $result[0];
+        $_SESSION['id_usuario'] = $id[0];
         
         // retorna para pagina home
         header('Location: ../../web/index.php'); 
-    } else {
+
+    } catch (Exception $e) {
         // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Usuário ou senha inválidos!';
+        $_SESSION['mensag'] = $e->getMessage();
 
         // retorna para página de login
         header('Location: ../../web/login.php'); 
