@@ -13,13 +13,20 @@ function db_connect(): mixed {
     $db = "jqvnqgvm";
     $pass = "8-3og-adIEeL7GbtV_wqH5E8jaRePvS3";
 
-    // Conexão com banco de dados
-    $connect = pg_connect("host=$host dbname=$db user=$user password=$pass");
+    try {
+        // Conexão com banco de dados
+        $connect = pg_connect("host=$host dbname=$db user=$user password=$pass");
 
-    if (!$connect) {
-        // Mensagem de erro se a conexão falhar
-        die("Erro, falha na conexão com ElephatnSQL!");
-    }    
-    return $connect;   
+        // Verifica se houve exito na execução
+        if (!$connect) {
+            throw new Exception('Erro ao connectar ao ElephantSQL');
+        }
+        // Retorna a conexão
+        return $connect;   
+
+    } catch (Exception $e) {
+        // Exibe o erro
+        die($e->getMessage());
+    } 
 }
 ?>

@@ -43,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($acesso != null) {
                 atualizarAcessoUsuario($id, $acesso);
             }
+            // Retorna a pagina perfil
+            header("Location: $uriCrud");
         } 
 
         // Verifica se o formulario foi de cadastro
@@ -61,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $uriErro = '../../web/crud_cadastro.php';
 
             // Verifica se o email esta disponivel
-            if (verificaEmail($email, $uri)) {
+            if (verificaEmail($email, $uriErro)) {
                 // Tenta cadastrar o usuario
                 cadastrarUsuario($nome, $email ,md5($senha), $uriCrud, $acesso);  
             }

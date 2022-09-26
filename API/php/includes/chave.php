@@ -1,10 +1,23 @@
 <?php
+
+/**
+ * 
+ * 
+ * @author Henrique Dalmagro
+ */
+function gerarChaveConfirma(): string {
+    // Cria uma chave hash do tipo sha1
+    $chave = sha1(uniqid(mt_rand()));
+
+    return $chave;
+}
+
 /**
  * 
  * 
  * 
  */
-function validaChaveConfirma(): bool {
+function validarChaveConfirma(): mixed {
     // Verifica se a chave esta setada no header
     if (isset($_GET['chave'])) {
         // Atribuindo conteudo do header a uma variavel
@@ -19,9 +32,15 @@ function validaChaveConfirma(): bool {
             // Adiciona uma mensagem de erro a sessão
             $_SESSION['mensag'] = 'Chave de ativação invalida!';
 
-            return false;  
-        } 
-        return true;
+            header('Location: ./index.php');
+
+        } else {
+            $result = pg_fetch_array($query);
+
+            $id = $result['fk_usuario_id_usuario'];
+
+            return $id;
+        }
     }
 }
 
@@ -49,24 +68,22 @@ function inserirChaveCofnrima($id, $chave): bool {
         // Prepara um SQL de atualização da chave
         $sql = "UPDATE chave SET chave_confirma = '$chave' WHERE fk_usuario_id_usuario = $id";
     }
-    
+    // Tenta executar a query
     try {
         $query = pg_query(CONNECT, $sql);
 
         if (!$query) {
             throw new Exception("Erro inserir a chave!");
         }
+        // Retorno da função
+        return true;
     
     // Trata a exeção com uma mensagem de erro
     } catch (Exception $e) {
         $_SESSION['mensag'] = $e->getMessage();
-        
-        // Retorna a pagina de home
-        header('Location: ../../web/index.php'); 
+
         return false;
     }
-    // Retorno da função
-    return true;
 }
 
 /**

@@ -71,4 +71,16 @@ function sanitizaString($value): string {
 
     return $filtrada;
 }
+
+/**
+ * 
+ * 
+ * 
+ */
+function criptografarSenha($senha): string {
+    $hash = password_hash($senha, PASSWORD_DEFAULT);
+
+    return $hash;
+}
+
 ?>

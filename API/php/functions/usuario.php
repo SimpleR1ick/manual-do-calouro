@@ -77,7 +77,7 @@ function logarUsuario($email, $senhaHash): void {
  * 
  * @author Henrique Dalmagro
  */
-function atualizarDadosUsuario($id, $nome, $email, $destino): void {
+function atualizarDadosUsuario($id, $nome, $email): void {
     // Query para fazer o update das informações do usuário
     $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email' 
             WHERE id_usuario = $id";
@@ -91,8 +91,22 @@ function atualizarDadosUsuario($id, $nome, $email, $destino): void {
         // Adiciona à sessão uma mensagem de erro
         $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
     }
-    // Retorna a pagina perfil
-    header("Location: $destino");
+}
+
+/**
+ * 
+ * 
+ * 
+ */
+function atualizarSenhaUsuario($id, $senha): void {
+    $sql = "UPDATE usuario SET senha = '$senha' WHERE id_usuario = $id";
+
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = 'Senha atualizada com sucesso';
+
+    } else {
+        $_SESSION['mensag'] = 'Erro, senha não alterada!';
+    }  
 }
 
 /**
@@ -113,8 +127,6 @@ function atualizarAcessoUsuario($id, $acesso) {
     } else {
         $_SESSION['mensag'] = 'Erro, acesso não alterado!';
     }
-    // Retorna a pagina do crud
-    header('Location: ../../web/crud_index.php');
 }
 
 /**

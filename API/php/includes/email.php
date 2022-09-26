@@ -19,12 +19,16 @@ function enviarEmail($destinatario, $assunto, $mensagem): void {
         'Reply-To: ' . $remetente. "\r\n" .
         'X-Mailer: PHP/' . phpversion();
 
-    // Tenta enviar o email utilizando o canal SMTP
-    if (mail($destinatario, $assunto, $mensagem, $headers)) {
-        $_SESSION['sucess'] = 'E-email enviado com sucesso!';
+    try {
+        $envio = mail($destinatario, $assunto, $mensagem, $headers);
 
-    } else {
-        $_SESSION['mensag'] = 'Erro ao enviar o email!';
+        if (!$envio) {
+            throw new Exception('Erro ao enviar o email!');    
+        } 
+            
+    } catch (Exception $e) {
+
+        $_SESSION['mensag'] = $e->getMessage();
     }
 }
 ?>

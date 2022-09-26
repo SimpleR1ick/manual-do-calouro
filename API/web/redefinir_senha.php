@@ -1,6 +1,9 @@
 <!-- Header-->
 <?php include_once '../php/layout/header.php'; ?>
 
+<?php include_once '../php/includes/chave.php';
+$id = validarChaveConfirma(); ?>
+
 <section>
     <div class="mb-4">
         <div class="container">
@@ -11,6 +14,7 @@
                         <h1 class="h1 text-center">Redefinir senha</h1>
 
                         <form id="redefinir" action="../php/post/redefine.php" method="POST" autocomplete="on">
+                            <input name="id" type="hidden" value="<?php echo $id; ?>">
 
                             <div class="mb-1">
                                 <?php exibirErros(); ?>
@@ -30,8 +34,7 @@
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <a href="login.php" class="btn btn-primary">Redefinir</a>
-                                <!-- <button id="btnRedefinir" name="btnRedefinir" class="btn btn-primary" type="submit">Redefinir</button> -->
+                                <button name="btnRedefinir" class="btn btn-primary" type="submit">Redefinir</button>
                             </div>
                         </form>
                     </div>

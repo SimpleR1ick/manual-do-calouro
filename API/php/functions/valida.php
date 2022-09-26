@@ -120,6 +120,18 @@ function verificaSenha($senha, $pagePath) {
 }
 
 /**
+ * 
+ * 
+ * 
+ */
+function validaTelefone($numero) {
+    if(!preg_match('^\(+[0-9]{2,3}\) [0-9]{4}-[0-9]{4}$^', $numero)){
+        $_SESSION['mensag'] = 'Telefone invalido!';
+    }
+    return;
+}
+
+/**
  * Função para verificar se o status do usuario e ativo
  * 
  * @param string $email Do usuario para verificação

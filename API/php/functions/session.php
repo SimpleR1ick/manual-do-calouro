@@ -126,7 +126,7 @@ function exibirLogin(): void {
         echo "<button class='btn btn-info text-white' type='button' onclick='window.location.href = \"../php/includes/logout.php\"'>Sair<i class=\"fa-solid fa-right-from-bracket ms-2\"></i></button>";
     // Se não existir um usuário, cria um botão para dar login
     } else {
-        echo "<button class='btn btn-primary' type='button' onclick='window.location.href = \"login.php\"'>Entrar<i class=\"fa-solid fa-right-to-bracket ms-2\"></i></button>";
+        echo "<button class='btn btn-primary' type='button' onclick='window.location.href = \"./login.php\"'>Entrar<i class=\"fa-solid fa-right-to-bracket ms-2\"></i></button>";
     }
 }
 

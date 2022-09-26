@@ -27,8 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $query = pg_query(CONNECT, $sql);
 
             if (pg_num_rows($query) == 1) {
+
                 $id = pg_fetch_row($query);
-                $chave = sha1(uniqid(mt_rand())); // Gera um chave HASH unica
+                $chave = gerarChaveConfirma(); // Gera um chave HASH unica
  
                 // Verifica se a inserção da chave ocorreu
                 if (inserirChaveCofnrima($id[0], $chave)) {
@@ -36,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $link = "<a href=\"localhost/Manual_do_Calouro/API/web/redefinir_senha.php?chave=$chave\">Clique aqui</a>";
                     // Campos do email
                     $assunto = 'Recuperar senha';
-                    $mensagem = 'Visite este link'.$link;
+                    $mensagem = 'Visite este link '.$link;
 
                     // Invoca a função de envio de email
                     enviarEmail($email, $assunto, $mensagem);
@@ -44,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }  
         }    
     }
+    // Retorna a pagina de home
+    header('Location: ../../web/index.php'); 
 }
 // Encerrandod a conexão
 pg_close(CONNECT)

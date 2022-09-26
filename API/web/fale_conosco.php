@@ -41,7 +41,7 @@ $userData = getDadosUsuario(); ?>
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <button type="submit" class="btn btn-primary"> Enviar </button>
+                                <button name="btnFeedback" class="btn btn-primary" type="submit"> Enviar </button>
                             </div>
                         </form>
                     </div>
