@@ -29,8 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             enviarEmail($email, $assunto, $mensagem);
         }
-
     }
-
 }
 ?>

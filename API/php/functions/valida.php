@@ -120,15 +120,49 @@ function verificaSenha($senha, $pagePath) {
 }
 
 /**
+ * Função para validar um numero de telefone
  * 
+ * @param string $numero a ser validado
+ * @param string $pagePath Caminho de retorno em caso de erro
  * 
+ * @return bool|false Caso o telefone não for valido
  * 
+ * @author Henrique Dalmagro
  */
-function validaTelefone($numero) {
-    if(!preg_match('^\(+[0-9]{2,3}\) [0-9]{4}-[0-9]{4}$^', $numero)){
+function validaTelefone($numero, $pagePath): bool {
+    $parametros = '^\(+[0-9]{2,3}\) [0-9]{4}-[0-9]{4}$^';
+
+    if (preg_match($parametros, $numero)) {
         $_SESSION['mensag'] = 'Telefone invalido!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath");
+        return false;
     }
-    return;
+    return true;
+}
+
+/**
+ * Função para validar um cpf
+ * 
+ * @param string $cpf a ser validado
+ * @param string $pagePath de retorno em caso de erro
+ * 
+ * @return bool|false Caso o cpf não for valido
+ * 
+ * @author Henrique Dalmagro
+ */
+function validaCPF($cpf, $pagePath): bool {
+    $parametros = "^([0-9]){3}\.([0-9]){3}\.([0-9]){3}-([0-9]){2}$";
+
+    if (preg_match($parametros, $cpf)) {
+        $_SESSION['mensag'] = 'CPF Invalido!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath");
+        return false;
+    }
+    return true;
 }
 
 /**
