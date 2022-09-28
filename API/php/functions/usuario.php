@@ -31,9 +31,9 @@ function cadastrarUsuario($nome, $email, $senha, $acesso = 2): void {
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";
 
     try {
-        $cadastro = pg_query(CONNECT, $sql);
+        $query = pg_query(CONNECT, $sql);
 
-        if (!$cadastro) {
+        if (!$query) {
             throw new Exception('Erro ao cadastrar!');
         }
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
