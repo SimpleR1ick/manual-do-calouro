@@ -43,7 +43,7 @@ function sanitizaFormulario($array): array {
         $value = trim($value);
 
         // Escapa a variavel para consultar no banco de dados
-        $value = mysqli_escape_string(CONNECT, $value);
+        $value = pg_escape_string(CONNECT, $value);
 
         // Sobreescreve o valor original
         $array[$key] = $value;

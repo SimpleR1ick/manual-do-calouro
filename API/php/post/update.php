@@ -78,8 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Atualiza o nome e email de um usuário
                 atualizarDadosUsuario($id, $nome, $email, $uri);
             }
-        }
-        header("Location: ../../web/perfis.php");   
+        } 
     }
 }
 // Encerando a conexão

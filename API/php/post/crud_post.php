@@ -32,21 +32,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $id = $dados['id'];
         $nome = $dados['nome'];
         $email = $dados['email'];
+
         $status = $dados['status'];
+        atualizarStatusUsuario($id, $status);
+        
         $acesso = $dados['acesso'];
+        atualizarAcessoUsuario($id, $acesso);
 
-        // Atualiza os dados do usuario
-        atualizarDadosUsuario($id, $nome, $email, $uriCrud);
-
-        // Verifica se status e o acesso foi alterado
-        if ($status != null) {
-            atualizarStatusUsuario($id, $status);
+        // Validações
+        if (validaNome($nome, $uriCrud) && validaEmail($email, $uriCrud)) {
+            // Verificações
+            if (verificaEmail($email, $uriCrud)) {
+                // Atualiza o nome e email de um usuário
+                atualizarDadosUsuario($id, $nome, $email);
+            }
         } 
-        if ($acesso != null) {
-            atualizarAcessoUsuario($id, $acesso);
-        }
-        // Retorna a pagina perfil
-        header("Location: $uriCrud");
     } 
 
     // Verifica se o formulario foi de cadastro
@@ -63,10 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Variavel com caminho da pagina
         $uriErro = '../../web/crud_cadastro.php';
 
-        // Verifica se o email esta disponivel
-        if (verificaEmail($email, $uriErro)) {
-            // Tenta cadastrar o usuario
-            cadastrarUsuario($nome, $email ,$senha, $acesso);  
+        // Validações
+        if (validaNome($nome, $uriCrud) && validaEmail($email, $uriCrud)) {
+            // Verifica se o email esta disponivel
+            if (verificaEmail($email, $uriCrud)) {
+                // Tenta cadastrar o usuario
+                cadastrarUsuario($nome, $email ,$senha, $acesso);  
+            }
         }
     }
     // Verifica se o formulario foi de exclusão

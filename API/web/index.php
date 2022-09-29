@@ -1,10 +1,7 @@
 <!-- Header -->
-<?php include_once '../php/layout/header.php';
-verificaAcessoCrud(); ?>
+<?php include_once '../php/layout/header.php'; ?>
 
 <!-- Conteúdo da pagina -->
-<?php include_once '../php/includes/toast.php'; ?>
-
 <section>
     <div class="container div-video d-flex justify-content-center">
         <iframe class="video" src="https://www.youtube.com/embed/aANuDntBtOU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>

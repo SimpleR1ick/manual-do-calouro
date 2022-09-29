@@ -10,27 +10,15 @@
  * 
  * @author Henrique Dalmagro
  */
-function cadastrarUsuario($nome, $email, $senha, $acesso = 2): void {
+function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
     // Gera uma senha hash com salt unico;
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
-
-    // Obtem a pagina que enviou a ação anterior
-    $origem = $_SERVER['HTTP_REFERER'];
-
-    if ($origem == "http://localhost/Manual_do_Calouro/API/web/cadastro.php") {
-        // Coloca o destino como a pagina de login
-        $destino = "../../web/login.php";
-
-    } else {
-        // Coloca o destino como a pagina main do crud
-        $destino = "../../web/crud_index.php";
-    }
     
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
             VALUES ('$nome', '$email', '$senhaHash', $acesso)";
 
-    try {
+    try {        
         $query = pg_query(CONNECT, $sql);
 
         if (!$query) {
@@ -39,13 +27,13 @@ function cadastrarUsuario($nome, $email, $senha, $acesso = 2): void {
         $_SESSION['sucess'] = 'Cadastrado com sucesso!';
 
         // Envia o usuário de à página desejada
-        header("Location: $destino");
+        header("Location: $path");
     
     } catch (Exception $e) {
         $_SESSION['mensag'] = $e->getMessage();
 
         // Retorna para o cadastro
-        header("Location: $origem");    
+        header("Location: '{$_SERVER['HTTP_REFERER']}'");    
     }
 }
 
@@ -60,9 +48,10 @@ function cadastrarUsuario($nome, $email, $senha, $acesso = 2): void {
 function logarUsuario($email, $senha): void {
     // Preparando uma requisição ao banco de dados
     $sql = "SELECT id_usuario, senha FROM usuario WHERE email ='$email'";
-    $query = pg_query(CONNECT, $sql);
     
     try {
+        $query = pg_query(CONNECT, $sql);
+
         // Verifica se a inserção teve resultado
         if (!pg_num_rows($query) == 1) {
             throw new Exception('Usuário inválido!');
@@ -85,6 +74,41 @@ function logarUsuario($email, $senha): void {
 
         // retorna para página de login
         header('Location: ../../web/login.php'); 
+    }
+}
+
+/**
+ * Função para atualizar os dados do usuario
+ * 
+ * @param int $id
+ * @param string $nome
+ * @param string $email um email qualquer
+ * @param path $uri 
+ * 
+ * @author Henrique Dalmagro
+ */
+function atualizarDadosUsuario($id, $nome, $email): void {
+    // Query para fazer o update das informações do usuário
+    $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email' 
+            WHERE id_usuario = $id";
+
+    try {
+        $query = pg_query(CONNECT, $sql);
+
+        // Verifica se a query de update obteve sucesso
+        if (!$query) {
+            throw new Exception('Erro ao atualizar perfil!');
+        } 
+        // Adciona a sessão uma mensagem de sucesso
+        $_SERVER['sucess'] = 'Perfil atualizado com sucesso!';
+    }
+    catch (Exception $e) {
+        // Adciona a sessão a mensagem da exceção
+        $_SESSION['mensag'] = $e->getMessage(); 
+    }
+    finally {
+        // Redireciona para pagina de origem
+        header("Location: '{$_SERVER['HTTP_REFERER']}'");  
     }
 }
 
@@ -162,32 +186,6 @@ function atualizarUsuarioAdministrativo($id, $setor) {
 }
 
 /**
- * Função para atualizar os dados do usuario
- * 
- * @param int $id
- * @param string $nome
- * @param string $email um email qualquer
- * @param path $destino 
- * 
- * @author Henrique Dalmagro
- */
-function atualizarDadosUsuario($id, $nome, $email): void {
-    // Query para fazer o update das informações do usuário
-    $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email' 
-            WHERE id_usuario = $id";
-   
-    // Verifica se a query de update obteve sucesso
-    if (pg_query(CONNECT, $sql)) {
-        // Adiciona à sessão uma mensagem de sucesso
-        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
-
-    } else {
-        // Adiciona à sessão uma mensagem de erro
-        $_SESSION['mensag'] = 'Erro ao atualizar perfil!';  
-    }
-}
-
-/**
  * 
  * 
  * @author Henrique Dalmagro
@@ -203,14 +201,6 @@ function atualizarSenhaUsuario($id, $senhaHash): void {
     }  
 }
 
-/**
- * Função para mudar o nivel de acesso de um usuario no sistema
- * 
- * @param int $id do alvo
- * @param int $acesso referente
- * 
- * @author Henrique Dalmagro
- */
 function atualizarAcessoUsuario($id, $acesso) {
     // Comentar
     $sql = "UPDATE usuario SET fk_acesso_id_acesso = '$acesso' WHERE id_usuario = $id";

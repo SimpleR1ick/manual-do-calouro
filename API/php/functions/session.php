@@ -216,24 +216,6 @@ function verificaNivelAcesso(): void {
 }
 
 /**
- * Função para verificar o acesso ao crud de usuarios
- * 
- * @author Henrique Dalmagro
- */
-function verificaAcessoCrud(): void {
-    if (isset($_SESSION['id_usuario'])) {
-        $userData = getDadosUsuario();
-
-        // Armazena em uma variavel o nivel de acesso do usuario  
-        $acesso = $userData['fk_acesso_id_acesso'];
-
-        if ($acesso == 1) {
-            header('Location: crud_index.php');
-        }
-    }
-}
-
-/**
  * Função para verificar se existe um usuario na sessão,
  * caso não o redireciona pro home.
  * 
