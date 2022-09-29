@@ -12,7 +12,7 @@ function atualizarNomeFotoUsuario($nome_foto): string {
     $nome_foto = pg_escape_string(CONNECT, $nome_foto);
 
     // Consulta a coluna img_perfil de um usuario
-    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}'";
+    $sql = "SELECT img_perfil FROM usuario WHERE id_usuario = '{$_SESSION['id_usuario']}' AND img_perfil IS NOT NULL";
     $query = pg_query(CONNECT, $sql);
 
     if (pg_num_rows($query) == 1) {

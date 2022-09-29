@@ -9,7 +9,6 @@ require_once '../includes/connect.php';
 include_once '../functions/sanitiza.php';
 include_once '../functions/valida.php';
 include_once '../functions/usuario.php';
-include_once '../includes/atualiza.php';
 include_once '../includes/upload.php';
 
 // Definindo as constantes globais
@@ -76,7 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     // Atualiza o nome e email de um usuário
                     atualizarDadosUsuario($id, $nome, $email, $uri);
                 }
-            }   
+            }
+            header("Location: ../../web/perfis.php");   
         }
     }
 }

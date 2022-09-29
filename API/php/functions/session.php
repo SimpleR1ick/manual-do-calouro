@@ -232,7 +232,7 @@ function verificaUsuarioLogado(): void {
     if (empty($_SESSION['id_usuario'])) {
         $_SESSION['mensag'] = 'Acesso negado, necessario login!';
         
-        header('Location: index.php');
+        header('Location: login.php');
     }
 }
 ?>
