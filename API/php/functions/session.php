@@ -123,7 +123,18 @@ function verificaTurma(): void {
 function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
-        echo "<button class='btn btn-info text-white' type='button' onclick='window.location.href = \"../php/includes/logout.php\"'>Sair<i class=\"fa-solid fa-right-from-bracket ms-2\"></i></button>";
+        echo 
+        "<div class=\"dropdown\">
+            <button class=\"btn border-none dropdown-toggle\" type=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
+                <img id=\"img-perfil\" src=\"../assets/images/user.png\" alt=\"\" srcset=\"\">
+            </button>
+
+            <ul class=\"dropdown-menu\">
+                <li><a class=\"dropdown-item\" href=\"perfis.php\">Perfil</a></li>
+                <li><a class=\"dropdown-item\" href=\"fale_conosco.php\">Fale conosco</a></li>
+                <li><a class=\"dropdown-item\" href=\"../php/includes/logout.php\">Sair<i class=\"fa-solid fa-right-from-bracket ms-2\"></i></a></li>
+            </ul>
+        </div>";
     // Se não existir um usuário, cria um botão para dar login
     } else {
         echo "<button class='btn btn-primary' type='button' onclick='window.location.href = \"./login.php\"'>Entrar<i class=\"fa-solid fa-right-to-bracket ms-2\"></i></button>";

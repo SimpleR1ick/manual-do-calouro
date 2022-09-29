@@ -234,7 +234,9 @@ INSERT INTO usuario_evento (fk_usuario_id_usuario, fk_evento_id_evento) VALUES
     (3, 3); -- Rafael
 
 INSERT INTO contato (dsc_contato, fk_servidor_fk_usuario_id_usuario, fk_tipo_contato_id_tipo) VALUES
-    ('(27) 999666-0410', 5, 1);
+    ('(27) 99966-0410', 5, 1),
+    ('(27) 99872-1412', 6, 1);
 
 INSERT INTO servidor_horario (fk_servidor_fk_usuario_id_usuario, fk_horario_id_horario) VALUES
-    (5, 1);
+    (5, 1),
+    (6, 1);

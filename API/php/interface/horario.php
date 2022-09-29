@@ -23,7 +23,8 @@ function horarioTable(): void {
 
         // Seleciona todas as aulas, mesmo aquelas que não existem, e as coloca em um array
         $sql = "SELECT * FROM (
-                    (SELECT fk_dia_semana_id_dia_semana AS id_dia_semana, fk_horario_aula_id_horario_aula AS id_horario_aula,
+                    (SELECT fk_dia_semana_id_dia_semana AS id_dia_semana,
+                    fk_horario_aula_id_horario_aula AS id_horario_aula,
                     fk_turma_id_turma AS id_turma,
                     ha.hora_aula_inicio,
                     ha.hora_aula_fim,

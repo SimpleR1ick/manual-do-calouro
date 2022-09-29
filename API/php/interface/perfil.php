@@ -13,6 +13,9 @@ function textoTipoUsuario(): void {
     else if ($userData['fk_acesso_id_acesso'] == 4) {
         echo "<label class='form-label fw-bold h5'>Editar regras</label>";
     }   
+    else if ($userData['fk_acesso_id_acesso'] == 5) {
+        echo "<label class='form-label fw-bold h5'>Editar setor</label>";
+    }   
 }
 
 /**
@@ -49,12 +52,34 @@ function campoTipoUsuario(): void {
                 <option value="5">5° módulo</option>
                 <option value="6">6° módulo</option>
             </select>
-        </div> 
-        <?php
+        </div>   
+
+    <?php 
     } else if ($userData['fk_acesso_id_acesso'] == 4) { ?>
         <!-- REGRAS DE SALA -->
         <div class="mb-3">
             <textarea class="w-100" id="regras" name="regras" required rows="6"></textarea>
+        </div>
+        
+    <?php 
+    } else if ($userData['fk_acesso_id_acesso'] == 5) {
+        // Abrindo a conexão com o banco
+        $db = db_connect();
+
+        $sql = "SELECT * FROM setor";
+        $query = pg_query($db, $sql);
+
+        pg_close($db);
+
+        $result = pg_fetch_array($query);
+
+        ?>
+        <!-- SETOR -->
+        <div class="mb-3">
+            <select class="form-select" name="setor" id="setor" required>
+                <option value="" selected>** Selecione uma opção **</option>
+                <option value="cae">CAE</option>
+            </select>
         </div>
         <?php 
     }
