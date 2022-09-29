@@ -15,20 +15,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['btnFeedback'])) {
 
         // Verifica se algum campo possui caracter indesejados
-        if (verificaInjectHtml($_POST)) {
+        if (validaFormulario($_POST)) {
+            header("Location: '{$_SERVER['HTTP_REFERER']}'");
+            exit();
 
-            // Sanitização
-            $dados = sanitizaFormularioPOST($_POST); 
-
-            $email = $dados['email'];
-            $telefone = $dados['telefone'];
-            $assunto = $dados['assunto'];
-            $texto = $dados['texto'];
-
-            $mensagem = $telefone.$texto;
-
-            enviarEmail($email, $assunto, $mensagem);
         }
+        // Sanitização
+        $dados = sanitizaFormulario($_POST); 
+
+        $email = $dados['email'];
+        $telefone = $dados['telefone'];
+        $assunto = $dados['assunto'];
+        $texto = $dados['texto'];
+
+        $mensagem = $telefone.$texto;
+
+        enviarEmail($email, $assunto, $mensagem);
     }
 }
 ?>

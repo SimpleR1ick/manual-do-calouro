@@ -1,47 +1,40 @@
 <?php
 /**
- * Função para verificar se um array possui alguma tag HTML
+ * Função para verificar inject de tags HTML em um array
  * 
- * @param array $arrayString 
+ * @param array $array a ser percorrido
  * 
- * @return bool|false se encontrar algum inject
+ * @return bool false se encontrar, true se passar
  * 
  * @author Henrique Dalmagro
  */
-function verificaInjectHtml($array): bool {
-    // Declaração de variavel
-    $origem = $_SERVER['HTTP_REFERER'];
-    $count = 0;
+function validaFormulario($array): bool {
+    // Iniciando a variavel de controle
+    $ok = false;
 
     // Percorre cada indice do array
     foreach ($array as $string) {
+        // Utiliza a esta função dectar caracters (<>, "', &)
         $f_string = htmlspecialchars($string, ENT_QUOTES);
 
         // Verifica se a string sanitizada e diferente da original
         if ($f_string != $string) {
-            $count += 1;
+            $ok = true;
             break;
         }
     }
-    // Verifica se o contador continua zerado
-    if (!$count == 0) {
-        // Retorna a pagina de origem
-        header("Location: $origem"); 
-        return false;
-    } 
-    return true;
+    // Retorno da função
+    return $ok;
 }
 
 /**
- * Função para sanitizar um array, convertando as tags HTML
+ * Função para sanitizar os indices de um array
  * 
- * @param array $array 
- * 
- * @return array o array sanitizado
+ * @param array $array a ser percorrido
  * 
  * @author Henrique Dalmagro
  */
-function sanitizaFormularioPOST($array): array {
+function sanitizaFormulario($array): array {
     // Percorre cada indice do array
     foreach ($array as $key => $value) {
         // Remover as tags HTML, contrabarras e espaços em branco de uma.
@@ -50,11 +43,12 @@ function sanitizaFormularioPOST($array): array {
         $value = trim($value);
 
         // Escapa a variavel para consultar no banco de dados
-        $value = pg_escape_string($value);
+        $value = mysqli_escape_string(CONNECT, $value);
 
         // Sobreescreve o valor original
         $array[$key] = $value;
     }
+    // Retornando o array sanitizado
     return $array;
 }
 

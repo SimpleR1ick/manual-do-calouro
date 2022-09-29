@@ -17,67 +17,69 @@ define('CONNECT', db_connect());   // Conexão
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
-    if (verificaInjectHtml($_POST)) {
+    // Verifica se algum campo possui caracter indesejados
+    if (validaFormulario($_POST)) {
+        header("Location: '{$_SERVER['HTTP_REFERER']}'");
+        exit();
+    }
+    // Verifica a a imagem existe
+    if (is_uploaded_file(($_FILES['foto']['tmp_name']))) {        
+        // Nome da foto, tamanho da foto, nome temporario no servidor
+        $foto_nome = $_FILES['foto']['name'];
+        $foto_size = $_FILES['foto']['size'];
+        $path_temp = $_FILES['foto']['tmp_name'];
+        
+        // Prepara o nome do arquivo para ser movido
+        $foto_nome = atualizarNomeFotoUsuario($foto_nome);
 
-        // Verifica a a imagem existe
-        if (is_uploaded_file(($_FILES['foto']['tmp_name']))) {        
-            // Nome da foto, tamanho da foto, nome temporario no servidor
-            $foto_nome = $_FILES['foto']['name'];
-            $foto_size = $_FILES['foto']['size'];
-            $path_temp = $_FILES['foto']['tmp_name'];
-            
-            // Prepara o nome do arquivo para ser movido
-            $foto_nome = atualizarNomeFotoUsuario($foto_nome);
+        // Atualiza o nome no banco e move o arquivo
+        uploadImagemPerfil($foto_nome, $foto_size, $path_temp);  
+    } 
+    // Verifica se o botão foi pressionado
+    if (isset($_POST['btnIncrement'])) {
+        // Sanitização
+        $dados = sanitizaFormulario($_POST); 
 
-            // Atualiza o nome no banco e move o arquivo
-            uploadImagemPerfil($foto_nome, $foto_size, $path_temp);  
-        } 
-        // Verifica se o botão foi pressionado
-        if (isset($_POST['btnIncrement'])) {
-            // Sanitização
-            $dados = sanitizaFormularioPOST($_POST);
+        // Armazenado o id da sessão em uma variavel
+        $id = $_SESSION['id_usuario'];
 
-            // Armazenado o id da sessão em uma variavel
-            $id = $_SESSION['id_usuario'];
+        // Atribui os conteudos obtido dos camps nome e email do formulario
+        $nome = $dados['nome'];
+        $email = $dados['email'];
+        $acesso = $dados['acesso'];
 
-            // Atribui os conteudos obtido dos camps nome e email do formulario
-            $nome = $dados['nome'];
-            $email = $dados['email'];
-            $acesso = $dados['acesso'];
+        // Variavel com caminho da pagina
+        $uri = '../../web/perfis.php';
 
-            // Variavel com caminho da pagina
-            $uri = '../../web/perfis.php';
+        // Nivel de acesso recebido via post em um hyden input
+        if ($acesso == 3) {
+            // Atribui o conteudo obtido dos campos modulo e curso do formulario
+            $modulo = $dados['modulo'];
+            $curso = $dados['curso'];
 
-            // Nivel de acesso recebido via post em um hyden input
-            if ($acesso == 3) {
-                // Atribui o conteudo obtido dos campos modulo e curso do formulario
-                $modulo = $dados['modulo'];
-                $curso = $dados['curso'];
-
-                if (!empty($modulo) && !empty($curso)) {
-                    atualizarUsuarioAluno($id, $modulo, $curso);
-                }
-            }  
-            
-            if ($acesso == 4) {
-                // Atribui o conteudo obtido do campo regras do formulario
-                $regras = $dados['regras'];
-
-                if (!empty($regras)) {
-                    atualizarUsuarioProfessor($id, $regras);
-                } 
+            if (!empty($modulo) && !empty($curso)) {
+                atualizarUsuarioAluno($id, $modulo, $curso);
             }
+        }  
+        
+        if ($acesso == 4) {
+            // Atribui o conteudo obtido do campo regras do formulario
+            $regras = $dados['regras'];
 
-            // Validações
-            if (validaNome($nome, $uri) && validaEmail($email, $uri)) {
-                // Verificações
-                if (verificaEmail($email, $uri)) {
-                    // Atualiza o nome e email de um usuário
-                    atualizarDadosUsuario($id, $nome, $email, $uri);
-                }
-            }
-            header("Location: ../../web/perfis.php");   
+            if (!empty($regras)) {
+                atualizarUsuarioProfessor($id, $regras);
+            } 
         }
+
+        // Validações
+        if (validaNome($nome, $uri) && validaEmail($email, $uri)) {
+            // Verificações
+            if (verificaEmail($email, $uri)) {
+                // Atualiza o nome e email de um usuário
+                atualizarDadosUsuario($id, $nome, $email, $uri);
+            }
+        }
+        header("Location: ../../web/perfis.php");   
     }
 }
 // Encerando a conexão

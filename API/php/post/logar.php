@@ -20,27 +20,29 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['btnLogar'])) {
 
         // Verifica se algum campo possui caracter indesejados
-        if (verificaInjectHtml($_POST)) {
-            // Sanitização
-            $dados = sanitizaFormularioPOST($_POST); 
+        if (validaFormulario($_POST)) {
+            header("Location: '{$_SERVER['HTTP_REFERER']}'");
+            exit();
+        }
+        // Sanitização
+        $dados = sanitizaFormulario($_POST); 
 
-            // Atribuição dos inputs do POST a variaveis
-            $email = $dados['email'];
-            $senha = $dados['senha'];
+        // Atribuição dos inputs do POST a variaveis
+        $email = $dados['email'];
+        $senha = $dados['senha'];
+    
+        // Variaveis dos caminhos possiveis
+        $uriErro = '../../web/login.php';
         
-            // Variaveis dos caminhos possiveis
-            $uriErro = '../../web/login.php';
-            
-            // Validações
-            if (validaEmail($email, $uriErro)) {
-                // Verificações
-                if (verificaAtivo($email, $uriErro)) {
-                    // Tenta realizar o login no site
-                    logarUsuario($email, $senha);
-                }
+        // Validações
+        if (validaEmail($email, $uriErro)) {
+            // Verificações
+            if (verificaAtivo($email, $uriErro)) {
+                // Tenta realizar o login no site
+                logarUsuario($email, $senha);
             }
-        }   
-    }
+        }
+    }   
 }
 // Encerando a conexão
 pg_close(CONNECT);

@@ -18,65 +18,64 @@ $uriCrud = '../../web/crud_index.php';
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     // Verifica se há algum caracter indesejado
-    if (verificaInjectHtml($_POST)) {
-
-        // Verifica se o formulario foi de update atualização
-        if (isset($_POST['btnAtualizar'])) {
-            // Sanitização
-            $dados = sanitizaFormularioPOST($_POST);
-
-            // Declaração de variáveis a serem modificadas
-            $id = $dados['id'];
-            $nome = $dados['nome'];
-            $email = $dados['email'];
+    if (validaFormulario($_POST)) {
+        header("Location: '{$_SERVER['HTTP_REFERER']}'");
+        exit();
+    }
     
-            // Atualiza os dados do usuario
-            atualizarDadosUsuario($id, $nome, $email, $uriCrud);
+    // Verifica se o formulario foi de update atualização
+    if (isset($_POST['btnAtualizar'])) {
+        // Sanitização
+        $dados = sanitizaFormulario($_POST);
 
-            $status = $dados['status'];
-            $acesso = $dados['acesso'];
-            
-            // Verifica se status e o acesso foi alterado
-            if ($status != null) {
-                atualizarStatusUsuario($id, $status);
-            } 
-            if ($acesso != null) {
-                atualizarAcessoUsuario($id, $acesso);
-            }
-            // Retorna a pagina perfil
-            header("Location: $uriCrud");
+        // Declaração de variáveis a serem modificadas
+        $id = $dados['id'];
+        $nome = $dados['nome'];
+        $email = $dados['email'];
+        $status = $dados['status'];
+        $acesso = $dados['acesso'];
+
+        // Atualiza os dados do usuario
+        atualizarDadosUsuario($id, $nome, $email, $uriCrud);
+
+        // Verifica se status e o acesso foi alterado
+        if ($status != null) {
+            atualizarStatusUsuario($id, $status);
         } 
-
-        // Verifica se o formulario foi de cadastro
-        else if (isset($_POST['btnCadastrar'])) {
-            
-            // Sanitização
-            $dados = sanitizaFormularioPOST($_POST);
-
-            // Atribuição dos campos a variaveis
-            $nome = $dados['nome'];
-            $email = $dados['email'];
-            $senha = $dados['senha'];
-            $acesso = $dados['acesso'];
-
-            // Variavel com caminho da pagina
-            $uriErro = '../../web/crud_cadastro.php';
-
-            // Verifica se o email esta disponivel
-            if (verificaEmail($email, $uriErro)) {
-                // Tenta cadastrar o usuario
-                cadastrarUsuario($nome, $email ,$senha, $acesso);  
-            }
+        if ($acesso != null) {
+            atualizarAcessoUsuario($id, $acesso);
         }
+        // Retorna a pagina perfil
+        header("Location: $uriCrud");
+    } 
 
-        // Verifica se o formulario foi de exclusão
-        else if (isset($_POST['btnDeletar'])) {
-            // Atribuindo id do usuário via hidden input
-            $id = sanitizaString($_POST['id']);
+    // Verifica se o formulario foi de cadastro
+    else if (isset($_POST['btnCadastrar'])) {
+        // Sanitização
+        $dados = sanitizaFormulario($_POST);
 
-            // Tenta excluir o usuario
-            excluirUsuario($id);
+        // Atribuição dos campos a variaveis
+        $nome = $dados['nome'];
+        $email = $dados['email'];
+        $senha = $dados['senha'];
+        $acesso = $dados['acesso'];
+
+        // Variavel com caminho da pagina
+        $uriErro = '../../web/crud_cadastro.php';
+
+        // Verifica se o email esta disponivel
+        if (verificaEmail($email, $uriErro)) {
+            // Tenta cadastrar o usuario
+            cadastrarUsuario($nome, $email ,$senha, $acesso);  
         }
+    }
+    // Verifica se o formulario foi de exclusão
+    else if (isset($_POST['btnDeletar'])) {
+        // Atribuindo id do usuário via hidden input
+        $id = sanitizaString($_POST['id']);
+
+        // Tenta excluir o usuario
+        excluirUsuario($id);
     }
 }
 // Encerando a conexão
