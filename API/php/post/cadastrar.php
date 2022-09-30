@@ -25,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if (validaFormulario($_POST)) {
             header("Location: '{$_SERVER['HTTP_REFERER']}'");
             exit();
-
         }
         // Sanitização
         $dados = sanitizaFormulario($_POST); 

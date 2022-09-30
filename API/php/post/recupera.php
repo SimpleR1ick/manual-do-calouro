@@ -11,6 +11,7 @@ include_once '../functions/usuario.php';
 
 // Definindo a conexão como uma constante global
 define('CONNECT', db_connect());
+$uriErro = '../../web/redefinir_senha.php';
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -18,8 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['btnRecuperar'])) {
         // Sanitização
         $email = sanitizaString($_POST['email']);
-
-        $uriErro = '../../web/redefinir_senha.php';
 
         if (validaEmail($email, $uriErro)) {
             // Preparando uma requisição ao banco de dados

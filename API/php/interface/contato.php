@@ -28,19 +28,6 @@ function imprimeContato($filtro = 0) {
     $db = db_connect();
 
     if ($filtro == 1) {
-        // SELECT para pegar os dados necessários para os contatos dos professores
-        $sql = "SELECT id_usuario,
-                    nom_usuario,
-                    regras,
-                    img_perfil,
-                    num_sala
-                    FROM usuario u
-                    JOIN servidor s ON (u.id_usuario = s.fk_usuario_id_usuario)
-                    JOIN sala sa ON (s.fk_sala_id_sala = sa.id_sala)
-                    JOIN professor p ON (s.fk_usuario_id_usuario = p.fk_servidor_fk_usuario_id_usuario)
-                    JOIN contato c ON (s.fk_usuario_id_usuario = c.fk_servidor_fk_usuario_id_usuario)";
-
-    } else if ($filtro == 2) {
         // SELECT para pegar os dados necessários para os contatos dos administradores
         $sql = "SELECT id_usuario,
                     nom_usuario,
@@ -56,6 +43,22 @@ function imprimeContato($filtro = 0) {
                     JOIN horario h ON (sh.fk_horario_id_horario = h.id_horario)
                     JOIN administrativo a ON (s.fk_usuario_id_usuario = a.fk_servidor_fk_usuario_id_usuario)
                     JOIN setor se ON (a.fk_setor_id_setor = se.id_setor)";
+
+    } else if ($filtro == 2) {
+        // SELECT para pegar os dados necessários para os contatos dos professores
+        $sql = "SELECT id_usuario,
+                    nom_usuario,
+                    dsc_setor,
+                    regras,
+                    img_perfil,
+                    num_sala
+                    FROM usuario u
+                    JOIN servidor s ON (u.id_usuario = s.fk_usuario_id_usuario)
+                    JOIN sala sa ON (s.fk_sala_id_sala = sa.id_sala)
+                    LEFT JOIN administrativo a ON (s.fk_usuario_id_usuario = a.fk_servidor_fk_usuario_id_usuario)
+                    LEFT JOIN setor se ON (a.fk_setor_id_setor = se.id_setor)
+                    JOIN professor p ON (s.fk_usuario_id_usuario = p.fk_servidor_fk_usuario_id_usuario)
+                    JOIN contato c ON (s.fk_usuario_id_usuario = c.fk_servidor_fk_usuario_id_usuario)";
 
     } else {
         // SELECT para pegar os dados necessários para todos os contatos
@@ -96,7 +99,6 @@ function imprimeContato($filtro = 0) {
         $query = pg_query($db, $sql);
         $contato = pg_fetch_all($query);
         ?>
-        <!-- TODOS OS CONTATOS -->
         <!-- CARD CONTATO -->
         <div class="d-flex flex-column align-items-center">
             <div class="accordion col-md-7 mb-2" id="contato-<?php echo "$i"; ?>">
@@ -105,23 +107,23 @@ function imprimeContato($filtro = 0) {
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#regras-<?php echo "$i"; ?>" aria-expanded="false" aria-controls="regras-<?php echo "$i"; ?>">
                                 
                         <!-- CONTEÚDO -->
-                        <div class="row">
+                        <div class="row w-100">
                             <!-- FOTO DO SERVIDOR -->
-                            <div class="col-4 d-flex justify-content-center align-items-center" id="div-img-contato">
+                            <div class="col-3 d-flex justify-content-center align-items-center" id="div-img-contato">
                                 <?php buscaFoto($info[$i]['id_usuario'], $db); ?>
                             </div>
 
                             <!-- INFORMAÇÕES DE CONTATO DO SERVIDOR -->
-                            <div class="col-8 d-flex align-items-center">
+                            <div class="col-9 d-flex align-items-center">
                                 <div class="card-body">
                                     <?php
                                     if ($info[$i]['dsc_setor'] != null) {
                                         ?>
-                                        <h5 class="card-title fw-bold"><?php echo "{$info[$i]['dsc_setor']}"; ?></h5>
+                                        <h5 class="card-title fw-bold text-break mb-1"><?php echo "{$info[$i]['dsc_setor']}"; ?></h5>
                                         <?php
                                     } else {
                                         ?>
-                                        <h5 class="card-title fw-bold"><?php echo "{$info[$i]['nom_usuario']}"; ?></h5>
+                                        <h5 class="card-title fw-bold text-break mb-1"><?php echo "{$info[$i]['nom_usuario']}"; ?></h5>
                                         <?php
                                     }
                                     ?>
@@ -134,14 +136,14 @@ function imprimeContato($filtro = 0) {
                                             echo "
                                             <div class=\"col-12 py-1\">
                                                 <i class=\"fa-solid fa-phone\"></i>
-                                                <span>{$contato[$j]['dsc_contato']}</span>
+                                                <span class=\"text-break\">{$contato[$j]['dsc_contato']}</span>
                                             </div>";
 
                                         } else if ($contato[$j]['dsc_tipo'] == 'E-mail') {
                                             echo "
                                             <div class=\"col-12 py-1\">
                                                 <i class=\"fa-solid fa-envelope\"></i>
-                                                <span>{$contato[$j]['dsc_contato']}</span>
+                                                <span class=\"text-break\">{$contato[$j]['dsc_contato']}</span>
                                             </div>";
                                         }
                                     }
@@ -164,11 +166,6 @@ function imprimeContato($filtro = 0) {
                                 <p>
                                     <?php echo "{$info[$i]['hora_inicio']} - {$info[$i]['hora_fim']}"; ?>
                                 </p>
-        
-                                <h5>Sala:</h5>
-                                <p>
-                                    <?php echo "{$info[$i]['num_sala']}"; ?>
-                                </p>
                                 <?php
                             } else {
                                 ?>
@@ -179,13 +176,18 @@ function imprimeContato($filtro = 0) {
                                 <?php
                             }
                             ?>
+                            
+                            <h5>Sala:</h5>
+                            <p>
+                                <?php echo "{$info[$i]['num_sala']}"; ?>
+                            </p>
+
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
-        <?php
+    <?php
     }
 
     // Fechando a conexão com o banco
