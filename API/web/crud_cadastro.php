@@ -6,7 +6,7 @@ verificaNivelAcesso(); ?>
 <section class="container">
     <div class="row d-flex justify-content-center">
         <div class="col-8">
-            <form action="../php/post/crud_post.php" method="POST">
+            <form action="../php/post/crud_usuario.php" method="POST">
                 <!-- NOME -->
                 <div class="mb-3">
                     <label for="user_nome" class="form-label"> Nome </label>

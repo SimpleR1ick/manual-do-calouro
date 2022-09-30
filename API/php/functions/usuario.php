@@ -13,6 +13,8 @@
 function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
     // Gera uma senha hash com salt unico;
     $senhaHash = password_hash($senha, PASSWORD_DEFAULT);
+
+    $origem = $_SERVER['HTTP_REFERER'];
     
     // Preparando a requisição de inserção de dados
     $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
@@ -33,7 +35,7 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
         $_SESSION['mensag'] = $e->getMessage();
 
         // Retorna para o cadastro
-        header("Location: '{$_SERVER['HTTP_REFERER']}'");    
+        header("Location: $origem");    
     }
 }
 
