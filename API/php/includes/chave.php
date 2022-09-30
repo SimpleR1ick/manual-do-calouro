@@ -13,9 +13,11 @@ function gerarChaveConfirma(): string {
 }
 
 /**
+ * Função para verifica se uma chave esta cadastrada no banco de dados
  * 
  * 
  * 
+ * @author Henrique Dalmagro
  */
 function validarChaveConfirma(): mixed {
     // Verifica se a chave esta setada no header
@@ -77,9 +79,9 @@ function inserirChaveCofnrima($id, $chave): bool {
         }
         // Retorno da função
         return true;
-    
-    // Trata a exeção com uma mensagem de erro
-    } catch (Exception $e) {
+    } 
+    catch (Exception $e) {
+        // Trata a exeção com uma mensagem de erro
         $_SESSION['mensag'] = $e->getMessage();
 
         return false;

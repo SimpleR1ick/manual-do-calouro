@@ -40,8 +40,8 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
 /**
  * Função para executar o login no website
  * 
- * @param string $email do usuario
- * @param string $senhaHash criptografada
+ * @param string $email
+ * @param string $senha
  * 
  * @author Henrique Dalmagro
  */
@@ -82,8 +82,7 @@ function logarUsuario($email, $senha): void {
  * 
  * @param int $id
  * @param string $nome
- * @param string $email um email qualquer
- * @param path $uri 
+ * @param string $email
  * 
  * @author Henrique Dalmagro
  */
@@ -158,10 +157,13 @@ function atualizarUsuarioProfessor($id, $regras) {
     $sql = "UPDATE professor SET regras ='$regras'
             WHERE fk_servidor_fk_usuario_id_usuario = $id";
 
-    if (!pg_query(CONNECT, $sql)) {
+    if (pg_query(CONNECT, $sql)) {
         // Adiciona à sessão uma mensagem de erro
+        $_SESSION['sucess'] = 'Regras atualizada com sucesso!';
+        
+    } else {
         $_SESSION['mensag'] = 'Erro ao atualizar as regras!';
-    }  
+    }
 }
 
 /**

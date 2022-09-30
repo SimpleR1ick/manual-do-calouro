@@ -9,9 +9,9 @@
  *  
  * @author Henrique Dalmagro
  */
-function validaNome($string, $pagePath) {
+function validaNome($nome, $pagePath) {
     // Verifica se a string possui numeros ou caracter especiais
-    if (!preg_match('/^[a-zA-Z\s]+$/', $string)){
+    if (!preg_match('/^[a-zA-Z\s]+$/', $nome)){
         $_SESSION['mensag'] = 'Nomes não podem ter números<br>ou caracteres especiais!';
 
         // Retorna a pagina de origem
