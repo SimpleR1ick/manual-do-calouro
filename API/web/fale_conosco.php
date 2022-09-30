@@ -18,18 +18,20 @@ $userData = getDadosUsuario(); ?>
                             <input type="hidden" class="form-control" id="email" name="email" aria-describedby="ajudaEmail" placeholder="Seu email" required value="<?php echo $userData['email']; ?>">
 
                             <div class="mb-3">
-                                <label class="form-label" for="telefone"> Telefone: </label>
-                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="Seu telefone" minlength="8" maxlength="11">
+                                <label class="form-label" for="telefone"> Telefone (opcional): </label>
+                                <input type="tel" class="form-control" id="telefone" name="telefone" placeholder="(99) 99999-9999" minlength="8" maxlength="15" autocomplete="on">
                             </div>
 
                             <div class="mb-3">
                                 <label class="form-label" for="assunto"> Assunto: </label>
                                 <select class="form-select" name="assunto" id="assunto" required>
-                                    <option value="">Selecione um assunto</option>
+                                    <option value="" selected>Selecione um assunto</option>
+                                    <option value="conta">Solicitar conta de professor ou servidor</option>
                                     <option value="calendario">Calendário</option>
                                     <option value="horarios">Horários</option>
                                     <option value="mapa">Mapa</option>
                                     <option value="rod">ROD</option>
+                                    <option value="faq">Dúvida/Pergunta</option>
                                     <option value="critica">Crítica/Reclamação</option>
                                     <option value="outro">Outro</option>
                                 </select>

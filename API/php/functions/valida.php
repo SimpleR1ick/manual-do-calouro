@@ -48,32 +48,6 @@ function validaEmail($email, $pagePath): bool {
 }
 
 /**
- * Função para verificar se o email de entrada já esta cadastrado no banco de dados
- * 
- * @param string $email E-mail a ser buscado
- * @param string $pagePath Pagina de retorno se houver erro
- * 
- * @return bool|false Se estiver em uso
- * 
- * @author Henrique Dalmagro
- */
-function verificaEmail($email, $pagePath): bool {
-    // Preparando uma requisição ao banco de dados
-    $sql = "SELECT email FROM usuario WHERE email = '$email'";
-    $query = pg_query(CONNECT, $sql);
-
-    // Verifica se a requisição teve resultado
-    if (pg_num_rows($query) > 0) {
-        $_SESSION['mensag'] = 'Email já cadastrado!';
-
-        // Retorna a pagina de origem
-        header("Location: $pagePath"); 
-        return false;
-    }
-    return true; 
-}
-
-/**
  * Função para verificar se as senhas coincidem
  * 
  * @param string $senha1 A senha
@@ -93,30 +67,6 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
         return false;
     } 
     return true;
-}
-
-/**
- * Função para verificar se a senha atende aos requisitos
- * 
- * @param string $senha literalmente a senha
- * @param string $pagePath Caminho de retorno em caso de erro
- * 
- * @return bool|false Caso a senha não for valida
- * 
- * @author Henrique Dalmagro
- */
-function verificaSenha($senha, $pagePath) {
-    // Mínimo de seis caracteres, pelo menos uma letra, um número e um caractere especial
-    $parametros = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?])[A-Za-z\d@$!%*#?]{6,36}$";
-
-    if (preg_match($parametros, $senha)) {
-        $_SESSION['mensag'] = 'Senha inválida!';
-
-        // Retorna a pagina de origem
-        header("Location: $pagePath"); 
-        return false;
-    } 
-    return true; 
 }
 
 /**
@@ -143,25 +93,69 @@ function validaTelefone($numero, $pagePath): bool {
 }
 
 /**
- * Função para validar um cpf
+ * Função para verificar se o email de entrada já esta cadastrado no banco de dados
  * 
- * @param string $cpf a ser validado
- * @param string $pagePath de retorno em caso de erro
+ * @param string $email E-mail a ser buscado
+ * @param string $pagePath Pagina de retorno se houver erro
  * 
- * @return bool|false Caso o cpf não for valido
+ * @return bool|false Se estiver em uso
  * 
  * @author Henrique Dalmagro
  */
-function validaCPF($cpf, $pagePath): bool {
-    $parametros = "^([0-9]){3}\.([0-9]){3}\.([0-9]){3}-([0-9]){2}$";
+function verificaEmail($email, $pagePath): bool {
+    // Preparando uma requisição ao banco de dados
+    $sql = "SELECT email FROM usuario WHERE email = '$email'";
+    $query = pg_query(CONNECT, $sql);
 
-    if (preg_match($parametros, $cpf)) {
-        $_SESSION['mensag'] = 'CPF Invalido!';
+    // Verifica se a requisição teve resultado
+    if (pg_num_rows($query) > 0) {
+        $_SESSION['mensag'] = 'Email já cadastrado!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath"); 
+        return false;
+    }
+    return true; 
+}
+
+/**
+ * Função para verificar se a senha atende aos requisitos
+ * 
+ * @param string $senha literalmente a senha
+ * @param string $pagePath Caminho de retorno em caso de erro
+ * 
+ * @return bool|false Caso a senha não for valida
+ * 
+ * @author Henrique Dalmagro
+ */
+function verificaSenha($senha, $pagePath) {
+    // Mínimo de seis caracteres, pelo menos uma letra, um número e um caractere especial
+    $parametros = "^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?])[A-Za-z\d@$!%*#?]{6,36}$";
+
+    if (preg_match($parametros, $senha)) {
+        $_SESSION['mensag'] = 'Senha inválida!';
+
+        // Retorna a pagina de origem
+        header("Location: $pagePath"); 
+        return false;
+    } 
+    return true; 
+}
+
+function verificaMatricula($matricula, $pagePath): bool {
+    // Query para pegar os alunos com uma matrícula
+    $sql = "SELECT * FROM aluno WHERE num_matricula = '$matricula'";
+    $query = pg_query(CONNECT, $sql);
+
+    // Verifica se existe alguém com a mesma matrícula
+    if (pg_num_rows($query) > 0) {
+        $_SESSION['mensag'] = 'Matrícula já registrada!';
 
         // Retorna a pagina de origem
         header("Location: $pagePath");
         return false;
     }
+
     return true;
 }
 

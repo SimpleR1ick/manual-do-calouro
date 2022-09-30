@@ -13,6 +13,9 @@ include_once '../includes/upload.php';
 
 // Definindo as constantes globais
 define('CONNECT', db_connect());   // Conexão
+// Variavel com caminho da pagina
+$uri = '../../web/perfis.php';
+
 
 // Verifica se houve a requisição POST para esta pagina
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -48,8 +51,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $dados['email'];
         $acesso = $dados['acesso'];
 
-        // Variavel com caminho da pagina
-        $uri = '../../web/perfis.php';
+        if ($acesso == 2) {
+            $matricula = $dados['matricula'];
+
+            if (verificaMatricula($matricula, $uri)) {
+                cadastrarUsuarioAluno($id, $matricula);
+            }
+        }
 
         // Nivel de acesso recebido via post em um hyden input
         if ($acesso == 3) {
@@ -78,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Atualiza o nome e email de um usuário
                 atualizarDadosUsuario($id, $nome, $email, $uri);
             }
-        } 
+        }
     }
 }
 // Encerando a conexão

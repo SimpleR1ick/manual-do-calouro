@@ -26,7 +26,19 @@ function textoTipoUsuario(): void {
 function campoTipoUsuario(): void {
     global $userData;
 
-    if ($userData['fk_acesso_id_acesso'] == 3) { ?>
+
+    if ($userData['fk_acesso_id_acesso'] == 2) { ?>
+        <!-- MATRÍCULA -->
+        <div class="mb-3">
+            <label for="matricula" class="form-label fw-bold">Matrícula</label>
+            <input required type="text" class="form-control" id="matricula" name="matricula" placeholder="Ex: 20201tiimi9999" pattern="([0-9]{5}([A-Z]|[a-z]){5}[0-9]{4})+" value="">
+        </div>
+
+    <?php
+    }
+
+
+    else if ($userData['fk_acesso_id_acesso'] == 3) { ?>
         <!-- CURSO -->
         <div class="mb-3">
             <label for="curso" class="form-label fw-bold">Curso</label>

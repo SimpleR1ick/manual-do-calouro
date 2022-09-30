@@ -17,8 +17,8 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
     $origem = $_SERVER['HTTP_REFERER'];
     
     // Preparando a requisição de inserção de dados
-    $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) 
-            VALUES ('$nome', '$email', '$senhaHash', $acesso)";
+    $sql = "INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso, ativo) 
+            VALUES ('$nome', '$email', '$senhaHash', $acesso, 't')";
 
     try {        
         $query = pg_query(CONNECT, $sql);
@@ -36,6 +36,16 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
 
         // Retorna para o cadastro
         header("Location: $origem");    
+    }
+}
+
+function cadastrarUsuarioAluno($id, $matricula): void {
+    // Query para fazer o update das informações do aluno
+    $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3 WHERE id_usuario = $id;
+            INSERT INTO aluno (fk_usuario_id_usuario, num_matricula) VALUES ($id, $matricula)";
+
+    if (pg_query(CONNECT, $sql)) {
+        $_SESSION['sucess'] = "Parabéns! Você agora é um aluno.";
     }
 }
 
@@ -93,6 +103,8 @@ function atualizarDadosUsuario($id, $nome, $email): void {
     $sql = "UPDATE usuario SET nom_usuario ='$nome', email ='$email' 
             WHERE id_usuario = $id";
 
+    $origem = $_SERVER['HTTP_REFERER'];
+
     try {
         $query = pg_query(CONNECT, $sql);
 
@@ -101,7 +113,7 @@ function atualizarDadosUsuario($id, $nome, $email): void {
             throw new Exception('Erro ao atualizar perfil!');
         } 
         // Adciona a sessão uma mensagem de sucesso
-        $_SERVER['sucess'] = 'Perfil atualizado com sucesso!';
+        $_SESSION['sucess'] = 'Perfil atualizado com sucesso!';
     }
     catch (Exception $e) {
         // Adciona a sessão a mensagem da exceção
@@ -109,7 +121,7 @@ function atualizarDadosUsuario($id, $nome, $email): void {
     }
     finally {
         // Redireciona para pagina de origem
-        header("Location: '{$_SERVER['HTTP_REFERER']}'");  
+        header("Location: $origem");  
     }
 }
 
@@ -132,14 +144,7 @@ function atualizarUsuarioAluno($id, $modulo, $curso) {
                 WHERE num_modulo = $modulo 
                 AND fk_curso_id_curso = $curso) 
                 WHERE fk_usuario_id_usuario = $id";
-    } else {
-        // Query para fazer o update das informações do aluno
-        $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3
-                WHERE id_usuario = $id;
-                INSERT INTO aluno (fk_usuario_id_usuario, fk_turma_id_turma) VALUES
-                ($id, (SELECT id_turma FROM turma
-                WHERE num_modulo = $modulo
-                AND fk_curso_id_curso = $curso))";
+  
     }
     if (!pg_query(CONNECT, $sql)) {
         // Adiciona à sessão uma mensagem de sucesso

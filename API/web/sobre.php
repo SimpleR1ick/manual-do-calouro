@@ -3,7 +3,7 @@
 
 <!-- Conteúdo da pagina -->
 <section>
-    <div class="p-5">
+    <div class="p-5 caixa1">
         <div class="container">
             <h1 class="h1">Sobre nós</h1>
             <p>
@@ -17,7 +17,7 @@
         </div>
     </div>
 
-    <div class="p-5 caixa1">
+    <div class="p-5">
         <div class="container">
             <h1 class="h1">Sobre o Manual do Calouro&trade;</h1>
             <p>

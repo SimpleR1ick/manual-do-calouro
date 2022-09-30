@@ -9,6 +9,11 @@ $userData = getDadosUsuario(); ?>
 <section>
     <div class="p-3 d-flex flex-column align-items-center container">
         <form class="w-75" action="../php/post/update.php" method="POST" enctype="multipart/form-data">
+            <div class="mb-1">
+                <?php exibirErros(); ?>
+                <?php exibirSucesso(); ?>
+            </div>
+
             <input type="hidden" id="acesso" name="acesso" value="<?php echo $userData['fk_acesso_id_acesso']; ?>">
 
             <div class="row">

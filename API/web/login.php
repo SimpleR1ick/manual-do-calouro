@@ -26,7 +26,7 @@
                             <!-- Senha -->
                             <div class="mb-4">
                                 <label class="form-label" for="senha">Senha:</label>
-                                <input id="senha" name="senha" class="form-control" type="password" placeholder="Senha" required>
+                                <input type="password" id="senha" name="senha" class="form-control" placeholder="Senha" required>
                             </div>
 
                             <div class="d-flex justify-content-center">

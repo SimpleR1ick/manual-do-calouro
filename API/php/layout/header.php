@@ -63,20 +63,12 @@ require_once '../php/functions/session.php';// Funções da sessão
                         <li class="nav-item">
                             <a class="nav-link" href="rod.php">ROD</a>
                         </li>
+                        <!-- FAQ -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="faq.php">FAQ</a>
+                        </li>
                     </ul>
 
-                    <div class="d-flex space-between">
-                        <!-- Barra de pesquisa -->
-                        <div class="me-3">
-                            <form role="search">
-                                <div class="input-group">
-                                    <input class="form-control" type="search" placeholder="Pesquisar" aria-label="Search">
-
-                                    <button class="btn btn-dark" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
                     <?php exibirLogin(); ?>  
                 </div>
             </div>
