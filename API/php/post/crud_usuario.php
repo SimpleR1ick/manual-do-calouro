@@ -62,13 +62,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Variavel com caminho da pagina
         $uriErro = '../../web/crud_cadastro.php';
-
+    
         // Validações
-        if (validaNome($nome, $uriCrud) && validaEmail($email, $uriCrud)) {
+        if (validaNome($nome, $uriErro) && validaEmail($email, $uriErro)) {
             // Verifica se o email esta disponivel
-            if (verificaEmail($email, $uriCrud)) {
+            if (verificaEmail($email, $uriErro)) {
                 // Tenta cadastrar o usuario
-                cadastrarUsuario($nome, $email ,$senha, $acesso);  
+                cadastrarUsuario($nome, $email ,$senha, $uriCrud, $acesso);  
             }
         }
     }

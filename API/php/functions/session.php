@@ -102,17 +102,23 @@ function verificaTurma(): void {
             // Fechando a conexão com o banco de dados
             pg_close($db);
 
-            if ($query) {
+            if (pg_num_rows($query) > 0) {
                 // Transforma a query em um array
                 $result = pg_fetch_array($query);
 
                 // Envia para a página de horarios com o curso e o módulo
                 echo "horarios.php?curso={$result['curso']}&modulo={$result['modulo']}";
+
             }
+
+        } else {
+            echo "horarios.php";
         }
+
     } else {
         echo "horarios.php";
     }
+
 }
 
 /**
