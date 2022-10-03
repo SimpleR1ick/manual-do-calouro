@@ -93,6 +93,32 @@ function validaTelefone($numero, $pagePath): bool {
 }
 
 /**
+ * 
+ * 
+ * 
+ */
+function verificaEmailPertence($email, $pagePath): bool {
+    // Preparando uma requisição ao banco de dados
+    $sql = "SELECT id_usuario, email FROM usuario WHERE email = '$email'";
+    $query = pg_query(CONNECT, $sql);
+    
+    // Verifica
+    if (pg_num_rows($query) > 0 ) {
+        
+        $result = pg_fetch_row($query);
+
+        if ($result[0] != $_SESSION['id_usuario']) {
+            $_SESSION['mensag'] = 'Email já cadastrado!';
+
+            // Retorna a pagina de origem
+            header("Location: $pagePath"); 
+            return false;
+        }
+    }
+    return true;
+}
+
+/**
  * Função para verificar se o email de entrada já esta cadastrado no banco de dados
  * 
  * @param string $email E-mail a ser buscado
