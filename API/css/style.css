@@ -71,7 +71,12 @@ span ul.nav.flex-column {
 }
 
 #img-perfil {
-    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    width: 2.5vw;
+    height: 2.5vw;
+    min-width: 40px;
+    min-height: 40px;
 }
 
 td {

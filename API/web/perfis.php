@@ -31,10 +31,10 @@ $userData = getDadosUsuario(); ?>
                 <div class="col-6">
                     <!-- IMAGEM DE PERFIL -->
                     <div class="d-flex flex-column align-items-center p-3">
-                        <?php exibirFoto(); ?>
+                        <?php exibirFoto(1); ?>
                     
                         <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
-                        <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file">
+                        <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file" accept="image/png, image/jpg, image/jpeg">
                     </div>
                 </div>
 

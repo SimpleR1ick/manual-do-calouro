@@ -129,16 +129,29 @@ function verificaTurma(): void {
 function exibirLogin(): void {
     // Se existir um usuário, cria um botão para dar logout
     if (isset($_SESSION['id_usuario'])) {
+        $userData = getDadosUsuario();
+        
+        // Armazena em uma variavel o nome da foto do usuario
+        $path = $userData['img_perfil'];
+        
+        if (empty($path)) {
+            $path = "images/user.png";
+        } else {
+            $path = "uploads/".$userData['img_perfil'];
+        }
+
+
         echo 
-        "<div class=\"dropdown\">
-            <button class=\"btn border-none dropdown-toggle\" type=\"button\" data-bs-toggle=\"dropdown\" aria-expanded=\"false\">
-                <img id=\"img-perfil\" src=\"../assets/images/user.png\" alt=\"\" srcset=\"\">
+        "<div class='dropdown'>
+            <button class='btn border-none dropdown-toggle' type='button' data-bs-toggle='dropdown' aria-expanded='false'>
+            
+                <img id='img-perfil' alt='user-pic' src='../assets/$path'>.
             </button>
 
-            <ul class=\"dropdown-menu\">
-                <li><a class=\"dropdown-item\" href=\"perfis.php\">Perfil</a></li>
-                <li><a class=\"dropdown-item\" href=\"fale_conosco.php\">Fale conosco</a></li>
-                <li><a class=\"dropdown-item\" href=\"../php/includes/logout.php\">Sair<i class=\"fa-solid fa-right-from-bracket ms-2\"></i></a></li>
+            <ul class='dropdown-menu'>
+                <li><a class='dropdown-item' href='perfis.php'>Perfil</a></li>
+                <li><a class='dropdown-item' href='fale_conosco.php'>Fale conosco</a></li>
+                <li><a class='dropdown-item' href='../php/includes/logout.php'>Sair<i class='fa-solid fa-right-from-bracket ms-2'></i></a></li>
             </ul>
         </div>";
     // Se não existir um usuário, cria um botão para dar login
@@ -153,12 +166,14 @@ function exibirLogin(): void {
  * @author Henrique Dalmagro
  */
 function exibirFoto(): void {
+    
     if (isset($_SESSION['id_usuario'])) {
         $userData = getDadosUsuario();
 
         // Armazena em uma variavel o nome da foto do usuario
         $path = $userData['img_perfil'];
         
+        // Imagem no editar perfil
         if (!empty($path)) {
             // Imagem do Usuario cadastrada no banco
             echo "<img id='foto-editar-perfil' class='img-fluid' alt='user-pic' src='../assets/uploads/$path'>";

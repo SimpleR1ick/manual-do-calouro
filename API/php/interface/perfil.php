@@ -12,10 +12,11 @@ function textoTipoUsuario(): void {
     }
     else if ($userData['fk_acesso_id_acesso'] == 4) {
         echo "<label class='form-label fw-bold h5'>Editar regras</label>";
-    }   
+    }  
+    /* 
     else if ($userData['fk_acesso_id_acesso'] == 5) {
         echo "<label class='form-label fw-bold h5'>Editar setor</label>";
-    }   
+    }   */
 }
 
 /**
@@ -88,6 +89,7 @@ function campoTipoUsuario(): void {
         ?>
         <!-- SETOR -->
         <div class="mb-3">
+            <label for="setor" class="form-label fw-bold">Editar Setor</label>
             <select class="form-select" name="setor" id="setor" required>
                 <option value="" selected>** Selecione uma opção **</option>
                 <option value="cae">CAE</option>
