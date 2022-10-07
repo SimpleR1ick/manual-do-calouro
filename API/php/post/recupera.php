@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $link = "<a href=\"localhost/Manual_do_Calouro/API/web/redefinir_senha.php?chave=$chave\">Clique aqui</a>";
                     // Campos do email
                     $assunto = 'Recuperar senha';
-                    $mensagem = 'Visite este link '.$link;
+                    $mensagem = 'Para recuperar sua senha, acesse este link: '.$link;
 
                     // Invoca a função de envio de email
                     enviarEmail($email, $assunto, $mensagem);
