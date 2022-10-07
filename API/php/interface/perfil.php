@@ -71,7 +71,7 @@ function campoTipoUsuario(): void {
     } else if ($userData['fk_acesso_id_acesso'] == 4) { ?>
         <!-- REGRAS DE SALA -->
         <div class="mb-3">
-            <textarea class="w-100" id="regras" name="regras" required rows="6"></textarea>
+            <textarea class="w-100" id="regras" name="regras" rows="6"></textarea>
         </div>
         
     <?php 
@@ -90,7 +90,7 @@ function campoTipoUsuario(): void {
         <!-- SETOR -->
         <div class="mb-3">
             <label for="setor" class="form-label fw-bold">Editar Setor</label>
-            <select class="form-select" name="setor" id="setor" required>
+            <select class="form-select" name="setor" id="setor">
                 <option value="" selected>** Selecione uma opção **</option>
                 <option value="cae">CAE</option>
             </select>
