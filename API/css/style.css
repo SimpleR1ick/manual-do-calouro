@@ -65,9 +65,10 @@ span ul.nav.flex-column {
 .img-contato {
     border-radius: 50%;
     object-fit: cover;
-    min-width: 90px;
-    min-height: 90px;
-    max-width: 110px;
+    min-width: 70px;
+    min-height: 70px;
+    max-width: 90px;
+    max-height: 90px;
 }
 
 #img-perfil {
@@ -87,6 +88,10 @@ td {
     td strong, td small {
         font-size: 13px;
     }
+}
+
+.accordion {
+    max-width: 800px;
 }
 
 section {

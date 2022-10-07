@@ -32,7 +32,7 @@ function campoTipoUsuario(): void {
         <!-- MATRÍCULA -->
         <div class="mb-3">
             <label for="matricula" class="form-label fw-bold">Matrícula</label>
-            <input required type="text" class="form-control" id="matricula" name="matricula" placeholder="Ex: 20201tiimi9999" pattern="([0-9]{5}([A-Z]|[a-z]){5}[0-9]{4})+" value="">
+            <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Ex: 20201tiimi9999" pattern="([0-9]{5}([A-Z]|[a-z]){5}[0-9]{4})+" value="">
         </div>
 
     <?php

@@ -42,7 +42,7 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
 function cadastrarUsuarioAluno($id, $matricula): void {
     // Query para fazer o update das informações do aluno
     $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3 WHERE id_usuario = $id;
-            INSERT INTO aluno (fk_usuario_id_usuario, num_matricula) VALUES ($id, $matricula)";
+            INSERT INTO aluno (fk_usuario_id_usuario, num_matricula) VALUES ($id, '$matricula')";
 
     if (pg_query(CONNECT, $sql)) {
         $_SESSION['sucess'] = "Parabéns! Você agora é um aluno.";

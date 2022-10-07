@@ -101,7 +101,7 @@ function imprimeContato($filtro = 0) {
         ?>
         <!-- CARD CONTATO -->
         <div class="d-flex flex-column align-items-center">
-            <div class="accordion col-md-7 mb-2" id="contato-<?php echo "$i"; ?>">
+            <div class="accordion col-md-7 mb-2 w-100" id="contato-<?php echo "$i"; ?>">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="titulo-<?php echo "$i"; ?>">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#regras-<?php echo "$i"; ?>" aria-expanded="false" aria-controls="regras-<?php echo "$i"; ?>">

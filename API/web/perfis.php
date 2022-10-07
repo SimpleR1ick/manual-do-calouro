@@ -34,7 +34,7 @@ $userData = getDadosUsuario(); ?>
                         <?php exibirFoto(1); ?>
                     
                         <input type="hidden" name="MAX_FILE_SIZE" value="33554432">
-                        <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file" accept="image/png, image/jpg, image/jpeg">
+                        <input class="mt-4 form-control form-control-sm" id="nova-foto-perfil" name="foto" type="file" accept="image/*">
                     </div>
                 </div>
 
