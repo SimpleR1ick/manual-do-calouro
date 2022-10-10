@@ -73,13 +73,13 @@ body {
 
 .left {
   border-width: 7.5px 10px 7.5px 0;
-  border-color: transparent rgb(255, 221, 64) transparent transparent;
+  border-color: transparent rgba(247, 167, 0, 1) transparent transparent;
   left: 20px;
 }
 
 .right {
   border-width: 7.5px 0 7.5px 10px;
-  border-color: transparent transparent transparent rgb(255, 221, 64);
+  border-color: transparent transparent transparent rgba(247, 167, 0, 1);
   right: 20px;
 }
 
@@ -141,8 +141,13 @@ body {
   color: gray;
 }
 
-.day.today {
-  color: rgba(156, 202, 235, 1);
+.day.today .day-number {
+  background-color: #5497f9;
+  color: white;
+  border-radius: 15%;
+}
+.day.today .day-name {
+    color: #5497f9;
 }
 
 .day-name {
@@ -171,34 +176,22 @@ body {
   display: inline-block;
   padding: 0;
   margin: 0;
-  width: 5px;
+  width: 20px;
   height: 5px;
   line-height: 5px;
   margin: 0 1px;
+  border-radius: 18%;
 }
 
-.blue {
-  background: rgba(156, 202, 235, 1);
-}
 .orange {
   background: rgba(247, 167, 0, 1);
-}
-.green {
-  background: rgba(153, 198, 109, 1);
-}
-.yellow {
-  background: rgba(249, 233, 0, 1);
-}
-
-.red {
-  background: rgba(255, 0, 0, 1);
 }
 
 .details {
   position: relative;
   width: 420px;
   height: 75px;
-  background: gray;
+  background: lightgray;
   margin-top: 5px;
   /*-border-radius: 4px;-*/
 }
@@ -224,7 +217,7 @@ body {
   height: 0px;
   border-style: solid;
   border-width: 0 5px 5px 5px;
-  border-color: transparent transparent gray transparent;
+  border-color: transparent transparent lightgray transparent;
   transition: all 0.7s ease;
 }
 
@@ -265,11 +258,8 @@ body {
   letter-spacing: 0.5px;
   padding: 2px 16px;
   vertical-align: top;
-  color: white;
-}
-
-.event.empty {
-  color: white;
+  color: rgb(92, 105, 118);
+  font-weight: 700;
 }
 
 .event-category {

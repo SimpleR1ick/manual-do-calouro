@@ -238,13 +238,15 @@
             }, []);
     
             todaysEvents.forEach(function(ev) {
-                var evSpan = createElement("span", ev.color);
+                // ev.color
+                var evSpan = createElement("span", 'orange');
                 element.appendChild(evSpan);
             });
         }
     };
   
     Calendar.prototype.getDayClass = function(day) {
+        
         classes = ["day"];
         if (day.month() !== this.current.month()) {
             classes.push("other");
@@ -321,7 +323,9 @@
         events.forEach(function(ev) {
             var div = createElement("div", "event");
             var square = createElement("div", "event-category " + ev.color);
-            var span = createElement("span", "", ev.eventName);
+            var data = new Date(ev.eventTime);
+            data = `${data.getHours()}:${(data.getMinutes()<10?'0':'') + data.getMinutes()}`;
+            var span = createElement("span", "", `${data} - ${ev.eventName}`);
     
             div.appendChild(square);
             div.appendChild(span);
@@ -330,7 +334,7 @@
     
         if (!events.length) {
             var div = createElement("div", "event empty");
-            var span = createElement("span", "", "No Events");
+            var span = createElement("span", "", "Sem Eventos");
     
             div.appendChild(span);
             wrapper.appendChild(div);
@@ -408,128 +412,16 @@
 !(function() {
     var data = [
         {
+            eventName: "Festa Cultural",
+            eventTime: "2022-10-10 18:00:00"
+        },
+        {
             eventName: "Lunch Meeting w/ Mark",
-            calendar: "Work",
-            color: "orange",
-            eventTime: "2018-09-25 16:47:00"
+            eventTime: "2022-10-24 16:03:00"
         },
         {
-            eventName: "Interview - Jr. Web Developer",
-            calendar: "Work",
-            color: "orange",
-            eventTime: "2018-09-2 16:47:00"
-        },
-        {
-            eventName: "Demo New App to the Board",
-            calendar: "Work",
-            color: "orange",
-            eventTime: "2018-09-5 16:47:00"
-        },
-        {
-            eventName: "Dinner w/ Marketing",
-            calendar: "Work",
-            color: "orange",
-            eventTime: "2018-09-7 16:47:00"
-        },
-    
-        {
-            eventName: "Back & Biceps",
-            calendar: "Gym",
-            color: "blue",
-            eventTime: "2018-09-3 16:47:00"
-        },
-        {
-            eventName: "Chest & Triceps",
-            calendar: "Gym",
-            color: "blue",
-            eventTime: "2018-09-10 16:47:00"
-        },
-        {
-            eventName: "Legs day!",
-            calendar: "Gym",
-            color: "blue",
-            eventTime: "2018-09-20 16:47:00"
-        },
-        {
-            eventName: "Game vs San Degio",
-            calendar: "Gym",
-            color: "blue",
-            eventTime: "2018-09-30 16:47:00"
-        },
-    
-        {
-            eventName: "School Play",
-            calendar: "Kids",
-            color: "yellow",
-            eventTime: "2018-09-15 16:47:00"
-        },
-        {
-            eventName: "Parent/Teacher Conference",
-            calendar: "Kids",
-            color: "yellow",
-            eventTime: "2018-09-5 16:47:00"
-        },
-        {
-            eventName: "Pick up from Soccer Practice",
-            calendar: "Kids",
-            color: "yellow",
-            eventTime: "2018-09-17 16:47:00"
-        },
-        {
-            eventName: "Ice Cream Night",
-            calendar: "Kids",
-            color: "yellow",
-            eventTime: "2018-09-1 16:47:00"
-        },
-    
-        {
-            eventName: "Free Tamale Night",
-            calendar: "Appt",
-            color: "green",
-            eventTime: "2018-09-23 16:47:00"
-        },
-        {
-            eventName: "Bowling Team",
-            calendar: "Appt",
-            color: "green",
-            eventTime: "2018-09-28 16:47:00"
-        },
-        {
-            eventName: "Teach Kids to Code",
-            calendar: "Appt",
-            color: "green",
-            eventTime: "2018-09-12 16:47:00"
-        },
-        {
-            eventName: "Startup Weekend",
-            calendar: "Appt",
-            color: "green",
-            eventTime: "2018-09-13 16:47:00"
-        },
-    
-        {
-            eventName: "Free Tamale Night",
-            calendar: "Other",
-            color: "red",
-            eventTime: "2018-09-23 16:47:00"
-        },
-        {
-            eventName: "Bowling Team",
-            calendar: "Other",
-            color: "red",
-            eventTime: "2018-09-28 16:47:00"
-        },
-        {
-            eventName: "Teach Kids to Code",
-            calendar: "Other",
-            color: "red",
-            eventTime: "2018-09-12 16:47:00"
-        },
-        {
-            eventName: "Startup Weekend",
-            calendar: "Other",
-            color: "red",
-            eventTime: "2018-09-13 16:47:00"
+            eventName: "Lunch Meeting w/ Mark",
+            eventTime: "2022-10-26 16:10:00"
         }
     ];
   
