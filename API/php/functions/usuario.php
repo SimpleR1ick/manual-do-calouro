@@ -5,7 +5,7 @@
  * @param string $nome 
  * @param string $email 
  * @param string $senhaHash
- * @param path $destino
+ * @param string $destino
  * @param int $acesso 
  * 
  * @author Henrique Dalmagro

@@ -26,8 +26,8 @@ function getDadosUsuario(): array {
         // Encerando a conexão
         pg_close($db);
      
-        return $result;
-    }  
+    }
+    return $result;  
 }
 
 /**
@@ -53,9 +53,8 @@ function getDadosHeader(): array {
 
         // Encerando a conexão
         pg_close($db);
-
-        return $userData;
     } 
+    return $userData;
 }
 
 /**

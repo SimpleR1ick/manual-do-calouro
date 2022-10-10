@@ -40,10 +40,9 @@ function validarChaveConfirma(): mixed {
             $result = pg_fetch_array($query);
 
             $id = $result['fk_usuario_id_usuario'];
-
-            return $id;
         }
     }
+    return $id;
 }
 
 /**
