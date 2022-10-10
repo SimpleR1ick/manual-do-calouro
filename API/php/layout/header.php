@@ -41,31 +41,35 @@ require_once '../php/functions/session.php';// Funções da sessão
                     <ul class="navbar-nav ms-auto me-3 mb-2 mb-lg-0">
                         <!-- Home -->
                         <li class="nav-item">
-                            <a class="nav-link" href="index.php">Home</a>
+                            <a id="home" class="nav-link" href="index.php">Home</a>
                         </li>
                         <!-- Sobre -->
                         <li class="nav-item">
-                            <a class="nav-link" href="sobre.php">Sobre</a>
+                            <a id="sobre" class="nav-link" href="sobre.php">Sobre</a>
+                        </li>
+                        <!-- Calendário -->
+                        <li class="nav-item">
+                            <a id="calendario" class="nav-link" href="calendario.php">Calendário</a>
                         </li>
                         <!-- Mapa -->
                         <li class="nav-item">
-                            <a class="nav-link" href="mapa.php">Mapa</a>
+                            <a id="mapa" class="nav-link" href="mapa.php">Mapa</a>
                         </li>
                         <!-- Horarios -->
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php verificaTurma(); ?>">Horários</a>
+                            <a id="horarios" class="nav-link" href="<?php verificaTurma(); ?>">Horários</a>
                         </li>
                         <!-- Contatos -->
                         <li class="nav-item">
-                            <a class="nav-link" href="contatos.php">Contatos</a>
+                            <a id="contatos" class="nav-link" href="contatos.php">Contatos</a>
                         </li>
                         <!-- ROD -->
                         <li class="nav-item">
-                            <a class="nav-link" href="rod.php">ROD</a>
+                            <a id="rod" class="nav-link" href="rod.php">ROD</a>
                         </li>
                         <!-- FAQ -->
                         <li class="nav-item">
-                            <a class="nav-link" href="faq.php">FAQ</a>
+                            <a id="faq" class="nav-link" href="faq.php">FAQ</a>
                         </li>
                     </ul>
 
