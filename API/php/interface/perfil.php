@@ -1,8 +1,6 @@
 <?php
 /**
- * 
- * 
- * 
+ * Função para imprimir o texto a coluna relacionado ao tipo de usuario
  */
 function textoTipoUsuario(): void {
     global $userData;
@@ -20,9 +18,7 @@ function textoTipoUsuario(): void {
 }
 
 /**
- * 
- * 
- * 
+ * Função para imprimir o tipo de campo relacionado ao tipo de usuario
  */
 function campoTipoUsuario(): void {
     global $userData;

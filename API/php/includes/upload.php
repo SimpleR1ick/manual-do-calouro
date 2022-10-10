@@ -48,7 +48,7 @@ function uploadImagemPerfil($foto_nome, $foto_size, $path_temp): void {
                 WHERE id_usuario = {$_SESSION['id_usuario']}";
 
         // Verifica se o update ocorreu e armazena a foto na pasta de uploads
-        if (pg_query($sql)) {
+        if (pg_query(CONNECT, $sql)) {
             // Concatenando o caminho
             $path = $dir.$foto_nome;
 

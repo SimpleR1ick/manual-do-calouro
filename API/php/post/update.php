@@ -54,8 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($acesso == 2) {
             $matricula = $dados['matricula'];
 
-            if (verificaMatricula($matricula, $uri)) {
-                cadastrarUsuarioAluno($id, $matricula);
+            if (!empty($matricula)) {
+                if (verificaMatricula($matricula, $uri)) {
+                    cadastrarUsuarioAluno($id, $matricula);
+                }
             }
         }
 

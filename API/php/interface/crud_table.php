@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * Função para imprimir a tabela de usuários não administradores cadastrados
  * 
  * 
  */

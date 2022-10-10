@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * Função para gerar uma chave única
  * 
  * @author Henrique Dalmagro
  */
@@ -14,8 +14,6 @@ function gerarChaveConfirma(): string {
 
 /**
  * Função para verifica se uma chave esta cadastrada no banco de dados
- * 
- * 
  * 
  * @author Henrique Dalmagro
  */
@@ -40,10 +38,9 @@ function validarChaveConfirma(): mixed {
             $result = pg_fetch_array($query);
 
             $id = $result['fk_usuario_id_usuario'];
-
-            return $id;
         }
     }
+    return $id;
 }
 
 /**

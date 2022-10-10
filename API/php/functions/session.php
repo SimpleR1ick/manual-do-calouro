@@ -26,8 +26,8 @@ function getDadosUsuario(): array {
         // Encerando a conexão
         pg_close($db);
      
-        return $result;
-    }  
+    }
+    return $result;  
 }
 
 /**
@@ -53,9 +53,8 @@ function getDadosHeader(): array {
 
         // Encerando a conexão
         pg_close($db);
-
-        return $userData;
     } 
+    return $userData;
 }
 
 /**
@@ -80,7 +79,7 @@ function tituloSite(): void {
 }
 
 /**
- * 
+ * Função para enviar um aluno logado para o horário de sua turma
  * 
  * 
  */
@@ -238,7 +237,7 @@ function verificaNivelAcesso(): void {
 
 /**
  * Função para verificar se existe um usuario na sessão,
- * caso não o redireciona pro home.
+ * caso não, o redireciona pro home.
  * 
  * @author Henrique Dalmagro
  */

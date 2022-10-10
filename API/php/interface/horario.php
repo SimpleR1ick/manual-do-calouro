@@ -1,6 +1,6 @@
 <?php
 /**
- * 
+ * Função para imprimir o horário da turma selecionada
  * 
  * @author Henrique Dalmagro - Rafael Barros
  */
