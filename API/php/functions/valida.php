@@ -93,13 +93,18 @@ function validaTelefone($numero, $pagePath): bool {
 }
 
 /**
+ * Função para verificar se um email é o email do usuário logado
  * 
+ * @param string $email
+ * @param string $pagePath
  * 
+ * @return bool|false Caso não pertença
  * 
+ * @author Henrique Dalmagro
  */
 function verificaEmailPertence($email, $pagePath): bool {
     // Preparando uma requisição ao banco de dados
-    $sql = "SELECT id_usuario, email FROM usuario WHERE email = '$email'";
+    $sql = "SELECT id_usuario FROM usuario WHERE email = '$email'";
     $query = pg_query(CONNECT, $sql);
     
     // Verifica
@@ -168,6 +173,16 @@ function verificaSenha($senha, $pagePath) {
     return true; 
 }
 
+/**
+ * Função para verificar se uma matrícula já foi registrada
+ * 
+ * @param string $matricula
+ * @param string $pagePath
+ * 
+ * @return bool|false Caso a matrícula já esteja cadastrada
+ * 
+ * @author Henrique Dalmagro
+ */
 function verificaMatricula($matricula, $pagePath): bool {
     // Query para pegar os alunos com uma matrícula
     $sql = "SELECT * FROM aluno WHERE num_matricula = '$matricula'";

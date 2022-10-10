@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 
+ * Função para gerar uma chave única
  * 
  * @author Henrique Dalmagro
  */
@@ -14,8 +14,6 @@ function gerarChaveConfirma(): string {
 
 /**
  * Função para verifica se uma chave esta cadastrada no banco de dados
- * 
- * 
  * 
  * @author Henrique Dalmagro
  */

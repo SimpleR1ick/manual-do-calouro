@@ -22,13 +22,17 @@ function buscaFoto($id, $db): void {
     }
 }
 
-
+/**
+ * Função para imprimir os contatos dos servidores
+ * 
+ * @author Rafael Barros
+ */
 function imprimeContato($filtro = 0) {
     // Abrindo a conexão com o banco
     $db = db_connect();
 
     if ($filtro == 1) {
-        // SELECT para pegar os dados necessários para os contatos dos administradores
+        // SELECT para pegar os dados necessários para os contatos do administrativo
         $sql = "SELECT id_usuario,
                     nom_usuario,
                     dsc_setor,

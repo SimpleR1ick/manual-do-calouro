@@ -6,7 +6,7 @@
  * @param string $email 
  * @param string $senhaHash
  * @param string $destino
- * @param int $acesso 
+ * @param int $acesso
  * 
  * @author Henrique Dalmagro
  */
@@ -39,6 +39,14 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
     }
 }
 
+/**
+ * Função para atribuir o título de aluno a um usuário
+ * 
+ * @param int $id
+ * @param string $matricula
+ * 
+ * @author Rafael Barros
+ */
 function cadastrarUsuarioAluno($id, $matricula): void {
     // Query para fazer o update das informações do aluno
     $sql = "UPDATE usuario SET fk_acesso_id_acesso = 3 WHERE id_usuario = $id;
@@ -153,6 +161,7 @@ function atualizarUsuarioAluno($id, $modulo, $curso) {
 }
 
 /**
+ * Funcção para atribuir o título de professor a um usuário
  * 
  * @param int $id
  * @param string $regras
@@ -174,6 +183,7 @@ function atualizarUsuarioProfessor($id, $regras) {
 }
 
 /**
+ * Função para atribuir o título de administrativo a um usuário
  * 
  * @param int $id
  * @param int $setor
@@ -195,7 +205,10 @@ function atualizarUsuarioAdministrativo($id, $setor) {
 }
 
 /**
+ * Função para atualizar a senha de um usuário
  * 
+ * @param int $id
+ * @param string $senhaHash
  * 
  * @author Henrique Dalmagro
  */
@@ -210,6 +223,14 @@ function atualizarSenhaUsuario($id, $senhaHash): void {
     }  
 }
 
+/**
+ * Função para atualizar o acesso de um usuário
+ * 
+ * @param int $id
+ * @param int $acesso
+ * 
+ * @author Rafael Barros - Henrique Dalmagro 
+ */
 function atualizarAcessoUsuario($id, $acesso) {
     // Comentar
     $sql = "UPDATE usuario SET fk_acesso_id_acesso = '$acesso' WHERE id_usuario = $id";
