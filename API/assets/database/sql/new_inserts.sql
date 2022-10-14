@@ -235,12 +235,6 @@ INSERT INTO aula (
         (6, 10, 5, 6, 4),
         (6, 10, 6, 6, 4);
 
-
-INSERT INTO usuario_evento (fk_usuario_id_usuario, fk_evento_id_evento) VALUES
-    (2, 1), -- Henrique
-    (3, 2), -- Duda
-    (3, 3); -- Rafael
-
 INSERT INTO contato (dsc_contato, fk_servidor_fk_usuario_id_usuario, fk_tipo_contato_id_tipo) VALUES
     ('(27) 99966-0410', 5, 1),
     ('(27) 99872-1412', 6, 1);
