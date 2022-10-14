@@ -1,7 +1,6 @@
 <?php
 /**
  * Função para enviar um email ao usuario
- * 
  * @param string $destinatario
  * @param string $assunto
  * @param string $mensagem  

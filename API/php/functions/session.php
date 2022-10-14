@@ -1,7 +1,6 @@
 <?php
 /**
  * Função para armazenar os dados do usuario da sessão atual
- * 
  * @return array $userData retorna um array assossiativo com os dados
  *  
  * @author Henrique Dalmagro - Rafael Barros
@@ -32,7 +31,6 @@ function getDadosUsuario(): array {
 
 /**
  * Função para obter todos os dados de um usuario atravez do id
- * 
  * @return array $userData dados do usuario
  * 
  * @author Henrique Dalmagro
@@ -59,7 +57,6 @@ function getDadosHeader(): array {
 
 /**
  * Função para alterar o titulo do site 
- * 
  * @author Henrique Dalmagro - Rafael Barros
  */
 function tituloSite(): void {    
@@ -80,8 +77,7 @@ function tituloSite(): void {
 
 /**
  * Função para enviar um aluno logado para o horário de sua turma
- * 
- * 
+ * @author Henrique Dalmagro - Rafael Barros
  */
 function verificaTurma(): void {
     if (isset($_SESSION['id_usuario'])) {
@@ -122,7 +118,6 @@ function verificaTurma(): void {
 
 /**
  * Função para verificar se existe um usuario logado
- *  
  * @author Henrique Dalmagro
  */
 function exibirLogin(): void {
@@ -161,7 +156,6 @@ function exibirLogin(): void {
 
 /**
  * Função para exibir a imagem de perfil
- * 
  * @author Henrique Dalmagro
  */
 function exibirFoto(): void {
@@ -185,7 +179,6 @@ function exibirFoto(): void {
 
 /**
  * Função para imprimir o ultimo erro gerado
- * 
  * @author Rafael Barros - Henrique Dalmagro
  */
 function exibirErros(): void {
@@ -201,7 +194,6 @@ function exibirErros(): void {
 
 /**
  * Função para imprimir mesagem de sucesso
- * 
  * @author Rafael Barros
  */
 function exibirSucesso(): void {
@@ -217,7 +209,6 @@ function exibirSucesso(): void {
 
 /**
  * Função para verificar o acesso ao crud de usuarios
- * 
  * @author Henrique Dalmagro
  */
 function verificaNivelAcesso(): void {
@@ -236,9 +227,7 @@ function verificaNivelAcesso(): void {
 }
 
 /**
- * Função para verificar se existe um usuario na sessão,
- * caso não, o redireciona pro home.
- * 
+ * Função para verificar se existe um usuario na sessão, caso não, o redireciona pro home.
  * @author Henrique Dalmagro
  */
 function verificaUsuarioLogado(): void {

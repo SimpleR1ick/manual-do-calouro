@@ -1,10 +1,8 @@
 <?php
 /**
  * Função para verificar se o nome de entrada esta nos parametros do site
- * 
  * @param string $string Nome a ser verificado
  * @param string $pagePath Caminho de retorno em caso de erro
- * 
  * @return bool|false Caso tenha numeros ou caracter especiais
  *  
  * @author Henrique Dalmagro
@@ -23,10 +21,8 @@ function validaNome($nome, $pagePath) {
 
 /**
  * Função para verificar se o email de entrada é válido
- * 
  * @param string $email O e-mail
  * @param string $pagePath Caminho de retorno em caso de erro
- * 
  * @return bool|false Se o formato for invalido
  *  
  * @author Rafael Barros - Henrique Dalmagro
@@ -49,11 +45,9 @@ function validaEmail($email, $pagePath): bool {
 
 /**
  * Função para verificar se as senhas coincidem
- * 
  * @param string $senha1 A senha
  * @param string $senha2 Confirmação da senha
  * @param string $pagePath Caminho de retorno em caso de erro
- * 
  * @return bool|false Caso as senhas foram diferentes
  * 
  * @author Henrique Dalmagro
@@ -71,10 +65,8 @@ function validaSenha($senha1, $senha2, $pagePath): bool {
 
 /**
  * Função para validar um numero de telefone
- * 
  * @param string $numero a ser validado
  * @param string $pagePath Caminho de retorno em caso de erro
- * 
  * @return bool|false Caso o telefone não for valido
  * 
  * @author Henrique Dalmagro
@@ -94,10 +86,8 @@ function validaTelefone($numero, $pagePath): bool {
 
 /**
  * Função para verificar se um email é o email do usuário logado
- * 
  * @param string $email
  * @param string $pagePath
- * 
  * @return bool|false Caso não pertença
  * 
  * @author Henrique Dalmagro
@@ -125,10 +115,8 @@ function verificaEmailPertence($email, $pagePath): bool {
 
 /**
  * Função para verificar se o email de entrada já esta cadastrado no banco de dados
- * 
  * @param string $email E-mail a ser buscado
  * @param string $pagePath Pagina de retorno se houver erro
- * 
  * @return bool|false Se estiver em uso
  * 
  * @author Henrique Dalmagro
@@ -151,10 +139,8 @@ function verificaEmail($email, $pagePath): bool {
 
 /**
  * Função para verificar se a senha atende aos requisitos
- * 
  * @param string $senha literalmente a senha
  * @param string $pagePath Caminho de retorno em caso de erro
- * 
  * @return bool|false Caso a senha não for valida
  * 
  * @author Henrique Dalmagro
@@ -175,10 +161,8 @@ function verificaSenha($senha, $pagePath) {
 
 /**
  * Função para verificar se uma matrícula já foi registrada
- * 
  * @param string $matricula
  * @param string $pagePath
- * 
  * @return bool|false Caso a matrícula já esteja cadastrada
  * 
  * @author Henrique Dalmagro
@@ -202,10 +186,8 @@ function verificaMatricula($matricula, $pagePath): bool {
 
 /**
  * Função para verificar se o status do usuario e ativo
- * 
  * @param string $email Do usuario para verificação
  * @param string $pagePath Pagina de retorno se houver erro
- * 
  * @return bool|false Se o usuario estiver inativo
  * 
  * @author Henrique Dalmagro

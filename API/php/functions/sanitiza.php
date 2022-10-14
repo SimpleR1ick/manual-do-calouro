@@ -1,9 +1,7 @@
 <?php
 /**
  * Função para verificar inject de tags HTML em um array
- * 
  * @param array $array a ser percorrido
- * 
  * @return bool false se encontrar, true se passar
  * 
  * @author Henrique Dalmagro
@@ -29,7 +27,6 @@ function validaFormulario($array): bool {
 
 /**
  * Função para sanitizar os indices de um array
- * 
  * @param array $array a ser percorrido
  * 
  * @author Henrique Dalmagro
@@ -54,7 +51,6 @@ function sanitizaFormulario($array): array {
 
 /**
  * Função para filtar uma string de caracter especiais
- * 
  * @param string $value A string
  * @return string $filtrada 
  * 

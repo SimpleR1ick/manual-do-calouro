@@ -1,7 +1,6 @@
 <?php
 /**
  * Função para cadastrar o usuario no sistema
- * 
  * @param string $nome 
  * @param string $email 
  * @param string $senhaHash
@@ -41,7 +40,6 @@ function cadastrarUsuario($nome, $email, $senha, $path, $acesso = 2): void {
 
 /**
  * Função para atribuir o título de aluno a um usuário
- * 
  * @param int $id
  * @param string $matricula
  * 
@@ -59,7 +57,6 @@ function cadastrarUsuarioAluno($id, $matricula): void {
 
 /**
  * Função para executar o login no website
- * 
  * @param string $email
  * @param string $senha
  * 
@@ -99,7 +96,6 @@ function logarUsuario($email, $senha): void {
 
 /**
  * Função para atualizar os dados do usuario
- * 
  * @param int $id
  * @param string $nome
  * @param string $email
@@ -135,7 +131,6 @@ function atualizarDadosUsuario($id, $nome, $email): void {
 
 /**
  * Função para inserir o curso e o modulo do aluno
- * 
  * @param int $id
  * @param int $curso código único do curso
  * @param int $modulo código único do módulo
@@ -162,7 +157,6 @@ function atualizarUsuarioAluno($id, $modulo, $curso) {
 
 /**
  * Funcção para atribuir o título de professor a um usuário
- * 
  * @param int $id
  * @param string $regras
  * 
@@ -184,7 +178,6 @@ function atualizarUsuarioProfessor($id, $regras) {
 
 /**
  * Função para atribuir o título de administrativo a um usuário
- * 
  * @param int $id
  * @param int $setor
  * 
@@ -206,7 +199,6 @@ function atualizarUsuarioAdministrativo($id, $setor) {
 
 /**
  * Função para atualizar a senha de um usuário
- * 
  * @param int $id
  * @param string $senhaHash
  * 
@@ -225,7 +217,6 @@ function atualizarSenhaUsuario($id, $senhaHash): void {
 
 /**
  * Função para atualizar o acesso de um usuário
- * 
  * @param int $id
  * @param int $acesso
  * 
@@ -245,7 +236,6 @@ function atualizarAcessoUsuario($id, $acesso) {
 
 /**
  * Função para atualizar os dados de um usuario
- * 
  * @param int $id
  * @param bool @status 't' or 'f'
  * 
@@ -264,7 +254,6 @@ function atualizarStatusUsuario($id, $ativo): void {
 
 /**
  * Função para deletar os dados de um usuario
- * 
  * @param int $id
  * 
  * @author Henrique Dalmagro - Rafael Barros

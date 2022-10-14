@@ -1,7 +1,6 @@
 <?php
 /**
  * Função para abrir uma conexão com banco de dados postgreSQL no ElephantSQL
- * 
  * @author Henrique Dalmagro
 */
 function db_connect(): mixed {
