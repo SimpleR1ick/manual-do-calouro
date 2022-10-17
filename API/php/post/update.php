@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Verificações
             if (verificaEmailPertence($email, $uri)) {
                 // Atualiza o nome e email de um usuário
-                atualizarDadosUsuario($id, $nome, $email, $uri);
+                atualizarDadosUsuario($id, $nome, $email);
             }
         }
     }
