@@ -2,7 +2,6 @@
 
 /**
  * Função para gerar uma chave única
- * 
  * @author Henrique Dalmagro
  */
 function gerarChaveConfirma(): string {
@@ -14,7 +13,6 @@ function gerarChaveConfirma(): string {
 
 /**
  * Função para verifica se uma chave esta cadastrada no banco de dados
- * 
  * @author Henrique Dalmagro
  */
 function validarChaveConfirma(): mixed {
@@ -45,10 +43,8 @@ function validarChaveConfirma(): mixed {
 
 /**
  * Função para inserir a chave de confirmação no banco de dados
- * 
  * @param int $id do usuario
  * @param string $chave sha1 gerada
- * 
  * @return bool 
  * 
  * @author Henrique Dalmagro
@@ -87,7 +83,6 @@ function inserirChaveCofnrima($id, $chave): bool {
 
 /**
  * Função para limpar a chave de atiavação de um usuario
- * 
  * @param int $id do usuario
  * @return false em caso de falha
  * 

@@ -1,7 +1,6 @@
 <?php
 /**
  * Função para verificar se o usuario ja possui uma imagem de perfil ou não
- * 
  * @param string $nome_foto nome do arquivo de imagem
  * @return string $nome_novo 
  * 
@@ -30,7 +29,6 @@ function atualizarNomeFotoUsuario($nome_foto): string {
 
 /**
  * Função para mover um arquivo recebido via upload
- * 
  * @param int $foto_size
  * @param string $nome_temp
  * @param string $nome_novo

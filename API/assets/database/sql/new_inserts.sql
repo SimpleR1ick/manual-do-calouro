@@ -154,12 +154,20 @@ INSERT INTO sala_aula (num_sala_aula) VALUES
     ('LAB 903t'),
     ('LAB 901t');
 
-INSERT INTO evento (dat_evento, nom_evento, dsc_evento) VALUES
-    ('2022-05-08 11:10:00', 'Prova de Biologia', 'Reprodução Humana'),
-    ('2022-04-10 08:20:00', 'OBMEP', 'Estudar'),
-    ('2022-06-08 13:00:00', 'Prova de Matemática', 'Recuperação'),
-    ('2022-11-27 07:30:00', 'Expedição IFES', ''),
-    ('2022-10-11 10:20:00', 'Laboratório de Química', '');
+INSERT INTO evento (dat_evento, dsc_evento) VALUES
+    ('2022-11-01 11:10:00', 'Prova de Biologia'),
+    ('2022-10-09 08:20:00', 'OBMEP'),
+    ('2022-10-30 13:00:00', 'Prova de Matemática'),
+    ('2022-11-27 07:30:00', 'Expedição IFES'),
+    ('2022-10-11 10:20:00', 'Laboratório de Química');
+
+INSERT INTO campus (dsc_campus) VALUES
+    ('Serra');
+
+INSERT INTO campus_curso(fk_campus_id_campus, fk_curso_id_curso) VALUES
+    (1,1),
+    (1,2),
+    (1,3);
 
 INSERT INTO tipo_contato (dsc_tipo) VALUES
     ('Telefone'),
@@ -226,12 +234,6 @@ INSERT INTO aula (
         (6, 10, 4, 6, 4),
         (6, 10, 5, 6, 4),
         (6, 10, 6, 6, 4);
-
-
-INSERT INTO usuario_evento (fk_usuario_id_usuario, fk_evento_id_evento) VALUES
-    (2, 1), -- Henrique
-    (3, 2), -- Duda
-    (3, 3); -- Rafael
 
 INSERT INTO contato (dsc_contato, fk_servidor_fk_usuario_id_usuario, fk_tipo_contato_id_tipo) VALUES
     ('(27) 99966-0410', 5, 1),

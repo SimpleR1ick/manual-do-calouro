@@ -1,7 +1,6 @@
 <?php
 /**
  * Função para criptografar uma string
- * 
  * @author Henrique Dalmagro
  */
 function criptografar($value): string {
@@ -13,7 +12,6 @@ function criptografar($value): string {
 
 /**
  * Função para descriptografar uma string
- * 
  * @author Henrique Dalmagro
  */
 function descriptar($value): string {
