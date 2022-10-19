@@ -13,19 +13,25 @@ INSERT INTO usuario (nom_usuario, email, senha, fk_acesso_id_acesso) VALUES
     ('Henrique', 'henriquedalmagro@outlook.com', '$2y$10$jgcDXod3UkRc3xdcMInbouy.K/qggwkDnNgD8cwjZTlBBrqffO9WG', 3),   
     ('Maria', 'mariaeduarda@gmail.com', '$2y$10$eQ1ZixS8rKNWkigRl2VmpusdSkHh19gLujF/fcYlZUOnlOkXsdHmG', 3),           
     ('Rafael', 'rafaelbarros@hotmail.com', '$2y$10$YLtWLzRodJzZ1mb31RdDO.1JLqJLoxnl1SBpnXLCbmGZ3bBER1aEm', 3),         
-    ('Raphael', 'rbranco@yahoo.com', '$2y$10$xUZ9PMKKnLyHQxMrJREmT.gtIpMV785I5SrDq3jCqTgavF9.9F0Ra', 2),              
+    ('Raphael', 'rbranco@yahoo.com', '$2y$10$xUZ9PMKKnLyHQxMrJREmT.gtIpMV785I5SrDq3jCqTgavF9.9F0Ra', 4),              
     ('Nauvia', 'nauvia@gmail.com', '$2y$10$//6XkcYo2qlAJWgbbDYiueC5QEEv8kX8zSu70uh34kA7eOnsSlGb6', 2),                 
-    ('Marta', 'marta@gmail.com', '$2y$10$TvuKBuyUgpdwdo/X8sxhaOuKYOtnk3pvwI7mZucRBExj8mQgsXQ72', 2),                   
-    ('Paulo Cezar', 'paulo.cesar@gmail.com', '$2y$10$kDwbUHz3pZjhikO29eAZp.LKdmy8E1UkN3NUxRLu7uDVL/HoViz4C', 2),       
-    ('Alessandro', 'bermudes@gmail.com', '$2y$10$YhW5QUL.BTJzdmL3qzZQNeJf/FAFULcDbcEy.GAUMu2xKlBKDVPJe', 2),           
-    ('Ronaldo', 'ronaldo@gmail.com', '$2y$10$09.kh9fHfHtZLwO3dP.SMuiozTdZCMdzqriBbgsv5AjBjYFqsjHp6', 2),               
-    ('Diego', 'diego@gmail.com', '$2y$10$IceIFIucyB93NcgQw032DO8o/bONWDZwC9QJ/X9VGjOKKAPdqXKcu', 2),                   
-    ('Ana Paula', 'ana.paula@gmail.com', '$2y$10$0VHPjKuE6f6ev9h2Gdu2kuEA.sXIC0aOos5YRd66w5lJ/DRJ9jb2i', 2),           
-    ('Geraldo', 'geraldo@gmail.com', '$2y$10$QkPZ1vF8uBX7M1I6bYoEvOKsc2L5tLnORWbHEkTqXl2WZblHB/Q92', 2),               
-    ('Maikon', 'maikon@gmail.com', '$2y$10$S0TJ.4x.sRkBgea8YAiq4.e00Ky/BRHyqhbMUZiTGQnvt9Ip3J0Ta', 2),                 
-    ('Carlos', 'carlos@gmail.com', '$2y$10$wmEOlFlx63clUa5VCgiqe.Ysvl3T28LNJXwMvthDEBJocYQrQvYzG', 2),                 
-    ('Daniel', 'daniel@gmail.com', '$2y$10$kS8dBN46ELFC8IS/eV/Xd.5OuAEsd03p0AsPjdtG2F8wjdIjr3M.q', 2),                 
-    ('Moisés', 'moisesomena@ifes.edu.br', '$2y$10$SU803qITi2b8imDq1R5stO7Amc0SAbzTxPdeh0kklt/IS9IqyYyxG', 2);          
+    ('Marta', 'marta@gmail.com', '$2y$10$TvuKBuyUgpdwdo/X8sxhaOuKYOtnk3pvwI7mZucRBExj8mQgsXQ72', 5),                   
+    ('Paulo Cezar', 'paulo.cesar@gmail.com', '$2y$10$kDwbUHz3pZjhikO29eAZp.LKdmy8E1UkN3NUxRLu7uDVL/HoViz4C', 5),       
+    ('Alessandro', 'bermudes@gmail.com', '$2y$10$YhW5QUL.BTJzdmL3qzZQNeJf/FAFULcDbcEy.GAUMu2xKlBKDVPJe', 5),           
+    ('Ronaldo', 'ronaldo@gmail.com', '$2y$10$09.kh9fHfHtZLwO3dP.SMuiozTdZCMdzqriBbgsv5AjBjYFqsjHp6', 5),               
+    ('Diego', 'diego@gmail.com', '$2y$10$IceIFIucyB93NcgQw032DO8o/bONWDZwC9QJ/X9VGjOKKAPdqXKcu', 5),                   
+    ('Ana Paula', 'ana.paula@gmail.com', '$2y$10$0VHPjKuE6f6ev9h2Gdu2kuEA.sXIC0aOos5YRd66w5lJ/DRJ9jb2i', 5),           
+    ('Geraldo', 'geraldo@gmail.com', '$2y$10$QkPZ1vF8uBX7M1I6bYoEvOKsc2L5tLnORWbHEkTqXl2WZblHB/Q92', 5),               
+    ('Maikon', 'maikon@gmail.com', '$2y$10$S0TJ.4x.sRkBgea8YAiq4.e00Ky/BRHyqhbMUZiTGQnvt9Ip3J0Ta', 5),                 
+    ('Carlos', 'carlos@gmail.com', '$2y$10$wmEOlFlx63clUa5VCgiqe.Ysvl3T28LNJXwMvthDEBJocYQrQvYzG', 5),                 
+    ('Daniel', 'daniel@gmail.com', '$2y$10$kS8dBN46ELFC8IS/eV/Xd.5OuAEsd03p0AsPjdtG2F8wjdIjr3M.q', 5),                 
+    ('Moisés', 'moisesomena@ifes.edu.br', '$2y$10$SU803qITi2b8imDq1R5stO7Amc0SAbzTxPdeh0kklt/IS9IqyYyxG', 5),
+    ('Thiago', 'thiagoneves@gmail.com', '$2y$10$5R0JhvGH7iTEA9HgUqEd0.SywoyROn6.kkgC81UMhCoXHfl.J8hw6', 3),         
+    ('Luís', 'luisluz@gmail.com', '$2y$10$5R0JhvGH7iTEA9HgUqEd0.SywoyROn6.kkgC81UMhCoXHfl.J8hw6', 3),         
+    ('Eloá', 'eloa@gmail.com', '$2y$10$5R0JhvGH7iTEA9HgUqEd0.SywoyROn6.kkgC81UMhCoXHfl.J8hw6', 3),         
+    ('Roger', 'warrick@gmail.com', '$2y$10$5R0JhvGH7iTEA9HgUqEd0.SywoyROn6.kkgC81UMhCoXHfl.J8hw6', 3),
+    ('Roger', 'warrick@gmail.com', '$2y$10$5R0JhvGH7iTEA9HgUqEd0.SywoyROn6.kkgC81UMhCoXHfl.J8hw6', 3),
+    ('Scopel', 'scopel.ifes@gmail.com', '$2y$10$5R0JhvGH7iTEA9HgUqEd0.SywoyROn6.kkgC81UMhCoXHfl.J8hw6', 4);     
 
 INSERT INTO curso (dsc_curso) VALUES
     ('Info'),
@@ -55,7 +61,11 @@ INSERT INTO turma (num_modulo, fk_curso_id_curso) VALUES
 INSERT INTO aluno (num_matricula, fk_usuario_id_usuario, fk_turma_id_turma) VALUES
     ('20201tiimi0365', 2, 6), -- Henrique
     ('20201tiimi0152', 3, 6), -- Duda
-    ('20201tiimi0160', 4, 6); -- Rafael
+    ('20201tiimi0160', 4, 6), -- Rafael
+    ('20201tiimi0161', 19, 7),
+    ('20201tiimi0162', 20, 10),
+    ('20201tiimi0163', 21, 14),
+    ('20201tiimi0164', 22, 15);
 
 INSERT INTO sala (num_sala) VALUES
     ('101'),
@@ -70,7 +80,8 @@ INSERT INTO sala (num_sala) VALUES
     ('710'),
     ('711'),
     ('712'),
-    ('707');
+    ('707'),
+    ('909t');
 
 INSERT INTO servidor (fk_usuario_id_usuario, fk_sala_id_sala) VALUES
     (5, 1), -- CAE
@@ -85,7 +96,8 @@ INSERT INTO servidor (fk_usuario_id_usuario, fk_sala_id_sala) VALUES
     (14, 10),
     (15, 13),
     (16, 12),
-    (17, 13); -- Moisés
+    (17, 13), -- Moisés
+    (23, 14); 
 
 INSERT INTO professor (regras, fk_servidor_fk_usuario_id_usuario) VALUES
     (null, 6),
@@ -102,10 +114,12 @@ INSERT INTO professor (regras, fk_servidor_fk_usuario_id_usuario) VALUES
     ('Não xingar porra!', 17);
 
 INSERT INTO setor (dsc_setor) VALUES
-    ('Coordenadoria de Apoio ao Ensino');
+    ('Coordenadoria de Apoio ao Ensino'),
+    ('Pedagógico');
 
 INSERT INTO administrativo (fk_servidor_fk_usuario_id_usuario, fk_setor_id_setor) VALUES
-    (5, 1);
+    (5, 1),
+    (23, 2);
 
 INSERT INTO dia_semana (dsc_dia_semana) VALUES
     ('Domingo'),
@@ -149,20 +163,33 @@ INSERT INTO disciplina (dsc_disciplina) VALUES
     ('SOCIOL');             -- 12
 
 INSERT INTO sala_aula (num_sala_aula) VALUES
+    ('SAL 103'),
+    ('SAL 104'),
     ('SAL 105'),
+    ('SAL 106'),
+    ('SAL 107'),
+	('SAL 108'),
     ('LAB 208t'),
+    ('LAB 209t'),
     ('LAB 903t'),
-    ('LAB 901t');
-
-INSERT INTO evento (dat_evento, dsc_evento) VALUES
-    ('2022-11-01 11:10:00', 'Prova de Biologia'),
-    ('2022-10-09 08:20:00', 'OBMEP'),
-    ('2022-10-30 13:00:00', 'Prova de Matemática'),
-    ('2022-11-27 07:30:00', 'Expedição IFES'),
-    ('2022-10-11 10:20:00', 'Laboratório de Química');
+    ('LAB 901t'),
+	('LAB 904t');
 
 INSERT INTO campus (dsc_campus) VALUES
     ('Serra');
+
+INSERT INTO evento (dat_evento, dsc_evento, fk_campus_id_campus) VALUES
+    ('2022-11-01 11:10:00', 'Prova de Biologia', 1),
+    ('2022-10-09 08:20:00', 'OBMEP', 1),
+    ('2022-10-30 13:00:00', 'Prova de Matemática', 1),
+    ('2022-11-27 07:30:00', 'Expedição IFES', 1),
+	('2022-10-11 10:20:00', 'Laboratório de Química', 1),
+    ('2022-10-29 10:20:00', 'Festa Cultural', 1),
+    ('2022-09-11 09:10:00', 'Setembro Verde', 1),
+    ('2022-08-07 08:00:00', 'Exposição de Hip Hop', 1),
+    ('2022-08-15 10:20:00', 'Teatro Info 2', 1),
+    ('2022-07-10 11:00:00', 'SIGI', 1),
+    ('2022-08-11 13:00:00', 'Reunião do Comitê Estudantil', 1);
 
 INSERT INTO campus_curso(fk_campus_id_campus, fk_curso_id_curso) VALUES
     (1,1),
@@ -174,7 +201,8 @@ INSERT INTO tipo_contato (dsc_tipo) VALUES
     ('E-mail');
 
 INSERT INTO horario (hora_inicio, hora_fim) VALUES
-    ('10:30:00', '11:30:00');
+    ('10:30:00', '11:30:00'),
+    ('13:00:00', '17:00:00');
 
 INSERT INTO professor_disciplina (fk_disciplina_id_disciplina, fk_professor_fk_servidor_fk_usuario_id_usuario) VALUES
     (1, 9),
@@ -241,4 +269,5 @@ INSERT INTO contato (dsc_contato, fk_servidor_fk_usuario_id_usuario, fk_tipo_con
 
 INSERT INTO servidor_horario (fk_servidor_fk_usuario_id_usuario, fk_horario_id_horario) VALUES
     (5, 1),
-    (6, 1);
+    (6, 1),
+    (23, 2);

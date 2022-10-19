@@ -24,6 +24,10 @@ DROP TABLE IF EXISTS servidor_horario CASCADE;
 DROP TABLE IF EXISTS campus_curso CASCADE;
 
 /* Modelo Físico */
+CREATE TABLE acesso (
+    id_acesso SERIAL PRIMARY KEY,
+    dsc_acesso VARCHAR(10)
+);
 
 CREATE TABLE usuario (
     id_usuario SERIAL PRIMARY KEY,
@@ -126,11 +130,6 @@ CREATE TABLE professor_disciplina (
 CREATE TABLE chave (
     chave_confirma VARCHAR(255),
     fk_usuario_id_usuario SERIAL
-);
-
-CREATE TABLE acesso (
-    id_acesso SERIAL PRIMARY KEY,
-    dsc_acesso VARCHAR(10)
 );
 
 CREATE TABLE campus (
