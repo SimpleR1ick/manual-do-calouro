@@ -198,7 +198,8 @@ INSERT INTO campus_curso(fk_campus_id_campus, fk_curso_id_curso) VALUES
 
 INSERT INTO tipo_contato (dsc_tipo) VALUES
     ('Telefone'),
-    ('E-mail');
+    ('E-mail'),
+    ('WhatsApp');
 
 INSERT INTO horario (hora_inicio, hora_fim) VALUES
     ('10:30:00', '11:30:00'),
@@ -265,7 +266,9 @@ INSERT INTO aula (
 
 INSERT INTO contato (dsc_contato, fk_servidor_fk_usuario_id_usuario, fk_tipo_contato_id_tipo) VALUES
     ('(27) 99966-0410', 5, 1),
-    ('(27) 99872-1412', 6, 1);
+    ('(27) 99872-1412', 6, 1),
+    ('wagnerscopel@ifes.edu.br', 23, 2),
+    ('(27) 3182-9480', 23, 3);
 
 INSERT INTO servidor_horario (fk_servidor_fk_usuario_id_usuario, fk_horario_id_horario) VALUES
     (5, 1),
