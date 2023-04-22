@@ -1,0 +1,13 @@
+https://www.php.net/manual/en/book.pgsql.php
+
+https://www.php.net/manual/pt_BR/function.mail.php
+
+https://www.w3schools.in/php/mail/
+
+https://www.devmedia.com.br/enviando-email-com-php/37216
+
+https://www.php.net/manual/pt_BR/features.file-upload.php
+
+https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept
+
+https://www.diegomacedo.com.br/validacao-de-dados-no-php/#:~:text=Validando%20Telefone,5555%2D5555%22%3B%20if(!
